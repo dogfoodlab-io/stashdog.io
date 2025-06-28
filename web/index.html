@@ -1,117 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StashDog - Your Trusty Companion for Organizing and Fetching Your Stuff</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StashDog - Creative Asset Generator</title>
+  <style>
+    /* Reset & Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+    .container { width: 80%; margin: auto; overflow: hidden; }
+    
+    /* Header */
+    header { background: #35424a; color: #fff; padding: 20px 0; }
+    .logo { display: inline-flex; align-items: center; font-size: 1.8em; font-weight: bold; }
+    .logo svg { margin-right: 10px; }
+    nav { float: right; }
+    nav a { color: #fff; text-decoration: none; padding: 0 15px; font-size: 1.1em; }
+    
+    /* Hero Section */
+    .hero { background: url('https://via.placeholder.com/1500x500?text=StashDog') no-repeat center center/cover; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+    .hero h1 { font-size: 3em; margin-bottom: 20px; }
+    .btn { display: inline-block; background: #e8491d; color: #fff; padding: 10px 20px; text-decoration: none; font-size: 1.2em; border-radius: 5px; }
+    
+    /* Sections */
+    section { padding: 40px 0; }
+    section h2 { text-align: center; margin-bottom: 20px; }
+    
+    /* Features & Personas */
+    .features { display: flex; flex-wrap: wrap; justify-content: space-around; }
+    .feature { flex: 1 1 300px; margin: 20px; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    
+    /* Testimonials */
+    .testimonial { background: #fff; padding: 20px; margin: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    
+    /* Login Form */
+    .login-form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; }
+    .login-form input { width: 100%; padding: 10px; margin-bottom: 10px; }
+    .login-form button { width: 100%; padding: 10px; background: #e8491d; border: none; color: #fff; font-size: 1.1em; border-radius: 5px; cursor: pointer; }
+    
+    /* Footer */
+    footer { background: #35424a; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+  </style>
 </head>
 <body>
-  <!-- Header / Navigation -->
+  <!-- Header with Logo and Navigation -->
   <header>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="logo">
+        <!-- Custom SVG Logo -->
+        <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="32" fill="#e8491d"/>
+          <path d="M20 30 L32 18 L44 30 L32 42 Z" fill="#fff"/>
+        </svg>
+        StashDog
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#personas">Who It's For</a>
+        <a href="#blog">Blog</a>
+        <a href="#testimonials">Testimonials</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to StashDog</h1>
-      <p>Your Trusty Companion for Organizing and Fetching Your Stuff</p>
-      <a href="#signup" class="cta-btn">Get Started</a>
-      <a href="#learn-more" class="cta-btn secondary">Learn More</a>
+  <div class="hero">
+    <div>
+      <h1>Elevate Your Creative Process</h1>
+      <p>Generate high-quality images, logos, and copy effortlessly with StashDog.</p>
+      <a href="#login" class="btn">Request Your Free Login</a>
     </div>
-    <div class="hero-image">
-      <!-- Placeholder for friendly dog illustration -->
-      <img src="stashdog-illustration.png" alt="Friendly dog fetching your treasures">
-    </div>
-  </section>
+  </div>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>StashDog emerged from our passion to create a secure yet playful way to manage your digital treasures. Our loyal companion is here to help you organize, secure, and easily fetch your files whenever you need them.</p>
-    <!-- Team introductions can be added here -->
+  <!-- About StashDog Section -->
+  <section id="about" class="container">
+    <h2>About StashDog</h2>
+    <p>StashDog is a powerful creative tool designed to help you produce professional visuals and compelling copy. Whether you’re a designer, marketer, or entrepreneur, StashDog provides the assets you need—fast and efficiently.</p>
   </section>
 
   <!-- Features Section -->
-  <section id="features">
+  <section id="features" class="container">
     <h2>Features</h2>
-    <div class="feature">
-      <h3>Reliable File Storage</h3>
-      <p>Enjoy secure, encrypted storage that keeps your files safe.</p>
-    </div>
-    <div class="feature">
-      <h3>Smart Organization</h3>
-      <p>Easily tag, sort, and search your files—just like having a dog fetch your favorite toy.</p>
-    </div>
-    <div class="feature">
-      <h3>Easy Sharing</h3>
-      <p>Share your files quickly with customizable permissions.</p>
-    </div>
-    <!-- Additional features can be added here -->
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing">
-    <h2>Pricing Plans</h2>
-    <div class="pricing-table">
-      <!-- Pricing details for Free, Pro, Enterprise -->
-      <div class="pricing-plan">
-        <h3>Free</h3>
-        <p>Essential features and ample storage to get you started.</p>
+    <div class="features">
+      <div class="feature">
+        <h3>Instant Asset Generation</h3>
+        <p>Create professional images, logos, and copy with our advanced AI-powered tools designed for your creative needs.</p>
       </div>
-      <div class="pricing-plan">
-        <h3>Pro</h3>
-        <p>Enhanced security, more storage, and priority support.</p>
+      <div class="feature">
+        <h3>Tailored for Every Need</h3>
+        <p>Our platform adapts to the requirements of designers, marketers, and entrepreneurs, providing tools that enhance your workflow.</p>
       </div>
-      <div class="pricing-plan">
-        <h3>Enterprise</h3>
-        <p>Custom solutions tailored to your organization’s needs.</p>
+      <div class="feature">
+        <h3>Seamless Integration</h3>
+        <p>Easily connect with your favorite platforms and tools, ensuring a smooth and efficient creative process.</p>
       </div>
     </div>
   </section>
 
-  <!-- Blog Section -->
-  <section id="blog">
-    <h2>Latest From Our Blog</h2>
-    <article>
-      <h3>5 Tips to Organize Your Digital Life</h3>
-      <p>Learn expert tips and tricks to keep your files in perfect order.</p>
-      <a href="#">Read More</a>
-    </article>
-    <!-- More blog posts -->
+  <!-- Personas Section -->
+  <section id="personas" class="container">
+    <h2>Who Is StashDog For?</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Design Professionals</h3>
+        <p>Enhance your design projects with custom, high-quality assets that meet professional standards.</p>
+      </div>
+      <div class="feature">
+        <h3>Marketers</h3>
+        <p>Boost your campaigns with visually engaging content and persuasive copy that drives results.</p>
+      </div>
+      <div class="feature">
+        <h3>Entrepreneurs</h3>
+        <p>Build a strong brand identity with creative tools that streamline your process and deliver consistent quality.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form action="submit_form.php" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <!-- Blog/Articles Section -->
+  <section id="blog" class="container">
+    <h2>From Our Blog</h2>
+    <p>Explore our articles for insights and best practices on using StashDog to enhance your creative projects.</p>
+    <ul>
+      <li><a href="#">Leveraging AI for Professional Design</a></li>
+      <li><a href="#">Brand Building: Tips and Strategies</a></li>
+      <li><a href="#">Optimizing Your Workflow with Creative Tools</a></li>
+    </ul>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="container">
+    <h2>Testimonials</h2>
+    <div class="features">
+      <div class="testimonial">
+        <p>"StashDog has streamlined our creative process, delivering high-quality assets quickly and efficiently."</p>
+        <p>- Alex, Graphic Designer</p>
+      </div>
+      <div class="testimonial">
+        <p>"The seamless integration with our existing tools makes StashDog a must-have for our marketing team."</p>
+        <p>- Jamie, Digital Marketer</p>
+      </div>
+      <div class="testimonial">
+        <p>"As an entrepreneur, I rely on StashDog to build my brand with consistent, professional quality."</p>
+        <p>- Morgan, Startup Founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Request Section -->
+  <section id="login" class="container">
+    <h2>Request Your Free Login</h2>
+    <div class="login-form">
+      <form action="/request-login" method="post">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <button type="submit">Request Free Login</button>
+      </form>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 StashDog. All rights reserved.</p>
-    <ul>
-      <li><a href="#privacy">Privacy Policy</a></li>
-      <li><a href="#terms">Terms of Service</a></li>
-    </ul>
+    <div class="container">
+      <p>&copy; 2025 StashDog. All Rights Reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
