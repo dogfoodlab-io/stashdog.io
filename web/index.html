@@ -3,63 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StashDog - Creative Asset Generator</title>
+  <title>StashDog - Quit Living Like a Trash Gremlin</title>
+  <meta name="description" content="Your house is a dumpster fire of disorganization. StashDog helps you fetch your shit, drag your sorry ass out of chaos, and finally get your shit together." />
   <style>
     /* Reset & Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+    body { font-family: 'Gabarito', Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
     .container { width: 80%; margin: auto; overflow: hidden; }
     
     /* Header */
     header { background: #35424a; color: #fff; padding: 20px 0; }
-    .logo { display: inline-flex; align-items: center; font-size: 1.8em; font-weight: bold; }
-    .logo svg { margin-right: 10px; }
+    .logo { display: inline-flex; align-items: center; font-size: 1.8em; font-weight: bold; font-family: 'Chewy', cursive; }
+    .logo img { margin-right: 10px; }
     nav { float: right; }
-    nav a { color: #fff; text-decoration: none; padding: 0 15px; font-size: 1.1em; }
+    nav a { color: #fff; text-decoration: none; padding: 0 15px; font-size: 1.1em; transition: color 0.3s; }
+    nav a:hover { color: #e8491d; }
     
     /* Hero Section */
-    .hero { background: url('https://via.placeholder.com/1500x500?text=StashDog') no-repeat center center/cover; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
-    .hero h1 { font-size: 3em; margin-bottom: 20px; }
-    .btn { display: inline-block; background: #e8491d; color: #fff; padding: 10px 20px; text-decoration: none; font-size: 1.2em; border-radius: 5px; }
+    .hero { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      height: 500px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      color: #fff; 
+    }
+    .hero h1 { font-size: 3em; margin-bottom: 20px; font-family: 'Chewy', cursive; }
+    .hero p { font-size: 1.2em; margin-bottom: 30px; }
+    .btn { 
+      display: inline-block; 
+      background: #e8491d; 
+      color: #fff; 
+      padding: 15px 30px; 
+      text-decoration: none; 
+      font-size: 1.2em; 
+      border-radius: 5px; 
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #d63916; }
     
     /* Sections */
-    section { padding: 40px 0; }
-    section h2 { text-align: center; margin-bottom: 20px; }
+    section { padding: 60px 0; }
+    section h2 { text-align: center; margin-bottom: 40px; font-size: 2.5em; font-family: 'Chewy', cursive; }
     
-    /* Features & Personas */
-    .features { display: flex; flex-wrap: wrap; justify-content: space-around; }
-    .feature { flex: 1 1 300px; margin: 20px; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    /* Features Grid */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+    .feature { 
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 10px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+      transition: transform 0.3s;
+    }
+    .feature:hover { transform: translateY(-5px); }
+    .feature h3 { color: #e8491d; margin-bottom: 15px; font-size: 1.4em; }
     
     /* Testimonials */
-    .testimonial { background: #fff; padding: 20px; margin: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+    .testimonial { 
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 10px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+      text-align: center;
+    }
+    .testimonial img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px; }
+    .testimonial .quote { font-style: italic; margin-bottom: 15px; font-size: 1.1em; }
+    .testimonial .author { font-weight: bold; color: #e8491d; }
     
-    /* Login Form */
-    .login-form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; }
-    .login-form input { width: 100%; padding: 10px; margin-bottom: 10px; }
-    .login-form button { width: 100%; padding: 10px; background: #e8491d; border: none; color: #fff; font-size: 1.1em; border-radius: 5px; cursor: pointer; }
+    /* CTA Section */
+    .cta-section { 
+      background: #35424a; 
+      color: #fff; 
+      text-align: center; 
+      padding: 80px 0; 
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 20px; }
+    .cta-section p { font-size: 1.2em; margin-bottom: 30px; }
     
     /* Footer */
-    footer { background: #35424a; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+    footer { background: #2c3e50; color: #fff; text-align: center; padding: 30px 0; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2em; }
+      .hero p { font-size: 1em; }
+      .container { width: 90%; }
+      nav { float: none; text-align: center; margin-top: 10px; }
+    }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header with Logo and Navigation -->
   <header>
     <div class="container">
       <div class="logo">
-        <!-- Custom SVG Logo -->
-        <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="32" fill="#e8491d"/>
-          <path d="M20 30 L32 18 L44 30 L32 42 Z" fill="#fff"/>
-        </svg>
+        <img src="/round-logo-goggles.png" alt="StashDog Logo" width="40" height="40" />
         StashDog
       </div>
       <nav>
-        <a href="#about">About</a>
         <a href="#features">Features</a>
-        <a href="#personas">Who It's For</a>
-        <a href="#blog">Blog</a>
         <a href="#testimonials">Testimonials</a>
+        <a href="#cta">Get Started</a>
       </nav>
     </div>
   </header>
@@ -67,104 +117,85 @@
   <!-- Hero Section -->
   <div class="hero">
     <div>
-      <h1>Elevate Your Creative Process</h1>
-      <p>Generate high-quality images, logos, and copy effortlessly with StashDog.</p>
-      <a href="#login" class="btn">Request Your Free Login</a>
+      <h1>Quit Living Like a Trash Gremlin</h1>
+      <p>Your house is a dumpster fire of disorganization and chaos. StashDog is here to help you fetch your shit, drag your sorry ass out of chaos, and make you feel like a functional human.</p>
+      <a href="#cta" class="btn">Ok I'm in!</a>
     </div>
   </div>
 
-  <!-- About StashDog Section -->
-  <section id="about" class="container">
-    <h2>About StashDog</h2>
-    <p>StashDog is a powerful creative tool designed to help you produce professional visuals and compelling copy. Whether you’re a designer, marketer, or entrepreneur, StashDog provides the assets you need—fast and efficiently.</p>
-  </section>
-
   <!-- Features Section -->
   <section id="features" class="container">
-    <h2>Features</h2>
+    <h2>Get Your Shit Together, Finally</h2>
     <div class="features">
       <div class="feature">
-        <h3>Instant Asset Generation</h3>
-        <p>Create professional images, logos, and copy with our advanced AI-powered tools designed for your creative needs.</p>
+        <h3>Effortless as Hell Inventory Management</h3>
+        <p>Imagine not digging through piles of junk like a goddamn raccoon. With StashDog, you can track your shit in a few clicks and finally feel like you're winning at life.</p>
       </div>
       <div class="feature">
-        <h3>Tailored for Every Need</h3>
-        <p>Our platform adapts to the requirements of designers, marketers, and entrepreneurs, providing tools that enhance your workflow.</p>
+        <h3>Stop Losing Your Crap</h3>
+        <p>Never lose your shit again. Assign precise storage locations to every damn thing you own. Your future self will thank you for not being such a clueless disaster.</p>
       </div>
       <div class="feature">
-        <h3>Seamless Integration</h3>
-        <p>Easily connect with your favorite platforms and tools, ensuring a smooth and efficient creative process.</p>
+        <h3>Find Your Shit in a Snap</h3>
+        <p>Say goodbye to rummaging like a lunatic. Our search feature will lead your lazy ass directly to what you need, no sweat.</p>
+      </div>
+      <div class="feature">
+        <h3>Custom Categories for Your Bullshit</h3>
+        <p>Organize your crap however you want. From "random kitchen shit" to "tools I never use," StashDog's got your back.</p>
+      </div>
+      <div class="feature">
+        <h3>Keep Your Fam in the Loop</h3>
+        <p>Share your stash with family members easily. Collaborate and keep track of your stuff together.</p>
+      </div>
+      <div class="feature">
+        <h3>Talk to Your Stash</h3>
+        <p>Integrates with Alexa and Google Home, letting you ask your smart assistants about your stuff.</p>
       </div>
     </div>
-  </section>
-
-  <!-- Personas Section -->
-  <section id="personas" class="container">
-    <h2>Who Is StashDog For?</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Design Professionals</h3>
-        <p>Enhance your design projects with custom, high-quality assets that meet professional standards.</p>
-      </div>
-      <div class="feature">
-        <h3>Marketers</h3>
-        <p>Boost your campaigns with visually engaging content and persuasive copy that drives results.</p>
-      </div>
-      <div class="feature">
-        <h3>Entrepreneurs</h3>
-        <p>Build a strong brand identity with creative tools that streamline your process and deliver consistent quality.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog/Articles Section -->
-  <section id="blog" class="container">
-    <h2>From Our Blog</h2>
-    <p>Explore our articles for insights and best practices on using StashDog to enhance your creative projects.</p>
-    <ul>
-      <li><a href="#">Leveraging AI for Professional Design</a></li>
-      <li><a href="#">Brand Building: Tips and Strategies</a></li>
-      <li><a href="#">Optimizing Your Workflow with Creative Tools</a></li>
-    </ul>
   </section>
 
   <!-- Testimonials Section -->
   <section id="testimonials" class="container">
-    <h2>Testimonials</h2>
-    <div class="features">
+    <h2>Proof That Even Trainwrecks Can Change</h2>
+    <div class="testimonials">
       <div class="testimonial">
-        <p>"StashDog has streamlined our creative process, delivering high-quality assets quickly and efficiently."</p>
-        <p>- Alex, Graphic Designer</p>
+        <img src="/Face-Young-Woman.webp" alt="Sarah J." />
+        <div class="quote">"StashDog saved my life. I mean, not really, but I can finally find my shit. Thanks, I guess."</div>
+        <div class="author">Sarah J.</div>
       </div>
       <div class="testimonial">
-        <p>"The seamless integration with our existing tools makes StashDog a must-have for our marketing team."</p>
-        <p>- Jamie, Digital Marketer</p>
+        <img src="/Face-Asian.webp" alt="The Martinez Family" />
+        <div class="quote">"If this works for my chaotic ass family, it'll work for anyone. 10/10 would recommend."</div>
+        <div class="author">The Martinez Family</div>
       </div>
       <div class="testimonial">
-        <p>"As an entrepreneur, I rely on StashDog to build my brand with consistent, professional quality."</p>
-        <p>- Morgan, Startup Founder</p>
+        <img src="/Face-Young-Man.webp" alt="Mike T." />
+        <div class="quote">"I was skeptical at first, but now I'm organized AF. My garage doesn't look like a tornado hit it anymore."</div>
+        <div class="author">Mike T.</div>
+      </div>
+      <div class="testimonial">
+        <img src="/Face-Old-Woman.webp" alt="Eleanor R." />
+        <div class="quote">"Even at my age, I can use this app without calling my grandkids for help. Which is good, because they don't answer anyway."</div>
+        <div class="author">Eleanor R.</div>
       </div>
     </div>
   </section>
 
-  <!-- Login Request Section -->
-  <section id="login" class="container">
-    <h2>Request Your Free Login</h2>
-    <div class="login-form">
-      <form action="/request-login" method="post">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required />
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required />
-        <button type="submit">Request Free Login</button>
-      </form>
+  <!-- CTA Section -->
+  <section id="cta" class="cta-section">
+    <div class="container">
+      <h2>Quit Fucking Around and Get Organized!</h2>
+      <p>You're a mess, and you know it. Stop pretending and start fixing your life. StashDog can turn your chaos into calm, even if you're a certified hot mess.</p>
+      <a href="mailto:mail@dogfoodlab.io?subject=StashDog%20Interest" class="btn">Ok I'm in!</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 StashDog. All Rights Reserved.</p>
+      <p>Thanks for checking out StashDog. Now go organize your life, you beautiful disaster.</p>
+      <p style="margin-top: 10px;">Contact us at: <a href="mailto:mail@dogfoodlab.io" style="color: #e8491d;">mail@dogfoodlab.io</a></p>
+      <p style="margin-top: 10px;">&copy; 2025 Dogfood Lab LLC. All rights reserved.</p>
     </div>
   </footer>
 </body>

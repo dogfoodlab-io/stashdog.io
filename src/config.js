@@ -1,59 +1,69 @@
 // StashDog content configuration
 export const activeStashdogStrings = {
   welcome: {
-    title: "Turn Your Home Into a Smart Database",
-    description: "Never lose track of your stuff again. StashDog helps you organize, find, and manage everything you own with AI-powered inventory management."
+    title: "Quit Living Like a Trash Gremlin: Say Hello to StashDog",
+    description: "Look at you - your house is a dumpster fire of disorganization and chaos. StashDog is here to help you fetch your shit, drag your sorry ass out of chaos, and make you feel like a functional human. It's time to stop crying over lost keys and get your shit together."
   },
   discover: {
-    title: "Discover What StashDog Can Do",
+    title: "Get Your Shit Together, Finally",
     features: {
       inventory_management: {
-        title: "Smart Inventory Management",
-        description: "Snap photos of your items and let AI automatically tag and categorize them. Create a searchable database of everything you own."
+        title: "Effortless as Hell Inventory Management",
+        description: "Imagine not digging through piles of junk like a goddamn raccoon. With StashDog, you can track your shit in a few clicks and finally feel like you're winning at life."
       },
       location_tracking: {
-        title: "Location Tracking",
-        description: "Never forget where you put something. Track exact locations, from 'kitchen drawer 3' to 'basement storage box 5.'"
+        title: "Stop Losing Your Crap",
+        description: "Never lose your shit again. Assign precise storage locations to every damn thing you own. Your future self will thank you for not being such a clueless disaster."
       },
       retrieval: {
-        title: "AI-Powered Search",
-        description: "Find items instantly with natural language search. Ask 'where are my winter gloves?' and get immediate answers."
+        title: "Find Your Shit in a Snap",
+        description: "Say goodbye to rummaging like a lunatic. Our search feature will lead your lazy ass directly to what you need, no sweat."
       },
       categories: {
-        title: "Smart Categories",
-        description: "AI automatically organizes your items into logical categories. Find related items quickly and manage your inventory effortlessly."
+        title: "Custom Categories for Your Bullshit",
+        description: "Organize your crap however you want. From \"random kitchen shit\" to \"tools I never use,\" StashDog's got your back."
       },
       family_sharing: {
-        title: "Family Collaboration",
-        description: "Share your inventory with family members. Everyone knows what you have and where it's located."
+        title: "Keep Your Fam in the Loop",
+        description: "Share your stash with family members easily. Collaborate and keep track of your stuff together."
       },
       smart_assistant: {
-        title: "Smart Assistant",
-        description: "Get intelligent suggestions for organizing, packing, and finding items. Your personal organization coach."
+        title: "Talk to Your Stash",
+        description: "Integrates with Alexa and Google Home, letting you ask your smart assistants about your stuff."
       }
     }
   },
   testimonials: {
-    title: "What People Are Saying",
+    title: "Proof That Even Trainwrecks Can Change",
     reviews: [
       {
-        author: "Sarah M.",
-        text: "Finally found my Christmas decorations in 30 seconds instead of 3 hours. This app is magic!",
+        author: "Sarah J.",
+        text: "StashDog saved my life. I mean, not really, but I can finally find my shit. Thanks, I guess.",
         image: "Face-Young-Woman.webp"
       },
       {
-        author: "Marcus T.",
-        text: "Moving was so much easier when I could actually see what was in each box. Brilliant!",
-        image: "Face-Black.webp"
+        author: "The Martinez Family",
+        text: "If this works for my chaotic ass family, it'll work for anyone. 10/10 would recommend.",
+        image: "Face-Asian.webp"
+      },
+      {
+        author: "Mike T.",
+        text: "I was skeptical at first, but now I'm organized AF. My garage doesn't look like a tornado hit it anymore.",
+        image: "Face-Young-Man.webp"
+      },
+      {
+        author: "Eleanor R.",
+        text: "Even at my age, I can use this app without calling my grandkids for help. Which is good, because they don't answer anyway.",
+        image: "Face-Old-Woman.webp"
       }
     ]
   },
   get_started: {
-    title: "Get Started Today",
-    description: "Join the waitlist and be the first to experience the future of home organization.",
+    title: "Quit Fucking Around and Get Organized!",
+    description: "You're a mess, and you know it. Stop pretending and start fixing your life. StashDog can turn your chaos into calm, even if you're a certified hot mess.",
     call_to_action: {
-      sign_up: "Join Waitlist",
-      learn_more: "Learn More"
+      sign_up: "Ok I'm in!",
+      learn_more: "Convince Me"
     }
   },
   why_choose: {
@@ -61,21 +71,21 @@ export const activeStashdogStrings = {
     benefits: [
       {
         title: "Save Time",
-        description: "Find anything in seconds instead of hours of searching"
+        description: "Find anything in seconds instead of hours of searching like a maniac"
       },
       {
-        title: "Reduce Stress",
-        description: "Never worry about losing important items again"
+        title: "Reduce Stress", 
+        description: "Never worry about losing important shit again"
       },
       {
         title: "Save Money",
-        description: "Stop buying duplicates of things you already own"
+        description: "Stop buying duplicates of crap you already own somewhere in that disaster you call home"
       },
       {
         title: "Stay Organized",
-        description: "AI-powered organization that adapts to your lifestyle"
+        description: "AI-powered organization that works even for hopeless cases like you"
       }
     ]
   },
-  thank_you: "Thank you for your interest in StashDog! We're working hard to bring you the best home inventory experience."
+  thank_you: "Thanks for checking out StashDog. Now go organize your life, you beautiful disaster."
 }

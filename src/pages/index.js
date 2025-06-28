@@ -26,21 +26,21 @@ const IndexPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
-          <title>StashDog - Smart Home Inventory Management</title>
-          <meta name="description" content="Never lose track of your stuff again. StashDog helps you organize, find, and manage everything you own with AI-powered inventory management." />
-          <meta name="keywords" content="home inventory, organization, smart home, AI assistant, inventory management, home database" />
+          <title>StashDog - Quit Living Like a Trash Gremlin</title>
+          <meta name="description" content="Your house is a dumpster fire of disorganization. StashDog helps you fetch your shit, drag your sorry ass out of chaos, and finally get your shit together." />
+          <meta name="keywords" content="home inventory, organization, get organized, find your stuff, home management, stop losing shit" />
           
           {/* Open Graph */}
-          <meta property="og:title" content="StashDog - Smart Home Inventory Management" />
-          <meta property="og:description" content="Turn your home into a smart database. Never lose track of your stuff again with AI-powered inventory management." />
+          <meta property="og:title" content="StashDog - Quit Living Like a Trash Gremlin" />
+          <meta property="og:description" content="Stop living like a disaster. StashDog helps you organize your crap and find your shit when you need it." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.app" />
           <meta property="og:image" content="https://stashdog.app/lab1.png" />
           
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="StashDog - Smart Home Inventory Management" />
-          <meta name="twitter:description" content="Turn your home into a smart database. Never lose track of your stuff again." />
+          <meta name="twitter:title" content="StashDog - Quit Living Like a Trash Gremlin" />
+          <meta name="twitter:description" content="Stop living like a disaster. Finally get your shit together with StashDog." />
           <meta name="twitter:image" content="https://stashdog.app/lab1.png" />
           
           {/* Favicon */}
@@ -58,7 +58,7 @@ const IndexPage = () => {
               "@type": "SoftwareApplication",
               "name": "StashDog",
               "description": "Smart home inventory management application",
-              "url": "https://stashdog.app",
+              "url": "https://stashdog.web.app",
               "applicationCategory": "ProductivityApplication",
               "operatingSystem": "iOS, Android",
               "offers": {
