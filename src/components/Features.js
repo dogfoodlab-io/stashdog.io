@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
 import { activeStashdogStrings } from "../config"
 
@@ -74,17 +75,16 @@ const Features = () => {
               </div>
             </div>
             <p className="description">{data.description}</p>
-            <a 
-              href="#" 
+            <Link 
+              to="/waitlist" 
               className="cta-button"
-              onClick={(e) => {
-                e.preventDefault()
+              onClick={() => {
                 handleFeatureClick(key)
                 handleCTAClick(key, activeStashdogStrings.get_started.call_to_action.learn_more, 'feature_section')
               }}
             >
               {activeStashdogStrings.get_started.call_to_action.learn_more}
-            </a>
+            </Link>
           </div>
         ))}
       </div>

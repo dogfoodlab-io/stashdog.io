@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 
 const Header = () => {
   return (
@@ -6,12 +7,17 @@ const Header = () => {
       <div className="container">
         <nav>
           <div className="header">
-            <img
-              className="header-logo"
-              src="/round-logo-goggles.png"
-              alt="StashDog Logo"
-            />
-            <h1 className="header-text">StashDog</h1>
+            <Link to="/" className="header-link">
+              <img
+                className="header-logo"
+                src="/round-logo-goggles.png"
+                alt="StashDog Logo"
+              />
+              <h1 className="header-text">StashDog</h1>
+            </Link>
+            <div className="nav-links">
+              <Link to="/solutions" className="nav-link">Solutions</Link>
+            </div>
           </div>
         </nav>
       </div>

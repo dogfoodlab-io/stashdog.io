@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
 import { activeStashdogStrings } from "../config"
 
@@ -32,13 +33,13 @@ const Hero = () => {
         <h2>{activeStashdogStrings.welcome.title}</h2>
         <p>{activeStashdogStrings.welcome.description}</p>
         <div style={{ margin: '2rem 0' }}>
-          <a 
-            href="#waitlist" 
+          <Link 
+            to="/waitlist" 
             className="cta-button"
             onClick={() => handleCTAClick('primary', activeStashdogStrings.get_started.call_to_action.sign_up, 'hero')}
           >
             {activeStashdogStrings.get_started.call_to_action.sign_up}
-          </a>
+          </Link>
         </div>
       </div>
     </section>
