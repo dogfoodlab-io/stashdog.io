@@ -1,7 +1,10 @@
 import React, { useEffect } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import { Link } from "gatsby"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 import { useFirebase } from "../hooks/useFirebase"
+import "../styles/global.css"
 
 const SolutionsPage = () => {
   const { isInitialized, logEvent } = useFirebase()
@@ -19,7 +22,7 @@ const SolutionsPage = () => {
 
   return (
     <HelmetProvider>
-      <div style={{ fontFamily: "'Gabarito', Arial, sans-serif", lineHeight: 1.6, color: '#333', background: '#f9f9f9', margin: 0, padding: 0 }}>
+      <div className="page-container">
         <Helmet>
           <title>Solutions - StashDog</title>
           <meta name="description" content="Discover how StashDog transforms your physical chaos into searchable, manageable information systems. Real solutions for real organizational problems." />
@@ -42,541 +45,418 @@ const SolutionsPage = () => {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gabarito:wght@400..900&display=swap" rel="stylesheet" />
-          
-          <style>
-            {`
-              /* Reset and Base Styles */
-              * { margin: 0; padding: 0; box-sizing: border-box; }
-              body { 
-                font-family: 'Gabarito', Arial, sans-serif; 
-                line-height: 1.6; 
-                color: #333; 
-                background: #f9f9f9; 
-              }
-              .container { 
-                max-width: 1200px; 
-                margin: 0 auto; 
-                padding: 0 2rem; 
-              }
-              
-              /* Header */
-              .solutions-site-header {
-                background: #35424a;
-                color: #fff;
-                padding: 1rem 0;
-                position: sticky;
-                top: 0;
-                z-index: 100;
-              }
-              .solutions-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              }
-              .solutions-header-logo {
-                width: 40px;
-                height: 40px;
-                margin-right: 10px;
-              }
-              .solutions-logo-section {
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                color: white;
-              }
-              .solutions-header-text {
-                font-family: 'Chewy', cursive;
-                font-size: 1.5rem;
-                margin: 0;
-              }
-              .solutions-nav-link {
-                color: #fcd900;
-                text-decoration: none;
-                font-weight: 500;
-                transition: opacity 0.3s;
-              }
-              .solutions-nav-link:hover {
-                opacity: 0.8;
-              }
-              
-              /* Hero Section */
-              .solutions-hero {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 4rem 0;
-                text-align: center;
-              }
-              .solutions-hero h1 {
-                font-family: 'Chewy', cursive;
-                font-size: 3rem;
-                margin-bottom: 1rem;
-              }
-              .solutions-hero p {
-                font-size: 1.3rem;
-                max-width: 800px;
-                margin: 0 auto 2rem;
-                opacity: 0.9;
-              }
-              
-              /* Solutions Grid */
-              .solutions-section {
-                padding: 4rem 0;
-              }
-              .section-header {
-                text-align: center;
-                margin-bottom: 3rem;
-              }
-              .section-header h2 {
-                font-family: 'Chewy', cursive;
-                font-size: 2.5rem;
-                color: #35424a;
-                margin-bottom: 1rem;
-              }
-              .section-header p {
-                font-size: 1.2rem;
-                color: #666;
-                max-width: 700px;
-                margin: 0 auto;
-              }
-              
-              .solutions-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 2rem;
-                margin-top: 3rem;
-              }
-              
-              .solution-card {
-                background: white;
-                border-radius: 15px;
-                padding: 2rem;
-                box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                border-left: 5px solid #fcd900;
-              }
-              .solution-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-              }
-              
-              .solution-header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 1.5rem;
-              }
-              .solution-icon {
-                font-size: 2.5rem;
-                margin-right: 1rem;
-              }
-              .solution-card h3 {
-                font-size: 1.5rem;
-                color: #35424a;
-                margin-bottom: 0.5rem;
-              }
-              .solution-subtitle {
-                color: #e8491d;
-                font-weight: 600;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-              }
-              
-              .problem-statement {
-                background: #f8f9fa;
-                padding: 1rem;
-                border-radius: 8px;
-                margin: 1rem 0;
-                border-left: 3px solid #e8491d;
-              }
-              .problem-statement strong {
-                color: #e8491d;
-              }
-              
-              .solution-steps {
-                margin: 1.5rem 0;
-              }
-              .solution-steps h4 {
-                color: #35424a;
-                margin-bottom: 0.5rem;
-                font-size: 1.1rem;
-              }
-              .solution-steps ol {
-                margin-left: 1.5rem;
-              }
-              .solution-steps li {
-                margin-bottom: 0.5rem;
-                line-height: 1.5;
-              }
-              
-              .ai-highlight {
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-                padding: 1rem;
-                border-radius: 8px;
-                margin: 1rem 0;
-              }
-              .ai-highlight strong {
-                color: #fcd900;
-              }
-              
-              .solutions-cta-button {
-                display: inline-block;
-                background: #e8491d;
-                color: white;
-                padding: 0.8rem 1.5rem;
-                text-decoration: none;
-                border-radius: 25px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                margin-top: 1rem;
-              }
-              .solutions-cta-button:hover {
-                background: #d63916;
-                transform: translateY(-2px);
-              }
-              
-              /* Principles Section */
-              .principles-section {
-                background: #35424a;
-                color: white;
-                padding: 4rem 0;
-              }
-              .principles-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 2rem;
-                margin-top: 2rem;
-              }
-              .principle-card {
-                background: rgba(255,255,255,0.1);
-                padding: 2rem;
-                border-radius: 10px;
-                text-align: center;
-              }
-              .principle-card h3 {
-                color: #fcd900;
-                margin-bottom: 1rem;
-                font-size: 1.3rem;
-              }
-              
-              /* CTA Section */
-              .final-cta {
-                background: linear-gradient(135deg, #fcd900, #f4c430);
-                color: #35424a;
-                padding: 4rem 0;
-                text-align: center;
-              }
-              .final-cta h2 {
-                font-family: 'Chewy', cursive;
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-              }
-              .cta-primary {
-                background: #35424a;
-                color: white;
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                margin: 0 0.5rem;
-                text-decoration: none;
-                border-radius: 25px;
-                display: inline-block;
-                font-weight: 600;
-                transition: all 0.3s ease;
-              }
-              .cta-secondary {
-                background: transparent;
-                color: #35424a;
-                border: 2px solid #35424a;
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                margin: 0 0.5rem;
-                text-decoration: none;
-                border-radius: 25px;
-                display: inline-block;
-                font-weight: 600;
-                transition: all 0.3s ease;
-              }
-              .cta-primary:hover, .cta-secondary:hover {
-                transform: translateY(-2px);
-              }
-              
-              /* Responsive */
-              @media (max-width: 768px) {
-                .solutions-hero h1 { font-size: 2rem; }
-                .solutions-hero p { font-size: 1.1rem; }
-                .solutions-grid { grid-template-columns: 1fr; }
-                .container { padding: 0 1rem; }
-                .cta-primary, .cta-secondary { 
-                  display: block; 
-                  margin: 0.5rem 0; 
-                  width: 100%; 
-                }
-              }
-            `}
-          </style>
         </Helmet>
 
-        {/* Header */}
-        <header className="solutions-site-header">
-          <div className="container">
-            <div className="solutions-header">
-              <Link to="/" className="solutions-logo-section">
-                <img className="solutions-header-logo" src="/round-logo-goggles.png" alt="StashDog Logo" />
-                <p className="solutions-header-text">StashDog</p>
-              </Link>
-              <nav>
-                <Link to="/" className="solutions-nav-link">Home</Link>
-              </nav>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         {/* Hero Section */}
-        <section className="solutions-hero">
+        <section className="stashdog-hero">
           <div className="container">
-            <h1>Never Think About Where to Put Something Ever Again</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+              <img
+                src="/lab1.png"
+                alt="StashDog Solutions"
+                style={{ maxWidth: '200px', height: 'auto' }}
+              />
+            </div>
+            <h2>Never Think About Where to Put Something Ever Again</h2>
             <p>Stop organizing. Start living. StashDog eliminates the mental overhead of traditional organization by making your stuff findable no matter where you put it.</p>
           </div>
         </section>
 
         {/* Solutions Section */}
-        <section className="solutions-section">
+        <section className="products">
           <div className="container">
-            <div className="section-header">
-              <h2>Real Solutions for Real Disasters</h2>
-              <p>Each solution transforms exhausting physical problems into simple information lookups. Put things anywhere - we'll help you find them everywhere.</p>
+            <h2>Real Solutions for Real Disasters</h2>
+            <p style={{ 
+              textAlign: 'center', 
+              fontSize: '1.2rem', 
+              color: '#e0e0e0', 
+              maxWidth: '700px', 
+              margin: '0 auto 3rem auto' 
+            }}>
+              Each solution transforms exhausting physical problems into simple information lookups. Put things anywhere - we'll help you find them everywhere.
+            </p>
+
+            {/* Getting Started Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>🤯 Drowning in Your Own Stuff?</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    The Zero-System Organization System
+                  </div>
+                </div>
+              </div>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> Your ADHD is overpowering your OCD and it's exhausting. Every time you put something away, you have to think about where it should go, what category it belongs in, and how you'll remember to find it later. That's hundreds of micro-decisions draining your brain every single day.
+              </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Thinking:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Put It Anywhere:</strong> Literally anywhere. Drawer, box, shelf - wherever feels right in the moment</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Snap & Forget:</strong> Quick photo captures what and where, then forget about it completely</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>AI Remembers Everything:</strong> The system learns your natural patterns without you teaching it</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Ask When You Need It:</strong> "Where's my phone charger?" gets an instant answer</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No categories to remember, no systems to maintain, no coordination with others. Just put stuff away and trust that you can find it later.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Stop Thinking, Start Storing →</Link>
             </div>
 
-            <div className="solutions-grid">
-              {/* Getting Started Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">🤯</div>
-                  <div>
-                    <h3>Drowning in Your Own Stuff?</h3>
-                    <div className="solution-subtitle">The Zero-System Organization System</div>
+            {/* Moving Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>📦 Moving Without the Mental Breakdown</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    Life Transition Solution
                   </div>
                 </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> Your ADHD is overpowering your OCD and it's exhausting. Every time you put something away, you have to think about where it should go, what category it belongs in, and how you'll remember to find it later. That's hundreds of micro-decisions draining your brain every single day.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Thinking:</h4>
-                  <ol>
-                    <li><strong>Put It Anywhere:</strong> Literally anywhere. Drawer, box, shelf - wherever feels right in the moment</li>
-                    <li><strong>Snap & Forget:</strong> Quick photo captures what and where, then forget about it completely</li>
-                    <li><strong>AI Remembers Everything:</strong> The system learns your natural patterns without you teaching it</li>
-                    <li><strong>Ask When You Need It:</strong> "Where's my phone charger?" gets an instant answer</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No categories to remember, no systems to maintain, no coordination with others. Just put stuff away and trust that you can find it later.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Stop Thinking, Start Storing →</Link>
               </div>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> You have to remember what's in every box, where each box should go in the new place, and what you need to unpack first. Your brain becomes a filing cabinet you can't trust.
+              </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Remembering:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Pack However You Want:</strong> Random stuff in boxes? Perfect. StashDog doesn't care about logic</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>QR Code Magic:</strong> Stick codes on boxes, forget what's inside - the system remembers</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Smart Unpacking:</strong> "Find me something to eat dinner with" locates the right box instantly</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>No Planning Required:</strong> Unpack based on need, not on some imaginary organizational system</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No box labeling strategies, no room planning, no unpacking schedules. Just pack, move, and find what you need when you need it.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Move Like a Genius →</Link>
+            </div>
 
-              {/* Moving Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">📦</div>
-                  <div>
-                    <h3>Moving Without the Mental Breakdown</h3>
-                    <div className="solution-subtitle">Life Transition Solution</div>
+            {/* Family Chaos Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>👨‍👩‍👧‍👦 Family Coordination Without Coordination</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    Household Management Solution
                   </div>
                 </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> You have to remember what's in every box, where each box should go in the new place, and what you need to unpack first. Your brain becomes a filing cabinet you can't trust.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Remembering:</h4>
-                  <ol>
-                    <li><strong>Pack However You Want:</strong> Random stuff in boxes? Perfect. StashDog doesn't care about logic</li>
-                    <li><strong>QR Code Magic:</strong> Stick codes on boxes, forget what's inside - the system remembers</li>
-                    <li><strong>Smart Unpacking:</strong> "Find me something to eat dinner with" locates the right box instantly</li>
-                    <li><strong>No Planning Required:</strong> Unpack based on need, not on some imaginary organizational system</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No box labeling strategies, no room planning, no unpacking schedules. Just pack, move, and find what you need when you need it.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Move Like a Genius →</Link>
               </div>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> You have to remember where everyone puts everything, teach family members your organizational system, and coordinate who's responsible for what. It's like being the household's Google search engine.
+              </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Coordination:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Everyone Stores Their Way:</strong> Kids shove toys wherever, adults have different systems - all fine</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Collective Intelligence:</strong> Family inventory builds automatically as everyone adds stuff</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Voice-Powered Finding:</strong> "Hey Google, where are the Christmas lights?" actually works</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>No Rules to Enforce:</strong> No teaching, training, or family meetings about organization</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No family organization training, no systems to maintain, no one person keeping track of everything. Chaos that just works.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Organize Your Chaos →</Link>
+            </div>
 
-              {/* Family Chaos Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">👨‍👩‍👧‍👦</div>
-                  <div>
-                    <h3>Family Coordination Without Coordination</h3>
-                    <div className="solution-subtitle">Household Management Solution</div>
+            {/* Roommate Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>🏠 Shared Living Without Shared Systems</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    Collaborative Organization Solution
                   </div>
                 </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> You have to remember where everyone puts everything, teach family members your organizational system, and coordinate who's responsible for what. It's like being the household's Google search engine.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Coordination:</h4>
-                  <ol>
-                    <li><strong>Everyone Stores Their Way:</strong> Kids shove toys wherever, adults have different systems - all fine</li>
-                    <li><strong>Collective Intelligence:</strong> Family inventory builds automatically as everyone adds stuff</li>
-                    <li><strong>Voice-Powered Finding:</strong> "Hey Google, where are the Christmas lights?" actually works</li>
-                    <li><strong>No Rules to Enforce:</strong> No teaching, training, or family meetings about organization</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No family organization training, no systems to maintain, no one person keeping track of everything. Chaos that just works.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Organize Your Chaos →</Link>
               </div>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> You need to remember what belongs to whom, coordinate shared items, and navigate everyone's different organizational styles. Plus the constant "who took my..." investigations.
+              </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Politics:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Automatic Ownership:</strong> System tracks who added what without anyone declaring territory</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Shared Item Autopilot:</strong> Communal stuff gets found regardless of who moved it</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Borrowing Without Drama:</strong> "Check out" items digitally to avoid the awkward conversations</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Move-Out Made Easy:</strong> Everyone knows exactly what belongs to them</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No shared organization rules, no house meetings about storage, no one person managing everyone else's stuff.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Share Without the Stress →</Link>
+            </div>
 
-              {/* Roommate Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">🏠</div>
-                  <div>
-                    <h3>Shared Living Without Shared Systems</h3>
-                    <div className="solution-subtitle">Collaborative Organization Solution</div>
+            {/* Collector Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>🎯 Collecting Without Cataloging</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    Hobby & Collection Solution
                   </div>
                 </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> You need to remember what belongs to whom, coordinate shared items, and navigate everyone's different organizational styles. Plus the constant "who took my..." investigations.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Politics:</h4>
-                  <ol>
-                    <li><strong>Automatic Ownership:</strong> System tracks who added what without anyone declaring territory</li>
-                    <li><strong>Shared Item Autopilot:</strong> Communal stuff gets found regardless of who moved it</li>
-                    <li><strong>Borrowing Without Drama:</strong> "Check out" items digitally to avoid the awkward conversations</li>
-                    <li><strong>Move-Out Made Easy:</strong> Everyone knows exactly what belongs to them</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No shared organization rules, no house meetings about storage, no one person managing everyone else's stuff.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Share Without the Stress →</Link>
               </div>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> You have to remember what you own, where you stored it, what condition it's in, and what you paid for it. Your collection becomes a memory test instead of a joy.
+              </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Tracking:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Snap as You Acquire:</strong> Quick photo when you get something new, then store wherever</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>AI Knows Your Collection:</strong> System recognizes valuable pieces and suggests details automatically</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Duplicate Prevention:</strong> "You already have this" warnings before expensive mistakes</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Value Tracking Without Spreadsheets:</strong> Watch your collection's worth without manual updating</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No spreadsheets to maintain, no database management, no constant value research. Just collect and enjoy.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Collect Like a Pro →</Link>
+            </div>
 
-              {/* Collector Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">🎯</div>
-                  <div>
-                    <h3>Collecting Without Cataloging</h3>
-                    <div className="solution-subtitle">Hobby & Collection Solution</div>
+            {/* Emergency Prep Solution */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>🚨 Emergency Ready Without the Planning</h3>
+                  <div style={{ 
+                    color: '#fcd900', 
+                    fontWeight: '600', 
+                    fontSize: '0.9rem', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.5px' 
+                  }}>
+                    Crisis Management Solution
                   </div>
                 </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> You have to remember what you own, where you stored it, what condition it's in, and what you paid for it. Your collection becomes a memory test instead of a joy.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Tracking:</h4>
-                  <ol>
-                    <li><strong>Snap as You Acquire:</strong> Quick photo when you get something new, then store wherever</li>
-                    <li><strong>AI Knows Your Collection:</strong> System recognizes valuable pieces and suggests details automatically</li>
-                    <li><strong>Duplicate Prevention:</strong> "You already have this" warnings before expensive mistakes</li>
-                    <li><strong>Value Tracking Without Spreadsheets:</strong> Watch your collection's worth without manual updating</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No spreadsheets to maintain, no database management, no constant value research. Just collect and enjoy.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Collect Like a Pro →</Link>
               </div>
-
-              {/* Emergency Prep Solution */}
-              <div className="solution-card">
-                <div className="solution-header">
-                  <div className="solution-icon">🚨</div>
-                  <div>
-                    <h3>Emergency Ready Without the Planning</h3>
-                    <div className="solution-subtitle">Crisis Management Solution</div>
-                  </div>
-                </div>
-                
-                <div className="problem-statement">
-                  <strong>The Mental Load:</strong> You need to remember where important documents are, what's in your emergency kit, and when supplies expire. Plus the stress of trying to find critical items when you're panicked.
-                </div>
-                
-                <div className="solution-steps">
-                  <h4>How StashDog Eliminates the Panic:</h4>
-                  <ol>
-                    <li><strong>Crisis Collections:</strong> Group items by emergency type - earthquake kit, power outage supplies, medical emergency docs</li>
-                    <li><strong>Smart Tagging System:</strong> "Critical," "Evacuate," "First Aid" tags automatically organize by urgency</li>
-                    <li><strong>Instant Crisis Mode:</strong> "Find my passport NOW" gets immediate location info</li>
-                    <li><strong>Backup Without Thinking:</strong> Important docs automatically backed up to secure cloud</li>
-                    <li><strong>Expiration Awareness:</strong> Gentle reminders when emergency supplies need replacing</li>
-                  </ol>
-                </div>
-                
-                <div className="ai-highlight">
-                  <strong>Zero Mental Overhead:</strong> No emergency planning sessions, no document filing systems, no manual inventory management. Ready when you need to be.
-                </div>
-                
-                <Link to="/waitlist" className="solutions-cta-button">Prepare Without the Stress →</Link>
+              
+              <div style={{ 
+                backgroundColor: 'rgba(232, 73, 29, 0.1)', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0', 
+                borderLeft: '3px solid #e8491d' 
+              }}>
+                <strong style={{ color: '#fcd900' }}>The Mental Load:</strong> You need to remember where important documents are, what's in your emergency kit, and when supplies expire. Plus the stress of trying to find critical items when you're panicked.
               </div>
+              
+              <div style={{ margin: '1.5rem 0' }}>
+                <h4 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.1rem' }}>How StashDog Eliminates the Panic:</h4>
+                <ol style={{ marginLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Crisis Collections:</strong> Group items by emergency type - earthquake kit, power outage supplies, medical emergency docs</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Smart Tagging System:</strong> "Critical," "Evacuate," "First Aid" tags automatically organize by urgency</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Instant Crisis Mode:</strong> "Find my passport NOW" gets immediate location info</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Backup Without Thinking:</strong> Important docs automatically backed up to secure cloud</li>
+                  <li style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}><strong>Expiration Awareness:</strong> Gentle reminders when emergency supplies need replacing</li>
+                </ol>
+              </div>
+              
+              <div style={{ 
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))', 
+                color: 'white', 
+                padding: '1rem', 
+                borderRadius: '8px', 
+                margin: '1rem 0',
+                border: '1px solid rgba(252, 217, 0, 0.3)'
+              }}>
+                <strong style={{ color: '#fcd900' }}>Zero Mental Overhead:</strong> No emergency planning sessions, no document filing systems, no manual inventory management. Ready when you need to be.
+              </div>
+              
+              <Link to="/waitlist" className="cta-button">Prepare Without the Stress →</Link>
             </div>
           </div>
         </section>
 
         {/* Core Principles Section */}
-        <section className="principles-section">
+        <section style={{ 
+          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))', 
+          padding: '4rem 0',
+          borderTop: '1px solid rgba(252, 217, 0, 0.1)',
+          borderBottom: '1px solid rgba(252, 217, 0, 0.1)'
+        }}>
           <div className="container">
-            <div className="section-header">
-              <h2 style={{color: 'white'}}>The StashDog Philosophy</h2>
-              <p style={{color: 'rgba(255,255,255,0.8)'}}>Three principles that make organization sustainable for humans who have better things to do</p>
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h2 style={{ color: '#fcd900', marginBottom: '1rem' }}>The StashDog Philosophy</h2>
+              <p style={{ color: '#e0e0e0', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto' }}>
+                Three principles that make organization sustainable for humans who have better things to do
+              </p>
             </div>
             
-            <div className="principles-grid">
-              <div className="principle-card">
-                <h3>Liberation of "Just Put It Anywhere"</h3>
-                <p>Traditional organization forces you to think about retrieval at storage time. We separate those completely - put things wherever makes sense in the moment, find them instantly when needed.</p>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+              gap: '2rem' 
+            }}>
+              <div style={{ 
+                background: 'rgba(255,255,255,0.05)', 
+                padding: '2rem', 
+                borderRadius: '10px', 
+                textAlign: 'center',
+                border: '1px solid rgba(252, 217, 0, 0.2)'
+              }}>
+                <h3 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.3rem' }}>Liberation of "Just Put It Anywhere"</h3>
+                <p style={{ color: '#e0e0e0' }}>Traditional organization forces you to think about retrieval at storage time. We separate those completely - put things wherever makes sense in the moment, find them instantly when needed.</p>
               </div>
               
-              <div className="principle-card">
-                <h3>Cognitive Load Transfer</h3>
-                <p>Instead of making you remember organizational systems, we remember everything for you. Your brain is freed up for more important things than being a human filing cabinet.</p>
+              <div style={{ 
+                background: 'rgba(255,255,255,0.05)', 
+                padding: '2rem', 
+                borderRadius: '10px', 
+                textAlign: 'center',
+                border: '1px solid rgba(252, 217, 0, 0.2)'
+              }}>
+                <h3 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.3rem' }}>Cognitive Load Transfer</h3>
+                <p style={{ color: '#e0e0e0' }}>Instead of making you remember organizational systems, we remember everything for you. Your brain is freed up for more important things than being a human filing cabinet.</p>
               </div>
               
-              <div className="principle-card">
-                <h3>Smart Enough to Be Lazy</h3>
-                <p>The effort goes into the technology, not your behavior. Be as disorganized as you want - our AI gets smarter while your habits stay exactly the same.</p>
+              <div style={{ 
+                background: 'rgba(255,255,255,0.05)', 
+                padding: '2rem', 
+                borderRadius: '10px', 
+                textAlign: 'center',
+                border: '1px solid rgba(252, 217, 0, 0.2)'
+              }}>
+                <h3 style={{ color: '#fcd900', marginBottom: '1rem', fontSize: '1.3rem' }}>Smart Enough to Be Lazy</h3>
+                <p style={{ color: '#e0e0e0' }}>The effort goes into the technology, not your behavior. Be as disorganized as you want - our AI gets smarter while your habits stay exactly the same.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="final-cta">
+        <section className="cta-section">
           <div className="container">
             <h2>Ready to Stop Living Like a Disaster?</h2>
-            <p style={{fontSize: '1.2rem', marginBottom: '2rem'}}>Pick a solution that matches your chaos level and start turning your physical problems into solvable information problems.</p>
+            <p>Pick a solution that matches your chaos level and start turning your physical problems into solvable information problems.</p>
             
-            <div>
-              <Link to="/waitlist" className="cta-primary">Download StashDog</Link>
-              <Link to="/" className="cta-secondary">See More Examples</Link>
+            <div className="cta-buttons">
+              <Link to="/waitlist" className="cta-button">Download StashDog</Link>
+              <Link to="/" className="back-button">See More Examples</Link>
             </div>
           </div>
         </section>
+
+        <Footer />
       </div>
     </HelmetProvider>
   )

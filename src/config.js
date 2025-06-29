@@ -20,7 +20,7 @@ export const activeStashdogStrings = {
         description: "Say goodbye to rummaging like a lunatic. Our search feature will lead your lazy ass directly to what you need, no sweat."
       },
       categories: {
-        title: "Custom Categories for Your Bullshit",
+        title: "Custom Categories for Your Nonsense",
         description: "Organize your crap however you want. From \"random kitchen shit\" to \"tools I never use,\" StashDog's got your back."
       },
       family_sharing: {

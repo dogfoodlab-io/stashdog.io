@@ -16,6 +16,7 @@ const Header = () => {
               <h1 className="header-text">StashDog</h1>
             </Link>
             <div className="nav-links">
+              <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
             </div>
           </div>
