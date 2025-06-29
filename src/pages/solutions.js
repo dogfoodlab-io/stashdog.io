@@ -447,11 +447,9 @@ const SolutionsPage = () => {
         <section className="cta-section">
           <div className="container">
             <h2>Ready to Stop Living Like a Disaster?</h2>
-            <p>Pick a solution that matches your chaos level and start turning your physical problems into solvable information problems.</p>
-            
+            <p>Too Bad. Unfortunately, we're not ready to launch yet, still gotta do a bit of work to make sure all of the above does not suck. But you can join the waitlist to be notified for early access programs in the meanwhile.</p>
             <div className="cta-buttons">
-              <Link to="/waitlist" className="cta-button">Download StashDog</Link>
-              <Link to="/" className="back-button">See More Examples</Link>
+              <Link to="/waitlist" className="cta-button">Join the Waitlist</Link>
             </div>
           </div>
         </section>

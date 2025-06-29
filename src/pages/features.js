@@ -300,24 +300,17 @@ const FeaturesPage = () => {
           </div>
         </section>
 
-        {/* Bottom CTA Section */}
+        {/* Final CTA */}
         <section className="cta-section">
           <div className="container">
             <h2>Ready to Stop Living Like a Disaster?</h2>
-            <p>
-              These features aren't just nice-to-have – they're game-changers for anyone tired of losing their shit.
-            </p>
+            <p>Too Bad. Unfortunately, we're not ready to launch yet. There's still a bit of work to do to make sure all of that stuff above doesn't suck. In the meanwhile, you can join the waitlist to be notified for Early Access Programs and what not.</p>
             <div className="cta-buttons">
-              <button 
-                onClick={() => handleCTAClick('download', 'Get StashDog Free', 'features_bottom')}
-                className="cta-button"
-              >
-                Join the Waitlist
-              </button>
+              <Link to="/waitlist" className="cta-button">Join the Waitlist</Link>
             </div>
           </div>
         </section>
-        
+
         <Footer />
       </div>
     </HelmetProvider>
