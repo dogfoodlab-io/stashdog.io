@@ -33,6 +33,7 @@ const FeaturesPage = () => {
       button_position: buttonPosition,
       page: 'features'
     })
+    window.location.href = '/waitlist'
   }
 
   return (
@@ -311,7 +312,7 @@ const FeaturesPage = () => {
                 onClick={() => handleCTAClick('download', 'Get StashDog Free', 'features_bottom')}
                 className="cta-button"
               >
-                Get StashDog
+                Join the Waitlist
               </button>
             </div>
           </div>
