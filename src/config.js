@@ -87,5 +87,5 @@ export const activeStashdogStrings = {
       }
     ]
   },
-  thank_you: "Thanks for checking out StashDog. Now go organize your life, you beautiful disaster."
+  thank_you: "Thanks for checking out StashDog."
 }

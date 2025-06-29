@@ -18,6 +18,9 @@ const Header = () => {
             <div className="nav-links">
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
+              <Link to="/waitlist" className="cta-button" style={{ textDecoration: 'none' }}>
+                Join Waitlist
+              </Link>
             </div>
           </div>
         </nav>
