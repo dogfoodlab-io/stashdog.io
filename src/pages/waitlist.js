@@ -69,11 +69,11 @@ const WaitlistPage = () => {
                 <div className="benefits-grid">
                   <div className="benefit-item">
                     <h3>🚀 Early Access</h3>
-                    <p>Get StashDog before anyone else and start organizing your chaos immediately.</p>
+                    <p>Get access to features before they're released to the public.</p>
                   </div>
                   <div className="benefit-item">
-                    <h3>💰 Special Pricing</h3>
-                    <p>Exclusive early-bird pricing and lifetime deals for waitlist members.</p>
+                    <h3>💰 Free Premium Access and Special Pricing</h3>
+                    <p>You'll get free access to premium features during our early access programs. Plus exclusive early-bird pricing and lifetime deals for waitlist members.</p>
                   </div>
                   <div className="benefit-item">
                     <h3>🎯 Shape the Product</h3>
@@ -81,7 +81,7 @@ const WaitlistPage = () => {
                   </div>
                   <div className="benefit-item">
                     <h3>🏆 VIP Treatment</h3>
-                    <p>Priority support and direct access to our team during the beta phase.</p>
+                    <p>Priority support and direct access to our team during the early access phase.</p>
                   </div>
                 </div>
               </div>

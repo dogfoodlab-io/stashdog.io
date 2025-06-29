@@ -57,10 +57,9 @@ const Testimonials = () => {
               {activeStashdogStrings.get_started.call_to_action.sign_up}
             </a>
             <a 
-              href="#" 
+              href="/solutions" 
               className="cta-button"
               onClick={(e) => {
-                e.preventDefault()
                 handleCTAClick('learn_more', activeStashdogStrings.get_started.call_to_action.learn_more, 'footer_cta')
               }}
             >

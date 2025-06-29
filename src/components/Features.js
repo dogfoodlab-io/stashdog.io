@@ -76,7 +76,7 @@ const Features = () => {
             </div>
             <p className="description">{data.description}</p>
             <Link 
-              to="/waitlist" 
+              to="/solutions" 
               className="cta-button"
               onClick={() => {
                 handleFeatureClick(key)
