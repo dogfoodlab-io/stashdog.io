@@ -55,6 +55,16 @@ p {
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(252, 217, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+  padding: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.site-header.scrolled .nav-links {
+  display: none;
 }
 
 .header {
@@ -213,6 +223,7 @@ p {
   box-shadow: 0 4px 15px rgba(252, 217, 0, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .cta-button:hover {
