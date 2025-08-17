@@ -34,11 +34,11 @@ const Hero = () => {
         <p>{activeStashdogStrings.welcome.description}</p>
         <div style={{ margin: '2rem 0' }}>
           <Link 
-            to="/waitlist" 
+            to="/download" 
             className="cta-button"
-            onClick={() => handleCTAClick('primary', activeStashdogStrings.get_started.call_to_action.sign_up, 'hero')}
+            onClick={() => handleCTAClick('primary', 'Download Now', 'hero')}
           >
-            {activeStashdogStrings.get_started.call_to_action.sign_up}
+            Download Now
           </Link>
         </div>
       </div>

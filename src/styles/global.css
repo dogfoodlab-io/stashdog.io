@@ -131,6 +131,7 @@ p {
 }
 
 .stashdog-hero h2 {
+  font-family: 'Chewy', cursive;
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin: 2rem 0 1rem;
   color: #fcd900;
@@ -484,6 +485,7 @@ a:focus {
 }
 
 .waitlist-hero h1 {
+  font-family: 'Chewy', cursive;
   font-size: clamp(2.5rem, 5vw, 4rem);
   color: #fcd900;
   margin-bottom: 1rem;
@@ -735,5 +737,155 @@ a:focus {
   
   .waitlist-success {
     padding: 2rem;
+  }
+}
+
+/* Download Page Styles */
+.download-page {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+.download-hero {
+  text-align: center;
+  padding: 6rem 0;
+  background: radial-gradient(circle at center, rgba(252, 217, 0, 0.1) 0%, transparent 70%);
+}
+
+.download-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 2rem 0 1rem 0;
+  color: #fcd900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  font-family: 'Chewy', cursive;
+}
+
+.download-hero p {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: #e0e0e0;
+  line-height: 1.8;
+}
+
+.download-options {
+  padding: 6rem 0;
+}
+
+.download-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.download-badge-link {
+  display: inline-block;
+  transition: all 0.3s ease;
+  filter: brightness(1);
+}
+
+.download-badge-link:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.1);
+}
+
+.download-badge {
+  height: 80px;
+  width: auto;
+  max-width: 240px;
+}
+
+.app-store-badge {
+  filter: invert(1) brightness(1);
+}
+
+/* (removed empty .google-play-badge rule) */
+
+.download-info {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.download-info h2 {
+  font-size: 2.5rem;
+  color: #fcd900;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.download-info > p {
+  font-size: 1.25rem;
+  color: #e0e0e0;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+.download-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-item {
+  background: linear-gradient(135deg, #333 0%, #404040 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(252, 217, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.feature-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #fcd900;
+}
+
+.feature-item p {
+  color: #e0e0e0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments for download page */
+@media (max-width: 768px) {
+  .download-hero {
+    padding: 4rem 0;
+  }
+  
+  .download-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .download-badge {
+    height: 70px;
+    max-width: 200px;
+  }
+  
+  .download-info h2 {
+    font-size: 2rem;
+  }
+  
+  .download-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .download-options {
+    padding: 4rem 0;
   }
 }

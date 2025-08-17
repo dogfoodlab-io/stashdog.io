@@ -47,14 +47,13 @@ const Testimonials = () => {
           <p>{activeStashdogStrings.get_started.description}</p>
           <div className="cta-buttons">
             <a 
-              href="#" 
+              href="/download" 
               className="cta-button"
-              onClick={(e) => {
-                e.preventDefault()
-                handleCTAClick('sign_up', activeStashdogStrings.get_started.call_to_action.sign_up, 'footer_cta')
+              onClick={() => {
+                handleCTAClick('download', 'Download Now', 'footer_cta')
               }}
             >
-              {activeStashdogStrings.get_started.call_to_action.sign_up}
+              Download Now
             </a>
             <a 
               href="/solutions" 

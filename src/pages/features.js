@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
-import { Link } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import AppStoreButton from "../components/AppStoreButton"
+import GooglePlayButton from "../components/GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 
@@ -26,14 +27,13 @@ const FeaturesPage = () => {
     })
   }
 
-  const handleCTAClick = (ctaType, buttonText, buttonPosition) => {
-    logEvent('cta_click', {
-      cta_type: ctaType,
-      button_text: buttonText,
-      button_position: buttonPosition,
-      page: 'features'
-    })
-    window.location.href = '/waitlist'
+  const handleDownloadClick = (platform) => {
+    if (isInitialized) {
+      logEvent('download_click', {
+        platform: platform,
+        page: 'features'
+      })
+    }
   }
 
   return (
@@ -304,9 +304,10 @@ const FeaturesPage = () => {
         <section className="cta-section">
           <div className="container">
             <h2>Ready to Stop Living Like a Disaster?</h2>
-            <p>Too Bad. Unfortunately, we're not ready to launch yet. There's still a bit of work to do to make sure all of that stuff above doesn't suck. In the meanwhile, you can join the waitlist to be notified for Early Access Programs and what not.</p>
+            <p>StashDog is now available! Download the app and finally get your shit together.</p>
             <div className="cta-buttons">
-              <Link to="/waitlist" className="cta-button">Join the Waitlist</Link>
+              <AppStoreButton onClick={handleDownloadClick} />
+              <GooglePlayButton onClick={handleDownloadClick} />
             </div>
           </div>
         </section>

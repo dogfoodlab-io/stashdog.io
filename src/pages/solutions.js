@@ -3,6 +3,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Link } from "gatsby";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AppStoreButton from "../components/AppStoreButton";
+import GooglePlayButton from "../components/GooglePlayButton";
 import { useFirebase } from "../hooks/useFirebase";
 import "../styles/global.css";
 
@@ -23,6 +25,15 @@ const SolutionsPage = () => {
       });
     }
   }, [isInitialized, logEvent]);
+
+  const handleDownloadClick = (platform) => {
+    if (isInitialized) {
+      logEvent('download_click', {
+        platform: platform,
+        page: 'solutions'
+      })
+    }
+  }
 
   return (
     <HelmetProvider>
@@ -313,7 +324,7 @@ const SolutionsPage = () => {
                 can find it later.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Stop Thinking, Start Storing →
               </Link>
             </div>
@@ -401,7 +412,7 @@ const SolutionsPage = () => {
                 it.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Move Like a Genius →
               </Link>
             </div>
@@ -489,7 +500,7 @@ const SolutionsPage = () => {
                 person keeping track of everything. Chaos that just works.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Organize Your Chaos →
               </Link>
             </div>
@@ -576,7 +587,7 @@ const SolutionsPage = () => {
                 no one person managing everyone else's stuff.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Share Without the Stress →
               </Link>
             </div>
@@ -663,7 +674,7 @@ const SolutionsPage = () => {
                 value research. Just collect and enjoy.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Collect Like a Pro →
               </Link>
             </div>
@@ -756,7 +767,7 @@ const SolutionsPage = () => {
                 manual inventory management. Ready when you need to be.
               </div>
 
-              <Link to="/waitlist" className="cta-button">
+              <Link to="/download" className="cta-button">
                 Prepare Without the Stress →
               </Link>
             </div>
@@ -768,15 +779,11 @@ const SolutionsPage = () => {
           <div className="container">
             <h2>Ready to Stop Living Like a Disaster?</h2>
             <p>
-              Too Bad. Unfortunately, we're not ready to launch yet, still gotta
-              do a bit of work to make sure all of the above does not suck. But
-              you can join the waitlist to be notified for early access programs
-              in the meanwhile.
+              StashDog is now available! Download the app and finally get your shit together.
             </p>
             <div className="cta-buttons">
-              <Link to="/waitlist" className="cta-button">
-                Join the Waitlist
-              </Link>
+              <AppStoreButton onClick={handleDownloadClick} />
+              <GooglePlayButton onClick={handleDownloadClick} />
             </div>
           </div>
         </section>
