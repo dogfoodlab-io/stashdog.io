@@ -21,6 +21,7 @@ const AppStoreButton = ({ onClick, className = "", style = {} }) => {
         src="/app-store-badge.svg" 
         alt="Download on the App Store" 
         className="download-badge app-store-badge"
+        loading="lazy"
       />
     </a>
   )

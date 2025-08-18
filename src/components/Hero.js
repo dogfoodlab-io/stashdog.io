@@ -30,7 +30,7 @@ const Hero = () => {
             style={{ maxWidth: '200px', height: 'auto' }}
           />
         </div>
-        <h2>{activeStashdogStrings.welcome.title}</h2>
+        <h1>{activeStashdogStrings.welcome.title}</h1>
         <p>{activeStashdogStrings.welcome.description}</p>
         <div style={{ margin: '2rem 0' }}>
           <Link 

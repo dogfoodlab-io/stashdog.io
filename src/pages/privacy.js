@@ -23,8 +23,10 @@ const PrivacyPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
+          <html lang="en" />
           <title>Privacy Policy - StashDog</title>
           <meta name="description" content="StashDog privacy policy and data protection information." />
+          <link rel="canonical" href="https://stashdog.io/privacy/" />
           <meta name="robots" content="noindex, follow" />
         </Helmet>
         
@@ -299,21 +301,21 @@ const PrivacyPage = () => {
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.1 Privacy Inquiries</h3>
                 <p>For privacy-related questions or concerns:</p>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li><strong>Email</strong>: <a href="mailto:privacy@stashdog.app" style={{ color: '#fcd900' }}>privacy@stashdog.app</a></li>
+                  <li><strong>Email</strong>: <a href="mailto:privacy@dogfoodlab.io" style={{ color: '#fcd900' }}>privacy@dogfoodlab.io</a></li>
                   <li><strong>Subject line</strong>: Include "Privacy Inquiry" for faster response</li>
                 </ul>
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.2 Data Protection Officer</h3>
                 <p>For GDPR-related requests:</p>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li><strong>Email</strong>: <a href="mailto:dpo@stashdog.app" style={{ color: '#fcd900' }}>dpo@stashdog.app</a></li>
+                  <li><strong>Email</strong>: <a href="mailto:dpo@dogfoodlab.io" style={{ color: '#fcd900' }}>dpo@dogfoodlab.io</a></li>
                 </ul>
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.3 General Support</h3>
                 <p>For general app support:</p>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li><strong>Email</strong>: <a href="mailto:support@stashdog.app" style={{ color: '#fcd900' }}>support@stashdog.app</a></li>
-                  <li><strong>Website</strong>: <a href="https://stashdog.app" style={{ color: '#fcd900' }}>https://stashdog.app</a></li>
+                  <li><strong>Email</strong>: <a href="mailto:support@dogfoodlab.io" style={{ color: '#fcd900' }}>support@dogfoodlab.io</a></li>
+                  <li><strong>Website</strong>: <a href="https://stashdog.io" style={{ color: '#fcd900' }}>https://stashdog.io</a></li>
                 </ul>
 
                 <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>11. Consent and Agreement</h2>
@@ -334,7 +336,7 @@ const PrivacyPage = () => {
                   </p>
                   <p style={{ marginTop: '0.5rem' }}>
                     For questions about this policy or our privacy practices, please don't hesitate to contact us at{" "}
-                    <a href="mailto:privacy@stashdog.app" style={{ color: '#fcd900' }}>privacy@stashdog.app</a>.
+                    <a href="mailto:privacy@dogfoodlab.io" style={{ color: '#fcd900' }}>privacy@dogfoodlab.io</a>.
                   </p>
                 </div>
 

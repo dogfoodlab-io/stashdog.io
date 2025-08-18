@@ -40,16 +40,19 @@ const FeaturesPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
+          <html lang="en" />
           <title>Features - StashDog: Stop Losing Your Shit</title>
-          <meta name="description" content="See how StashDog's features help you find your stuff, organize your chaos, and finally get your shit together. Photo inventory, smart search, family sharing, and more." />
+          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory tracking, AI smart search, family sharing, voice integration with Alexa and Google, QR code organization, and location mapping for home organization." />
           <meta name="keywords" content="home inventory features, photo inventory, smart search, family sharing, organization app features, digital organization tools" />
+          <link rel="canonical" href="https://stashdog.io/features/" />
+          <meta name="robots" content="index, follow" />
           
           {/* Open Graph */}
           <meta property="og:title" content="StashDog Features - Stop Losing Your Shit" />
           <meta property="og:description" content="Discover all the ways StashDog helps you organize your chaos and find your stuff when you need it." />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://stashdog.app/features" />
-          <meta property="og:image" content="https://stashdog.app/lab1.png" />
+          <meta property="og:url" content="https://stashdog.io/features" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
           
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -69,7 +72,7 @@ const FeaturesPage = () => {
                 style={{ maxWidth: '200px', height: 'auto' }}
               />
             </div>
-            <h2>Combining Power and Simplicity to Support Your Laziness</h2>
+            <h1>Combining Power and Simplicity to Support Your Laziness</h1>
             <p>
               Here's how StashDog actually helps real people with real messy lives.
             </p>

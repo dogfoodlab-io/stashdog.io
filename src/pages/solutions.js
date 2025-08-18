@@ -39,15 +39,18 @@ const SolutionsPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
+          <html lang="en" />
           <title>Solutions - StashDog</title>
           <meta
             name="description"
-            content="Discover how StashDog transforms your physical chaos into searchable, manageable information systems. Real solutions for real organizational problems."
+            content="StashDog solutions for moving stress, family organization chaos, roommate coordination, emergency preparedness, and collector management. Transform physical clutter into digital clarity with zero mental overhead."
           />
           <meta
             name="keywords"
             content="home organization solutions, inventory management, moving organization, family organization, business inventory"
           />
+          <link rel="canonical" href="https://stashdog.io/solutions/" />
+          <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
           <meta property="og:title" content="Solutions - StashDog" />
@@ -56,8 +59,8 @@ const SolutionsPage = () => {
             content="Turn physical chaos into digital clarity with StashDog's proven organizational solutions."
           />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://stashdog.app/solutions" />
-          <meta property="og:image" content="https://stashdog.app/lab1.png" />
+          <meta property="og:url" content="https://stashdog.io/solutions" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -66,7 +69,7 @@ const SolutionsPage = () => {
             name="twitter:description"
             content="Turn physical chaos into digital clarity with proven organizational solutions."
           />
-          <meta name="twitter:image" content="https://stashdog.app/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -99,7 +102,7 @@ const SolutionsPage = () => {
                 style={{ maxWidth: "200px", height: "auto" }}
               />
             </div>
-            <h2>Never Think About Where to Put Something Ever Again</h2>
+            <h1>Never Think About Where to Put Something Ever Again</h1>
             <p>
               Stop organizing. Start living. StashDog eliminates the mental
               overhead of traditional organization by making your stuff findable

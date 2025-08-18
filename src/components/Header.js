@@ -25,7 +25,7 @@ const Header = () => {
                 src="/round-logo-goggles.png"
                 alt="StashDog Logo"
               />
-              <h1 className="header-text">StashDog</h1>
+              <div className="header-text">StashDog</div>
             </Link>
             <div className="nav-links">
               <Link to="/features" className="nav-link">Features</Link>

@@ -25,22 +25,25 @@ const WaitlistPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
+          <html lang="en" />
           <title>Join the StashDog Waitlist - Early Access</title>
-          <meta name="description" content="Be among the first to get access to StashDog. Join our waitlist and stop living like a trash gremlin sooner." />
+          <meta name="description" content="Join StashDog's waitlist for early access to the smart home inventory app. Get free premium features, special pricing, and priority support as a beta tester. Sign up now for exclusive benefits." />
           <meta name="keywords" content="StashDog waitlist, early access, home organization, inventory management, sign up" />
+          <link rel="canonical" href="https://stashdog.io/waitlist/" />
+          <meta name="robots" content="index, follow" />
           
           {/* Open Graph */}
           <meta property="og:title" content="Join the StashDog Waitlist - Early Access" />
           <meta property="og:description" content="Be among the first to get your shit together with StashDog. Join our waitlist for early access." />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://stashdog.app/waitlist" />
-          <meta property="og:image" content="https://stashdog.app/lab1.png" />
+          <meta property="og:url" content="https://stashdog.io/waitlist" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
           
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Join the StashDog Waitlist - Early Access" />
           <meta name="twitter:description" content="Be among the first to get your shit together with StashDog." />
-          <meta name="twitter:image" content="https://stashdog.app/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
           
           {/* Favicon */}
           <link rel="icon" type="image/png" sizes="32x32" href="/round-logo-goggles.png" />

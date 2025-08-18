@@ -34,20 +34,23 @@ const DownloadPage = () => {
     <HelmetProvider>
       <div className="page-container">
         <Helmet>
+          <html lang="en" />
           <title>Download StashDog - Get Organized Now</title>
-          <meta name="description" content="Download StashDog for iOS and Android. Finally get your shit together with our home inventory management app." />
+          <meta name="description" content="Download StashDog home inventory app for iPhone and Android. Free smart organization tool with photo tracking, AI search, family sharing. Available on App Store and Google Play." />
           <meta name="keywords" content="StashDog download, iOS app, Android app, home organization, inventory management" />
+          <link rel="canonical" href="https://stashdog.io/download/" />
+          <meta name="robots" content="index, follow" />
           {/* Open Graph */}
           <meta property="og:title" content="Download StashDog - Get Organized Now" />
           <meta property="og:description" content="Download StashDog for iOS and Android. Stop living like a disaster and get organized." />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://stashdog.app/download" />
-          <meta property="og:image" content="https://stashdog.app/lab1.png" />
+          <meta property="og:url" content="https://stashdog.io/download" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Download StashDog - Get Organized Now" />
           <meta name="twitter:description" content="Download StashDog for iOS and Android. Finally get your shit together." />
-          <meta name="twitter:image" content="https://stashdog.app/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
           {/* Favicon */}
           <link rel="icon" type="image/png" sizes="32x32" href="/round-logo-goggles.png" />
           {/* Fonts */}

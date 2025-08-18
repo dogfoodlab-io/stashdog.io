@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "StashDog - Smart Home Inventory Management",
     description: "Never lose track of your stuff again. StashDog helps you organize, find, and manage everything you own with AI-powered inventory management.",
-    siteUrl: "https://stashdog.app",
+    siteUrl: "https://stashdog.io",
     author: "Dogfood Lab LLC",
   },
   plugins: [
@@ -23,8 +23,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://stashdog.app",
-        sitemap: "https://stashdog.app/sitemap-index.xml",
+        host: "https://stashdog.io",
+        sitemap: "https://stashdog.io/sitemap-index.xml",
         policy: [{ userAgent: "*", allow: "/" }]
       },
     },

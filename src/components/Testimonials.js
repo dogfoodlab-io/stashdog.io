@@ -32,6 +32,7 @@ const Testimonials = () => {
                     src={review.image ? `/${review.image}` : index === 0 ? "/Face-Young-Woman.webp" : "/Face-Black.webp"} 
                     alt={`${review.author} portrait`}
                     className="testimonial-avatar"
+                    loading="lazy"
                   />
                   <p className="testimonial-name">{review.author}</p>
                 </div>

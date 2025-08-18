@@ -39,7 +39,7 @@ if [ $? -eq 0 ]; then
     
     if [ $? -eq 0 ]; then
         echo "🎉 Deployment successful!"
-        echo "🌐 Your site is live at: https://stashdog.app"
+        echo "🌐 Your site is live at: https://stashdog.io"
     else
         echo "❌ Deployment failed!"
         exit 1

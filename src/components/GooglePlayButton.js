@@ -21,6 +21,7 @@ const GooglePlayButton = ({ onClick, className = "", style = {} }) => {
         src="/google-play-badge.png" 
         alt="Get it on Google Play" 
         className="download-badge google-play-badge"
+        loading="lazy"
       />
     </a>
   )
