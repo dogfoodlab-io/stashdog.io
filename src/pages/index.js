@@ -92,10 +92,10 @@ const IndexPage = () => {
             src="https://www.googletagmanager.com/gtag/js?id=G-3HMLS08VFZ"
           ></script>
           <script>
-            window.dataLayer = window.dataLayer || []; function gtag()
-            
-            {datalayer && arguments && dataLayer.push(arguments)}
-            gtag('js', new Date()); gtag('config', 'G-3HMLS08VFZ');
+            {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3HMLS08VFZ');`}
           </script>
 
           {/* Structured Data */}
