@@ -56,10 +56,10 @@ const Features = () => {
       key: 'family_sharing',
       data: activeStashdogStrings.discover.features.family_sharing
     },
-    {
-      key: 'smart_assistant',
-      data: activeStashdogStrings.discover.features.smart_assistant
-    }
+    // {
+    //   key: 'smart_assistant',
+    //   data: activeStashdogStrings.discover.features.smart_assistant
+    // }
   ]
 
   return (

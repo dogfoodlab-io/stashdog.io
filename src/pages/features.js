@@ -42,7 +42,7 @@ const FeaturesPage = () => {
         <Helmet>
           <html lang="en" />
           <title>Features - StashDog: Stop Losing Your Shit</title>
-          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory tracking, AI smart search, family sharing, voice integration with Alexa and Google, QR code organization, and location mapping for home organization." />
+          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory tracking, AI smart search, family sharing, QR code organization, and location mapping for home organization." />
           <meta name="keywords" content="home inventory features, photo inventory, smart search, family sharing, organization app features, digital organization tools" />
           <link rel="canonical" href="https://stashdog.io/features/" />
           <meta name="robots" content="index, follow" />
@@ -253,8 +253,8 @@ const FeaturesPage = () => {
               </button>
             </div>
 
-            {/* Voice Integration */}
-            <div className="product">
+            {/* Voice Integration - Temporarily Hidden */}
+            {/* <div className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3>🗣️ Talk to Your House Like It's 2024</h3>
@@ -262,8 +262,7 @@ const FeaturesPage = () => {
               </div>
               <p className="description">
                 "Hey Google, ask StashDog where my winter coats are." That's it. Your smart speaker becomes 
-                your personal inventory assistant. Works with Alexa too, because we're not picky about which 
-                robot overlord you prefer.
+                your personal inventory assistant.
               </p>
               <div style={{ 
                 display: 'grid', 
@@ -298,7 +297,7 @@ const FeaturesPage = () => {
               >
                 Try Voice Commands
               </button>
-            </div>
+            </div> */}
 
           </div>
         </section>

@@ -24,23 +24,23 @@ const FAQ = () => {
     },
     {
       question: "What makes StashDog different from other organization apps?",
-      answer: "StashDog eliminates the mental overhead of traditional organization. Instead of forcing you to remember complex filing systems, we let you store things naturally and use AI-powered search to find them later. Plus, we integrate with voice assistants like Alexa and Google Home."
+      answer: "StashDog eliminates the mental overhead of traditional organization. Instead of forcing you to remember complex filing systems, we let you store things naturally and use AI-powered search to find them later."
     },
     {
       question: "Is StashDog good for moving and storage?",
       answer: "Absolutely! StashDog is perfect for moving. Use QR codes on boxes, take photos of contents, and track everything digitally. When you need something specific, just search instead of opening every box. Great for storage units, seasonal items, and long-term organization."
     },
-    {
+    /* {
       question: "Does StashDog work with smart home devices?",
       answer: "Yes! StashDog integrates with Amazon Alexa and Google Assistant. You can ask your smart speaker \"Where are my Christmas lights?\" or \"Find my camping gear\" and get instant answers from your inventory."
-    },
+    }, */
     {
       question: "Is my data secure with StashDog?",
       answer: "Security is our priority. All data is encrypted in transit and at rest. Photos and inventory information are stored securely in the cloud with enterprise-grade protection. You control what you share and with whom. We never sell your personal data."
     },
     {
       question: "How much does StashDog cost?",
-      answer: "StashDog offers a free tier with basic features for small inventories. Premium plans include unlimited items, advanced AI features, family sharing, and voice integration. Early users get special pricing and free premium access during beta."
+      answer: "StashDog offers a free tier with basic features for small inventories. Premium plans include unlimited items, advanced AI features, and family sharing. Early users get special pricing and free premium access during beta."
     },
     {
       question: "Can I use StashDog for business inventory?",

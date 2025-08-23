@@ -27,10 +27,10 @@ export const activeStashdogStrings = {
         title: "Keep Your Fam in the Loop",
         description: "Share your stash with family members easily. Collaborate and keep track of your stuff together."
       },
-      smart_assistant: {
+      /* smart_assistant: {
         title: "Talk to Your Stash",
         description: "Integrates with Alexa and Google Home, letting you ask your smart assistants about your stuff."
-      }
+      } */
     }
   },
   testimonials: {

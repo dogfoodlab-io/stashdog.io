@@ -22,24 +22,32 @@ const Hero = () => {
 
   return (
     <section className="stashdog-hero">
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '0rem 2rem'}}>
-          <img
-            src="/lab1.png"
-            alt="StashDog"
-            style={{ maxWidth: '200px', height: 'auto' }}
-          />
+      <div className="hero-image-container">
+        <div className="hero-image-placeholder">
+          {/* 16:9 Hero Image Space */}
         </div>
-        <h1>{activeStashdogStrings.welcome.title}</h1>
-        <p>{activeStashdogStrings.welcome.description}</p>
-        <div style={{ margin: '2rem 0' }}>
-          <Link 
-            to="/download" 
-            className="cta-button"
-            onClick={() => handleCTAClick('primary', 'Download Now', 'hero')}
-          >
-            Download Now
-          </Link>
+      </div>
+      
+      <div className="container">
+        <div className="hero-content">
+          <div className="logo-container">
+            <img
+              src="/lab1.png"
+              alt="StashDog"
+              className="hero-logo"
+            />
+          </div>
+          <h1>{activeStashdogStrings.welcome.title}</h1>
+          <p>{activeStashdogStrings.welcome.description}</p>
+          <div className="hero-cta">
+            <Link 
+              to="/download" 
+              className="cta-button"
+              onClick={() => handleCTAClick('primary', 'Download Now', 'hero')}
+            >
+              Download Now
+            </Link>
+          </div>
         </div>
       </div>
     </section>
