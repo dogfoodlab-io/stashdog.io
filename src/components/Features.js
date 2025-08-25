@@ -38,6 +38,7 @@ const Features = () => {
   const features = [
     {
       key: 'inventory_management',
+      image: 'split-screen-1.jpg',
       data: activeStashdogStrings.discover.features.inventory_management
     },
     {
@@ -67,13 +68,14 @@ const Features = () => {
       <div className="container">
         <h2>{activeStashdogStrings.discover.title}</h2>
         
-        {features.map(({ key, data }) => (
+        {features.map(({ key, data, image }) => (
           <div key={key} className="product">
             <div className="product-header">
               <div className="product-info">
                 <h3>{data.title}</h3>
               </div>
             </div>
+            { image && <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" /> }
             <p className="description">{data.description}</p>
             <Link 
               to="/solutions" 
