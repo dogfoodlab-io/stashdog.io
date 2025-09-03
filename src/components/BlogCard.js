@@ -19,7 +19,7 @@ const BlogCard = ({ post }) => {
       )}
       <div className="blog-card-content">
         <h3 className="blog-card-title">
-          <Link to={`/blog/${post.slug}`}>
+          <Link to={`/blog?slug=${post.slug}`}>
             {post.title}
           </Link>
         </h3>
@@ -40,7 +40,7 @@ const BlogCard = ({ post }) => {
             </div>
           )}
         </div>
-        <Link to={`/blog/${post.slug}`} className="blog-card-link">
+        <Link to={`/blog?slug=${post.slug}`} className="blog-card-link">
           Read More
         </Link>
       </div>

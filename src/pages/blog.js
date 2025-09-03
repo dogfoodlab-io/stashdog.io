@@ -3,51 +3,242 @@ import { Helmet, HelmetProvider } from "react-helmet-async"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import BlogCard from "../components/BlogCard"
-import { getBlogPosts } from "../utils/api"
+import { getBlogPosts, getBlogPost } from "../utils/api"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 
-const BlogPage = () => {
+const BlogPage = ({ location }) => {
   const [blogPosts, setBlogPosts] = useState([])
+  const [currentPost, setCurrentPost] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { isInitialized, logEvent } = useFirebase()
 
+  // Check if we're viewing a specific post via query parameter
+  const urlParams = new URLSearchParams(location?.search || "")
+  const slug = urlParams.get('slug')
+  const isViewingPost = !!slug
+
   useEffect(() => {
     if (isInitialized) {
+      const title = currentPost ? `${currentPost.title} - StashDog Blog` : "StashDog Blog"
       logEvent("page_view", {
-        page_title: "StashDog Blog",
+        page_title: title,
         page_location: typeof window !== "undefined" ? window.location.href : "",
         page_path: typeof window !== "undefined" ? window.location.pathname : "/blog",
       })
     }
-  }, [isInitialized, logEvent])
+  }, [isInitialized, logEvent, currentPost])
 
   useEffect(() => {
-    const fetchBlogPosts = async () => {
-      try {
-        setLoading(true)
-        const response = await getBlogPosts({
-          published: true,
-          limit: 20
-        })
-        
-        if (response && response.data && response.data.blogPosts) {
-          setBlogPosts(response.data.blogPosts)
-        } else {
-          setBlogPosts([])
+    if (isViewingPost && slug) {
+      // Fetch individual blog post
+      const fetchBlogPost = async () => {
+        try {
+          setLoading(true)
+          const response = await getBlogPost(slug)
+          
+          if (response && response.data && response.data.blogPost) {
+            setCurrentPost(response.data.blogPost)
+          } else {
+            setError('Blog post not found.')
+          }
+        } catch (err) {
+          console.error('Error fetching blog post:', err)
+          setError('Failed to load blog post. Please try again later.')
+        } finally {
+          setLoading(false)
         }
-      } catch (err) {
-        console.error('Error fetching blog posts:', err)
-        setError('Failed to load blog posts. Please try again later.')
-        setBlogPosts([])
-      } finally {
-        setLoading(false)
       }
+      fetchBlogPost()
+    } else {
+      // Fetch blog posts list
+      const fetchBlogPosts = async () => {
+        try {
+          setLoading(true)
+          setCurrentPost(null)
+          const response = await getBlogPosts({
+            published: true,
+            limit: 20
+          })
+          
+          if (response && response.data && response.data.blogPosts) {
+            setBlogPosts(response.data.blogPosts)
+          } else {
+            setBlogPosts([])
+          }
+        } catch (err) {
+          console.error('Error fetching blog posts:', err)
+          setError('Failed to load blog posts. Please try again later.')
+          setBlogPosts([])
+        } finally {
+          setLoading(false)
+        }
+      }
+      fetchBlogPosts()
+    }
+  }, [isViewingPost, slug])
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  // Render individual blog post
+  if (isViewingPost) {
+    if (loading) {
+      return (
+        <HelmetProvider>
+          <div className="page-container">
+            <Header />
+            <main className="blog-post-page">
+              <div className="container">
+                <div className="blog-loading">
+                  <p>Loading blog post...</p>
+                </div>
+              </div>
+            </main>
+            <Footer />
+          </div>
+        </HelmetProvider>
+      )
     }
 
-    fetchBlogPosts()
-  }, [])
+    if (error || !currentPost) {
+      return (
+        <HelmetProvider>
+          <div className="page-container">
+            <Helmet>
+              <title>Blog Post Not Found - StashDog</title>
+            </Helmet>
+            <Header />
+            <main className="blog-post-page">
+              <div className="container">
+                <div className="blog-error">
+                  <h1>Blog Post Not Found</h1>
+                  <p>{error || 'The blog post you are looking for does not exist.'}</p>
+                  <a href="/blog" className="back-to-blog">
+                    ← Back to Blog
+                  </a>
+                </div>
+              </div>
+            </main>
+            <Footer />
+          </div>
+        </HelmetProvider>
+      )
+    }
+
+    return (
+      <HelmetProvider>
+        <div className="page-container">
+          <Helmet>
+            <html lang="en" />
+            <title>{currentPost.title} - StashDog Blog</title>
+            <meta
+              name="description"
+              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
+            />
+            <meta
+              name="keywords"
+              content={currentPost.tags ? currentPost.tags.join(', ') : 'stashdog blog, home organization'}
+            />
+            <link rel="canonical" href={`https://stashdog.io/blog?slug=${currentPost.slug}`} />
+            <meta name="robots" content="index, follow" />
+
+            {/* Open Graph */}
+            <meta property="og:title" content={`${currentPost.title} - StashDog Blog`} />
+            <meta
+              property="og:description"
+              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
+            />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content={`https://stashdog.io/blog?slug=${currentPost.slug}`} />
+            <meta property="og:image" content={currentPost.featuredImageUrl || "https://stashdog.io/lab1.png"} />
+
+            {/* Twitter Card */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={`${currentPost.title} - StashDog Blog`} />
+            <meta
+              name="twitter:description"
+              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
+            />
+            <meta name="twitter:image" content={currentPost.featuredImageUrl || "https://stashdog.io/lab1.png"} />
+
+            {/* Article Structured Data */}
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": currentPost.title,
+                "description": currentPost.metaDescription || currentPost.excerpt,
+                "image": currentPost.featuredImageUrl,
+                "author": {
+                  "@type": "Organization",
+                  "name": "Dogfood Lab LLC"
+                },
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "StashDog",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://stashdog.io/round-logo-goggles.png"
+                  }
+                },
+                "datePublished": currentPost.createdAt,
+                "dateModified": currentPost.updatedAt,
+                "url": `https://stashdog.io/blog?slug=${currentPost.slug}`
+              })}
+            </script>
+          </Helmet>
+
+          <Header />
+          
+          <main className="blog-post-page">
+            <div className="container">
+              <article className="blog-post">
+                <header className="blog-post-header">
+                  <a href="/blog" className="back-to-blog">
+                    ← Back to Blog
+                  </a>
+                  <h1 className="blog-post-title">{currentPost.title}</h1>
+                  {currentPost.featuredImageUrl && (
+                    <div className="blog-post-image">
+                      <img src={currentPost.featuredImageUrl} alt={currentPost.title} />
+                    </div>
+                  )}
+                  <div className="blog-post-meta">
+                    <time className="blog-post-date">
+                      {formatDate(currentPost.createdAt)}
+                    </time>
+                    {currentPost.tags && currentPost.tags.length > 0 && (
+                      <div className="blog-post-tags">
+                        {currentPost.tags.map((tag, index) => (
+                          <span key={index} className="blog-post-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </header>
+                
+                <div 
+                  className="blog-post-content"
+                  dangerouslySetInnerHTML={{ __html: currentPost.content }}
+                />
+              </article>
+            </div>
+          </main>
+
+          <Footer />
+        </div>
+      </HelmetProvider>
+    )
+  }
 
   return (
     <HelmetProvider>
