@@ -74,5 +74,77 @@ export async function healthCheck() {
   return apiRequest('/health')
 }
 
+/**
+ * GraphQL request handler for blog posts
+ */
+async function graphqlRequest(query, variables = {}) {
+  return apiRequest('/graphql', {
+    method: 'POST',
+    body: JSON.stringify({
+      query,
+      variables
+    })
+  })
+}
+
+/**
+ * Fetch all published blog posts
+ * @param {Object} filter - Optional filter parameters
+ * @returns {Promise<Object>} Response containing blog posts
+ */
+export async function getBlogPosts(filter = {}) {
+  const query = `
+    query GetBlogPosts($filter: BlogPostsFilterInput) {
+      blogPosts(filter: $filter) {
+        id
+        title
+        excerpt
+        slug
+        authorId
+        published
+        featuredImageUrl
+        tags
+        createdAt
+        updatedAt
+      }
+    }
+  `
+  
+  return graphqlRequest(query, { 
+    filter: { 
+      published: true,
+      ...filter 
+    } 
+  })
+}
+
+/**
+ * Fetch a single blog post by slug
+ * @param {string} slug - The blog post slug
+ * @returns {Promise<Object>} Response containing the blog post
+ */
+export async function getBlogPost(slug) {
+  const query = `
+    query GetBlogPost($slug: String!) {
+      blogPost(slug: $slug) {
+        id
+        title
+        content
+        excerpt
+        slug
+        authorId
+        published
+        featuredImageUrl
+        tags
+        metaDescription
+        createdAt
+        updatedAt
+      }
+    }
+  `
+  
+  return graphqlRequest(query, { slug })
+}
+
 // Export the generic API request function for custom use cases
 export { apiRequest } 
