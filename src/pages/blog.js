@@ -5,6 +5,8 @@ import Footer from "../components/Footer"
 import BlogCard from "../components/BlogCard"
 import { getBlogPosts, getBlogPost } from "../utils/api"
 import { useFirebase } from "../hooks/useFirebase"
+import { marked } from 'marked'
+import DOMPurify from 'dompurify'
 import "../styles/global.css"
 
 const BlogPage = ({ location }) => {
@@ -39,7 +41,22 @@ const BlogPage = ({ location }) => {
           const response = await getBlogPost(slug)
           
           if (response && response.data && response.data.blogPost) {
-            setCurrentPost(response.data.blogPost)
+            const post = response.data.blogPost
+
+            // Determine if content is Markdown (simple heuristic) and convert to HTML
+            let contentHtml = post.content || ''
+            const looksLikeMarkdown = /(^#{1,6}\s)|(^[-*+]\s)|(```)/m.test(contentHtml)
+
+            if (looksLikeMarkdown) {
+              try {
+                const raw = marked.parse(contentHtml)
+                contentHtml = DOMPurify.sanitize(raw)
+              } catch (e) {
+                console.warn('Markdown parse failed, falling back to raw content', e)
+              }
+            }
+
+            setCurrentPost({ ...post, content: contentHtml })
           } else {
             setError('Blog post not found.')
           }
@@ -205,31 +222,45 @@ const BlogPage = ({ location }) => {
                     ← Back to Blog
                   </a>
                   <h1 className="blog-post-title">{currentPost.title}</h1>
-                  {currentPost.featuredImageUrl && (
-                    <div className="blog-post-image">
-                      <img src={currentPost.featuredImageUrl} alt={currentPost.title} />
-                    </div>
-                  )}
                   <div className="blog-post-meta">
                     <time className="blog-post-date">
                       {formatDate(currentPost.createdAt)}
                     </time>
-                    {currentPost.tags && currentPost.tags.length > 0 && (
-                      <div className="blog-post-tags">
-                        {currentPost.tags.map((tag, index) => (
-                          <span key={index} className="blog-post-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </header>
-                
+
+                {/* Hero image area: show image if available, otherwise a tasteful placeholder */}
+                <div className="blog-post-hero" aria-hidden={!currentPost.featuredImageUrl}>
+                  {currentPost.featuredImageUrl ? (
+                    <div className="blog-post-image">
+                      <img src={currentPost.featuredImageUrl} alt={currentPost.title} />
+                    </div>
+                  ) : (
+                    <div className="blog-post-hero-placeholder" role="img" aria-label="No hero image available">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#fcd900" strokeWidth="1.2" fill="rgba(252,217,0,0.03)" />
+                        <path d="M7 9L10 13L13 10L17 15" stroke="#fcd900" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <div className="placeholder-text">No hero image</div>
+                    </div>
+                  )}
+                </div>
+
                 <div 
                   className="blog-post-content"
                   dangerouslySetInnerHTML={{ __html: currentPost.content }}
                 />
+
+                {/* Tags rendered at the bottom of the post for better discoverability */}
+                {currentPost.tags && currentPost.tags.length > 0 && (
+                  <div className="blog-post-tags blog-post-tags-bottom" aria-label="Post tags">
+                    {currentPost.tags.map((tag, index) => (
+                      <a key={index} href={`/blog?tag=${encodeURIComponent(tag)}`} className="blog-post-tag">
+                        {tag}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </article>
             </div>
           </main>
