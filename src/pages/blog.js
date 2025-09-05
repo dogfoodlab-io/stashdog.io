@@ -306,6 +306,15 @@ const BlogPage = ({ location }) => {
             content="Read the latest news, tips, and insights from StashDog about home organization and inventory management."
           />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+
+          {/* Twitter Card */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Blog - StashDog" />
+          <meta
+            name="twitter:description"
+            content="Read the latest news, tips, and insights from StashDog about home organization and inventory management."
+          />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
         </Helmet>
 
         <Header />
@@ -315,6 +324,14 @@ const BlogPage = ({ location }) => {
             <div className="blog-header">
               <h1>StashDog Blog</h1>
               <p>Tips, tricks, and insights to help you get organized and find your stuff.</p>
+              <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+                <a href="/features" style={{ color: '#fcd900', textDecoration: 'underline', marginRight: '2rem' }}>
+                  Explore Features →
+                </a>
+                <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                  View Solutions →
+                </a>
+              </p>
             </div>
 
             {loading && (
