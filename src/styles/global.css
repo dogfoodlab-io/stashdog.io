@@ -1,4 +1,6 @@
 /* Global Styles for StashDog Website */
+/* Import brand webfonts (Chewy used in a few places) */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
 
 * {
   margin: 0;
@@ -94,6 +96,7 @@ p {
 }
 
 .header-text {
+  /* Keep the brand logo/title font as Chewy in the navbar */
   font-family: 'Chewy', cursive;
   font-size: 2.2rem;
   color: #fcd900;
@@ -168,12 +171,18 @@ p {
 }
 
 .hero-content h1 {
-  font-family: 'Chewy', cursive;
+  /* Use the site's standard heading typeface (inherit from body) */
+  font-family: inherit;
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 1.5rem;
   color: #fcd900;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   line-height: 1.2;
+}
+
+/* Ensure the specific hero title (if present) uses the standard font */
+.hero-title {
+  font-family: inherit;
 }
 
 .hero-content p {

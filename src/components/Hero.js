@@ -27,7 +27,7 @@ const Hero = () => {
         <div className="hero-overlay">
           <div className="container">
             <div className="hero-content">
-              <h1>{activeStashdogStrings.welcome.title}</h1>
+              <h1 className="hero-title">{activeStashdogStrings.welcome.title}</h1>
               <p>{activeStashdogStrings.welcome.description}</p>
               <div className="hero-cta">
                 <Link 
