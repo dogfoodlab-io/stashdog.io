@@ -325,9 +325,6 @@ const BlogPage = ({ location }) => {
               <h1>StashDog Blog</h1>
               <p>Tips, tricks, and insights to help you get organized and find your stuff.</p>
               <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-                <a href="/features" style={{ color: '#fcd900', textDecoration: 'underline', marginRight: '2rem' }}>
-                  Explore Features →
-                </a>
                 <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
                   View Solutions →
                 </a>
