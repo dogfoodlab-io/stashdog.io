@@ -1,6 +1,6 @@
 // API Client for StashDog
 
-const API_BASE_URL = process.env.GATSBY_API_BASE_URL || 'http://localhost:3000'
+const API_BASE_URL = process.env.GATSBY_API_BASE_URL || 'https://api.stashdog.io'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
 
 /**
