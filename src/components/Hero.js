@@ -1,10 +1,28 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
 import { activeStashdogStrings } from "../config"
 
 const Hero = () => {
   const { logEvent } = useFirebase()
+
+  // Measure header height at runtime and expose as a CSS variable so
+  // the hero overlay can be offset precisely to avoid overlapping.
+  useEffect(() => {
+    const setHeaderHeight = () => {
+      const header = document.querySelector('.site-header')
+      const h = header ? header.getBoundingClientRect().height : 88
+      document.documentElement.style.setProperty('--header-height', `${Math.round(h)}px`)
+    }
+
+    // initial set and on resize
+    setHeaderHeight()
+    window.addEventListener('resize', setHeaderHeight)
+    return () => {
+      window.removeEventListener('resize', setHeaderHeight)
+      document.documentElement.style.removeProperty('--header-height')
+    }
+  }, [])
 
   const handleCTAClick = (ctaType, buttonText, buttonPosition) => {
     logEvent('cta_click', {

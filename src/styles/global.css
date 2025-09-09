@@ -132,11 +132,25 @@ p {
   padding: 0;
 }
 
-.hero-image-container {
+.stashdog-hero, .hero-image-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+}
+
+/* Make the hero fill the viewport above the fold (viewport minus header). */
+.hero-image-container {
+  height: calc(100vh - var(--header-height, 88px));
+  min-height: 420px;
   overflow: hidden;
+}
+
+/* On large desktop screens prefer a wider aspect ratio instead of fixed height */
+@media (min-width: 992px) {
+  .hero-image-container {
+    height: auto;
+    aspect-ratio: 16/9;
+    min-height: 520px;
+  }
 }
 
 .hero-image {
@@ -159,7 +173,7 @@ p {
     rgba(0, 0, 0, 0.7) 100%
   );
   display: flex;
-  align-items: center;
+  align-items: center; /* vertically center the hero content within the hero area */
   justify-content: center;
 }
 
@@ -539,6 +553,33 @@ p {
     padding: 1.5rem;
     max-width: 90%;
   }
+
+  /* Move hero content down on mobile so the sticky header doesn't overlap it
+     and increase the hero height slightly to give room for content. */
+  .hero-overlay {
+    align-items: flex-start;
+    /* use runtime header height when available */
+    padding-top: var(--header-height, 88px);
+    padding-bottom: 2.25rem;
+  }
+
+  /* Make the hero taller on smaller screens so the image and overlay
+     have room to show the content without cropping into the header. */
+  .hero-image-container {
+    /* allow more vertical room while keeping overlay/content contained */
+    aspect-ratio: unset;
+    min-height: 520px;
+    overflow: hidden; /* keep overlay inside the hero box to avoid overlap */
+  }
+
+  /* Reduce the hero title size a bit on mobile to avoid excessive wrapping */
+  .hero-content h1 {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+    line-height: 1.15;
+  }
+  
+  .hero-cta { margin-top: 1.25rem; }
+  .hero-cta .cta-button { width: auto; max-width: 90%; display: inline-block; }
   
   .hero-content h1 {
     font-size: clamp(2rem, 8vw, 3rem);
@@ -604,6 +645,23 @@ p {
   .testimonial-avatar {
     width: 60px;
     height: 60px;
+  }
+
+  /* Slightly smaller header offset for very small screens */
+  .hero-overlay {
+    padding-top: var(--header-height, 72px);
+  }
+
+  /* More vertical space for hero content on very small devices */
+  .hero-image-container {
+    aspect-ratio: unset;
+    min-height: 420px;
+    overflow: hidden;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    line-height: 1.12;
   }
 }
 

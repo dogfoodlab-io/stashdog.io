@@ -161,12 +161,12 @@ const FAQ = () => {
               {openFAQ === index && (
                 <div 
                   style={{
-                    padding: '0 1.5rem 1.5rem 1.5rem',
+                    /* add some top padding so the description doesn't sit flush against the divider */
+                    padding: '0.75rem 1.5rem 1.5rem 1.5rem',
                     color: '#e0e0e0',
                     lineHeight: '1.6',
                     fontSize: '1rem',
-                    borderTop: '1px solid rgba(252, 217, 0, 0.1)',
-                    marginTop: '-1px'
+                    borderTop: '1px solid rgba(252, 217, 0, 0.1)'
                   }}
                 >
                   {faq.answer}
