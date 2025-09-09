@@ -6,7 +6,7 @@ export const activeStashdogStrings = {
   },
   discover: {
     title: "Get Your Shit Together, Finally",
-  hashtag: "#GetYourShitTogether",
+  // hashtag: "#GetYourShitTogether",
     features: {
       inventory_management: {
         title: "Effortless as Hell Inventory Management",
