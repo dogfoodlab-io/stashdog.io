@@ -40,14 +40,14 @@ const SolutionsPage = () => {
       <div className="page-container">
         <Helmet>
           <html lang="en" />
-          <title>Solutions - StashDog</title>
+          <title>Home Organization Solutions - Stop Losing Your Shit with StashDog</title>
           <meta
             name="description"
             content="StashDog solutions for moving stress, family organization chaos, roommate coordination, emergency preparedness, and collector management. Transform physical clutter into digital clarity with zero mental overhead."
           />
           <meta
             name="keywords"
-            content="home organization solutions, inventory management, moving organization, family organization, business inventory"
+            content="home organization solutions, inventory management, moving organization, family organization, roommate coordination, emergency preparedness, collector management, digital organization, photo inventory, smart search"
           />
           <link rel="canonical" href="https://stashdog.io/solutions/" />
           <meta name="robots" content="index, follow" />
@@ -70,6 +70,64 @@ const SolutionsPage = () => {
             content="Turn physical chaos into digital clarity with proven organizational solutions."
           />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help with general home organization?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog eliminates the mental overhead of traditional organization by making your stuff findable no matter where you put it. Put things anywhere, snap a photo, and find them instantly when needed."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help with moving?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog makes moving stress-free by allowing you to pack however you want, using QR codes on boxes, and finding items instantly during unpacking without any planning required."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help with family organization?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog enables family coordination without coordination by allowing everyone to store their way, building a collective inventory automatically, and providing voice-powered finding capabilities."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help with shared living situations?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog eliminates roommate politics by automatically tracking ownership, managing shared items, and making move-out easy with clear item identification."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help collectors?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog helps collectors track their items without cataloging by snapping photos as items are acquired, recognizing valuable pieces automatically, and preventing duplicate purchases."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does StashDog help with emergency preparedness?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "StashDog makes emergency preparedness effortless by organizing crisis collections, using smart tagging for urgency, and providing instant access to critical items during emergencies."
+                  }
+                }
+              ]
+            })}
+          </script>
 
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -107,6 +165,11 @@ const SolutionsPage = () => {
               Stop organizing. Start living. StashDog eliminates the mental
               overhead of traditional organization by making your stuff findable
               no matter where you put it.
+            </p>
+            <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+              <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                Explore StashDog's powerful features →
+              </Link>
             </p>
           </div>
         </section>

@@ -43,7 +43,7 @@ const Testimonials = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="cta-section" id="waitlist">
+        {/* <div className="cta-section" id="waitlist">
           <h2>{activeStashdogStrings.get_started.title}</h2>
           <p>{activeStashdogStrings.get_started.description}</p>
           <div className="cta-buttons">
@@ -66,7 +66,7 @@ const Testimonials = () => {
               {activeStashdogStrings.get_started.call_to_action.learn_more}
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

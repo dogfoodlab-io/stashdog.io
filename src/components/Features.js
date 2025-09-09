@@ -38,23 +38,25 @@ const Features = () => {
   const features = [
     {
       key: 'inventory_management',
-      image: 'split-screen-1.jpg',
+      image: 'trashpanda.jpeg',
       data: activeStashdogStrings.discover.features.inventory_management
     },
     {
       key: 'location_tracking',
+      image: 'pointydog.jpg',
       data: activeStashdogStrings.discover.features.location_tracking
     },
-    {
-      key: 'retrieval',
-      data: activeStashdogStrings.discover.features.retrieval
-    },
-    {
-      key: 'categories',
-      data: activeStashdogStrings.discover.features.categories
-    },
+    // {
+    //   key: 'retrieval',
+    //   data: activeStashdogStrings.discover.features.retrieval
+    // },
+    // {
+    //   key: 'categories',
+    //   data: activeStashdogStrings.discover.features.categories
+    // },
     {
       key: 'family_sharing',
+      image: 'dogpack.jpg',
       data: activeStashdogStrings.discover.features.family_sharing
     },
     // {
@@ -67,26 +69,49 @@ const Features = () => {
     <section className="products">
       <div className="container">
         <h2>{activeStashdogStrings.discover.title}</h2>
-        
+
         {features.map(({ key, data, image }) => (
-          <div key={key} className="product">
-            <div className="product-header">
-              <div className="product-info">
-                <h3>{data.title}</h3>
+          <div key={key} className="product feature-row">
+            <div className="feature-media">
+              {image ? (
+                <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" />
+              ) : (
+                <div className="feature-placeholder" aria-hidden>
+                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M3 9l5 5 4-4 6 6" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <div className="placeholder-text">Image placeholder</div>
+                </div>
+              )}
+            </div>
+
+            <div className="feature-content">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>{data.title}</h3>
+                </div>
+              </div>
+
+              <p className="description">{data.description}</p>
+
+              <div className="feature-actions">
+                <Link
+                  to="/solutions"
+                  className="cta-button feature-cta"
+                  onClick={() => {
+                    handleFeatureClick(key)
+                    handleCTAClick(key, activeStashdogStrings.get_started.call_to_action.learn_more, 'feature_section')
+                  }}
+                >
+                  {activeStashdogStrings.get_started.call_to_action.learn_more}
+                </Link>
+
+                <div className="feature-hashtag" aria-label="feature hashtag">
+                  {data.hashtag || activeStashdogStrings.discover.hashtag}
+                </div>
               </div>
             </div>
-            { image && <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" /> }
-            <p className="description">{data.description}</p>
-            <Link 
-              to="/solutions" 
-              className="cta-button"
-              onClick={() => {
-                handleFeatureClick(key)
-                handleCTAClick(key, activeStashdogStrings.get_started.call_to_action.learn_more, 'feature_section')
-              }}
-            >
-              {activeStashdogStrings.get_started.call_to_action.learn_more}
-            </Link>
           </div>
         ))}
       </div>

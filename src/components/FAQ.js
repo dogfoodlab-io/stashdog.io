@@ -16,19 +16,27 @@ const FAQ = () => {
   const faqs = [
     {
       question: "How does StashDog help me organize my stuff?",
-      answer: "StashDog uses photo-based inventory tracking with AI recognition. Just take a picture of your items, and our app automatically categorizes and tags them. You can assign storage locations, add notes, and search everything instantly. No complex organizational systems to learn or maintain."
+      answer: "StashDog uses photo-based inventory tracking with flexible search capabilities. You can assign tags, storage locations, add notes, and search everything instantly. No complex organizational systems to learn or maintain."
     },
     {
       question: "Can my family members access our shared inventory?",
-      answer: "Yes! StashDog supports family sharing with customizable permissions. You can invite family members to view or edit your inventory, share specific collections, and collaborate on organization projects. Everyone stays in sync automatically."
+      answer: "Yes! StashDog supports family sharing with customizable permissions. You can invite family members, partners, roommates, and guests to view or edit your inventory, share specific collections, and collaborate on organization projects. Everyone stays in sync automatically."
     },
-    {
-      question: "What makes StashDog different from other organization apps?",
-      answer: "StashDog eliminates the mental overhead of traditional organization. Instead of forcing you to remember complex filing systems, we let you store things naturally and use AI-powered search to find them later."
-    },
+    // {
+    //   question: "What makes StashDog different from other organization apps?",
+    //   answer: "StashDog eliminates the mental overhead of traditional organization. Instead of forcing you to remember complex filing systems, we let you store things naturally and use AI-powered search to find them later."
+    // },
     {
       question: "Is StashDog good for moving and storage?",
       answer: "Absolutely! StashDog is perfect for moving. Use QR codes on boxes, take photos of contents, and track everything digitally. When you need something specific, just search instead of opening every box. Great for storage units, seasonal items, and long-term organization."
+    },
+    {
+      question: "Can I use StashDog on multiple devices?",
+      answer: "Yes! StashDog is available on iOS, Android, and web. Your inventory syncs across all your devices in real-time, so you can access and manage your stuff from anywhere."
+    },
+    {
+      question: "Can I use Stashdog for my AirBnB or rental property?",
+      answer: "Definitely! StashDog is great for property managers and hosts. Keep track of amenities, supplies, linens, furniture, and maintenance items. Share access with cleaning staff and co-hosts to streamline operations. Share with guests so they know where everything is and where it needs to go when they leave."
     },
     /* {
       question: "Does StashDog work with smart home devices?",
@@ -38,10 +46,10 @@ const FAQ = () => {
       question: "Is my data secure with StashDog?",
       answer: "Security is our priority. All data is encrypted in transit and at rest. Photos and inventory information are stored securely in the cloud with enterprise-grade protection. You control what you share and with whom. We never sell your personal data."
     },
-    {
-      question: "How much does StashDog cost?",
-      answer: "StashDog offers a free tier with basic features for small inventories. Premium plans include unlimited items, advanced AI features, and family sharing. Early users get special pricing and free premium access during beta."
-    },
+    // {
+    //   question: "How much does StashDog cost?",
+    //   answer: "StashDog offers a free tier with basic features for small inventories. Premium plans include unlimited items, advanced AI features, and family sharing. Early users get special pricing and free premium access during beta."
+    // },
     {
       question: "Can I use StashDog for business inventory?",
       answer: "While StashDog is designed for home and personal use, many small businesses, artists, and collectors use it for inventory management. The photo-based system works great for tracking tools, supplies, artwork, collectibles, and equipment."
@@ -127,7 +135,7 @@ const FAQ = () => {
             className="cta-button"
             onClick={() => logEvent('support_contact', { source: 'faq_section' })}
           >
-            Contact Support
+            Contact Us
           </a>
         </div>
       </div>

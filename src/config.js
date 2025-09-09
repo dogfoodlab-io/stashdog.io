@@ -6,26 +6,27 @@ export const activeStashdogStrings = {
   },
   discover: {
     title: "Get Your Shit Together, Finally",
+  hashtag: "#GetYourShitTogether",
     features: {
       inventory_management: {
         title: "Effortless as Hell Inventory Management",
-        description: "Imagine not digging through piles of junk like a goddamn raccoon. With StashDog, you can track your shit in a few clicks and finally feel like you're winning at life."
+        description: "Imagine not digging through piles of junk like a goddamn raccoon. With StashDog, you can track your shit in a few taps and finally feel like you're winning at life."
       },
       location_tracking: {
-        title: "Stop Losing Your Crap",
-        description: "Never lose your shit again. Assign precise storage locations to every damn thing you own. Your future self will thank you for not being such a clueless disaster."
+        title: "Find your Crap In A Snap",
+        description: "Never lose your shit again. Assign precise storage locations to everything, and let Stashdog do the remembering. Your future self will thank you. "
       },
-      retrieval: {
-        title: "Find Your Shit in a Snap",
-        description: "Say goodbye to rummaging like a lunatic. Our search feature will lead your lazy ass directly to what you need, no sweat."
-      },
-      categories: {
-        title: "Custom Categories for Your Nonsense",
-        description: "Organize your crap however you want. From \"random kitchen shit\" to \"tools I never use,\" StashDog's got your back."
-      },
+      // retrieval: {
+      //   title: "Find Your Shit in a Snap",
+      //   description: "Say goodbye to rummaging like a lunatic. Our search feature will lead your lazy ass directly to what you need, no sweat."
+      // },
+      // categories: {
+      //   title: "Custom Categories for Your Nonsense",
+      //   description: "Organize your crap however you want. From \"random kitchen shit\" to \"tools I never use,\" StashDog's got your back."
+      // },
       family_sharing: {
-        title: "Keep Your Fam in the Loop",
-        description: "Share your stash with family members easily. Collaborate and keep track of your stuff together."
+        title: "Keep Your Crew in the Loop",
+        description: "Easily share your stash with friends, family members, roommates etc. Collaborate and keep track of your stuff together. You don't have to be a human search engine anymore. The next time anybody finds something lying around they know where it needs to go. "
       },
       /* smart_assistant: {
         title: "Talk to Your Stash",

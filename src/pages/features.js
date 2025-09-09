@@ -53,6 +53,41 @@ const FeaturesPage = () => {
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/features" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
+
+          {/* Twitter Card */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="StashDog Features - Stop Losing Your Shit" />
+          <meta name="twitter:description" content="Discover all the ways StashDog helps you organize your chaos and find your stuff when you need it." />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "StashDog",
+              "description": "Photo-based inventory tracking app with AI smart search, family sharing, voice integration, and QR code organization for home organization.",
+              "applicationCategory": "LifestyleApplication",
+              "operatingSystem": "iOS, Android",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "featureList": [
+                "Photo-based inventory tracking",
+                "AI-powered smart search",
+                "Family sharing capabilities",
+                "Voice integration with Alexa and Google",
+                "QR code organization",
+                "Location mapping"
+              ],
+              "publisher": {
+                "@type": "Organization",
+                "name": "Dogfood Lab LLC"
+              }
+            })}
+          </script>
           
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,6 +110,11 @@ const FeaturesPage = () => {
             <h1>Combining Power and Simplicity to Support Your Laziness</h1>
             <p>
               Here's how StashDog actually helps real people with real messy lives.
+            </p>
+            <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+              <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                See how StashDog solves real-world organization problems →
+              </a>
             </p>
           </div>
         </section>
