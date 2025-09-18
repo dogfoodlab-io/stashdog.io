@@ -1,22 +1,25 @@
 import React from "react"
 import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
-import { activeStashdogStrings } from "../config"
+import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
 const Features = () => {
   const { logEvent } = useFirebase()
+  const { content, currentVariant } = useContentSwitcher()
 
   // Enhanced tracking for feature clicks
   const handleFeatureClick = (featureName) => {
     logEvent('feature_click', {
       feature_name: featureName,
-      page: 'homepage'
+      page: 'homepage',
+      content_variant: currentVariant
     })
     
     // Also log as select_content for backward compatibility
     logEvent('select_content', {
       content_type: 'feature',
-      content_id: featureName
+      content_id: featureName,
+      content_variant: currentVariant
     })
   }
 
@@ -26,12 +29,14 @@ const Features = () => {
       cta_type: ctaType,
       button_text: buttonText,
       button_position: buttonPosition,
-      page: 'homepage'
+      page: 'homepage',
+      content_variant: currentVariant
     })
     
     // Also log as generate_lead for backward compatibility
     logEvent('generate_lead', {
-      cta_type: ctaType
+      cta_type: ctaType,
+      content_variant: currentVariant
     })
   }
 
@@ -39,36 +44,24 @@ const Features = () => {
     {
       key: 'inventory_management',
       image: 'trashpanda.jpeg',
-      data: activeStashdogStrings.discover.features.inventory_management
+      data: content.discover.features.inventory_management
     },
     {
       key: 'location_tracking',
       image: 'pointydog.jpg',
-      data: activeStashdogStrings.discover.features.location_tracking
+      data: content.discover.features.location_tracking
     },
-    // {
-    //   key: 'retrieval',
-    //   data: activeStashdogStrings.discover.features.retrieval
-    // },
-    // {
-    //   key: 'categories',
-    //   data: activeStashdogStrings.discover.features.categories
-    // },
     {
       key: 'family_sharing',
       image: 'dogpack.jpg',
-      data: activeStashdogStrings.discover.features.family_sharing
-    },
-    // {
-    //   key: 'smart_assistant',
-    //   data: activeStashdogStrings.discover.features.smart_assistant
-    // }
+      data: content.discover.features.family_sharing
+    }
   ]
 
   return (
     <section className="products">
       <div className="container">
-        <h2>{activeStashdogStrings.discover.title}</h2>
+        <h2>{content.discover.title}</h2>
 
         {features.map(({ key, data, image }) => (
           <div key={key} className="product feature-row">
@@ -101,14 +94,14 @@ const Features = () => {
                   className="cta-button feature-cta"
                   onClick={() => {
                     handleFeatureClick(key)
-                    handleCTAClick(key, activeStashdogStrings.get_started.call_to_action.learn_more, 'feature_section')
+                    handleCTAClick(key, content.get_started.call_to_action.learn_more, 'feature_section')
                   }}
                 >
-                  {activeStashdogStrings.get_started.call_to_action.learn_more}
+                  {content.get_started.call_to_action.learn_more}
                 </Link>
 
                 <div className="feature-hashtag" aria-label="feature hashtag">
-                  {data.hashtag || activeStashdogStrings.discover.hashtag}
+                  {data.hashtag || content.discover.hashtag}
                 </div>
               </div>
             </div>

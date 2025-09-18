@@ -1,21 +1,24 @@
 import React from "react"
 import { useFirebase } from "../hooks/useFirebase"
-import { activeStashdogStrings } from "../config"
+import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
 const Testimonials = () => {
   const { logEvent } = useFirebase()
+  const { content, currentVariant } = useContentSwitcher()
 
   const handleCTAClick = (ctaType, buttonText, buttonPosition) => {
     logEvent('cta_click', {
       cta_type: ctaType,
       button_text: buttonText,
       button_position: buttonPosition,
-      page: 'homepage'
+      page: 'homepage',
+      content_variant: currentVariant
     })
     
     // Also log as generate_lead for backward compatibility
     logEvent('generate_lead', {
-      cta_type: ctaType
+      cta_type: ctaType,
+      content_variant: currentVariant
     })
   }
 
@@ -23,9 +26,9 @@ const Testimonials = () => {
     <div className="testimonials-section">
       <div className="container">
         <div style={{ margin: '3rem 0', width: '100%', maxWidth: '100%' }}>
-          <h2 style={{ marginBottom: '2rem' }}>{activeStashdogStrings.testimonials.title}</h2>
+          <h2 style={{ marginBottom: '2rem' }}>{content.testimonials.title}</h2>
           <div className="testimonials-grid">
-            {activeStashdogStrings.testimonials.reviews.map((review, index) => (
+            {content.testimonials.reviews.map((review, index) => (
               <div key={index} className="testimonial-card">
                 <div className="testimonial-author">
                   <img 

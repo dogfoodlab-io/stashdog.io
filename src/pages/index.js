@@ -6,11 +6,18 @@ import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
+import ContentSwitcherControls from "../components/ContentSwitcherControls";
 import { useFirebase } from "../hooks/useFirebase";
+import { useContentSwitcher } from "../hooks/useContentSwitcher";
 import "../styles/global.css";
 
 const IndexPage = () => {
   const { isInitialized, logEvent } = useFirebase();
+  const { currentVariant } = useContentSwitcher();
+
+  // Check if we should show content switcher controls (for development/testing)
+  const showControls = typeof window !== "undefined" && 
+    (window.location.search.includes('dev=true') || window.location.hostname === 'localhost');
 
   // Log page view when component mounts
   useEffect(() => {
@@ -21,9 +28,10 @@ const IndexPage = () => {
           typeof window !== "undefined" ? window.location.href : "",
         page_path:
           typeof window !== "undefined" ? window.location.pathname : "/",
+        content_variant: currentVariant
       });
     }
-  }, [isInitialized, logEvent]);
+  }, [isInitialized, logEvent, currentVariant]);
 
   return (
     <HelmetProvider>
@@ -168,6 +176,8 @@ const IndexPage = () => {
         <Testimonials />
         <FAQ />
         <Footer />
+        
+        <ContentSwitcherControls showControls={showControls} />
       </div>
     </HelmetProvider>
   );

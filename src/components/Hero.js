@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
-import { activeStashdogStrings } from "../config"
+import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
 const Hero = () => {
   const { logEvent } = useFirebase()
+  const { content, currentVariant } = useContentSwitcher()
 
   // Measure header height at runtime and expose as a CSS variable so
   // the hero overlay can be offset precisely to avoid overlapping.
@@ -29,12 +30,14 @@ const Hero = () => {
       cta_type: ctaType,
       button_text: buttonText,
       button_position: buttonPosition,
-      page: 'homepage'
+      page: 'homepage',
+      content_variant: currentVariant
     })
     
     // Also log as generate_lead for backward compatibility
     logEvent('generate_lead', {
-      cta_type: ctaType
+      cta_type: ctaType,
+      content_variant: currentVariant
     })
   }
 
@@ -45,8 +48,8 @@ const Hero = () => {
         <div className="hero-overlay">
           <div className="container">
             <div className="hero-content">
-              <h1 className="hero-title">{activeStashdogStrings.welcome.title}</h1>
-              <p>{activeStashdogStrings.welcome.description}</p>
+              <h1 className="hero-title">{content.welcome.title}</h1>
+              <p>{content.welcome.description}</p>
               <div className="hero-cta">
                 <Link 
                   to="/download" 
