@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { contentVariants } from '../config';
+import { useFirebase } from './useFirebase';
 
 /**
  * Hook for dynamically switching content based on URL parameters or other criteria
  * Supports different market segments: default, professional, family
+ * Can optionally load content from Firebase Firestore for remote management
  */
 export const useContentSwitcher = () => {
   const [currentVariant, setCurrentVariant] = useState('default');
   const [content, setContent] = useState(contentVariants.default);
+  const [isLoading, setIsLoading] = useState(false);
+  const { getContentVariant } = useFirebase();
 
   useEffect(() => {
     const determineContentVariant = () => {
@@ -42,16 +46,43 @@ export const useContentSwitcher = () => {
       return 'default';
     };
 
+    const loadContent = async (variant) => {
+      setIsLoading(true);
+      
+      // Try to load from Firestore first (for remote content management)
+      const remoteContent = await getContentVariant(variant);
+      
+      if (remoteContent) {
+        setContent(remoteContent);
+      } else {
+        // Fallback to local content variants
+        setContent(contentVariants[variant] || contentVariants.default);
+      }
+      
+      setIsLoading(false);
+    };
+
     const variant = determineContentVariant();
     setCurrentVariant(variant);
-    setContent(contentVariants[variant]);
-  }, []);
+    loadContent(variant);
+  }, [getContentVariant]);
 
   // Function to manually switch content variant
-  const switchContent = (variant) => {
+  const switchContent = async (variant) => {
     if (contentVariants[variant]) {
       setCurrentVariant(variant);
-      setContent(contentVariants[variant]);
+      setIsLoading(true);
+      
+      // Try to load from Firestore first
+      const remoteContent = await getContentVariant(variant);
+      
+      if (remoteContent) {
+        setContent(remoteContent);
+      } else {
+        setContent(contentVariants[variant]);
+      }
+      
+      setIsLoading(false);
       
       // Save preference to localStorage
       if (typeof window !== 'undefined') {
@@ -71,6 +102,7 @@ export const useContentSwitcher = () => {
   return {
     content,
     currentVariant,
+    isLoading,
     switchContent,
     availableVariants: getAvailableVariants()
   };

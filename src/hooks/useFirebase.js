@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 export const useFirebase = () => {
   const [isInitialized, setIsInitialized] = useState(false)
   const [analytics, setAnalytics] = useState(null)
+  const [firestore, setFirestore] = useState(null)
 
   useEffect(() => {
     const initFirebase = async () => {
@@ -23,6 +24,15 @@ export const useFirebase = () => {
           
           const app = initializeApp(firebaseConfig)
           const analyticsInstance = getAnalytics(app)
+          
+          // Initialize Firestore for future content storage (optional)
+          try {
+            const { getFirestore } = await import('firebase/firestore')
+            const firestoreInstance = getFirestore(app)
+            setFirestore(firestoreInstance)
+          } catch (error) {
+            console.log('Firestore not available:', error.message)
+          }
           
           setAnalytics(analyticsInstance)
           setIsInitialized(true)
@@ -50,5 +60,28 @@ export const useFirebase = () => {
     }
   }
 
-  return { isInitialized, logEvent }
+  // Function to fetch content from Firestore (future enhancement)
+  const getContentVariant = async (variant) => {
+    if (firestore) {
+      try {
+        const { doc, getDoc } = await import('firebase/firestore')
+        const docRef = doc(firestore, 'content_variants', variant)
+        const docSnap = await getDoc(docRef)
+        
+        if (docSnap.exists()) {
+          return docSnap.data()
+        }
+      } catch (error) {
+        console.log('Error fetching content from Firestore:', error)
+      }
+    }
+    return null
+  }
+
+  return { 
+    isInitialized, 
+    logEvent, 
+    firestore,
+    getContentVariant 
+  }
 }
