@@ -22,15 +22,76 @@
     /* Hero Section */
     .hero { 
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-      height: 500px; 
+      min-height: 600px; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
       text-align: center; 
       color: #fff; 
+      padding: 60px 20px;
     }
     .hero h1 { font-size: 3em; margin-bottom: 20px; font-family: 'Chewy', cursive; }
-    .hero p { font-size: 1.2em; margin-bottom: 30px; }
+    .hero p { font-size: 1.2em; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    
+    /* Value Proposition Bullets */
+    .hero-value-bullets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 30px auto;
+      max-width: 900px;
+    }
+    
+    .value-bullet {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+    
+    .value-bullet:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .bullet-icon {
+      font-size: 1.8em;
+      flex-shrink: 0;
+    }
+    
+    .bullet-text {
+      font-size: 1em;
+      text-align: left;
+      line-height: 1.4;
+    }
+    
+    /* Enhanced CTA */
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .cta-supporting-text {
+      color: #fcd900;
+      font-size: 1.1em;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    .cta-disclaimer {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
     .btn { 
       display: inline-block; 
       background: #e8491d; 
@@ -40,9 +101,12 @@
       font-size: 1.2em; 
       border-radius: 5px; 
       font-weight: bold;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
-    .btn:hover { background: #d63916; }
+    .btn:hover { 
+      background: #d63916; 
+      transform: translateY(-2px);
+    }
     
     /* Sections */
     section { padding: 60px 0; }
@@ -90,6 +154,16 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 2em; }
       .hero p { font-size: 1em; }
+      .hero-value-bullets {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .value-bullet {
+        padding: 12px 15px;
+      }
+      .bullet-icon {
+        font-size: 1.5em;
+      }
       .container { width: 90%; }
       nav { float: none; text-align: center; margin-top: 10px; }
     }
@@ -117,9 +191,35 @@
   <!-- Hero Section -->
   <div class="hero">
     <div>
-      <h1>Quit Living Like a Trash Gremlin</h1>
-      <p>Your house is a dumpster fire of disorganization and chaos. StashDog is here to help you fetch your shit, drag your sorry ass out of chaos, and make you feel like a functional human.</p>
-      <a href="#cta" class="btn">Ok I'm in!</a>
+      <h1>Turn Your Home Into a Searchable Database</h1>
+      <p>Stop digging through boxes and closets like a raccoon. StashDog tracks every item you own so you can find anything in seconds.</p>
+      
+      <!-- Value Proposition Bullets -->
+      <div class="hero-value-bullets">
+        <div class="value-bullet">
+          <span class="bullet-icon">📸</span>
+          <span class="bullet-text">Snap photos to instantly catalog items</span>
+        </div>
+        <div class="value-bullet">
+          <span class="bullet-icon">🔍</span>
+          <span class="bullet-text">Search your entire house in 3 seconds</span>
+        </div>
+        <div class="value-bullet">
+          <span class="bullet-icon">📍</span>
+          <span class="bullet-text">Never forget where you stored something</span>
+        </div>
+        <div class="value-bullet">
+          <span class="bullet-icon">👨‍👩‍👧</span>
+          <span class="bullet-text">Share with family so everyone knows where stuff is</span>
+        </div>
+      </div>
+      
+      <!-- Enhanced CTA -->
+      <div class="hero-cta">
+        <a href="#cta" class="btn">Get Early Access →</a>
+        <p class="cta-supporting-text">Join 1,247 people organizing smarter</p>
+        <p class="cta-disclaimer">Free to start. No credit card required.</p>
+      </div>
     </div>
   </div>
 

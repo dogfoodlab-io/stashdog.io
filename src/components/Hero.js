@@ -49,15 +49,34 @@ const Hero = () => {
           <div className="container">
             <div className="hero-content">
               <h1 className="hero-title">{content.welcome.title}</h1>
-              <p>{content.welcome.description}</p>
+              <p className="hero-description">{content.welcome.description}</p>
+              
+              {/* Value Proposition Bullets */}
+              {content.welcome.valueBullets && (
+                <div className="hero-value-bullets">
+                  {content.welcome.valueBullets.map((bullet, index) => (
+                    <div key={index} className="value-bullet">
+                      <span className="bullet-icon">{bullet.icon}</span>
+                      <span className="bullet-text">{bullet.text}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
               <div className="hero-cta">
                 <Link 
                   to="/download" 
                   className="cta-button"
-                  onClick={() => handleCTAClick('primary', 'Download Now', 'hero')}
+                  onClick={() => handleCTAClick('primary', content.welcome.cta?.buttonText || 'Get Early Access', 'hero')}
                 >
-                  Download Now
+                  {content.welcome.cta?.buttonText || 'Get Early Access →'}
                 </Link>
+                {content.welcome.cta?.supportingText && (
+                  <p className="cta-supporting-text">{content.welcome.cta.supportingText}</p>
+                )}
+                {content.welcome.cta?.disclaimer && (
+                  <p className="cta-disclaimer">{content.welcome.cta.disclaimer}</p>
+                )}
               </div>
             </div>
           </div>
