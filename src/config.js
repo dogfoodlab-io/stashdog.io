@@ -3,30 +3,10 @@
 export const contentVariants = {
   default: {
     welcome: {
-      title: "Turn Your Home Into a Searchable Database",
-      description: "Stop digging through boxes and closets like a raccoon. StashDog tracks every item you own so you can find anything in seconds.",
-      valueBullets: [
-        {
-          icon: "📸",
-          text: "Snap photos to instantly catalog items"
-        },
-        {
-          icon: "🔍",
-          text: "Search your entire house in 3 seconds"
-        },
-        {
-          icon: "📍",
-          text: "Never forget where you stored something"
-        },
-        {
-          icon: "👨‍👩‍👧",
-          text: "Share with family so everyone knows where stuff is"
-        }
-      ],
+      title: "Quit Living Like a Trash Gremlin",
+      description: "StashDog turns your home into a searchable database. Track any item you own so you can find it in seconds.",
       cta: {
-        buttonText: "Get Early Access →",
-        supportingText: "Join 1,247 people organizing smarter",
-        disclaimer: "Free to start. No credit card required."
+        buttonText: "Get Started →",
       }
     },
     discover: {
@@ -108,28 +88,8 @@ export const contentVariants = {
     welcome: {
       title: "Professional Home Inventory Management: Meet StashDog",
       description: "Transform your home organization with StashDog's intelligent inventory system. Designed for busy professionals who need efficient, reliable solutions to manage their belongings without the hassle.",
-      valueBullets: [
-        {
-          icon: "📸",
-          text: "Snap photos to instantly catalog items"
-        },
-        {
-          icon: "🔍",
-          text: "Search your entire house in 3 seconds"
-        },
-        {
-          icon: "📍",
-          text: "Never forget where you stored something"
-        },
-        {
-          icon: "👨‍👩‍👧",
-          text: "Share with family so everyone knows where stuff is"
-        }
-      ],
       cta: {
-        buttonText: "Get Early Access →",
-        supportingText: "Join 1,247 professionals organizing smarter",
-        disclaimer: "Free to start. No credit card required."
+        buttonText: "Get Started →",
       }
     },
     discover: {
@@ -210,28 +170,8 @@ export const contentVariants = {
     welcome: {
       title: "Family-Friendly Home Organization: Welcome to StashDog",
       description: "Keep your family's belongings organized and easy to find! StashDog helps busy families track toys, clothes, school supplies, and everything in between, making home organization a fun family activity.",
-      valueBullets: [
-        {
-          icon: "📸",
-          text: "Snap photos to instantly catalog items"
-        },
-        {
-          icon: "🔍",
-          text: "Search your entire house in 3 seconds"
-        },
-        {
-          icon: "📍",
-          text: "Never forget where you stored something"
-        },
-        {
-          icon: "👨‍👩‍👧",
-          text: "Share with family so everyone knows where stuff is"
-        }
-      ],
       cta: {
-        buttonText: "Get Early Access →",
-        supportingText: "Join 1,247 families organizing smarter",
-        disclaimer: "Free to start. No credit card required."
+        buttonText: "Get Started →",
       }
     },
     discover: {

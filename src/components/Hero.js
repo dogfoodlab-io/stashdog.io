@@ -67,9 +67,9 @@ const Hero = () => {
                 <Link 
                   to="/download" 
                   className="cta-button"
-                  onClick={() => handleCTAClick('primary', content.welcome.cta?.buttonText || 'Get Early Access', 'hero')}
+                  onClick={() => handleCTAClick('primary', content.welcome.cta?.buttonText || 'Download Now', 'hero')}
                 >
-                  {content.welcome.cta?.buttonText || 'Get Early Access →'}
+                  {content.welcome.cta?.buttonText || 'Download Now'}
                 </Link>
                 {content.welcome.cta?.supportingText && (
                   <p className="cta-supporting-text">{content.welcome.cta.supportingText}</p>

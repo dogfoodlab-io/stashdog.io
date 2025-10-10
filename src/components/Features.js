@@ -59,54 +59,48 @@ const Features = () => {
   ]
 
   return (
-    <section className="products">
+    <section className="products discover-features">
       <div className="container">
         <h2>{content.discover.title}</h2>
 
-        {features.map(({ key, data, image }) => (
-          <div key={key} className="product feature-row">
-            <div className="feature-media">
-              {image ? (
-                <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" />
-              ) : (
-                <div className="feature-placeholder" aria-hidden>
-                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M3 9l5 5 4-4 6 6" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div className="placeholder-text">Image placeholder</div>
-                </div>
-              )}
-            </div>
-
-            <div className="feature-content">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3>{data.title}</h3>
-                </div>
+        <div className="features-grid">
+          {features.map(({ key, data, image }) => (
+            <div
+              key={key}
+              className="feature-card"
+              onClick={() => handleFeatureClick(key)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => { if (e.key === 'Enter') handleFeatureClick(key) }}
+            >
+              <div className="feature-icon">
+                {image ? (
+                  <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" />
+                ) : (
+                  <div className="feature-placeholder" aria-hidden>
+                    <svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                      <rect x="3" y="5" width="18" height="14" rx="2" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M3 9l5 5 4-4 6 6" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                )}
               </div>
 
+              <h3>{data.title}</h3>
               <p className="description">{data.description}</p>
-
-              <div className="feature-actions">
-                <Link
-                  to="/solutions"
-                  className="cta-button feature-cta"
-                  onClick={() => {
-                    handleFeatureClick(key)
-                    handleCTAClick(key, content.get_started.call_to_action.learn_more, 'feature_section')
-                  }}
-                >
-                  {content.get_started.call_to_action.learn_more}
-                </Link>
-
-                <div className="feature-hashtag" aria-label="feature hashtag">
-                  {data.hashtag || content.discover.hashtag}
-                </div>
-              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className="explore-wrap">
+          <Link
+            to="/solutions"
+            className="cta-button explore-outline"
+            onClick={() => handleCTAClick('explore', 'EXPLORE', 'discover_features')}
+          >
+            EXPLORE
+          </Link>
+        </div>
       </div>
     </section>
   )
