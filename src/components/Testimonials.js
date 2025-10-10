@@ -28,15 +28,10 @@ const Testimonials = () => {
         <div style={{ margin: '3rem 0', width: '100%', maxWidth: '100%' }}>
           <h2 style={{ marginBottom: '2rem' }}>{content.testimonials.title}</h2>
           <div className="testimonials-grid">
-            {content.testimonials.reviews.map((review, index) => (
+            {content.testimonials.reviews.slice(0, 3).map((review, index) => (
               <div key={index} className="testimonial-card">
                 <div className="testimonial-author">
-                  <img 
-                    src={review.image ? `/${review.image}` : index === 0 ? "/Face-Young-Woman.webp" : "/Face-Black.webp"} 
-                    alt={`${review.author} portrait`}
-                    className="testimonial-avatar"
-                    loading="lazy"
-                  />
+                  {/* Avatar images intentionally removed per design update; keep author name for context */}
                   <p className="testimonial-name">{review.author}</p>
                 </div>
                 <p className="testimonial-text">{review.text}</p>
