@@ -111,10 +111,11 @@ export async function getBlogPosts(filter = {}) {
   `
   
   return graphqlRequest(query, { 
-    filter: { 
-      published: true,
-      ...filter 
-    } 
+    filter: {
+      // default to published unless explicitly overridden in dev-mode toggle
+      published: typeof filter.published === 'boolean' ? filter.published : true,
+      ...filter
+    }
   })
 }
 
