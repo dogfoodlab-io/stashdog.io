@@ -786,6 +786,33 @@ p {
     width: 100%;
     max-width: 300px;
   }
+
+  /* Stack discover features vertically on smaller screens */
+  .discover-features .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    justify-items: stretch;
+    max-width: 720px;
+    margin: 0 auto 2rem;
+  }
+
+  .discover-features .feature-card {
+    max-width: 100%;
+    padding: 1rem 0.5rem;
+  }
+
+  .discover-features .feature-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  /* allow description to use full width on mobile */
+  .discover-features .description {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
