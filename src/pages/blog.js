@@ -1,275 +1,303 @@
-import React, { useEffect, useState } from "react"
+import React from 'react'
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
 import BlogCard from "../components/BlogCard"
-import { getBlogPosts, getBlogPost } from "../utils/api"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
 import { useFirebase } from "../hooks/useFirebase"
-import { marked } from 'marked'
-import DOMPurify from 'dompurify'
 import "../styles/global.css"
+import { getBlogPosts } from "../utils/api"
+
+const IS_DEV_MODE = true || typeof process !== "undefined" && process.env.NODE_ENV.startsWith("dev")
+
+const POSTS_PER_PAGE = 20
+
+const TAG_GROUPS = [
+  {
+    key: "content-type",
+    title: "Content Type",
+    description: "Dial in the kind of story you need.",
+    tags: [
+      { value: "tutorial", label: "Tutorial" },
+      { value: "guide", label: "Guide" },
+      { value: "announcement", label: "Announcement" },
+      { value: "case-study", label: "Case Study" },
+      { value: "opinion", label: "Opinion" },
+      { value: "behind-the-scenes", label: "Behind the Scenes" },
+      { value: "resource", label: "Resource" }
+    ]
+  },
+  {
+    key: "audience",
+    title: "Audience Focus",
+    description: "Tailor content to who you are or who you're helping.",
+    tags: [
+      { value: "new-users", label: "New Users" },
+      { value: "current-users", label: "Current Users" },
+      { value: "life-transitions", label: "Life Transitions" },
+      { value: "families", label: "Families" },
+      { value: "small-business", label: "Small Business" },
+      { value: "professionals", label: "Professionals" }
+    ]
+  },
+  {
+    key: "funnel-stage",
+    title: "Customer Journey",
+    description: "Meet readers where they are in the funnel.",
+    tags: [
+      { value: "awareness", label: "Awareness" },
+      { value: "consideration", label: "Consideration" },
+      { value: "decision", label: "Decision" },
+      { value: "retention", label: "Retention" },
+      { value: "advocacy", label: "Advocacy" }
+    ]
+  },
+  {
+    key: "features",
+    title: "Product Superpowers",
+    description: "Explore by the feature or use case you care about.",
+    tags: [
+      { value: "inventory-management", label: "Inventory Management" },
+      { value: "photo-features", label: "Photo Features" },
+      { value: "sharing-collaboration", label: "Sharing & Collaboration" },
+      { value: "search-organization", label: "Search & Organization" },
+      { value: "ai-features", label: "AI Features" },
+      { value: "mobile-app", label: "Mobile App" },
+      { value: "integrations", label: "Integrations" },
+      { value: "moving-relocation", label: "Moving & Relocation" },
+      { value: "seasonal-storage", label: "Seasonal Storage" },
+      { value: "garage-organization", label: "Garage Organization" },
+      { value: "kitchen-pantry", label: "Kitchen & Pantry" },
+      { value: "craft-supplies", label: "Craft Supplies" },
+      { value: "documents-records", label: "Documents & Records" },
+      { value: "collections-hobbies", label: "Collections & Hobbies" },
+      { value: "emergency-prep", label: "Emergency Prep" }
+    ]
+  },
+  {
+    key: "seo-focus",
+    title: "Strategic Spotlight",
+    description: "Prioritise the keywords and initiatives that matter.",
+    tags: [
+      { value: "home-organization", label: "Home Organization" },
+      { value: "inventory-software", label: "Inventory Software" },
+      { value: "moving-tips", label: "Moving Tips" },
+      { value: "estate-management", label: "Estate Management" },
+      { value: "small-business-inventory", label: "Small Business Inventory" },
+      { value: "smart-home", label: "Smart Home" }
+    ]
+  },
+  {
+    key: "format",
+    title: "Format & Engagement",
+    description: "Choose how you like to consume content.",
+    tags: [
+      { value: "long-form", label: "Long Form" },
+      { value: "quick-tips", label: "Quick Tips" },
+      { value: "video-post", label: "Video Post" },
+      { value: "infographic", label: "Infographic" },
+      { value: "checklist", label: "Checklist" },
+      { value: "template", label: "Template" },
+      { value: "interview", label: "Interview" },
+      { value: "viral-potential", label: "Viral Potential" },
+      { value: "community-discussion", label: "Community Discussion" },
+      { value: "user-generated", label: "User Generated" },
+      { value: "trending-topic", label: "Trending Topic" }
+    ]
+  },
+  {
+    key: "operational",
+    title: "Operational Focus",
+    description: "Curate by campaign priority and lifecycle.",
+    tags: [
+      { value: "evergreen", label: "Evergreen" },
+      { value: "seasonal", label: "Seasonal" },
+      { value: "flagship", label: "Flagship" },
+      { value: "supporting", label: "Supporting" },
+      { value: "experimental", label: "Experimental" },
+      { value: "maintenance", label: "Maintenance" }
+    ]
+  }
+]
+
+const QUICK_FILTERS = [
+  {
+    id: "moving-masterclass",
+    label: "Moving Masterclass",
+    description: "Flagship moving tutorial bundle for chaos-free moves.",
+    tags: ["flagship", "tutorial", "moving-relocation", "awareness"]
+  },
+  {
+    id: "stashdog-pro-onboarding",
+    label: "StashDog Pro Onboarding",
+    description: "Show me guides for new or curious users.",
+    tags: ["guide", "new-users", "consideration", "inventory-management"]
+  },
+  {
+    id: "family-peacekeeper",
+    label: "Family Peacekeeper",
+    description: "Content that keeps households from waging war over scissors.",
+    tags: ["case-study", "families", "sharing-collaboration", "decision"]
+  },
+  {
+    id: "organizer-power-pack",
+    label: "Organizer Power Pack",
+    description: "Retention content for power users and pros.",
+    tags: ["tutorial", "professionals", "retention", "search-organization"]
+  }
+]
+
+const TAG_LABEL_LOOKUP = TAG_GROUPS.reduce((acc, group) => {
+  group.tags.forEach(tag => {
+    acc[tag.value] = tag.label
+  })
+  return acc
+}, {})
 
 const BlogPage = ({ location }) => {
   const [blogPosts, setBlogPosts] = useState([])
-  const [currentPost, setCurrentPost] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { isInitialized, logEvent } = useFirebase()
 
-  // Check if we're viewing a specific post via query parameter
+  // Check for query parameters
   const urlParams = new URLSearchParams(location?.search || "")
-  const slug = urlParams.get('slug')
-  const isViewingPost = !!slug
+  const preselectedTag = urlParams.get('tag')
+  const initialSearchQuery = urlParams.get('search') || ""
+
+  const [selectedTags, setSelectedTags] = useState(() => (preselectedTag ? [preselectedTag] : []))
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
+  const [offset, setOffset] = useState(0)
+  const [appliedQuickFilter, setAppliedQuickFilter] = useState(null)
+  const [publishedOnly, setPublishedOnly] = useState(true)
+
+  const activeFilterPayload = useMemo(() => ({
+    tags: selectedTags.length > 0 ? selectedTags : null,
+    searchQuery: searchQuery.trim() ? searchQuery.trim() : null,
+    published: publishedOnly,
+    limit: POSTS_PER_PAGE,
+    offset
+  }), [selectedTags, searchQuery, offset, publishedOnly])
+
+  const hasActiveFilters = useMemo(() => {
+    return Boolean(activeFilterPayload.tags?.length || activeFilterPayload.searchQuery)
+  }, [activeFilterPayload])
+
+  const activeTagLabels = useMemo(() => (
+    activeFilterPayload.tags ? activeFilterPayload.tags.map(tag => TAG_LABEL_LOOKUP[tag] || tag) : []
+  ), [activeFilterPayload])
+
+  const filterSearchTerm = activeFilterPayload.searchQuery
+
+  const filterSummary = useMemo(() => {
+    const parts = []
+    if (activeTagLabels.length > 0) {
+      parts.push(activeTagLabels.join(', '))
+    }
+    if (filterSearchTerm) {
+      parts.push(`search “${filterSearchTerm}”`)
+    }
+    if (IS_DEV_MODE && publishedOnly === false) {
+      parts.push('including drafts')
+    }
+    return parts.join(' + ')
+  }, [activeTagLabels, filterSearchTerm])
+
+  const handleSearchChange = useCallback((event) => {
+    setSearchQuery(event.target.value)
+    setAppliedQuickFilter(null)
+  }, [])
+
+  const handleSearchClear = useCallback(() => {
+    setSearchQuery("")
+    setAppliedQuickFilter(null)
+    setOffset(0)
+  }, [])
+
+  const toggleTag = useCallback((tagValue) => {
+    setSelectedTags((prev) => {
+      const exists = prev.includes(tagValue)
+      const next = exists ? prev.filter(tag => tag !== tagValue) : [...prev, tagValue]
+      return next
+    })
+    setAppliedQuickFilter(null)
+  }, [])
+
+  const removeTag = useCallback((tagValue) => {
+    setSelectedTags((prev) => prev.filter(tag => tag !== tagValue))
+    setAppliedQuickFilter(null)
+  }, [])
+
+  const clearFilters = useCallback(() => {
+    setSelectedTags([])
+    setSearchQuery("")
+    setAppliedQuickFilter(null)
+    setOffset(0)
+  }, [])
+
+  const handleQuickFilterClick = useCallback((filter) => {
+    const isActive = appliedQuickFilter === filter.id
+    if (isActive) {
+      setSelectedTags([])
+      setSearchQuery("")
+      setAppliedQuickFilter(null)
+    } else {
+      setSelectedTags([...filter.tags])
+      setSearchQuery(filter.searchQuery || "")
+      setAppliedQuickFilter(filter.id)
+    }
+    setOffset(0)
+  }, [appliedQuickFilter])
+
+  useEffect(() => {
+    setOffset((prev) => (prev !== 0 ? 0 : prev))
+  }, [selectedTags, searchQuery])
+
+  useEffect(() => {
+    if (preselectedTag && !selectedTags.includes(preselectedTag)) {
+      setSelectedTags((prev) => (prev.length === 0 ? [preselectedTag] : prev))
+    }
+  }, [preselectedTag, selectedTags])
 
   useEffect(() => {
     if (isInitialized) {
-      const title = currentPost ? `${currentPost.title} - StashDog Blog` : "StashDog Blog"
       logEvent("page_view", {
-        page_title: title,
+        page_title: "StashDog Blog",
         page_location: typeof window !== "undefined" ? window.location.href : "",
-        page_path: typeof window !== "undefined" ? window.location.pathname : "/blog",
+        page_path: "/blog",
       })
     }
-  }, [isInitialized, logEvent, currentPost])
+  }, [isInitialized, logEvent])
 
   useEffect(() => {
-    if (isViewingPost && slug) {
-      // Fetch individual blog post
-      const fetchBlogPost = async () => {
-        try {
-          setLoading(true)
-          const response = await getBlogPost(slug)
-          
-          if (response && response.data && response.data.blogPost) {
-            const post = response.data.blogPost
+    // Fetch blog posts list
+    const fetchBlogPosts = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const response = await getBlogPosts({
+          tags: activeFilterPayload.tags,
+          searchQuery: activeFilterPayload.searchQuery,
+          published: activeFilterPayload.published,
+          limit: activeFilterPayload.limit,
+          offset: activeFilterPayload.offset
+        })
 
-            // Determine if content is Markdown (simple heuristic) and convert to HTML
-            let contentHtml = post.content || ''
-            const looksLikeMarkdown = /(^#{1,6}\s)|(^[-*+]\s)|(```)/m.test(contentHtml)
-
-            if (looksLikeMarkdown) {
-              try {
-                const raw = marked.parse(contentHtml)
-                contentHtml = DOMPurify.sanitize(raw)
-              } catch (e) {
-                console.warn('Markdown parse failed, falling back to raw content', e)
-              }
-            }
-
-            setCurrentPost({ ...post, content: contentHtml })
-          } else {
-            setError('Blog post not found.')
-          }
-        } catch (err) {
-          console.error('Error fetching blog post:', err)
-          setError('Failed to load blog post. Please try again later.')
-        } finally {
-          setLoading(false)
-        }
-      }
-      fetchBlogPost()
-    } else {
-      // Fetch blog posts list
-      const fetchBlogPosts = async () => {
-        try {
-          setLoading(true)
-          setCurrentPost(null)
-          const response = await getBlogPosts({
-            published: true,
-            limit: 20
-          })
-          
-          if (response && response.data && response.data.blogPosts) {
-            setBlogPosts(response.data.blogPosts)
-          } else {
-            setBlogPosts([])
-          }
-        } catch (err) {
-          console.error('Error fetching blog posts:', err)
-          setError('Failed to load blog posts. Please try again later.')
+        if (response && response.data && response.data.blogPosts) {
+          setBlogPosts(response.data.blogPosts)
+        } else {
           setBlogPosts([])
-        } finally {
-          setLoading(false)
         }
+      } catch (err) {
+        console.error('Error fetching blog posts:', err)
+        setError('Failed to load blog posts. Please try again later.')
+        setBlogPosts([])
+      } finally {
+        setLoading(false)
       }
-      fetchBlogPosts()
     }
-  }, [isViewingPost, slug])
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
-
-  // Render individual blog post
-  if (isViewingPost) {
-    if (loading) {
-      return (
-        <HelmetProvider>
-          <div className="page-container">
-            <Header />
-            <main className="blog-post-page">
-              <div className="container">
-                <div className="blog-loading">
-                  <p>Loading blog post...</p>
-                </div>
-              </div>
-            </main>
-            <Footer />
-          </div>
-        </HelmetProvider>
-      )
-    }
-
-    if (error || !currentPost) {
-      return (
-        <HelmetProvider>
-          <div className="page-container">
-            <Helmet>
-              <title>Blog Post Not Found - StashDog</title>
-            </Helmet>
-            <Header />
-            <main className="blog-post-page">
-              <div className="container">
-                <div className="blog-error">
-                  <h1>Blog Post Not Found</h1>
-                  <p>{error || 'The blog post you are looking for does not exist.'}</p>
-                  <a href="/blog" className="back-to-blog">
-                    ← Back to Blog
-                  </a>
-                </div>
-              </div>
-            </main>
-            <Footer />
-          </div>
-        </HelmetProvider>
-      )
-    }
-
-    return (
-      <HelmetProvider>
-        <div className="page-container">
-          <Helmet>
-            <html lang="en" />
-            <title>{currentPost.title} - StashDog Blog</title>
-            <meta
-              name="description"
-              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
-            />
-            <meta
-              name="keywords"
-              content={currentPost.tags ? currentPost.tags.join(', ') : 'stashdog blog, home organization'}
-            />
-            <link rel="canonical" href={`https://stashdog.io/blog?slug=${currentPost.slug}`} />
-            <meta name="robots" content="index, follow" />
-
-            {/* Open Graph */}
-            <meta property="og:title" content={`${currentPost.title} - StashDog Blog`} />
-            <meta
-              property="og:description"
-              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
-            />
-            <meta property="og:type" content="article" />
-            <meta property="og:url" content={`https://stashdog.io/blog?slug=${currentPost.slug}`} />
-            <meta property="og:image" content={currentPost.featuredImageUrl || "https://stashdog.io/lab1.png"} />
-
-            {/* Twitter Card */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={`${currentPost.title} - StashDog Blog`} />
-            <meta
-              name="twitter:description"
-              content={currentPost.metaDescription || currentPost.excerpt || `Read ${currentPost.title} on the StashDog blog.`}
-            />
-            <meta name="twitter:image" content={currentPost.featuredImageUrl || "https://stashdog.io/lab1.png"} />
-
-            {/* Article Structured Data */}
-            <script type="application/ld+json">
-              {JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": currentPost.title,
-                "description": currentPost.metaDescription || currentPost.excerpt,
-                "image": currentPost.featuredImageUrl,
-                "author": {
-                  "@type": "Organization",
-                  "name": "Dogfood Lab LLC"
-                },
-                "publisher": {
-                  "@type": "Organization",
-                  "name": "StashDog",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://stashdog.io/round-logo-goggles.png"
-                  }
-                },
-                "datePublished": currentPost.createdAt,
-                "dateModified": currentPost.updatedAt,
-                "url": `https://stashdog.io/blog?slug=${currentPost.slug}`
-              })}
-            </script>
-          </Helmet>
-
-          <Header />
-          
-          <main className="blog-post-page">
-            <div className="container">
-              <article className="blog-post">
-                <header className="blog-post-header">
-                  <a href="/blog" className="back-to-blog">
-                    ← Back to Blog
-                  </a>
-                  <h1 className="blog-post-title">{currentPost.title}</h1>
-                  <div className="blog-post-meta">
-                    <time className="blog-post-date">
-                      {formatDate(currentPost.createdAt)}
-                    </time>
-                  </div>
-                </header>
-
-                {/* Hero image area: show image if available, otherwise a tasteful placeholder */}
-                <div className="blog-post-hero" aria-hidden={!currentPost.featuredImageUrl}>
-                  {currentPost.featuredImageUrl ? (
-                    <div className="blog-post-image">
-                      <img src={currentPost.featuredImageUrl} alt={currentPost.title} />
-                    </div>
-                  ) : (
-                    <div className="blog-post-hero-placeholder" role="img" aria-label="No hero image available">
-                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#fcd900" strokeWidth="1.2" fill="rgba(252,217,0,0.03)" />
-                        <path d="M7 9L10 13L13 10L17 15" stroke="#fcd900" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      <div className="placeholder-text">No hero image</div>
-                    </div>
-                  )}
-                </div>
-
-                <div 
-                  className="blog-post-content"
-                  dangerouslySetInnerHTML={{ __html: currentPost.content }}
-                />
-
-                {/* Tags rendered at the bottom of the post for better discoverability */}
-                {currentPost.tags && currentPost.tags.length > 0 && (
-                  <div className="blog-post-tags blog-post-tags-bottom" aria-label="Post tags">
-                    {currentPost.tags.map((tag, index) => (
-                      <a key={index} href={`/blog?tag=${encodeURIComponent(tag)}`} className="blog-post-tag">
-                        {tag}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </article>
-            </div>
-          </main>
-
-          <Footer />
-        </div>
-      </HelmetProvider>
-    )
-  }
+    fetchBlogPosts()
+  }, [activeFilterPayload])
 
   return (
     <HelmetProvider>
@@ -331,6 +359,162 @@ const BlogPage = ({ location }) => {
               </p>
             </div>
 
+            {IS_DEV_MODE && (
+            <section className="blog-filter-panel" aria-label="Filter blog posts">
+              <div className="blog-filter-row">
+                <div className="blog-filter-search">
+                  <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
+                  <div className="blog-filter-search-input">
+                    <input
+                      id="blog-search"
+                      type="search"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      placeholder="Search by chaos trigger, feature, or goal..."
+                      aria-label="Search blog posts"
+                    />
+                    {searchQuery && (
+                      <button
+                        type="button"
+                        className="blog-filter-clear-button"
+                        onClick={handleSearchClear}
+                        aria-label="Clear search"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                  <p className="blog-filter-hint">Try “garage organization”, “AI inventory”, or “moving checklist”.</p>
+                </div>
+
+                <div className="blog-quick-filters" aria-label="Curated quick filters">
+                  <span className="blog-quick-filters-title">Quick paths</span>
+                  <div className="blog-quick-filters-grid">
+                    {QUICK_FILTERS.map((filter) => {
+                      const isActive = appliedQuickFilter === filter.id
+                      return (
+                        <button
+                          key={filter.id}
+                          type="button"
+                          className={`blog-quick-filter${isActive ? ' active' : ''}`}
+                          onClick={() => handleQuickFilterClick(filter)}
+                          aria-pressed={isActive}
+                        >
+                          <span className="blog-quick-filter-label">{filter.label}</span>
+                          <span className="blog-quick-filter-description">{filter.description}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+                <div className="blog-filter-published" style={{ minWidth: 160 }}>
+                  <label className="blog-filter-label">Published</label>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <input
+                        type="radio"
+                        name="published"
+                        checked={publishedOnly === true}
+                        onChange={() => setPublishedOnly(true)}
+                      />
+                      <span>Only published</span>
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <input
+                        type="radio"
+                        name="published"
+                        checked={publishedOnly === false}
+                        onChange={() => setPublishedOnly(false)}
+                      />
+                      <span>Include drafts</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="blog-active-filters" aria-live="polite">
+                {hasActiveFilters ? (
+                  <>
+                    <span className="blog-active-filters-title">Active filters:</span>
+                    {(activeFilterPayload.tags || []).map((tag) => (
+                      <span key={tag} className="blog-active-filter-chip">
+                        {TAG_LABEL_LOOKUP[tag] || tag}
+                        <button
+                          type="button"
+                          className="blog-active-filter-remove"
+                          onClick={() => removeTag(tag)}
+                          aria-label={`Remove ${TAG_LABEL_LOOKUP[tag] || tag} filter`}
+                        >
+                          ✕
+                        </button>
+                      </span>
+                    ))}
+                    {activeFilterPayload.searchQuery && (
+                      <span className="blog-active-filter-chip">
+                        Search: “{activeFilterPayload.searchQuery}”
+                        <button
+                          type="button"
+                          className="blog-active-filter-remove"
+                          onClick={handleSearchClear}
+                          aria-label="Clear search filter"
+                        >
+                          ✕
+                        </button>
+                      </span>
+                    )}
+                    <button type="button" className="blog-filter-clear-all" onClick={clearFilters}>
+                      Clear all
+                    </button>
+                  </>
+                ) : (
+                  <p className="blog-active-filters-empty">Use the filters to surface the smartest content for your situation.</p>
+                )}
+              </div>
+
+              <div className="blog-filter-groups">
+                {TAG_GROUPS.map((group) => (
+                  <section key={group.key} className="blog-filter-group">
+                    <div className="blog-filter-group-header">
+                      <h3>{group.title}</h3>
+                      <p>{group.description}</p>
+                    </div>
+                    <div className="blog-filter-options">
+                      {group.tags.map((tag) => {
+                        const isSelected = selectedTags.includes(tag.value)
+                        return (
+                          <button
+                            key={tag.value}
+                            type="button"
+                            className={`blog-filter-tag${isSelected ? ' active' : ''}`}
+                            onClick={() => toggleTag(tag.value)}
+                            aria-pressed={isSelected}
+                          >
+                            {tag.label}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </section>
+            )}
+
+            {!loading && !error && (
+              <div className="blog-results-meta">
+                <span className="blog-results-count">
+                  {blogPosts.length > 0
+                    ? `Showing ${blogPosts.length} ${blogPosts.length === 1 ? 'article' : 'articles'}`
+                    : 'No articles found'}
+                </span>
+                {hasActiveFilters && filterSummary && (
+                  <span className="blog-results-filters">
+                    Filtering by {filterSummary}
+                  </span>
+                )}
+              </div>
+            )}
+
             {loading && (
               <div className="blog-loading">
                 <p>Loading blog posts...</p>
@@ -345,7 +529,7 @@ const BlogPage = ({ location }) => {
 
             {!loading && !error && blogPosts.length === 0 && (
               <div className="blog-empty">
-                <p>No blog posts available at the moment. Check back soon!</p>
+                <p>No articles match this combo yet. Try clearing a filter or explore another quick path.</p>
               </div>
             )}
 
