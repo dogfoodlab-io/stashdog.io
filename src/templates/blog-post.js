@@ -1,11 +1,16 @@
 import React from 'react'
-import DOMPurify from 'isomorphic-dompurify'
 import { marked } from 'marked'
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
+
+// Lazy import DOMPurify to avoid SSR issues
+let DOMPurify
+if (typeof window !== 'undefined') {
+  DOMPurify = require('isomorphic-dompurify')
+}
 
 const BlogPostTemplate = ({ pageContext }) => {
   const { post } = pageContext
@@ -36,7 +41,12 @@ const BlogPostTemplate = ({ pageContext }) => {
   if (looksLikeMarkdown) {
     try {
       const raw = marked.parse(contentHtml)
-      contentHtml = DOMPurify.sanitize(raw)
+      // Only sanitize in the browser to avoid SSR issues with jsdom
+      if (DOMPurify) {
+        contentHtml = DOMPurify.sanitize(raw)
+      } else {
+        contentHtml = raw
+      }
     } catch (e) {
       console.warn('Markdown parse failed, falling back to raw content', e)
     }
