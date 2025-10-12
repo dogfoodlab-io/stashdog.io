@@ -8,7 +8,7 @@ import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 import { getBlogPosts } from "../utils/api"
 
-const IS_DEV_MODE = true || typeof process !== "undefined" && process.env.NODE_ENV.startsWith("dev")
+const IS_DEV_MODE = typeof process !== "undefined" && process.env.NODE_ENV.startsWith("dev")
 
 const POSTS_PER_PAGE = 20
 
