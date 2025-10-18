@@ -164,12 +164,20 @@ const BlogPage = ({ location }) => {
   const urlParams = new URLSearchParams(location?.search || "")
   const preselectedTag = urlParams.get('tag')
   const initialSearchQuery = urlParams.get('search') || ""
+  const publishedParam = urlParams.get('published')
 
   const [selectedTags, setSelectedTags] = useState(() => (preselectedTag ? [preselectedTag] : []))
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [offset, setOffset] = useState(0)
   const [appliedQuickFilter, setAppliedQuickFilter] = useState(null)
-  const [publishedOnly, setPublishedOnly] = useState(true)
+  const [publishedOnly, setPublishedOnly] = useState(() => {
+    // If published parameter exists in URL, use it (accepts "true", "false", "1", "0")
+    if (publishedParam !== null) {
+      return publishedParam === 'true' || publishedParam === '1'
+    }
+    // Default to true (only show published posts)
+    return true
+  })
 
   const activeFilterPayload = useMemo(() => ({
     tags: selectedTags.length > 0 ? selectedTags : null,
@@ -206,34 +214,82 @@ const BlogPage = ({ location }) => {
   const handleSearchChange = useCallback((event) => {
     setSearchQuery(event.target.value)
     setAppliedQuickFilter(null)
-  }, [])
+
+    // Track search usage
+    if (isInitialized && event.target.value) {
+      logEvent("blog_search", {
+        search_term: event.target.value,
+        content_type: "blog"
+      })
+    }
+  }, [isInitialized, logEvent])
 
   const handleSearchClear = useCallback(() => {
     setSearchQuery("")
     setAppliedQuickFilter(null)
     setOffset(0)
-  }, [])
+
+    // Track search clear
+    if (isInitialized) {
+      logEvent("blog_search_clear", {
+        content_type: "blog"
+      })
+    }
+  }, [isInitialized, logEvent])
 
   const toggleTag = useCallback((tagValue) => {
     setSelectedTags((prev) => {
       const exists = prev.includes(tagValue)
       const next = exists ? prev.filter(tag => tag !== tagValue) : [...prev, tagValue]
+
+      // Track tag selection/deselection
+      if (isInitialized) {
+        logEvent(exists ? "blog_tag_removed" : "blog_tag_added", {
+          tag_name: tagValue,
+          tag_label: TAG_LABEL_LOOKUP[tagValue] || tagValue,
+          content_type: "blog"
+        })
+      }
+
       return next
     })
     setAppliedQuickFilter(null)
-  }, [])
+  }, [isInitialized, logEvent])
 
   const removeTag = useCallback((tagValue) => {
     setSelectedTags((prev) => prev.filter(tag => tag !== tagValue))
     setAppliedQuickFilter(null)
-  }, [])
+
+    // Track tag removal from active filters
+    if (isInitialized) {
+      logEvent("blog_tag_removed", {
+        tag_name: tagValue,
+        tag_label: TAG_LABEL_LOOKUP[tagValue] || tagValue,
+        removed_from: "active_filters",
+        content_type: "blog"
+      })
+    }
+  }, [isInitialized, logEvent])
 
   const clearFilters = useCallback(() => {
+    const hadTags = selectedTags.length > 0
+    const hadSearch = searchQuery.trim().length > 0
+
     setSelectedTags([])
     setSearchQuery("")
     setAppliedQuickFilter(null)
     setOffset(0)
-  }, [])
+
+    // Track filter clearing
+    if (isInitialized && (hadTags || hadSearch)) {
+      logEvent("blog_filters_cleared", {
+        had_tags: hadTags,
+        had_search: hadSearch,
+        tags_count: selectedTags.length,
+        content_type: "blog"
+      })
+    }
+  }, [selectedTags, searchQuery, isInitialized, logEvent])
 
   const handleQuickFilterClick = useCallback((filter) => {
     const isActive = appliedQuickFilter === filter.id
@@ -245,9 +301,19 @@ const BlogPage = ({ location }) => {
       setSelectedTags([...filter.tags])
       setSearchQuery(filter.searchQuery || "")
       setAppliedQuickFilter(filter.id)
+
+      // Track quick filter usage
+      if (isInitialized) {
+        logEvent("blog_quick_filter_applied", {
+          filter_id: filter.id,
+          filter_label: filter.label,
+          tags_count: filter.tags.length,
+          content_type: "blog"
+        })
+      }
     }
     setOffset(0)
-  }, [appliedQuickFilter])
+  }, [appliedQuickFilter, isInitialized, logEvent])
 
   useEffect(() => {
     setOffset((prev) => (prev !== 0 ? 0 : prev))
@@ -285,6 +351,18 @@ const BlogPage = ({ location }) => {
 
         if (response && response.data && response.data.blogPosts) {
           setBlogPosts(response.data.blogPosts)
+
+          // Track blog results loaded
+          if (isInitialized) {
+            logEvent("blog_results_loaded", {
+              results_count: response.data.blogPosts.length,
+              has_filters: hasActiveFilters,
+              tags_count: activeFilterPayload.tags?.length || 0,
+              has_search: Boolean(activeFilterPayload.searchQuery),
+              offset: activeFilterPayload.offset,
+              content_type: "blog"
+            })
+          }
         } else {
           setBlogPosts([])
         }
@@ -292,12 +370,20 @@ const BlogPage = ({ location }) => {
         console.error('Error fetching blog posts:', err)
         setError('Failed to load blog posts. Please try again later.')
         setBlogPosts([])
+
+        // Track error
+        if (isInitialized) {
+          logEvent("blog_load_error", {
+            error_message: err.message,
+            content_type: "blog"
+          })
+        }
       } finally {
         setLoading(false)
       }
     }
     fetchBlogPosts()
-  }, [activeFilterPayload])
+  }, [activeFilterPayload, isInitialized, logEvent, hasActiveFilters])
 
   return (
     <HelmetProvider>
