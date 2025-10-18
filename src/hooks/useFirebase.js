@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const useFirebase = () => {
   const [isInitialized, setIsInitialized] = useState(false)
@@ -45,23 +45,23 @@ export const useFirebase = () => {
     initFirebase()
   }, [])
 
-  const logEvent = (eventName, parameters = {}) => {
+  const logEvent = useCallback((eventName, parameters = {}) => {
     if (isInitialized && analytics) {
       import('firebase/analytics').then(({ logEvent: firebaseLogEvent }) => {
         firebaseLogEvent(analytics, eventName, {
           ...parameters,
           timestamp: new Date().toISOString(),
-          page_url: window.location.href
+          page_url: typeof window !== 'undefined' ? window.location.href : ''
         })
       })
     } else {
       // Fallback for development
       console.log('Analytics Event:', eventName, parameters)
     }
-  }
+  }, [isInitialized, analytics])
 
   // Function to fetch content from Firestore (future enhancement)
-  const getContentVariant = async (variant) => {
+  const getContentVariant = useCallback(async (variant) => {
     if (firestore) {
       try {
         const { doc, getDoc } = await import('firebase/firestore')
@@ -76,7 +76,7 @@ export const useFirebase = () => {
       }
     }
     return null
-  }
+  }, [firestore])
 
   return { 
     isInitialized, 

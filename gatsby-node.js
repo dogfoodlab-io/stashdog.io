@@ -29,11 +29,18 @@ async function fetchBlogPosts() {
   `
 
   try {
+    // Create an AbortController for timeout
+    const controller = new AbortController()
+    const timeout = setTimeout(() => {
+      controller.abort()
+    }, 30000) // 30 second timeout
+
     const response = await fetch(`${API_BASE_URL}/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Connection': 'close', // Force connection to close after request
       },
       body: JSON.stringify({
         query,
@@ -42,8 +49,11 @@ async function fetchBlogPosts() {
             published: true
           }
         }
-      })
+      }),
+      signal: controller.signal
     })
+
+    clearTimeout(timeout)
 
     if (!response.ok) {
       throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText}`)

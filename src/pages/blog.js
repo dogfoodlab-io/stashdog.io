@@ -383,7 +383,8 @@ const BlogPage = ({ location }) => {
       }
     }
     fetchBlogPosts()
-  }, [activeFilterPayload, isInitialized, logEvent, hasActiveFilters])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeFilterPayload])
 
   return (
     <HelmetProvider>
