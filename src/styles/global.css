@@ -1774,6 +1774,34 @@ a:focus {
   line-height: 1.2;
 }
 
+/* Reduce heading sizes within blog content so they don't overpower the text */
+.blog-post-content h1 {
+  font-size: 2rem;
+}
+
+.blog-post-content h2 {
+  font-size: 1.6rem;
+}
+
+.blog-post-content h3 {
+  font-size: 1.3rem;
+}
+
+.blog-post-content h4 {
+  font-size: 1.15rem;
+  color: #fcd900;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-content h5,
+.blog-post-content h6 {
+  font-size: 1.05rem;
+  color: #f7e08a;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
 .blog-post-content p {
   color: #dcdcdc;
   margin-bottom: 1rem;
