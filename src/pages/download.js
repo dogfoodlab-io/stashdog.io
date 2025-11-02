@@ -79,7 +79,7 @@ const DownloadPage = () => {
                 <AppStoreButton onClick={handleDownloadClick} />
                 <GooglePlayButton onClick={handleDownloadClick} />
               </div>
-              <div className="download-info">
+              {/* <div className="download-info">
                 <h2>Finally Get Your Shit Together</h2>
                 <p>StashDog helps you organize your crap and find your stuff when you need it. No more living like a disaster!</p>
                 <div className="download-features">
@@ -96,7 +96,7 @@ const DownloadPage = () => {
                     <p>Turn your chaos into something that makes sense</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </main>
