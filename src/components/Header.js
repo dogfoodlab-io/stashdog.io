@@ -31,9 +31,9 @@ const Header = () => {
               {/* <Link to="/features" className="nav-link">Features</Link> */}
               <Link to="/solutions" className="nav-link">Solutions</Link>
               <Link to="/blog" className="nav-link">Blog</Link>
-              <a href="https://apps.apple.com/us/app/stashdog/id6743368759" className="cta-button" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+              <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
                 Download App
-              </a>
+              </Link>
             </div>
           </div>
         </nav>
