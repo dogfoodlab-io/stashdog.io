@@ -1,5 +1,7 @@
 import React, { useEffect } from "react"
-import { Link } from "gatsby"
+// removed Link CTA per design: rely on App Store / Google Play badges
+import AppStoreButton from "./AppStoreButton"
+import GooglePlayButton from "./GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
 import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
@@ -64,19 +66,25 @@ const Hero = () => {
               )}
               
               <div className="hero-cta">
-                <Link 
-                  to="/download" 
-                  className="cta-button"
-                  onClick={() => handleCTAClick('primary', content.welcome.cta?.buttonText || 'Download Now', 'hero')}
-                >
-                  {content.welcome.cta?.buttonText || 'Download Now'}
-                </Link>
+                {/* Supporting text and disclaimer (if present) kept, but primary "Get Started" CTA removed */}
                 {content.welcome.cta?.supportingText && (
                   <p className="cta-supporting-text">{content.welcome.cta.supportingText}</p>
                 )}
                 {content.welcome.cta?.disclaimer && (
                   <p className="cta-disclaimer">{content.welcome.cta.disclaimer}</p>
                 )}
+
+                {/* Prominent App Store / Google Play badges for mobile users (above the fold) */}
+                <div className="download-buttons" style={{ marginTop: '1rem' }}>
+                  <AppStoreButton
+                    onClick={() => handleCTAClick('badge', 'App Store', 'hero-badge-ios')}
+                    className="hero-badge"
+                  />
+                  <GooglePlayButton
+                    onClick={() => handleCTAClick('badge', 'Google Play', 'hero-badge-android')}
+                    className="hero-badge"
+                  />
+                </div>
               </div>
             </div>
           </div>
