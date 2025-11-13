@@ -42,14 +42,14 @@ const FeaturesPage = () => {
         <Helmet>
           <html lang="en" />
           <title>Features - StashDog: Stop Losing Your Shit</title>
-          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory tracking, AI smart search, family sharing, QR code organization, and location mapping for home organization." />
-          <meta name="keywords" content="home inventory features, photo inventory, smart search, family sharing, organization app features, digital organization tools" />
+          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory, flexible organization with collections and tags, QR code labels, role-based sharing, friend & group management, document attachments, reminders, activity history, and AI-assisted organization." />
+          <meta name="keywords" content="home inventory features, photo inventory, QR code labels, role-based access, document management, item reminders, activity tracking, AI organization, collaborative inventory" />
           <link rel="canonical" href="https://stashdog.io/features/" />
           <meta name="robots" content="index, follow" />
           
           {/* Open Graph */}
           <meta property="og:title" content="StashDog Features - Stop Losing Your Shit" />
-          <meta property="og:description" content="Discover all the ways StashDog helps you organize your chaos and find your stuff when you need it." />
+          <meta property="og:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, and AI-powered organization. Everything you need to finally get organized." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/features" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
@@ -57,7 +57,7 @@ const FeaturesPage = () => {
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="StashDog Features - Stop Losing Your Shit" />
-          <meta name="twitter:description" content="Discover all the ways StashDog helps you organize your chaos and find your stuff when you need it." />
+          <meta name="twitter:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, and AI-powered organization. Everything you need to finally get organized." />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
           {/* Structured Data */}
@@ -66,7 +66,7 @@ const FeaturesPage = () => {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "StashDog",
-              "description": "Photo-based inventory tracking app with AI smart search, family sharing, voice integration, and QR code organization for home organization.",
+              "description": "Photo-based inventory tracking app with flexible organization, QR code labels, role-based sharing, document attachments, reminders, activity tracking, and AI-assisted organization.",
               "applicationCategory": "LifestyleApplication",
               "operatingSystem": "iOS, Android",
               "offers": {
@@ -76,11 +76,14 @@ const FeaturesPage = () => {
               },
               "featureList": [
                 "Photo-based inventory tracking",
-                "AI-powered smart search",
-                "Family sharing capabilities",
-                "Voice integration with Alexa and Google",
-                "QR code organization",
-                "Location mapping"
+                "Flexible organization with collections, tags, and containers",
+                "QR code labels for printed item lookups",
+                "Role-based access control and sharing",
+                "Friend and group management for collaborative inventory",
+                "Document attachments for receipts, warranties, and manuals",
+                "Item reminders for maintenance and deadlines",
+                "Activity history tracking",
+                "AI-assisted item descriptions and organization"
               ],
               "publisher": {
                 "@type": "Organization",
@@ -122,222 +125,343 @@ const FeaturesPage = () => {
         {/* Main Features Section */}
         <section className="products">
           <div className="container">
-            
+
             {/* Photo-Based Inventory */}
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📸 Snap a Pic, Never Lose Your Shit Again</h3>
+                  <h3>📸 Photo-Based Inventory</h3>
                 </div>
               </div>
               <p className="description">
-                Take a photo of your stuff. That's it. No complicated forms, no endless categories to pick from. 
-                Just point, shoot, and suddenly your crap is trackable. Our AI figures out what it is so you don't have to.
+                Take a photo of your stuff. That's it. No complicated forms, no endless categories to pick from.
+                Just point, shoot, and suddenly your crap is trackable. Our AI figures out what it is and helps you
+                organize it automatically.
               </p>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
                 gap: '1.5rem',
                 marginBottom: '2rem'
               }}>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>✨ AI-Powered Recognition:</strong> We'll guess what your junk is so you don't have to think
+                  <strong style={{ color: '#fcd900' }}>✨ AI Recognition:</strong> Smart item identification from photos
                 </div>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📱 Multiple Photos:</strong> Take pics from every angle like you're selling it on eBay
+                  <strong style={{ color: '#fcd900' }}>📱 Multiple Photos:</strong> Capture every angle of your items
                 </div>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🏷️ Smart Tagging:</strong> Automatic tags that actually make sense
+                  <strong style={{ color: '#fcd900' }}>🎯 Visual Search:</strong> Find items by what they look like
                 </div>
               </div>
-              <button 
-                onClick={() => handleFeatureClick('photo_inventory')}
-                className="cta-button"
-              >
-                See Photo Features
-              </button>
             </div>
 
-            {/* Smart Search */}
+            {/* Flexible Organization Systems */}
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🔍 Search Through All Your Notes To Help You Find Your Shit</h3>
+                  <h3>🗂️ Flexible Organization Systems</h3>
                 </div>
               </div>
               <p className="description">
-                Stop rummaging through closets like a goddamn raccoon. Just type "camping gear" 
-                and boom - StashDog tells you exactly where you stashed it. Works with voice commands too, 
-                because sometimes you're too lazy to type.
+                Organize your way. Use collections to share groups of items with others, tags to hyper-organize
+                by category or purpose, and containers to track exactly where things are physically stored.
               </p>
-              <div style={{ 
-                backgroundColor: 'rgba(74, 144, 226, 0.1)', 
-                padding: '1.5rem', 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>📚 Collections:</strong> Group and share related items
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>🏷️ Tags:</strong> Hyper-organize by any category you want
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>📦 Containers:</strong> Know exactly where things are stored
+                </div>
+              </div>
+            </div>
+
+            {/* QR Code Item Links */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>📱 QR Coded Item Links</h3>
+                </div>
+              </div>
+              <p className="description">
+                Print QR code labels for your boxes and containers. Scan them with your phone to instantly
+                see what's inside without having to dig through everything. Perfect for storage bins, moving boxes,
+                and organizing closets.
+              </p>
+              <div style={{
+                backgroundColor: 'rgba(74, 144, 226, 0.1)',
+                padding: '1.5rem',
                 borderRadius: '10px',
                 border: '1px solid rgba(74, 144, 226, 0.3)',
                 marginBottom: '2rem'
               }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Try These Searches:</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                  <p style={{ margin: '0.25rem 0', fontStyle: 'italic', color: '#e0e0e0' }}>"Christmas lights"</p>
-                  <p style={{ margin: '0.25rem 0', fontStyle: 'italic', color: '#e0e0e0' }}>"red sweater"</p>
-                  <p style={{ margin: '0.25rem 0', fontStyle: 'italic', color: '#e0e0e0' }}>"stuff in the garage"</p>
-                  <p style={{ margin: '0.25rem 0', fontStyle: 'italic', color: '#e0e0e0' }}>"power tools"</p>
-                </div>
+                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>QR Code Magic:</h4>
+                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>Generate unique QR codes for any item or container</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Scan to instantly view contents</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Print labels directly from the app</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Share QR codes with others for quick access</li>
+                </ul>
               </div>
-              <button 
-                onClick={() => handleFeatureClick('smart_search')}
-                className="cta-button"
-              >
-                Try Smart Search
-              </button>
             </div>
 
-            {/* Location Tracking */}
+            {/* Role-Based Access & Sharing */}
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📍 GPS for Your Garage (And Everything Else)</h3>
+                  <h3>🔐 Powerful Role-Based Access & Sharing</h3>
                 </div>
               </div>
               <p className="description">
-                Create custom locations like "that weird closet under the stairs" or "mom's storage unit." 
-                Use our QR codes on boxes so you can scan and quickly see what's inside without having to rummage
-                through every box.
+                Control who can see and edit your inventory with granular permissions. Give family members view-only
+                access, let trusted friends manage specific collections, or keep private items completely to yourself.
               </p>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
                 gap: '1.5rem',
                 marginBottom: '2rem'
               }}>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🏠 Custom Locations:</strong> "Bedroom closet top shelf" beats "misc storage #47"
+                  <strong style={{ color: '#fcd900' }}>👁️ View-Only Access:</strong> Let people see without editing
                 </div>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📦 QR Code Magic:</strong> Stick codes on boxes, scan to see what's inside
+                  <strong style={{ color: '#fcd900' }}>✏️ Edit Permissions:</strong> Choose who can modify items
                 </div>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🗺️ Visual Maps:</strong> See where all your crap lives at a glance
+                  <strong style={{ color: '#fcd900' }}>🔒 Private Items:</strong> Keep personal stuff private
                 </div>
               </div>
-              <button 
-                onClick={() => handleFeatureClick('location_tracking')}
-                className="cta-button"
-              >
-                Explore Locations
-              </button>
             </div>
 
-            {/* Family Sharing */}
+            {/* Friend & Group Management */}
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>👨‍👩‍👧‍👦 Stop Fighting Over Who Moved What</h3>
+                  <h3>👥 Friend & Group Management</h3>
                 </div>
               </div>
               <p className="description">
-                Share your inventory with family members so everyone can find (and put back) your shit. 
-                Set permissions so the kids can't "accidentally" delete your tool collection from the app.
+                Keep your pack in the loop with collaborative item management. Add friends and family to groups,
+                share collections, and work together to manage shared items. Perfect for households, roommates,
+                and community organizations.
               </p>
-              <div style={{ 
-                backgroundColor: 'rgba(38, 194, 129, 0.1)', 
-                padding: '1.5rem', 
+              <div style={{
+                backgroundColor: 'rgba(38, 194, 129, 0.1)',
+                padding: '1.5rem',
                 borderRadius: '10px',
                 border: '1px solid rgba(38, 194, 129, 0.3)',
                 marginBottom: '2rem'
               }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Real Family Scenarios:</h4>
+                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Collaboration Features:</h4>
                 <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Dad finally knows where mom put the camping gear</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Kids can find their sports equipment without destroying the garage</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Everyone can see what's in the holiday decoration boxes</li>
-                  <li style={{ marginBottom: '0.5rem' }}>No more "who moved my drill?" arguments</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Create groups for family, roommates, or teams</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Share specific collections with different groups</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Everyone can add, edit, and organize shared items</li>
+                  <li style={{ marginBottom: '0.5rem' }}>See who has what and where it is</li>
                 </ul>
               </div>
-              <button 
-                onClick={() => handleFeatureClick('family_sharing')}
-                className="cta-button"
-              >
-                See Family Features
-              </button>
             </div>
 
-            {/* Voice Integration - Temporarily Hidden */}
-            {/* <div className="product">
+            {/* Document Attachments */}
+            <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🗣️ Talk to Your House Like It's 2024</h3>
+                  <h3>📄 Document Attachments</h3>
                 </div>
               </div>
               <p className="description">
-                "Hey Google, ask StashDog where my winter coats are." That's it. Your smart speaker becomes 
-                your personal inventory assistant.
+                Attach receipts, warranties, manuals, and other documents directly to your items. Never lose
+                important paperwork again. Snap a photo or upload PDFs to keep everything organized in one place.
               </p>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                gap: '1rem',
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
                 marginBottom: '2rem'
               }}>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)',
-                  textAlign: 'center'
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🔵</div>
-                  <strong style={{ color: '#fcd900' }}>Alexa Integration</strong>
+                  <strong style={{ color: '#fcd900' }}>🧾 Receipts:</strong> Track purchases and proof of ownership
                 </div>
-                <div style={{ 
-                  padding: '1rem', 
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)', 
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
                   borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)',
-                  textAlign: 'center'
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🟢</div>
-                  <strong style={{ color: '#fcd900' }}>Google Assistant</strong>
+                  <strong style={{ color: '#fcd900' }}>🛡️ Warranties:</strong> Never miss a warranty claim deadline
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>📖 Manuals:</strong> Quick access to instructions when you need them
                 </div>
               </div>
-              <button 
-                onClick={() => handleFeatureClick('voice_integration')}
-                className="cta-button"
-              >
-                Try Voice Commands
-              </button>
-            </div> */}
+            </div>
+
+            {/* Item Reminders */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>⏰ Item Reminders</h3>
+                </div>
+              </div>
+              <p className="description">
+                Set reminders for maintenance tasks, warranty expirations, subscription renewals, or anything else
+                time-sensitive. StashDog will notify you so you never miss important deadlines or forget to maintain
+                your valuable items.
+              </p>
+              <div style={{
+                backgroundColor: 'rgba(74, 144, 226, 0.1)',
+                padding: '1.5rem',
+                borderRadius: '10px',
+                border: '1px solid rgba(74, 144, 226, 0.3)',
+                marginBottom: '2rem'
+              }}>
+                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Stay On Top Of:</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🔧 Equipment maintenance</p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🛡️ Warranty expirations</p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>📅 Subscription renewals</p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🔄 Seasonal item storage</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Activity History */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>📊 Item Activity History</h3>
+                </div>
+              </div>
+              <p className="description">
+                Track every change made to your items. See who moved what, when they moved it, and what changes
+                were made. Perfect for shared households where multiple people manage the same inventory.
+              </p>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>👤 Who:</strong> See which user made changes
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>📝 What:</strong> View exactly what changed
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900' }}>⏱️ When:</strong> Track timestamps for all changes
+                </div>
+              </div>
+            </div>
+
+            {/* AI-Assisted Features */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3>🤖 AI-Assisted Item Descriptions</h3>
+                </div>
+              </div>
+              <p className="description">
+                Let AI do the heavy lifting. Our intelligent assistant analyzes your photos and existing item
+                properties to automatically generate detailed descriptions, suggest tags, and recommend organization
+                strategies. Less typing, more organizing.
+              </p>
+              <div style={{
+                backgroundColor: 'rgba(38, 194, 129, 0.1)',
+                padding: '1.5rem',
+                borderRadius: '10px',
+                border: '1px solid rgba(38, 194, 129, 0.3)',
+                marginBottom: '2rem'
+              }}>
+                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>AI Powers:</h4>
+                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>Automatic item descriptions from photos</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Smart tag suggestions based on item properties</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Organization recommendations for better findability</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Learn from your organization patterns over time</li>
+                </ul>
+              </div>
+            </div>
 
           </div>
         </section>

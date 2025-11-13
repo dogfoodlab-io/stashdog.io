@@ -28,7 +28,7 @@ const Header = () => {
               <div className="header-text">StashDog</div>
             </Link>
             <div className="nav-links">
-              {/* <Link to="/features" className="nav-link">Features</Link> */}
+              <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
               <Link to="/blog" className="nav-link">Blog</Link>
               <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
