@@ -218,6 +218,16 @@ const SolutionsPage = () => {
                   border: "1px solid rgba(252, 217, 0, 0.2)",
                 }}
               >
+                <img
+                  src="/solution1.png"
+                  alt="Liberation of Just Put It Anywhere"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "8px",
+                    marginBottom: "1rem",
+                  }}
+                />
                 <h3
                   style={{
                     color: "#fcd900",
@@ -244,6 +254,16 @@ const SolutionsPage = () => {
                   border: "1px solid rgba(252, 217, 0, 0.2)",
                 }}
               >
+                <img
+                  src="/solution2.png"
+                  alt="Cognitive Load Transfer"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "8px",
+                    marginBottom: "1rem",
+                  }}
+                />
                 <h3
                   style={{
                     color: "#fcd900",
@@ -269,6 +289,16 @@ const SolutionsPage = () => {
                   border: "1px solid rgba(252, 217, 0, 0.2)",
                 }}
               >
+                <img
+                  src="/solution3.png"
+                  alt="Smart Enough to Be Lazy"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "8px",
+                    marginBottom: "1rem",
+                  }}
+                />
                 <h3
                   style={{
                     color: "#fcd900",
