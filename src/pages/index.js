@@ -177,7 +177,7 @@ const IndexPage = () => {
         <FAQ />
         <Footer />
         
-        <ContentSwitcherControls showControls={showControls} />
+        {<ContentSwitcherControls showControls={showControls} />}
       </div>
     </HelmetProvider>
   );
