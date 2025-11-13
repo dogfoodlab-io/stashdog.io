@@ -78,7 +78,9 @@ exports.createPages = async ({ actions }) => {
   console.log(`Found ${blogPosts.length} published blog posts`)
 
   const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
+  const blogListingTemplate = path.resolve('./src/templates/blog-listing.js')
 
+  // Create individual blog post pages
   blogPosts.forEach((post) => {
     console.log(`Creating page for: /blog/${post.slug}`)
     createPage({
@@ -89,6 +91,17 @@ exports.createPages = async ({ actions }) => {
         post
       },
     })
+  })
+
+  // Create the blog listing page with all posts
+  console.log('Creating blog listing page with static data...')
+  createPage({
+    path: '/blog',
+    component: blogListingTemplate,
+    context: {
+      // Pass all blog posts as context for static generation
+      blogPosts
+    },
   })
 }
 

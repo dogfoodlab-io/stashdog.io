@@ -6,11 +6,8 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
-import { getBlogPosts } from "../utils/api"
 
 const IS_DEV_MODE = typeof process !== "undefined" && process.env.NODE_ENV.startsWith("dev")
-
-const POSTS_PER_PAGE = 20
 
 const TAG_GROUPS = [
   {
@@ -154,38 +151,50 @@ const TAG_LABEL_LOOKUP = TAG_GROUPS.reduce((acc, group) => {
   return acc
 }, {})
 
-const BlogPage = ({ location }) => {
-  const [blogPosts, setBlogPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+const BlogPage = ({ location, pageContext }) => {
+  // Use statically generated blog posts from pageContext
+  const allBlogPosts = pageContext?.blogPosts || []
   const { isInitialized, logEvent } = useFirebase()
 
   // Check for query parameters
   const urlParams = new URLSearchParams(location?.search || "")
   const preselectedTag = urlParams.get('tag')
   const initialSearchQuery = urlParams.get('search') || ""
-  const publishedParam = urlParams.get('published')
 
   const [selectedTags, setSelectedTags] = useState(() => (preselectedTag ? [preselectedTag] : []))
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
-  const [offset, setOffset] = useState(0)
   const [appliedQuickFilter, setAppliedQuickFilter] = useState(null)
-  const [publishedOnly, setPublishedOnly] = useState(() => {
-    // If published parameter exists in URL, use it (accepts "true", "false", "1", "0")
-    if (publishedParam !== null) {
-      return publishedParam === 'true' || publishedParam === '1'
+
+  // Filter blog posts client-side using static data
+  const filteredBlogPosts = useMemo(() => {
+    let filtered = [...allBlogPosts]
+
+    // Filter by tags
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter(post => {
+        const postTags = post.tags || []
+        return selectedTags.some(tag => postTags.includes(tag))
+      })
     }
-    // Default to true (only show published posts)
-    return true
-  })
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const searchLower = searchQuery.trim().toLowerCase()
+      filtered = filtered.filter(post => {
+        const titleMatch = post.title?.toLowerCase().includes(searchLower)
+        const excerptMatch = post.excerpt?.toLowerCase().includes(searchLower)
+        const tagsMatch = post.tags?.some(tag => tag.toLowerCase().includes(searchLower))
+        return titleMatch || excerptMatch || tagsMatch
+      })
+    }
+
+    return filtered
+  }, [allBlogPosts, selectedTags, searchQuery])
 
   const activeFilterPayload = useMemo(() => ({
     tags: selectedTags.length > 0 ? selectedTags : null,
     searchQuery: searchQuery.trim() ? searchQuery.trim() : null,
-    published: publishedOnly,
-    limit: POSTS_PER_PAGE,
-    offset
-  }), [selectedTags, searchQuery, offset, publishedOnly])
+  }), [selectedTags, searchQuery])
 
   const hasActiveFilters = useMemo(() => {
     return Boolean(activeFilterPayload.tags?.length || activeFilterPayload.searchQuery)
@@ -203,10 +212,7 @@ const BlogPage = ({ location }) => {
       parts.push(activeTagLabels.join(', '))
     }
     if (filterSearchTerm) {
-      parts.push(`search “${filterSearchTerm}”`)
-    }
-    if (IS_DEV_MODE && publishedOnly === false) {
-      parts.push('including drafts')
+      parts.push(`search "${filterSearchTerm}"`)
     }
     return parts.join(' + ')
   }, [activeTagLabels, filterSearchTerm])
@@ -227,7 +233,6 @@ const BlogPage = ({ location }) => {
   const handleSearchClear = useCallback(() => {
     setSearchQuery("")
     setAppliedQuickFilter(null)
-    setOffset(0)
 
     // Track search clear
     if (isInitialized) {
@@ -278,7 +283,6 @@ const BlogPage = ({ location }) => {
     setSelectedTags([])
     setSearchQuery("")
     setAppliedQuickFilter(null)
-    setOffset(0)
 
     // Track filter clearing
     if (isInitialized && (hadTags || hadSearch)) {
@@ -312,12 +316,7 @@ const BlogPage = ({ location }) => {
         })
       }
     }
-    setOffset(0)
   }, [appliedQuickFilter, isInitialized, logEvent])
-
-  useEffect(() => {
-    setOffset((prev) => (prev !== 0 ? 0 : prev))
-  }, [selectedTags, searchQuery])
 
   useEffect(() => {
     if (preselectedTag && !selectedTags.includes(preselectedTag)) {
@@ -335,56 +334,19 @@ const BlogPage = ({ location }) => {
     }
   }, [isInitialized, logEvent])
 
+  // Track when filters change and results are shown
   useEffect(() => {
-    // Fetch blog posts list
-    const fetchBlogPosts = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        const response = await getBlogPosts({
-          tags: activeFilterPayload.tags,
-          searchQuery: activeFilterPayload.searchQuery,
-          published: activeFilterPayload.published,
-          limit: activeFilterPayload.limit,
-          offset: activeFilterPayload.offset
-        })
-
-        if (response && response.data && response.data.blogPosts) {
-          setBlogPosts(response.data.blogPosts)
-
-          // Track blog results loaded
-          if (isInitialized) {
-            logEvent("blog_results_loaded", {
-              results_count: response.data.blogPosts.length,
-              has_filters: hasActiveFilters,
-              tags_count: activeFilterPayload.tags?.length || 0,
-              has_search: Boolean(activeFilterPayload.searchQuery),
-              offset: activeFilterPayload.offset,
-              content_type: "blog"
-            })
-          }
-        } else {
-          setBlogPosts([])
-        }
-      } catch (err) {
-        console.error('Error fetching blog posts:', err)
-        setError('Failed to load blog posts. Please try again later.')
-        setBlogPosts([])
-
-        // Track error
-        if (isInitialized) {
-          logEvent("blog_load_error", {
-            error_message: err.message,
-            content_type: "blog"
-          })
-        }
-      } finally {
-        setLoading(false)
-      }
+    if (isInitialized && allBlogPosts.length > 0) {
+      logEvent("blog_results_loaded", {
+        results_count: filteredBlogPosts.length,
+        total_posts: allBlogPosts.length,
+        has_filters: hasActiveFilters,
+        tags_count: activeFilterPayload.tags?.length || 0,
+        has_search: Boolean(activeFilterPayload.searchQuery),
+        content_type: "blog"
+      })
     }
-    fetchBlogPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeFilterPayload])
+  }, [filteredBlogPosts.length, hasActiveFilters, activeFilterPayload, isInitialized, allBlogPosts.length])
 
   return (
     <HelmetProvider>
@@ -494,29 +456,6 @@ const BlogPage = ({ location }) => {
                     })}
                   </div>
                 </div>
-                <div className="blog-filter-published" style={{ minWidth: 160 }}>
-                  <label className="blog-filter-label">Published</label>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <input
-                        type="radio"
-                        name="published"
-                        checked={publishedOnly === true}
-                        onChange={() => setPublishedOnly(true)}
-                      />
-                      <span>Only published</span>
-                    </label>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <input
-                        type="radio"
-                        name="published"
-                        checked={publishedOnly === false}
-                        onChange={() => setPublishedOnly(false)}
-                      />
-                      <span>Include drafts</span>
-                    </label>
-                  </div>
-                </div>
               </div>
 
               <div className="blog-active-filters" aria-live="polite">
@@ -587,42 +526,28 @@ const BlogPage = ({ location }) => {
             </section>
             )}
 
-            {!loading && !error && (
-              <div className="blog-results-meta">
-                <span className="blog-results-count">
-                  {blogPosts.length > 0
-                    ? `Showing ${blogPosts.length} ${blogPosts.length === 1 ? 'article' : 'articles'}`
-                    : 'No articles found'}
+            <div className="blog-results-meta">
+              <span className="blog-results-count">
+                {filteredBlogPosts.length > 0
+                  ? `Showing ${filteredBlogPosts.length} ${filteredBlogPosts.length === 1 ? 'article' : 'articles'}`
+                  : 'No articles found'}
+              </span>
+              {hasActiveFilters && filterSummary && (
+                <span className="blog-results-filters">
+                  Filtering by {filterSummary}
                 </span>
-                {hasActiveFilters && filterSummary && (
-                  <span className="blog-results-filters">
-                    Filtering by {filterSummary}
-                  </span>
-                )}
-              </div>
-            )}
+              )}
+            </div>
 
-            {loading && (
-              <div className="blog-loading">
-                <p>Loading blog posts...</p>
-              </div>
-            )}
-
-            {error && (
-              <div className="blog-error">
-                <p>{error}</p>
-              </div>
-            )}
-
-            {!loading && !error && blogPosts.length === 0 && (
+            {filteredBlogPosts.length === 0 && (
               <div className="blog-empty">
                 <p>No articles match this combo yet. Try clearing a filter or explore another quick path.</p>
               </div>
             )}
 
-            {!loading && !error && blogPosts.length > 0 && (
+            {filteredBlogPosts.length > 0 && (
               <div className="blog-grid">
-                {blogPosts.map((post) => (
+                {filteredBlogPosts.map((post) => (
                   <BlogCard key={post.id} post={post} />
                 ))}
               </div>
