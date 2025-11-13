@@ -1,5 +1,10 @@
 import React, { useEffect } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
+import {
+  Camera, Sparkles, Smartphone, Target, FolderOpen, Library, Tag, Package,
+  Lock, Eye, PencilLine, Users, FileText, Receipt, Shield, BookOpen,
+  Bell, Wrench, Calendar, RefreshCw, BarChart, User, FileEdit, Clock, Bot, Cloud
+} from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import AppStoreButton from "../components/AppStoreButton"
@@ -42,14 +47,14 @@ const FeaturesPage = () => {
         <Helmet>
           <html lang="en" />
           <title>Features - StashDog: Stop Losing Your Shit</title>
-          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory, flexible organization with collections and tags, QR code labels, role-based sharing, friend & group management, document attachments, reminders, activity history, and AI-assisted organization." />
-          <meta name="keywords" content="home inventory features, photo inventory, QR code labels, role-based access, document management, item reminders, activity tracking, AI organization, collaborative inventory" />
+          <meta name="description" content="Discover StashDog's powerful features: photo-based inventory, flexible organization with collections and tags, QR code labels, role-based sharing, friend & group management, document attachments, reminders, activity history, AI-assisted organization, and cloud sync across all devices." />
+          <meta name="keywords" content="home inventory features, photo inventory, QR code labels, role-based access, document management, item reminders, activity tracking, AI organization, collaborative inventory, cloud sync, cross-platform sync" />
           <link rel="canonical" href="https://stashdog.io/features/" />
           <meta name="robots" content="index, follow" />
           
           {/* Open Graph */}
           <meta property="og:title" content="StashDog Features - Stop Losing Your Shit" />
-          <meta property="og:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, and AI-powered organization. Everything you need to finally get organized." />
+          <meta property="og:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, AI-powered organization, and cloud sync. Everything you need to finally get organized." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/features" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
@@ -57,7 +62,7 @@ const FeaturesPage = () => {
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="StashDog Features - Stop Losing Your Shit" />
-          <meta name="twitter:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, and AI-powered organization. Everything you need to finally get organized." />
+          <meta name="twitter:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, AI-powered organization, and cloud sync. Everything you need to finally get organized." />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
           {/* Structured Data */}
@@ -66,7 +71,7 @@ const FeaturesPage = () => {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "StashDog",
-              "description": "Photo-based inventory tracking app with flexible organization, QR code labels, role-based sharing, document attachments, reminders, activity tracking, and AI-assisted organization.",
+              "description": "Photo-based inventory tracking app with flexible organization, QR code labels, role-based sharing, document attachments, reminders, activity tracking, AI-assisted organization, and cloud sync across all devices.",
               "applicationCategory": "LifestyleApplication",
               "operatingSystem": "iOS, Android",
               "offers": {
@@ -83,7 +88,8 @@ const FeaturesPage = () => {
                 "Document attachments for receipts, warranties, and manuals",
                 "Item reminders for maintenance and deadlines",
                 "Activity history tracking",
-                "AI-assisted item descriptions and organization"
+                "AI-assisted item descriptions and organization",
+                "Cloud sync across all your devices"
               ],
               "publisher": {
                 "@type": "Organization",
@@ -130,7 +136,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📸 Photo-Based Inventory</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Camera size={24} /> Photo-Based Inventory
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -150,7 +158,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>✨ AI Recognition:</strong> Smart item identification from photos
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Sparkles size={18} /> AI Recognition:
+                  </strong> Smart item identification from photos
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -158,7 +168,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📱 Multiple Photos:</strong> Capture every angle of your items
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Smartphone size={18} /> Multiple Photos:
+                  </strong> Capture every angle of your items
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -166,7 +178,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🎯 Visual Search:</strong> Find items by what they look like
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Target size={18} /> Visual Search:
+                  </strong> Find items by what they look like
                 </div>
               </div>
             </div>
@@ -175,7 +189,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🗂️ Flexible Organization Systems</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <FolderOpen size={24} /> Flexible Organization Systems
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -194,7 +210,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📚 Collections:</strong> Group and share related items
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Library size={18} /> Collections:
+                  </strong> Group and share related items
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -202,7 +220,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🏷️ Tags:</strong> Hyper-organize by any category you want
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Tag size={18} /> Tags:
+                  </strong> Hyper-organize by any category you want
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -210,7 +230,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📦 Containers:</strong> Know exactly where things are stored
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Package size={18} /> Containers:
+                  </strong> Know exactly where things are stored
                 </div>
               </div>
             </div>
@@ -219,7 +241,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📱 QR Coded Item Links</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Smartphone size={24} /> QR Coded Item Links
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -248,7 +272,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🔐 Powerful Role-Based Access & Sharing</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Lock size={24} /> Powerful Role-Based Access & Sharing
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -267,7 +293,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>👁️ View-Only Access:</strong> Let people see without editing
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Eye size={18} /> View-Only Access:
+                  </strong> Let people see without editing
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -275,7 +303,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>✏️ Edit Permissions:</strong> Choose who can modify items
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <PencilLine size={18} /> Edit Permissions:
+                  </strong> Choose who can modify items
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -283,7 +313,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🔒 Private Items:</strong> Keep personal stuff private
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Lock size={18} /> Private Items:
+                  </strong> Keep personal stuff private
                 </div>
               </div>
             </div>
@@ -292,7 +324,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>👥 Friend & Group Management</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Users size={24} /> Friend & Group Management
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -321,7 +355,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📄 Document Attachments</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <FileText size={24} /> Document Attachments
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -340,7 +376,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🧾 Receipts:</strong> Track purchases and proof of ownership
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Receipt size={18} /> Receipts:
+                  </strong> Track purchases and proof of ownership
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -348,7 +386,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>🛡️ Warranties:</strong> Never miss a warranty claim deadline
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Shield size={18} /> Warranties:
+                  </strong> Never miss a warranty claim deadline
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -356,7 +396,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📖 Manuals:</strong> Quick access to instructions when you need them
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <BookOpen size={18} /> Manuals:
+                  </strong> Quick access to instructions when you need them
                 </div>
               </div>
             </div>
@@ -365,7 +407,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>⏰ Item Reminders</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Bell size={24} /> Item Reminders
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -382,10 +426,18 @@ const FeaturesPage = () => {
               }}>
                 <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Stay On Top Of:</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🔧 Equipment maintenance</p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🛡️ Warranty expirations</p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>📅 Subscription renewals</p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0' }}>🔄 Seasonal item storage</p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Wrench size={16} /> Equipment maintenance
+                  </p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Shield size={16} /> Warranty expirations
+                  </p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Calendar size={16} /> Subscription renewals
+                  </p>
+                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <RefreshCw size={16} /> Seasonal item storage
+                  </p>
                 </div>
               </div>
             </div>
@@ -394,7 +446,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📊 Item Activity History</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <BarChart size={24} /> Item Activity History
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -413,7 +467,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>👤 Who:</strong> See which user made changes
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <User size={18} /> Who:
+                  </strong> See which user made changes
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -421,7 +477,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>📝 What:</strong> View exactly what changed
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <FileEdit size={18} /> What:
+                  </strong> View exactly what changed
                 </div>
                 <div style={{
                   padding: '1rem',
@@ -429,7 +487,9 @@ const FeaturesPage = () => {
                   borderRadius: '8px',
                   border: '1px solid rgba(252, 217, 0, 0.3)'
                 }}>
-                  <strong style={{ color: '#fcd900' }}>⏱️ When:</strong> Track timestamps for all changes
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Clock size={18} /> When:
+                  </strong> Track timestamps for all changes
                 </div>
               </div>
             </div>
@@ -438,7 +498,9 @@ const FeaturesPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🤖 AI-Assisted Item Descriptions</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Bot size={24} /> AI-Assisted Item Descriptions
+                  </h3>
                 </div>
               </div>
               <p className="description">
@@ -460,6 +522,58 @@ const FeaturesPage = () => {
                   <li style={{ marginBottom: '0.5rem' }}>Organization recommendations for better findability</li>
                   <li style={{ marginBottom: '0.5rem' }}>Learn from your organization patterns over time</li>
                 </ul>
+              </div>
+            </div>
+
+            {/* Cloud Sync */}
+            <div className="product">
+              <div className="product-header">
+                <div className="product-info">
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Cloud size={24} /> Cloud Sync Across All Your Devices
+                  </h3>
+                </div>
+              </div>
+              <p className="description">
+                Access your inventory anywhere, anytime. All your data automatically syncs across your phone, tablet,
+                and web browser in real-time. Start organizing on your iPhone and finish on your iPad—it all just works.
+              </p>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '2rem'
+              }}>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <RefreshCw size={18} /> Real-Time Sync:
+                  </strong> Changes appear instantly on all devices
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Smartphone size={18} /> Cross-Platform:
+                  </strong> iOS, Android, and web all in sync
+                </div>
+                <div style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(252, 217, 0, 0.3)'
+                }}>
+                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Lock size={18} /> Secure Backup:
+                  </strong> Your data is safely backed up in the cloud
+                </div>
               </div>
             </div>
 
