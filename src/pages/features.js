@@ -57,13 +57,13 @@ const FeaturesPage = () => {
           <meta property="og:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, AI-powered organization, and cloud sync. Everything you need to finally get organized." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/features" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/hero-features.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="StashDog Features - Stop Losing Your Shit" />
           <meta name="twitter:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, AI-powered organization, and cloud sync. Everything you need to finally get organized." />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/hero-features.png" />
 
           {/* Structured Data */}
           <script type="application/ld+json">
@@ -106,25 +106,30 @@ const FeaturesPage = () => {
         
         <Header />
         
-        {/* Hero Section */}
+        {/* Hero Section - left illustration with right-side copy area */}
         <section className="stashdog-hero">
-          <div className="container">
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+          <div className="container features-hero-grid">
+            <div className="features-hero-illustration" aria-hidden="true">
+              {/* Illustration should be placed in static/images/hero-features.png */}
               <img
-                src="/lab1.png"
-                alt="StashDog Features"
-                style={{ maxWidth: '200px', height: 'auto' }}
+                src="/images/hero-features.png"
+                alt=""
+                className="feature-image"
+                style={{ width: '100%', maxWidth: '720px', height: 'auto' }}
               />
             </div>
-            <h1>Combining Power and Simplicity to Support Your Laziness</h1>
-            <p>
-              Here's how StashDog actually helps real people with real messy lives.
-            </p>
-            <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-              <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                See how StashDog solves real-world organization problems →
-              </a>
-            </p>
+
+            <div className="features-hero-content">
+              <h1 className="hero-title">Combining Power and Simplicity to Support Your Laziness</h1>
+              <p className="hero-description">
+                Here's how StashDog actually helps real people with real messy lives.
+              </p>
+              <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+                <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                  See how StashDog solves real-world organization problems →
+                </a>
+              </p>
+            </div>
           </div>
         </section>
 
