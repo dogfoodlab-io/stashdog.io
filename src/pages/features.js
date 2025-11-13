@@ -120,13 +120,13 @@ const FeaturesPage = () => {
             </div>
 
             <div className="features-hero-content">
-              <h1 className="hero-title">Combining Power and Simplicity to Support Your Laziness</h1>
+              <h1 className="hero-title">Combining Power and Simplicity to Get Your Shit Together</h1>
               <p className="hero-description">
                 Here's how StashDog actually helps real people with real messy lives.
               </p>
               <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
                 <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                  See how StashDog solves real-world organization problems →
+                  See how StashDog solves your organization problems →
                 </a>
               </p>
             </div>
@@ -266,9 +266,9 @@ const FeaturesPage = () => {
                 <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>QR Code Magic:</h4>
                 <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
                   <li style={{ marginBottom: '0.5rem' }}>Generate unique QR codes for any item or container</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Scan to instantly view contents</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Print labels directly from the app</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Share QR codes with others for quick access</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Print labels with QR codes for your items</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Attach labels to your items and containers</li>
+                  <li style={{ marginBottom: '0.5rem' }}>Scan to instantly view item details or contents</li>
                 </ul>
               </div>
             </div>

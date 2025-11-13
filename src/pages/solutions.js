@@ -7,6 +7,7 @@ import AppStoreButton from "../components/AppStoreButton";
 import GooglePlayButton from "../components/GooglePlayButton";
 import { useFirebase } from "../hooks/useFirebase";
 import "../styles/global.css";
+import { Brain, Package, Users, Home, Target, Siren } from "lucide-react";
 
 const SolutionsPage = () => {
   const { isInitialized, logEvent } = useFirebase();
@@ -309,7 +310,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🤯 Drowning in Your Own Stuff?</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Brain size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Drowning in Your Own Stuff?</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",
@@ -399,7 +403,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>📦 Moving Without the Mental Breakdown</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Package size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Moving Without the Mental Breakdown</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",
@@ -487,7 +494,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>👨‍👩‍👧‍👦 Family Coordination Without Coordination</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Users size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Family Coordination Without Coordination</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",
@@ -575,7 +585,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🏠 Shared Living Without Shared Systems</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Home size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Shared Living Without Shared Systems</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",
@@ -662,7 +675,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🎯 Collecting Without Cataloging</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Target size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Collecting Without Cataloging</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",
@@ -749,7 +765,10 @@ const SolutionsPage = () => {
             <div className="product">
               <div className="product-header">
                 <div className="product-info">
-                  <h3>🚨 Emergency Ready Without the Planning</h3>
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Siren size={22} color="#fcd900" aria-hidden="true" />
+                    <span>Emergency Ready Without the Planning</span>
+                  </h3>
                   <div
                     style={{
                       color: "#fcd900",

@@ -1599,6 +1599,50 @@ a:focus {
   }
 }
 
+/* Features page: left illustration with right-side copy (keeps right third clear for headline/CTA) */
+.features-hero-grid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.features-hero-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+
+.features-hero-illustration .feature-image {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+.features-hero-content {
+  text-align: left;
+  padding-right: 1rem;
+}
+
+@media (max-width: 992px) {
+  .features-hero-grid {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 0;
+    gap: 1.5rem;
+  }
+  .features-hero-illustration {
+    justify-content: center;
+    padding-left: 0;
+  }
+  .features-hero-content { text-align: center; padding: 0 1rem; }
+}
+
 @media (max-width: 600px) {
   .blog-filter-panel {
     padding: 1.25rem;
