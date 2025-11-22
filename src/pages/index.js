@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import UseCaseSelector from "../components/UseCaseSelector";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
@@ -172,6 +173,7 @@ const IndexPage = () => {
 
         <Header />
         <Hero />
+        <UseCaseSelector />
         <Features />
         <Testimonials />
         <FAQ />

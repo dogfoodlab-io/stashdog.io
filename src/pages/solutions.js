@@ -338,7 +338,7 @@ const SolutionsPage = () => {
             </p>
 
             {/* Getting Started Solution */}
-            <div className="product">
+            <div id="general" className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -431,7 +431,7 @@ const SolutionsPage = () => {
             </div>
 
             {/* Moving Solution */}
-            <div className="product">
+            <div id="moving" className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -522,7 +522,7 @@ const SolutionsPage = () => {
             </div>
 
             {/* Family Chaos Solution */}
-            <div className="product">
+            <div id="family" className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -613,7 +613,7 @@ const SolutionsPage = () => {
             </div>
 
             {/* Roommate Solution */}
-            <div className="product">
+            <div id="roommates" className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -703,7 +703,7 @@ const SolutionsPage = () => {
             </div>
 
             {/* Collector Solution */}
-            <div className="product">
+            <div id="collectors" className="product">
               <div className="product-header">
                 <div className="product-info">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Box, MapPin, Users, ArrowRight } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
@@ -7,98 +8,103 @@ const Features = () => {
   const { logEvent } = useFirebase()
   const { content, currentVariant } = useContentSwitcher()
 
-  // Enhanced tracking for feature clicks
   const handleFeatureClick = (featureName) => {
     logEvent('feature_click', {
       feature_name: featureName,
       page: 'homepage',
       content_variant: currentVariant
     })
-    
-    // Also log as select_content for backward compatibility
-    logEvent('select_content', {
-      content_type: 'feature',
-      content_id: featureName,
-      content_variant: currentVariant
-    })
   }
 
-  // Enhanced tracking for CTA button clicks
-  const handleCTAClick = (ctaType, buttonText, buttonPosition) => {
-    logEvent('cta_click', {
-      cta_type: ctaType,
-      button_text: buttonText,
-      button_position: buttonPosition,
-      page: 'homepage',
-      content_variant: currentVariant
-    })
-    
-    // Also log as generate_lead for backward compatibility
-    logEvent('generate_lead', {
-      cta_type: ctaType,
-      content_variant: currentVariant
-    })
+  // Map keys to Lucide icons for a cleaner look than images
+  const getIcon = (key) => {
+    switch(key) {
+      case 'inventory_management': return <Box size={32} />;
+      case 'location_tracking': return <MapPin size={32} />;
+      case 'family_sharing': return <Users size={32} />;
+      default: return <Box size={32} />;
+    }
   }
 
   const features = [
     {
       key: 'inventory_management',
-      image: 'trashpanda.jpeg',
       data: content.discover.features.inventory_management
     },
     {
       key: 'location_tracking',
-      image: 'pointydog.jpg',
       data: content.discover.features.location_tracking
     },
     {
       key: 'family_sharing',
-      image: 'dogpack.jpg',
       data: content.discover.features.family_sharing
     }
   ]
 
   return (
-    <section className="products discover-features">
-      <div className="container">
-        <h2>{content.discover.title}</h2>
+    <section className="discover-features" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Background decoration */}
+      <div style={{
+        position: 'absolute',
+        top: '20%',
+        right: '-10%',
+        width: '500px',
+        height: '500px',
+        background: 'radial-gradient(circle, rgba(252, 217, 0, 0.05) 0%, transparent 70%)',
+        zIndex: -1
+      }} />
 
-        <div className="features-grid">
-          {features.map(({ key, data, image }) => (
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+          <h2 style={{ marginBottom: '1.5rem' }}>{content.discover.title}</h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto' }}>
+            Everything you need to go from "Where is that thing?" to "Oh, it's right there."
+          </p>
+        </div>
+
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gap: '2.5rem',
+          marginBottom: '4rem'
+        }}>
+          {features.map(({ key, data }) => (
             <div
               key={key}
-              className="feature-card"
+              className="feature-card group"
               onClick={() => handleFeatureClick(key)}
               role="button"
               tabIndex={0}
-              onKeyPress={(e) => { if (e.key === 'Enter') handleFeatureClick(key) }}
+              style={{ cursor: 'pointer', position: 'relative' }}
             >
               <div className="feature-icon">
-                {image ? (
-                  <img src={image || `${key}.jpg`} alt={data.title} className="feature-image" />
-                ) : (
-                  <div className="feature-placeholder" aria-hidden>
-                    <svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <rect x="3" y="5" width="18" height="14" rx="2" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M3 9l5 5 4-4 6 6" stroke="#f3e6a8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                )}
+                {getIcon(key)}
               </div>
 
-              <h3>{data.title}</h3>
-              <p className="description">{data.description}</p>
+              <h3 style={{ marginBottom: '1rem' }}>{data.title}</h3>
+              <p style={{ marginBottom: '2rem' }}>{data.description}</p>
+              
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.5rem', 
+                color: 'var(--color-primary)', 
+                fontWeight: '600',
+                fontSize: '0.9rem'
+              }}>
+                Learn more <ArrowRight size={16} />
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="explore-wrap">
+        <div style={{ textAlign: 'center' }}>
           <Link
             to="/solutions"
-            className="cta-button explore-outline"
-            onClick={() => handleCTAClick('explore', 'EXPLORE', 'discover_features')}
+            className="cta-button outline"
+            style={{ padding: '1rem 3rem' }}
           >
-            EXPLORE
+            Explore All Features
           </Link>
         </div>
       </div>

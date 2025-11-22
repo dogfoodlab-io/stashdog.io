@@ -15,29 +15,63 @@ const Footer = () => {
   }
 
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ 
+      borderTop: '1px solid var(--glass-border)',
+      background: 'rgba(0,0,0,0.3)',
+      padding: '4rem 0',
+      marginTop: 'auto'
+    }}>
       <div className="container">
-        <p>{activeStashdogStrings.thank_you}</p>
-        <p>
-          Contact us at:{" "}
-          <a 
-            href="mailto:mail@dogfoodlab.io"
-            onClick={handleContactClick}
-          >
-            mail@dogfoodlab.io
-          </a>
-        </p>
-        <p>
-          &copy; {new Date().getFullYear()} Dogfood Lab LLC. All rights
-          reserved.{" "}
-          <Link 
-            to="/privacy" 
-            style={{ color: '#fcd900', marginLeft: '10px' }} 
-            onClick={handlePrivacyClick}
-          >
-            Privacy Policy
-          </Link>
-        </p>
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          textAlign: 'center',
+          gap: '1.5rem'
+        }}>
+          <img 
+            src="/round-logo-goggles.png" 
+            alt="StashDog Logo" 
+            style={{ width: '60px', height: '60px', borderRadius: '50%', border: '2px solid var(--color-primary)' }} 
+          />
+          
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', maxWidth: '600px' }}>
+            {activeStashdogStrings.thank_you}
+          </p>
+          
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <a 
+              href="mailto:mail@dogfoodlab.io"
+              onClick={handleContactClick}
+              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
+              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
+            >
+              mail@dogfoodlab.io
+            </a>
+            <Link 
+              to="/privacy" 
+              onClick={handlePrivacyClick}
+              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
+              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
+            >
+              Privacy Policy
+            </Link>
+            <Link 
+              to="/terms" 
+              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
+              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
+            >
+              Terms of Service
+            </Link>
+          </div>
+
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '2rem' }}>
+            &copy; {new Date().getFullYear()} Dogfood Lab LLC. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   )
