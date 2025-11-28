@@ -9,6 +9,8 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import AppStoreButton from "../components/AppStoreButton"
 import GooglePlayButton from "../components/GooglePlayButton"
+import InfoCard from "../components/InfoCard"
+import SectionHeader from "../components/SectionHeader"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 
@@ -24,13 +26,6 @@ const FeaturesPage = () => {
       })
     }
   }, [isInitialized, logEvent])
-
-  const handleFeatureClick = (featureName) => {
-    logEvent('feature_interest_click', {
-      feature_name: featureName,
-      page: 'features'
-    })
-  }
 
   const handleDownloadClick = (platform) => {
     if (isInitialized) {
@@ -65,39 +60,6 @@ const FeaturesPage = () => {
           <meta name="twitter:description" content="Photo-based inventory, QR code labels, role-based sharing, reminders, activity tracking, AI-powered organization, and cloud sync. Everything you need to finally get organized." />
           <meta name="twitter:image" content="https://stashdog.io/images/hero-features.png" />
 
-          {/* Structured Data */}
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "StashDog",
-              "description": "Photo-based inventory tracking app with flexible organization, QR code labels, role-based sharing, document attachments, reminders, activity tracking, AI-assisted organization, and cloud sync across all devices.",
-              "applicationCategory": "LifestyleApplication",
-              "operatingSystem": "iOS, Android",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              },
-              "featureList": [
-                "Photo-based inventory tracking",
-                "Flexible organization with collections, tags, and containers",
-                "QR code labels for printed item lookups",
-                "Role-based access control and sharing",
-                "Friend and group management for collaborative inventory",
-                "Document attachments for receipts, warranties, and manuals",
-                "Item reminders for maintenance and deadlines",
-                "Activity history tracking",
-                "AI-assisted item descriptions and organization",
-                "Cloud sync across all your devices"
-              ],
-              "publisher": {
-                "@type": "Organization",
-                "name": "Dogfood Lab LLC"
-              }
-            })}
-          </script>
-          
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -106,11 +68,10 @@ const FeaturesPage = () => {
         
         <Header />
         
-        {/* Hero Section - left illustration with right-side copy area */}
+        {/* Hero Section */}
         <section className="stashdog-hero">
           <div className="container features-hero-grid">
             <div className="features-hero-illustration" aria-hidden="true">
-              {/* Illustration should be placed in static/images/hero-features.png */}
               <img
                 src="/images/hero-features.png"
                 alt=""
@@ -138,447 +99,268 @@ const FeaturesPage = () => {
           <div className="container">
 
             {/* Photo-Based Inventory */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Camera size={24} /> Photo-Based Inventory
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Take a photo of your stuff. That's it. No complicated forms, no endless categories to pick from.
-                Just point, shoot, and suddenly your crap is trackable. Our AI figures out what it is and helps you
-                organize it automatically.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Photo-Based Inventory" 
+                subtitle="Take a photo of your stuff. That's it. No complicated forms, no endless categories to pick from. Just point, shoot, and suddenly your crap is trackable."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Sparkles size={18} /> AI Recognition:
-                  </strong> Smart item identification from photos
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Smartphone size={18} /> Multiple Photos:
-                  </strong> Capture every angle of your items
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Target size={18} /> Visual Search:
-                  </strong> Find items by what they look like
-                </div>
+                <InfoCard 
+                  icon={Sparkles}
+                  title="AI Recognition"
+                  description="Smart item identification from photos. Our AI figures out what it is and helps you organize it automatically."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Smartphone}
+                  title="Multiple Photos"
+                  description="Capture every angle of your items. Document condition, serial numbers, and accessories."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Target}
+                  title="Visual Search"
+                  description="Find items by what they look like. Don't remember the name? Just describe it or search visually."
+                  variant="highlight"
+                />
               </div>
             </div>
 
             {/* Flexible Organization Systems */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FolderOpen size={24} /> Flexible Organization Systems
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Organize your way. Use collections to share groups of items with others, tags to hyper-organize
-                by category or purpose, and containers to track exactly where things are physically stored.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Flexible Organization Systems" 
+                subtitle="Organize your way. Use collections to share groups of items with others, tags to hyper-organize by category or purpose, and containers to track exactly where things are physically stored."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Library size={18} /> Collections:
-                  </strong> Group and share related items
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Tag size={18} /> Tags:
-                  </strong> Hyper-organize by any category you want
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Package size={18} /> Containers:
-                  </strong> Know exactly where things are stored
-                </div>
+                <InfoCard 
+                  icon={Library}
+                  title="Collections"
+                  description="Group and share related items. Perfect for sharing specific sets of items with different people."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Tag}
+                  title="Tags"
+                  description="Hyper-organize by any category you want. Add as many tags as you need to find things your way."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Package}
+                  title="Containers"
+                  description="Know exactly where things are stored. Create nested containers to model your real-world storage."
+                  variant="highlight"
+                />
               </div>
             </div>
 
             {/* QR Code Item Links */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Smartphone size={24} /> QR Coded Item Links
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Print QR code labels for your boxes and containers. Scan them with your phone to instantly
-                see what's inside without having to dig through everything. Perfect for storage bins, moving boxes,
-                and organizing closets.
-              </p>
-              <div style={{
-                backgroundColor: 'rgba(74, 144, 226, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '10px',
-                border: '1px solid rgba(74, 144, 226, 0.3)',
-                marginBottom: '2rem'
-              }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>QR Code Magic:</h4>
-                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Generate unique QR codes for any item or container</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Print labels with QR codes for your items</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Attach labels to your items and containers</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Scan to instantly view item details or contents</li>
-                </ul>
+            <div className="mb-24">
+              <SectionHeader 
+                title="QR Coded Item Links" 
+                subtitle="Print QR code labels for your boxes and containers. Scan them with your phone to instantly see what's inside without having to dig through everything."
+                align="left"
+              />
+              <div className="grid md:grid-cols-2 gap-8">
+                <InfoCard 
+                  icon={Smartphone}
+                  title="Scan to View"
+                  description="Instantly view item details or container contents by scanning the label."
+                  variant="default"
+                />
+                <InfoCard 
+                  icon={Target}
+                  title="Printable Labels"
+                  description="Generate and print unique QR codes for any item or container in your inventory."
+                  variant="default"
+                />
               </div>
             </div>
 
             {/* Role-Based Access & Sharing */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Lock size={24} /> Powerful Role-Based Access & Sharing
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Control who can see and edit your inventory with granular permissions. Give family members view-only
-                access, let trusted friends manage specific collections, or keep private items completely to yourself.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Powerful Role-Based Access" 
+                subtitle="Control who can see and edit your inventory with granular permissions. Give family members view-only access, let trusted friends manage specific collections, or keep private items completely to yourself."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Eye size={18} /> View-Only Access:
-                  </strong> Let people see without editing
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <PencilLine size={18} /> Edit Permissions:
-                  </strong> Choose who can modify items
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Lock size={18} /> Private Items:
-                  </strong> Keep personal stuff private
-                </div>
+                <InfoCard 
+                  icon={Eye}
+                  title="View-Only Access"
+                  description="Let people see without editing. Perfect for showing off your collection or letting guests find things."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={PencilLine}
+                  title="Edit Permissions"
+                  description="Choose who can modify items. Collaborate on shared inventories with trusted family and friends."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Lock}
+                  title="Private Items"
+                  description="Keep personal stuff private. Mark items as private so only you can see them, even in shared collections."
+                  variant="highlight"
+                />
               </div>
             </div>
 
             {/* Friend & Group Management */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Users size={24} /> Friend & Group Management
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Keep your pack in the loop with collaborative item management. Add friends and family to groups,
-                share collections, and work together to manage shared items. Perfect for households, roommates,
-                and community organizations.
-              </p>
-              <div style={{
-                backgroundColor: 'rgba(38, 194, 129, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '10px',
-                border: '1px solid rgba(38, 194, 129, 0.3)',
-                marginBottom: '2rem'
-              }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Collaboration Features:</h4>
-                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Create groups for family, roommates, or teams</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Share specific collections with different groups</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Everyone can add, edit, and organize shared items</li>
-                  <li style={{ marginBottom: '0.5rem' }}>See who has what and where it is</li>
-                </ul>
-              </div>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Friend & Group Management" 
+                subtitle="Keep your pack in the loop with collaborative item management. Add friends and family to groups, share collections, and work together to manage shared items."
+                align="left"
+              />
+              <InfoCard 
+                icon={Users}
+                title="Collaboration Features"
+                description="Create groups for family, roommates, or teams. Share specific collections with different groups. Everyone can add, edit, and organize shared items. See who has what and where it is."
+                variant="success"
+              />
             </div>
 
             {/* Document Attachments */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FileText size={24} /> Document Attachments
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Attach receipts, warranties, manuals, and other documents directly to your items. Never lose
-                important paperwork again. Snap a photo or upload PDFs to keep everything organized in one place.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Document Attachments" 
+                subtitle="Attach receipts, warranties, manuals, and other documents directly to your items. Never lose important paperwork again."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Receipt size={18} /> Receipts:
-                  </strong> Track purchases and proof of ownership
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield size={18} /> Warranties:
-                  </strong> Never miss a warranty claim deadline
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <BookOpen size={18} /> Manuals:
-                  </strong> Quick access to instructions when you need them
-                </div>
+                <InfoCard 
+                  icon={Receipt}
+                  title="Receipts"
+                  description="Track purchases and proof of ownership. Great for insurance and returns."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Shield}
+                  title="Warranties"
+                  description="Never miss a warranty claim deadline. Keep all your warranty info attached to the item."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={BookOpen}
+                  title="Manuals"
+                  description="Quick access to instructions when you need them. No more digging through the junk drawer."
+                  variant="highlight"
+                />
               </div>
             </div>
 
             {/* Item Reminders */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Bell size={24} /> Item Reminders
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Set reminders for maintenance tasks, warranty expirations, subscription renewals, or anything else
-                time-sensitive. StashDog will notify you so you never miss important deadlines or forget to maintain
-                your valuable items.
-              </p>
-              <div style={{
-                backgroundColor: 'rgba(74, 144, 226, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '10px',
-                border: '1px solid rgba(74, 144, 226, 0.3)',
-                marginBottom: '2rem'
-              }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>Stay On Top Of:</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Wrench size={16} /> Equipment maintenance
-                  </p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield size={16} /> Warranty expirations
-                  </p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Calendar size={16} /> Subscription renewals
-                  </p>
-                  <p style={{ margin: '0.25rem 0', color: '#e0e0e0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <RefreshCw size={16} /> Seasonal item storage
-                  </p>
-                </div>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Item Reminders" 
+                subtitle="Set reminders for maintenance tasks, warranty expirations, subscription renewals, or anything else time-sensitive."
+                align="left"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <InfoCard icon={Wrench} title="Maintenance" variant="default" />
+                <InfoCard icon={Shield} title="Warranties" variant="default" />
+                <InfoCard icon={Calendar} title="Renewals" variant="default" />
+                <InfoCard icon={RefreshCw} title="Seasonal" variant="default" />
               </div>
             </div>
 
             {/* Activity History */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <BarChart size={24} /> Item Activity History
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Track every change made to your items. See who moved what, when they moved it, and what changes
-                were made. Perfect for shared households where multiple people manage the same inventory.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Item Activity History" 
+                subtitle="Track every change made to your items. See who moved what, when they moved it, and what changes were made."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <User size={18} /> Who:
-                  </strong> See which user made changes
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FileEdit size={18} /> What:
-                  </strong> View exactly what changed
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Clock size={18} /> When:
-                  </strong> Track timestamps for all changes
-                </div>
+                <InfoCard 
+                  icon={User}
+                  title="Who"
+                  description="See which user made changes to shared items."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={FileEdit}
+                  title="What"
+                  description="View exactly what changed - location, status, or details."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Clock}
+                  title="When"
+                  description="Track timestamps for all changes to keep a complete history."
+                  variant="highlight"
+                />
               </div>
             </div>
 
             {/* AI-Assisted Features */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Bot size={24} /> AI-Assisted Item Descriptions
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Let AI do the heavy lifting. Our intelligent assistant analyzes your photos and existing item
-                properties to automatically generate detailed descriptions, suggest tags, and recommend organization
-                strategies. Less typing, more organizing.
-              </p>
-              <div style={{
-                backgroundColor: 'rgba(38, 194, 129, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '10px',
-                border: '1px solid rgba(38, 194, 129, 0.3)',
-                marginBottom: '2rem'
-              }}>
-                <h4 style={{ marginBottom: '1rem', color: '#fcd900' }}>AI Powers:</h4>
-                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#e0e0e0' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Automatic item descriptions from photos</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Smart tag suggestions based on item properties</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Organization recommendations for better findability</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Learn from your organization patterns over time</li>
-                </ul>
-              </div>
+            <div className="mb-24">
+              <SectionHeader 
+                title="AI-Assisted Organization" 
+                subtitle="Let AI do the heavy lifting. Our intelligent assistant analyzes your photos and existing item properties to automatically generate detailed descriptions."
+                align="left"
+              />
+              <InfoCard 
+                icon={Bot}
+                title="AI Powers"
+                description="Automatic item descriptions from photos. Smart tag suggestions based on item properties. Organization recommendations for better findability. Learns from your organization patterns over time."
+                variant="success"
+              />
             </div>
 
             {/* Cloud Sync */}
-            <div className="product">
-              <div className="product-header">
-                <div className="product-info">
-                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Cloud size={24} /> Cloud Sync Across All Your Devices
-                  </h3>
-                </div>
-              </div>
-              <p className="description">
-                Access your inventory anywhere, anytime. All your data automatically syncs across your phone, tablet,
-                and web browser in real-time. Start organizing on your iPhone and finish on your iPad—it all just works.
-              </p>
+            <div className="mb-24">
+              <SectionHeader 
+                title="Cloud Sync Everywhere" 
+                subtitle="Access your inventory anywhere, anytime. All your data automatically syncs across your phone, tablet, and web browser in real-time."
+                align="left"
+              />
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
               }}>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <RefreshCw size={18} /> Real-Time Sync:
-                  </strong> Changes appear instantly on all devices
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Smartphone size={18} /> Cross-Platform:
-                  </strong> iOS, Android, and web all in sync
-                </div>
-                <div style={{
-                  padding: '1rem',
-                  backgroundColor: 'rgba(252, 217, 0, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(252, 217, 0, 0.3)'
-                }}>
-                  <strong style={{ color: '#fcd900', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Lock size={18} /> Secure Backup:
-                  </strong> Your data is safely backed up in the cloud
-                </div>
+                <InfoCard 
+                  icon={RefreshCw}
+                  title="Real-Time Sync"
+                  description="Changes appear instantly on all devices."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Smartphone}
+                  title="Cross-Platform"
+                  description="iOS, Android, and web all in sync."
+                  variant="highlight"
+                />
+                <InfoCard 
+                  icon={Cloud}
+                  title="Secure Backup"
+                  description="Your data is safely backed up in the cloud."
+                  variant="highlight"
+                />
               </div>
             </div>
 
