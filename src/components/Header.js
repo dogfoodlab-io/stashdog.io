@@ -42,7 +42,7 @@ const Header = () => {
         <div className="container">
           <nav className="header">
             {/* Logo Section */}
-            <Link to="/" className="header-link" style={{ marginRight: 'auto' }}>
+            <Link to="/" className="header-link">
               <img
                 className="header-logo"
                 src="/round-logo-goggles.png"
@@ -56,8 +56,8 @@ const Header = () => {
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
               <Link to="/blog" className="nav-link">Blog</Link>
-              <Link to="/download" className="cta-button" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                Download App
+              <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
+                Get The App
               </Link>
             </div>
 
