@@ -149,29 +149,35 @@ const SolutionsPage = () => {
 
         {/* Hero Section */}
         <section className="stashdog-hero">
-          <div className="container features-hero-grid">
-            <div className="features-hero-illustration" aria-hidden="true">
+          <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
+            <h1 className="hero-title">Never Think About Where to Put Something Ever Again</h1>
+            <div style={{ 
+              maxWidth: '900px', 
+              margin: '0 auto',
+              borderRadius: '24px',
+              overflow: 'hidden'
+            }}>
               <img
                 src="/solutions-hero.png"
                 alt=""
-                className="feature-image"
-                style={{ width: '100%', maxWidth: '720px', height: 'auto' }}
+                style={{ 
+                  width: '100%', 
+                  height: 'auto',
+                  display: 'block'
+                }}
               />
             </div>
-
-            <div className="features-hero-content">
-              <h1 className="hero-title">Never Think About Where to Put Something Ever Again</h1>
-              <p className="hero-description">
-                Stop organizing. Start living. StashDog eliminates the mental
-                overhead of traditional organization by making your stuff findable
-                no matter where you put it.
-              </p>
-              <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-                <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                  Explore StashDog's powerful features →
-                </Link>
-              </p>
-            </div>
+            <br/><br/>
+            <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+              Stop organizing. Start living. StashDog eliminates the mental
+              overhead of traditional organization by making your stuff findable
+              no matter where you put it.
+            </p>
+            <p style={{ marginTop: '-2rem', marginBottom: '3rem', fontSize: '1.1rem' }}>
+              <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                Explore StashDog's powerful features →
+              </Link>
+            </p>
           </div>
         </section>
         {/* Core Principles Section */}
