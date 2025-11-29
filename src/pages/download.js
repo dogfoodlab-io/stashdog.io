@@ -70,7 +70,7 @@ const DownloadPage = () => {
                 overflow: 'hidden'
               }}>
                 <img
-                  src="/download-hero.png"
+                  src="/images/download-hero.png"
                   alt=""
                   style={{
                     width: '100%',

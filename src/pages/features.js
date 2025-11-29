@@ -79,7 +79,7 @@ const FeaturesPage = () => {
               overflow: 'hidden'
             }}>
               <img
-                src="/features-hero.png"
+                src="/images/features-hero.png"
                 alt=""
                 style={{
                   width: '100%',

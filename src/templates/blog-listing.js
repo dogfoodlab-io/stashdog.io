@@ -410,7 +410,7 @@ const BlogPage = ({ location, pageContext }) => {
                   overflow: 'hidden'
                 }}>
                   <img
-                    src="/blogs-hero.png"
+                    src="/images/blogs-hero.png"
                     alt=""
                     style={{
                       width: '100%',

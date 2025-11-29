@@ -158,7 +158,7 @@ const SolutionsPage = () => {
               overflow: 'hidden'
             }}>
               <img
-                src="/solutions-hero.png"
+                src="/images/solutions-hero.png"
                 alt=""
                 style={{
                   width: '100%',
