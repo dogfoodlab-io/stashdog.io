@@ -822,6 +822,31 @@ section {
   }
 }
 
+/* Download Badges */
+.download-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.download-badge-link {
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.download-badge-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.download-badge {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
 /* Responsive Pricing */
 @media (max-width: 768px) {
   .pricing-card {
@@ -837,5 +862,9 @@ section {
     right: 1rem;
     font-size: 0.75rem;
     padding: 0.4rem 0.8rem;
+  }
+
+  .download-badge {
+    height: 50px;
   }
 }
