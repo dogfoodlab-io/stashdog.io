@@ -6,6 +6,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
+import "../styles/blog.css"
 
 const IS_DEV_MODE = typeof process !== "undefined" && process.env.NODE_ENV.startsWith("dev")
 
@@ -395,163 +396,190 @@ const BlogPage = ({ location, pageContext }) => {
         </Helmet>
 
         <Header />
-        
+
         <main className="blog-page">
           <div className="container">
-            <div className="blog-header">
-              <h1>StashDog Blog</h1>
-              <p>Tips, tricks, and insights to help you get organized and find your stuff.</p>
-              <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-                <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                  View Solutions →
-                </a>
-              </p>
-            </div>
-
-            {IS_DEV_MODE && (
-            <section className="blog-filter-panel" aria-label="Filter blog posts">
-              <div className="blog-filter-row">
-                <div className="blog-filter-search">
-                  <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
-                  <div className="blog-filter-search-input">
-                    <input
-                      id="blog-search"
-                      type="search"
-                      value={searchQuery}
-                      onChange={handleSearchChange}
-                      placeholder="Search by chaos trigger, feature, or goal..."
-                      aria-label="Search blog posts"
-                    />
-                    {searchQuery && (
-                      <button
-                        type="button"
-                        className="blog-filter-clear-button"
-                        onClick={handleSearchClear}
-                        aria-label="Clear search"
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-                  <p className="blog-filter-hint">Try “garage organization”, “AI inventory”, or “moving checklist”.</p>
+            {/* Hero Section matching Solutions page */}
+            <section className="stashdog-hero">
+              <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
+                <h1 className="hero-title">StashDog Blog</h1>
+                <div style={{
+                  maxWidth: '900px',
+                  margin: '0 auto',
+                  borderRadius: '24px',
+                  overflow: 'hidden'
+                }}>
+                  <img
+                    src="/blogs-hero.png"
+                    alt=""
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block'
+                    }}
+                  />
                 </div>
-
-                <div className="blog-quick-filters" aria-label="Curated quick filters">
-                  <span className="blog-quick-filters-title">Quick paths</span>
-                  <div className="blog-quick-filters-grid">
-                    {QUICK_FILTERS.map((filter) => {
-                      const isActive = appliedQuickFilter === filter.id
-                      return (
-                        <button
-                          key={filter.id}
-                          type="button"
-                          className={`blog-quick-filter${isActive ? ' active' : ''}`}
-                          onClick={() => handleQuickFilterClick(filter)}
-                          aria-pressed={isActive}
-                        >
-                          <span className="blog-quick-filter-label">{filter.label}</span>
-                          <span className="blog-quick-filter-description">{filter.description}</span>
-                        </button>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <div className="blog-active-filters" aria-live="polite">
-                {hasActiveFilters ? (
-                  <>
-                    <span className="blog-active-filters-title">Active filters:</span>
-                    {(activeFilterPayload.tags || []).map((tag) => (
-                      <span key={tag} className="blog-active-filter-chip">
-                        {TAG_LABEL_LOOKUP[tag] || tag}
-                        <button
-                          type="button"
-                          className="blog-active-filter-remove"
-                          onClick={() => removeTag(tag)}
-                          aria-label={`Remove ${TAG_LABEL_LOOKUP[tag] || tag} filter`}
-                        >
-                          ✕
-                        </button>
-                      </span>
-                    ))}
-                    {activeFilterPayload.searchQuery && (
-                      <span className="blog-active-filter-chip">
-                        Search: “{activeFilterPayload.searchQuery}”
-                        <button
-                          type="button"
-                          className="blog-active-filter-remove"
-                          onClick={handleSearchClear}
-                          aria-label="Clear search filter"
-                        >
-                          ✕
-                        </button>
-                      </span>
-                    )}
-                    <button type="button" className="blog-filter-clear-all" onClick={clearFilters}>
-                      Clear all
-                    </button>
-                  </>
-                ) : (
-                  <p className="blog-active-filters-empty">Use the filters to surface the smartest content for your situation.</p>
-                )}
-              </div>
-
-              <div className="blog-filter-groups">
-                {TAG_GROUPS.map((group) => (
-                  <section key={group.key} className="blog-filter-group">
-                    <div className="blog-filter-group-header">
-                      <h3>{group.title}</h3>
-                      <p>{group.description}</p>
-                    </div>
-                    <div className="blog-filter-options">
-                      {group.tags.map((tag) => {
-                        const isSelected = selectedTags.includes(tag.value)
-                        return (
-                          <button
-                            key={tag.value}
-                            type="button"
-                            className={`blog-filter-tag${isSelected ? ' active' : ''}`}
-                            onClick={() => toggleTag(tag.value)}
-                            aria-pressed={isSelected}
-                          >
-                            {tag.label}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </section>
-                ))}
+                <br /><br />
+                <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+                  Tips, tricks, and insights to help you get organized and find your stuff.
+                </p>
+                <p style={{ marginTop: '-2rem', marginBottom: '3rem', fontSize: '1.1rem' }}>
+                  <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
+                    View Solutions →
+                  </a>
+                </p>
               </div>
             </section>
-            )}
 
-            <div className="blog-results-meta">
-              <span className="blog-results-count">
-                {filteredBlogPosts.length > 0
-                  ? `Showing ${filteredBlogPosts.length} ${filteredBlogPosts.length === 1 ? 'article' : 'articles'}`
-                  : 'No articles found'}
-              </span>
-              {hasActiveFilters && filterSummary && (
-                <span className="blog-results-filters">
-                  Filtering by {filterSummary}
-                </span>
-              )}
+            <div className="blog-layout">
+              <aside className="blog-sidebar">
+
+                <section className="blog-filter-panel" aria-label="Filter blog posts">
+                  <div className="blog-filter-row">
+                    <div className="blog-filter-search">
+                      <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
+                      <div className="blog-filter-search-input">
+                        <input
+                          id="blog-search"
+                          type="search"
+                          value={searchQuery}
+                          onChange={handleSearchChange}
+                          placeholder="Search by chaos trigger, feature, or goal..."
+                          aria-label="Search blog posts"
+                        />
+                        {searchQuery && (
+                          <button
+                            type="button"
+                            className="blog-filter-clear-button"
+                            onClick={handleSearchClear}
+                            aria-label="Clear search"
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+                      <p className="blog-filter-hint">Try “garage organization”, “AI inventory”, or “moving checklist”.</p>
+                    </div>
+
+                    <div className="blog-quick-filters" aria-label="Curated quick filters">
+                      <span className="blog-quick-filters-title">Quick paths</span>
+                      <div className="blog-quick-filters-grid">
+                        {QUICK_FILTERS.map((filter) => {
+                          const isActive = appliedQuickFilter === filter.id
+                          return (
+                            <button
+                              key={filter.id}
+                              type="button"
+                              className={`blog-quick-filter${isActive ? ' active' : ''}`}
+                              onClick={() => handleQuickFilterClick(filter)}
+                              aria-pressed={isActive}
+                            >
+                              <span className="blog-quick-filter-label">{filter.label}</span>
+                              <span className="blog-quick-filter-description">{filter.description}</span>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="blog-active-filters" aria-live="polite">
+                    {hasActiveFilters ? (
+                      <>
+                        <span className="blog-active-filters-title">Active filters:</span>
+                        {(activeFilterPayload.tags || []).map((tag) => (
+                          <span key={tag} className="blog-active-filter-chip">
+                            {TAG_LABEL_LOOKUP[tag] || tag}
+                            <button
+                              type="button"
+                              className="blog-active-filter-remove"
+                              onClick={() => removeTag(tag)}
+                              aria-label={`Remove ${TAG_LABEL_LOOKUP[tag] || tag} filter`}
+                            >
+                              ✕
+                            </button>
+                          </span>
+                        ))}
+                        {activeFilterPayload.searchQuery && (
+                          <span className="blog-active-filter-chip">
+                            Search: “{activeFilterPayload.searchQuery}”
+                            <button
+                              type="button"
+                              className="blog-active-filter-remove"
+                              onClick={handleSearchClear}
+                              aria-label="Clear search filter"
+                            >
+                              ✕
+                            </button>
+                          </span>
+                        )}
+                        <button type="button" className="blog-filter-clear-all" onClick={clearFilters}>
+                          Clear all
+                        </button>
+                      </>
+                    ) : (
+                      <p className="blog-active-filters-empty">Use the filters to surface the smartest content for your situation.</p>
+                    )}
+                  </div>
+
+                  <div className="blog-filter-groups">
+                    {TAG_GROUPS.map((group) => (
+                      <section key={group.key} className="blog-filter-group">
+                        <div className="blog-filter-group-header">
+                          <h3>{group.title}</h3>
+                          <p>{group.description}</p>
+                        </div>
+                        <div className="blog-filter-options">
+                          {group.tags.map((tag) => {
+                            const isSelected = selectedTags.includes(tag.value)
+                            return (
+                              <button
+                                key={tag.value}
+                                type="button"
+                                className={`blog-filter-tag${isSelected ? ' active' : ''}`}
+                                onClick={() => toggleTag(tag.value)}
+                                aria-pressed={isSelected}
+                              >
+                                {tag.label}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                </section>
+              </aside>
+
+              <div className="blog-content">
+                <div className="blog-results-meta">
+                  <span className="blog-results-count">
+                    {filteredBlogPosts.length > 0
+                      ? `Showing ${filteredBlogPosts.length} ${filteredBlogPosts.length === 1 ? 'article' : 'articles'}`
+                      : 'No articles found'}
+                  </span>
+                  {hasActiveFilters && filterSummary && (
+                    <span className="blog-results-filters">
+                      Filtering by {filterSummary}
+                    </span>
+                  )}
+                </div>
+
+                {filteredBlogPosts.length === 0 && (
+                  <div className="blog-empty">
+                    <p>No articles match this combo yet. Try clearing a filter or explore another quick path.</p>
+                  </div>
+                )}
+
+                {filteredBlogPosts.length > 0 && (
+                  <div className="blog-grid">
+                    {filteredBlogPosts.map((post) => (
+                      <BlogCard key={post.id} post={post} />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-
-            {filteredBlogPosts.length === 0 && (
-              <div className="blog-empty">
-                <p>No articles match this combo yet. Try clearing a filter or explore another quick path.</p>
-              </div>
-            )}
-
-            {filteredBlogPosts.length > 0 && (
-              <div className="blog-grid">
-                {filteredBlogPosts.map((post) => (
-                  <BlogCard key={post.id} post={post} />
-                ))}
-              </div>
-            )}
           </div>
         </main>
 

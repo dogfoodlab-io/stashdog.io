@@ -151,29 +151,28 @@ const SolutionsPage = () => {
         <section className="stashdog-hero">
           <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
             <h1 className="hero-title">Never Think About Where to Put Something Ever Again</h1>
-            <div style={{ 
-              maxWidth: '900px', 
-              margin: '0 auto',
+            <div style={{
+              maxWidth: '900px',
+              margin: '3rem auto',
               borderRadius: '24px',
               overflow: 'hidden'
             }}>
               <img
                 src="/solutions-hero.png"
                 alt=""
-                style={{ 
-                  width: '100%', 
+                style={{
+                  width: '100%',
                   height: 'auto',
                   display: 'block'
                 }}
               />
             </div>
-            <br/><br/>
-            <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+            <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '3rem auto' }}>
               Stop organizing. Start living. StashDog eliminates the mental
               overhead of traditional organization by making your stuff findable
               no matter where you put it.
             </p>
-            <p style={{ marginTop: '-2rem', marginBottom: '3rem', fontSize: '1.1rem' }}>
+            <p style={{ marginBottom: '4rem', fontSize: '1.1rem' }}>
               <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline' }}>
                 Explore StashDog's powerful features →
               </Link>
@@ -190,8 +189,8 @@ const SolutionsPage = () => {
           }}
         >
           <div className="container">
-            <SectionHeader 
-              title="The StashDog Philosophy" 
+            <SectionHeader
+              title="The StashDog Philosophy"
               subtitle="Three principles that make organization sustainable for humans who have better things to do"
             />
 
@@ -314,15 +313,15 @@ const SolutionsPage = () => {
         {/* Solutions Section */}
         <section className="products">
           <div className="container">
-            <SectionHeader 
-              title="Real Solutions for Real Disasters" 
+            <SectionHeader
+              title="Real Solutions for Real Disasters"
               subtitle="Each solution transforms exhausting physical problems into simple information lookups. Put things anywhere - we'll help you find them everywhere."
             />
 
             {/* Getting Started Solution */}
             <div id="general" className="mb-24">
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Brain}
                   title="The Mental Load"
                   description="Your ADHD is overpowering your OCD and it's exhausting. Every time you put something away, you have to think about where it should go. That's hundreds of micro-decisions draining your brain every single day."
@@ -331,7 +330,7 @@ const SolutionsPage = () => {
                   <div className="mt-4 text-sm text-gray-400 uppercase tracking-wider font-bold">The Problem</div>
                 </InfoCard>
 
-                <InfoCard 
+                <InfoCard
                   icon={Target}
                   title="The Zero-System System"
                   description="No categories to remember, no systems to maintain. Just put stuff away and trust that you can find it later."
@@ -354,21 +353,21 @@ const SolutionsPage = () => {
 
             {/* Moving Solution */}
             <div id="moving" className="mb-24">
-              <SectionHeader 
-                title="Moving Without the Breakdown" 
+              <SectionHeader
+                title="Moving Without the Breakdown"
                 subtitle="Life Transition Solution"
                 align="left"
                 className="mb-8"
               />
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Package}
                   title="The Moving Nightmare"
                   description="You have to remember what's in every box, where each box should go, and what you need to unpack first. Your brain becomes a filing cabinet you can't trust."
                   variant="warning"
                 />
 
-                <InfoCard 
+                <InfoCard
                   icon={Target}
                   title="Move Like a Genius"
                   description="No box labeling strategies, no room planning, no unpacking schedules. Just pack, move, and find what you need when you need it."
@@ -391,21 +390,21 @@ const SolutionsPage = () => {
 
             {/* Family Chaos Solution */}
             <div id="family" className="mb-24">
-              <SectionHeader 
-                title="Family Coordination" 
+              <SectionHeader
+                title="Family Coordination"
                 subtitle="Household Management Solution"
                 align="left"
                 className="mb-8"
               />
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Users}
                   title="The Family Feud"
                   description="You have to remember where everyone puts everything, teach family members your system, and coordinate who's responsible for what. It's like being the household's Google."
                   variant="warning"
                 />
 
-                <InfoCard 
+                <InfoCard
                   icon={Home}
                   title="Harmony Restored"
                   description="No family organization training, no systems to maintain, no one person keeping track of everything. Chaos that just works."
@@ -428,21 +427,21 @@ const SolutionsPage = () => {
 
             {/* Roommate Solution */}
             <div id="roommates" className="mb-24">
-              <SectionHeader 
-                title="Shared Living" 
+              <SectionHeader
+                title="Shared Living"
                 subtitle="Collaborative Organization Solution"
                 align="left"
                 className="mb-8"
               />
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Home}
                   title="Roommate Politics"
                   description="Remembering what belongs to whom, coordinating shared items, and navigating different styles. Plus the constant 'who took my...' investigations."
                   variant="warning"
                 />
 
-                <InfoCard 
+                <InfoCard
                   icon={Users}
                   title="Share Without Stress"
                   description="No shared organization rules, no house meetings about storage, no one person managing everyone else's stuff."
@@ -465,21 +464,21 @@ const SolutionsPage = () => {
 
             {/* Collector Solution */}
             <div id="collectors" className="mb-24">
-              <SectionHeader 
-                title="Collecting Without Cataloging" 
+              <SectionHeader
+                title="Collecting Without Cataloging"
                 subtitle="Hobby & Collection Solution"
                 align="left"
                 className="mb-8"
               />
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Target}
                   title="The Collector's Burden"
                   description="Remembering what you own, where you stored it, condition, and cost. Your collection becomes a memory test instead of a joy."
                   variant="warning"
                 />
 
-                <InfoCard 
+                <InfoCard
                   icon={Package}
                   title="Collect Like a Pro"
                   description="No spreadsheets to maintain, no database management, no constant value research. Just collect and enjoy."
@@ -502,21 +501,21 @@ const SolutionsPage = () => {
 
             {/* Emergency Prep Solution */}
             <div className="mb-24">
-              <SectionHeader 
-                title="Emergency Preparedness" 
+              <SectionHeader
+                title="Emergency Preparedness"
                 subtitle="Crisis Management Solution"
                 align="left"
                 className="mb-8"
               />
               <div className="grid md:grid-cols-2 gap-8">
-                <InfoCard 
+                <InfoCard
                   icon={Siren}
                   title="The Panic Factor"
                   description="In an emergency, you can't remember where the batteries, first aid kit, or important documents are. Panic makes you forget everything."
                   variant="warning"
                 />
 
-                <InfoCard 
+                <InfoCard
                   icon={Shield}
                   title="Ready for Anything"
                   description="Instant access to critical items when seconds count. Know exactly where your emergency supplies are without searching."

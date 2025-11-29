@@ -60,17 +60,29 @@ const DownloadPage = () => {
         </Helmet>
         <Header />
         <main className="download-page">
-          <section className="download-hero">
-            <div className="container">
-              <div style={{ display: 'flex', justifyContent: 'center', margin: '0rem 2rem'}}>
+          <section className="stashdog-hero">
+            <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
+              <h1 className="hero-title">Download StashDog</h1>
+              <div style={{
+                maxWidth: '900px',
+                margin: '0 auto',
+                borderRadius: '24px',
+                overflow: 'hidden'
+              }}>
                 <img
-                  src="/lab1.png"
-                  alt="StashDog"
-                  style={{ maxWidth: '200px', height: 'auto' }}
+                  src="/download-hero.png"
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block'
+                  }}
                 />
               </div>
-              <h1>Download StashDog</h1>
-              <p>Stop living like a trash gremlin. Get organized now!</p>
+              <br /><br />
+              <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+                Stop living like a trash gremlin. Get organized now!
+              </p>
             </div>
           </section>
           <section className="download-options">

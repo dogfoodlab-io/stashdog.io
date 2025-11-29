@@ -72,15 +72,14 @@ const FeaturesPage = () => {
         <section className="stashdog-hero">
           <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
             <h1 className="hero-title">Combining Power and Simplicity to Get Your Shit Together</h1>
-            <br />
             <div style={{
               maxWidth: '900px',
-              margin: '0 auto',
+              margin: '3rem auto',
               borderRadius: '24px',
               overflow: 'hidden'
             }}>
               <img
-                src="/images/hero-features.png"
+                src="/features-hero.png"
                 alt=""
                 style={{
                   width: '100%',
@@ -89,12 +88,11 @@ const FeaturesPage = () => {
                 }}
               />
             </div>
-            <br/><br/>
 
-            <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+            <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '3rem auto' }}>
               Here's how StashDog actually helps real people with real messy lives.
             </p>
-            <p style={{ marginTop: '-2rem', marginBottom: '3rem', fontSize: '1.1rem' }}>
+            <p style={{ marginBottom: '4rem', fontSize: '1.1rem' }}>
               <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
                 See how StashDog solves your organization problems →
               </a>

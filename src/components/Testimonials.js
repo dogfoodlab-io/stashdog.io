@@ -5,7 +5,7 @@ import { useContentSwitcher } from "../hooks/useContentSwitcher"
 const TESTIMONIALS_DATA = [
   {
     id: 1,
-    name: "Sarah Jenkins",
+    name: "Sarah J",
     role: "Home Organizer",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     text: "The AI auto-fill saved me hours cataloging my collection. I just snapped photos and it did the rest. It's like having a professional organizer in my pocket.",
@@ -13,7 +13,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 2,
-    name: "Mike Chen",
+    name: "Mike C",
     role: "Outdoor Enthusiast",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
     text: "I found my camping gear in seconds. No more digging through boxes in the garage wondering where I put the tent stakes. StashDog is a lifesaver.",
@@ -21,7 +21,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 3,
-    name: "Emily Wilson",
+    name: "Emily W",
     role: "Busy Mom",
     image: "https://randomuser.me/api/portraits/women/68.jpg",
     text: "Finally, my garage makes sense. The QR codes are a game changer for storage bins. I can see what's inside without opening a single lid.",
@@ -29,7 +29,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 4,
-    name: "David Miller",
+    name: "David M",
     role: "Collector",
     image: "https://randomuser.me/api/portraits/men/86.jpg",
     text: "Having my inventory in my pocket is invaluable for insurance purposes. Peace of mind is worth it. Plus, it's actually fun to catalog things now.",
@@ -37,7 +37,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 5,
-    name: "Jessica Rodriguez",
+    name: "Jessica R",
     role: "Recent Mover",
     image: "https://randomuser.me/api/portraits/women/17.jpg",
     text: "StashDog is the best thing to happen to my moving process. I knew exactly what was in every box before we even loaded the truck.",
