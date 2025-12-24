@@ -3,8 +3,10 @@ import { marked } from 'marked'
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import { ChevronLeft, Calendar, Tag } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
+import "../styles/blog.css"
 
 // Lazy import DOMPurify to avoid SSR issues
 let DOMPurify
@@ -122,13 +124,16 @@ const BlogPostTemplate = ({ pageContext }) => {
             <article className="blog-post">
               <header className="blog-post-header">
                 <a href="/blog" className="back-to-blog">
-                  ← Back to Blog
+                  <ChevronLeft size={16} /> Back to Blog
                 </a>
                 <h1 className="blog-post-title">{post.title}</h1>
                 <div className="blog-post-meta">
-                  <time className="blog-post-date">
-                    {formatDate(post.createdAt)}
-                  </time>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Calendar size={16} />
+                    <time className="blog-post-date">
+                      {formatDate(post.createdAt)}
+                    </time>
+                  </div>
                 </div>
               </header>
 
@@ -157,6 +162,10 @@ const BlogPostTemplate = ({ pageContext }) => {
               {/* Tags at the bottom */}
               {post.tags && post.tags.length > 0 && (
                 <div className="blog-post-tags blog-post-tags-bottom" aria-label="Post tags">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-muted)', marginBottom: '1rem', width: '100%' }}>
+                    <Tag size={16} />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tagged under</span>
+                  </div>
                   {post.tags.map((tag, index) => (
                     <a key={index} href={`/blog?tag=${encodeURIComponent(tag)}`} className="blog-post-tag">
                       {tag}
