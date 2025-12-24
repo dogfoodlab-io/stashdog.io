@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
+import { X } from "lucide-react"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -22,7 +23,7 @@ const Header = () => {
     } else {
       document.body.style.overflow = 'unset'
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset'
     }
@@ -50,20 +51,20 @@ const Header = () => {
               />
               <div className="header-text">StashDog</div>
             </Link>
-            
+
             {/* Desktop Navigation */}
             <div className="nav-links desktop-nav">
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
               <Link to="/pricing" className="nav-link">Pricing</Link>
               <Link to="/blog" className="nav-link">Blog</Link>
-              <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
-                Get The App
+              <Link to="/waitlist" className="cta-button" style={{ textDecoration: 'none' }}>
+                Early Access
               </Link>
             </div>
 
             {/* Mobile Hamburger Button */}
-            <button 
+            <button
               className="mobile-menu-button"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
@@ -78,7 +79,7 @@ const Header = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div 
+      <div
         className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}
         onClick={closeMobileMenu}
         onKeyDown={(e) => e.key === 'Escape' && closeMobileMenu()}
@@ -121,13 +122,13 @@ const Header = () => {
             />
             <span style={{ fontFamily: 'Chewy', fontSize: '1.5rem', color: 'var(--color-primary)' }}>StashDog</span>
           </Link>
-          <button 
+          <button
             className="mobile-menu-close"
             onClick={closeMobileMenu}
             aria-label="Close menu"
-            style={{ background: 'none', border: 'none', color: 'white', fontSize: '2rem', cursor: 'pointer' }}
+            style={{ background: 'none', border: 'none', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
           >
-            ✕
+            <X size={24} />
           </button>
         </div>
         <nav className="mobile-menu-nav" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -143,8 +144,8 @@ const Header = () => {
           <Link to="/blog" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
             Blog
           </Link>
-          <Link to="/download" className="cta-button" onClick={closeMobileMenu} style={{ textAlign: 'center', marginTop: '1rem' }}>
-            Download App
+          <Link to="/waitlist" className="cta-button" onClick={closeMobileMenu} style={{ textAlign: 'center', marginTop: '1rem' }}>
+            Early Access
           </Link>
         </nav>
       </div>

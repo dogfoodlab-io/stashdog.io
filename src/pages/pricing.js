@@ -42,7 +42,7 @@ const PricingPage = () => {
           <meta name="keywords" content="home inventory pricing, organization app cost, free inventory app, StashDog pricing, inventory management subscription" />
           <link rel="canonical" href="https://stashdog.io/pricing/" />
           <meta name="robots" content="index, follow" />
-          
+
           {/* Open Graph */}
           <meta property="og:title" content="StashDog Pricing - Start Free" />
           <meta property="og:description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items and AI-powered features for just $4.99/month." />
@@ -61,18 +61,18 @@ const PricingPage = () => {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gabarito:wght@400..900&display=swap" rel="stylesheet" />
         </Helmet>
-        
+
         <Header />
-        
+
         {/* Hero Section */}
         <section className="stashdog-hero">
           <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
             <h1 className="hero-title">Simple Pricing, Powerful Features</h1>
             <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
-              Start free and upgrade when you need more. No hidden fees, no complicated tiers.
+              <strong>Early Access Pricing:</strong> Special introductory pricing for our first 10,000 users.
             </p>
-            <div style={{ 
-              maxWidth: '900px', 
+            <div style={{
+              maxWidth: '900px',
               margin: '0 auto',
               borderRadius: '24px',
               overflow: 'hidden'
@@ -80,8 +80,8 @@ const PricingPage = () => {
               <img
                 src="/images/hero-pricing.png"
                 alt="Pricing comparison illustration"
-                style={{ 
-                  width: '100%', 
+                style={{
+                  width: '100%',
                   height: 'auto',
                   display: 'block'
                 }}
@@ -100,7 +100,7 @@ const PricingPage = () => {
               maxWidth: '1000px',
               margin: '0 auto'
             }}>
-              
+
               {/* Free Tier */}
               <div className="pricing-card">
                 <div className="pricing-card-header">
@@ -154,14 +154,15 @@ const PricingPage = () => {
               <div className="pricing-card pricing-card-featured">
                 <div className="pricing-card-badge">
                   <Sparkles size={16} />
-                  <span>Most Popular</span>
+                  <span>Early Adopter Special</span>
                 </div>
-                
+
                 <div className="pricing-card-header">
                   <h3 className="pricing-card-title">StashDog Plus</h3>
                   <div className="pricing-card-price">
                     <span className="price-amount">$4.99</span>
                     <span className="price-period">/month</span>
+                    <div style={{ fontSize: '0.8rem', color: '#fcd900', marginTop: '0.25rem' }}>Early Access Price (Reg. $9.99)</div>
                   </div>
                   <p className="pricing-card-description">
                     AI-powered inventory intelligence for power users
@@ -224,7 +225,7 @@ const PricingPage = () => {
         <section className="products">
           <div className="container" style={{ maxWidth: '800px' }}>
             <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>Frequently Asked Questions</h2>
-            
+
             <div className="faq-item" style={{ marginBottom: '2rem' }}>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Can I try Plus features before upgrading?</h3>
               <p style={{ color: 'var(--text-muted)' }}>
@@ -250,6 +251,13 @@ const PricingPage = () => {
               <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>What's the 20GB soft limit for photos?</h3>
               <p style={{ color: 'var(--text-muted)' }}>
                 Plus members get unlimited photos with a 20GB soft limit. If you need more storage, just reach out and we'll work with you to expand your limit based on your needs.
+              </p>
+            </div>
+
+            <div className="faq-item" style={{ marginBottom: '2rem' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>What is the Early Access Pricing?</h3>
+              <p style={{ color: 'var(--text-muted)' }}>
+                Our current pricing of $4.99/mo is a special offer exclusive to our first 10,000 users. Pricing will increase for future users, so join now to take advantage of this special rate.
               </p>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { ChevronDown, Check } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 
 const OnboardingPreview = () => {
@@ -57,8 +58,8 @@ const OnboardingPreview = () => {
                 </div>
                 <div className="step-right">
                   <div className="expand-indicator">
-                    <span className={`arrow ${activeStep === step.number ? 'expanded' : ''}`}>
-                      ↓
+                    <span className={`arrow ${activeStep === step.number ? 'expanded' : ''}`} style={{ display: 'flex', transition: 'transform 0.3s ease', transform: activeStep === step.number ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                      <ChevronDown size={20} />
                     </span>
                   </div>
                 </div>
@@ -71,7 +72,9 @@ const OnboardingPreview = () => {
                     <ul className="details-list">
                       {step.details.map((detail, index) => (
                         <li key={index} className="detail-item">
-                          <span className="detail-check">✓</span>
+                          <span className="detail-check">
+                            <Check size={14} />
+                          </span>
                           {detail}
                         </li>
                       ))}

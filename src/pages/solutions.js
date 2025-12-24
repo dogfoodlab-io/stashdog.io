@@ -9,7 +9,7 @@ import InfoCard from "../components/InfoCard";
 import SectionHeader from "../components/SectionHeader";
 import { useFirebase } from "../hooks/useFirebase";
 import "../styles/global.css";
-import { Brain, Package, Users, Home, Target, Siren, Shield } from "lucide-react";
+import { Brain, Package, Users, Home, Target, Siren, Shield, ArrowRight } from "lucide-react";
 
 const SolutionsPage = () => {
   const { isInitialized, logEvent } = useFirebase();
@@ -173,8 +173,8 @@ const SolutionsPage = () => {
               no matter where you put it.
             </p>
             <p style={{ marginBottom: '4rem', fontSize: '1.1rem' }}>
-              <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                Explore StashDog's powerful features →
+              <Link to="/features" style={{ color: '#fcd900', textDecoration: 'underline', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                Explore StashDog's powerful features <ArrowRight size={16} />
               </Link>
             </p>
           </div>

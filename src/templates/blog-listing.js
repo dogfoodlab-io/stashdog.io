@@ -4,6 +4,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async"
 import BlogCard from "../components/BlogCard"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import { Search, X, ArrowRight } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 import "../styles/blog.css"
@@ -424,8 +425,8 @@ const BlogPage = ({ location, pageContext }) => {
                   Tips, tricks, and insights to help you get organized and find your stuff.
                 </p>
                 <p style={{ marginTop: '-2rem', marginBottom: '3rem', fontSize: '1.1rem' }}>
-                  <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                    View Solutions →
+                  <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                    View Solutions <ArrowRight size={16} />
                   </a>
                 </p>
               </div>
@@ -439,6 +440,9 @@ const BlogPage = ({ location, pageContext }) => {
                     <div className="blog-filter-search">
                       <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
                       <div className="blog-filter-search-input">
+                        <div style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5, display: 'flex' }}>
+                          <Search size={16} />
+                        </div>
                         <input
                           id="blog-search"
                           type="search"
@@ -453,8 +457,9 @@ const BlogPage = ({ location, pageContext }) => {
                             className="blog-filter-clear-button"
                             onClick={handleSearchClear}
                             aria-label="Clear search"
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                           >
-                            ✕
+                            <X size={16} />
                           </button>
                         )}
                       </div>
@@ -496,7 +501,7 @@ const BlogPage = ({ location, pageContext }) => {
                               onClick={() => removeTag(tag)}
                               aria-label={`Remove ${TAG_LABEL_LOOKUP[tag] || tag} filter`}
                             >
-                              ✕
+                              <X size={12} />
                             </button>
                           </span>
                         ))}
@@ -509,7 +514,7 @@ const BlogPage = ({ location, pageContext }) => {
                               onClick={handleSearchClear}
                               aria-label="Clear search filter"
                             >
-                              ✕
+                              <X size={12} />
                             </button>
                           </span>
                         )}

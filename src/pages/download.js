@@ -88,23 +88,46 @@ const DownloadPage = () => {
           <section className="download-options">
             <div className="container">
               <div className="download-buttons">
-                <AppStoreButton onClick={handleDownloadClick} />
-                <GooglePlayButton onClick={handleDownloadClick} />
+                <h3>Stable Release</h3>
+                <p style={{ marginBottom: '1rem', color: 'var(--text-muted)' }}>Get the current version on the App Store</p>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '3rem' }}>
+                  <AppStoreButton onClick={handleDownloadClick} />
+                  <GooglePlayButton onClick={handleDownloadClick} />
+                </div>
+
+                <div style={{
+                  background: 'rgba(252, 217, 0, 0.1)',
+                  padding: '2rem',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(252, 217, 0, 0.2)'
+                }}>
+                  <h3 style={{ color: '#fcd900' }}>Want the Newest Features?</h3>
+                  <p style={{ marginBottom: '1.5rem', marginTop: '0.5rem' }}>
+                    Join the Early Access Program to try out cutting-edge AI features before anyone else.
+                  </p>
+                  <a href="/waitlist" className="cta-button" style={{
+                    display: 'inline-block',
+                    textDecoration: 'none',
+                    padding: '0.75rem 2rem'
+                  }}>
+                    Join Early Access
+                  </a>
+                </div>
               </div>
               {/* <div className="download-info">
                 <h2>Finally Get Your Shit Together</h2>
                 <p>StashDog helps you organize your crap and find your stuff when you need it. No more living like a disaster!</p>
                 <div className="download-features">
                   <div className="feature-item">
-                    <h3>🎯 Find Your Stuff Instantly</h3>
+                    <h3>Find Your Stuff Instantly</h3>
                     <p>Stop digging through piles of junk like a raccoon</p>
                   </div>
                   <div className="feature-item">
-                    <h3>📦 Track Everything</h3>
+                    <h3>Track Everything</h3>
                     <p>Know exactly where you put that thing you need</p>
                   </div>
                   <div className="feature-item">
-                    <h3>🏠 Organize Your Space</h3>
+                    <h3>Organize Your Space</h3>
                     <p>Turn your chaos into something that makes sense</p>
                   </div>
                 </div>

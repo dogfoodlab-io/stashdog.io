@@ -3,7 +3,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async"
 import {
   Camera, Sparkles, Smartphone, Target, FolderOpen, Library, Tag, Package,
   Lock, Eye, PencilLine, Users, FileText, Receipt, Shield, BookOpen,
-  Bell, Wrench, Calendar, RefreshCw, BarChart, User, FileEdit, Clock, Bot, Cloud
+  Bell, Wrench, Calendar, RefreshCw, BarChart, User, FileEdit, Clock, Bot, Cloud,
+  ArrowRight
 } from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -93,8 +94,8 @@ const FeaturesPage = () => {
               Here's how StashDog actually helps real people with real messy lives.
             </p>
             <p style={{ marginBottom: '4rem', fontSize: '1.1rem' }}>
-              <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline' }}>
-                See how StashDog solves your organization problems →
+              <a href="/solutions" style={{ color: '#fcd900', textDecoration: 'underline', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                See how StashDog solves your organization problems <ArrowRight size={16} />
               </a>
             </p>
           </div>

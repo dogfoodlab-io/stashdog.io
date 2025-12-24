@@ -17,7 +17,7 @@ const IndexPage = () => {
   const { currentVariant } = useContentSwitcher();
 
   // Check if we should show content switcher controls (for development/testing)
-  const showControls = typeof window !== "undefined" && 
+  const showControls = typeof window !== "undefined" &&
     (window.location.search.includes('dev=true') || window.location.hostname === 'localhost');
 
   // Log page view when component mounts
@@ -42,11 +42,11 @@ const IndexPage = () => {
           <title>StashDog - Quit Living Like a Trash Gremlin</title>
           <meta
             name="description"
-            content="StashDog is the smart home inventory management app that helps families organize, track, and find their belongings instantly. Never lose your stuff again with AI-powered organization for moving, storage, and daily life."
+            content="StashDog is the smart home inventory management app that helps families organize, track, and find their belongings instantly. Never lose your stuff again with AI-powered organization for moving, storage, and daily life. Join the StashDog Early Access Program. Be the first to experience AI-powered home organization. Sign up now for exclusive early adopter benefits."
           />
           <meta
             name="keywords"
-            content="home inventory, organization, get organized, find your stuff, home management, stop losing shit"
+            content="home inventory, organization, early access, beta test, AI organization"
           />
           <link rel="canonical" href="https://stashdog.io/" />
           <meta name="robots" content="index, follow" />
@@ -178,7 +178,7 @@ const IndexPage = () => {
         <Testimonials />
         <FAQ />
         <Footer />
-        
+
         {<ContentSwitcherControls showControls={showControls} />}
       </div>
     </HelmetProvider>

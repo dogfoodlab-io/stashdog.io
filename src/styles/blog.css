@@ -82,16 +82,7 @@
   box-shadow: 0 0 0 4px rgba(252, 217, 0, 0.1);
 }
 
-.blog-filter-search-input::before {
-  content: '🔍';
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-  opacity: 0.5;
-  pointer-events: none;
-}
+/* .blog-filter-search-input::before removed in favor of Lucide icon in component */
 
 .blog-filter-clear-button {
   position: absolute;

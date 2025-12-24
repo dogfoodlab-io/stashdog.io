@@ -6,7 +6,7 @@ export const contentVariants = {
       title: "Quit Living Like a Trash Gremlin",
       description: "StashDog turns your home into a searchable database. Track any item you own so you can find it in seconds.",
       cta: {
-        buttonText: "Get Started →",
+        buttonText: "Join Early Access",
       }
     },
     discover: {
@@ -68,7 +68,7 @@ export const contentVariants = {
           description: "Find anything in seconds instead of hours of searching like a maniac"
         },
         {
-          title: "Reduce Stress", 
+          title: "Reduce Stress",
           description: "Never worry about losing important shit again"
         },
         {
@@ -89,7 +89,7 @@ export const contentVariants = {
       title: "Professional Home Inventory Management: Meet StashDog",
       description: "Transform your home organization with StashDog's intelligent inventory system. Designed for busy professionals who need efficient, reliable solutions to manage their belongings without the hassle.",
       cta: {
-        buttonText: "Get Started →",
+        buttonText: "Get Started",
       }
     },
     discover: {
@@ -150,7 +150,7 @@ export const contentVariants = {
           description: "Locate any item instantly with intelligent search and organization features"
         },
         {
-          title: "Reduce Stress", 
+          title: "Reduce Stress",
           description: "Eliminate the anxiety of misplaced items with comprehensive tracking"
         },
         {
@@ -171,7 +171,7 @@ export const contentVariants = {
       title: "Family-Friendly Home Organization: Welcome to StashDog",
       description: "Keep your family's belongings organized and easy to find! StashDog helps busy families track toys, clothes, school supplies, and everything in between, making home organization a fun family activity.",
       cta: {
-        buttonText: "Get Started →",
+        buttonText: "Get Started",
       }
     },
     discover: {
@@ -232,7 +232,7 @@ export const contentVariants = {
           description: "Spend more time together instead of searching for lost items"
         },
         {
-          title: "Reduce Stress", 
+          title: "Reduce Stress",
           description: "End the daily hunt for backpacks, shoes, and homework"
         },
         {
