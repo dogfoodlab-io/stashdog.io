@@ -1,18 +1,30 @@
 // API Client for StashDog
 
-const API_BASE_URL = process.env.GATSBY_API_BASE_URL || 'https://api.stashdog.io'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
+const getBaseUrl = () => {
+  if (process.env.GATSBY_SUPABASE_URL) {
+    return process.env.GATSBY_SUPABASE_URL.includes('/rest/v1')
+      ? process.env.GATSBY_SUPABASE_URL
+      : `${process.env.GATSBY_SUPABASE_URL}/rest/v1`
+  }
+  return typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:54321/rest/v1'
+    : 'https://api.stashdog.io'
+}
+
+const API_BASE_URL = getBaseUrl()
+const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
 
 /**
  * Generic API request handler
  */
 async function apiRequest(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`
-  
+
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'apikey': SUPABASE_ANON_KEY,
       ...(options.headers || {})
     },
   }
@@ -28,7 +40,7 @@ async function apiRequest(endpoint, options = {}) {
 
   try {
     const response = await fetch(url, requestOptions)
-    
+
     if (!response.ok) {
       const errorData = await response.text()
       throw new Error(`API request failed: ${response.status} ${response.statusText} - ${errorData}`)
@@ -39,7 +51,7 @@ async function apiRequest(endpoint, options = {}) {
     if (contentType && contentType.includes('application/json')) {
       return await response.json()
     }
-    
+
     return await response.text()
   } catch (error) {
     console.error('API request error:', error)
@@ -109,8 +121,8 @@ export async function getBlogPosts(filter = {}) {
       }
     }
   `
-  
-  return graphqlRequest(query, { 
+
+  return graphqlRequest(query, {
     filter: {
       // default to published unless explicitly overridden in dev-mode toggle
       published: typeof filter.published === 'boolean' ? filter.published : true,
@@ -143,7 +155,7 @@ export async function getBlogPost(slug) {
       }
     }
   `
-  
+
   return graphqlRequest(query, { slug })
 }
 

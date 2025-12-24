@@ -13,7 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: yarn ci
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+        env:
+          GATSBY_SITE_URL: ${{ secrets.GATSBY_SITE_URL }}
+          GATSBY_SUPABASE_URL: ${{ secrets.GATSBY_SUPABASE_URL }}
+          GATSBY_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_SUPABASE_ANON_KEY }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
