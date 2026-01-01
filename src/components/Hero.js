@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { ArrowRight, Star } from "lucide-react"
+import { ArrowRight, Star, Search, Camera, Brain, Wand, WandSparkles, Wand2, Sparkle } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
@@ -33,15 +33,15 @@ const Hero = () => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              background: 'rgba(252, 217, 0, 0.1)',
+              background: 'rgba(252, 217, 0, 0.06)',
               padding: '0.5rem 1rem',
               borderRadius: '99px',
               marginBottom: '1.5rem',
-              border: '1px solid rgba(252, 217, 0, 0.2)'
+              border: '1px solid rgba(252, 217, 0, 0.12)'
             }}>
               <Star size={16} fill="#fcd900" color="#fcd900" />
               <span style={{ color: '#fcd900', fontWeight: '600', fontSize: '0.9rem' }}>
-                #1 App for Messy Humans
+                Early Access Now Available
               </span>
             </div>
 
@@ -55,7 +55,7 @@ const Hero = () => {
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link
-                to="/download"
+                to="/waitlist"
                 className="cta-button"
                 onClick={() => handleCTAClick('primary', 'Get Started', 'hero_main')}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
@@ -71,16 +71,34 @@ const Hero = () => {
               </Link>
             </div>
 
-            <div style={{ marginTop: '3rem', display: 'flex', gap: '2rem', opacity: 0.7 }}>
-              <div>
-                <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white' }}>10k+</div>
-                <div style={{ fontSize: '0.9rem' }}>Items Stashed</div>
-              </div>
-              <div>
-                <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'white' }}>4.9/5</div>
-                <div style={{ fontSize: '0.9rem' }}>User Rating</div>
-              </div>
-            </div>
+            {(() => {
+              const problem = `We own too much to remember where it all is. Spreadsheets and notes are a chore to maintain and difficult to maintain with other family/friends.`
+              const solution = `StashDog offloads the mental overhead. A visual, searchable, and shareable database for everything you own.`
+
+              return (
+                <div style={{ marginTop: '2.5rem', display: 'flex', gap: '2rem', opacity: 0.9, alignItems: 'flex-start' }}>
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.04)', padding: '0.6rem', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Brain size={20} color="#fcd900" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '1rem', fontWeight: '700', color: 'white' }}>Problem</div>
+                      <div style={{ fontSize: '0.9rem', color: '#cfcfcf', maxWidth: '320px' }}>{problem}</div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.04)', padding: '0.6rem', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <WandSparkles size={20} color="#fcd900" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '1rem', fontWeight: '700', color: 'white' }}>Solution</div>
+                      <div style={{ fontSize: '0.9rem', color: '#cfcfcf', maxWidth: '320px' }}>{solution}</div>
+                    </div>
+                  </div>
+                </div>
+              )
+            })()}
           </div>
 
           {/* Right Image/Visual */}
