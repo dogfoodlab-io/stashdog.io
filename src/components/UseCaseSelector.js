@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { Package, Target, Users, Home, Brain, ArrowRight } from 'lucide-react';
+import { Package, Target, Users, Home, Brain, ArrowRight, Backpack, Archive, Wrench } from 'lucide-react';
 
 const UseCaseSelector = () => {
   const useCases = [
@@ -43,6 +43,30 @@ const UseCaseSelector = () => {
       description: 'For when your brain just can\'t deal with the mess.',
       link: '/solutions#general',
       color: '#fcd900'
+    },
+    {
+      id: 'travel',
+      title: 'Travel & Camping',
+      icon: <Backpack size={32} />,
+      description: 'Pack once, find anything, adventure without worry.',
+      link: '/solutions#travel',
+      color: '#f97316'
+    },
+    {
+      id: 'estate',
+      title: 'Estate Planning',
+      icon: <Archive size={32} />,
+      description: 'Document treasures and stories for future generations.',
+      link: '/solutions#estate',
+      color: '#8b5cf6'
+    },
+    {
+      id: 'hobbies',
+      title: 'Hobbyists',
+      icon: <Wrench size={32} />,
+      description: 'Find that one thing instantly in your workshop.',
+      link: '/solutions#hobbies',
+      color: '#06b6d4'
     }
   ];
 

@@ -9,7 +9,7 @@ import InfoCard from "../components/InfoCard";
 import SectionHeader from "../components/SectionHeader";
 import { useFirebase } from "../hooks/useFirebase";
 import "../styles/global.css";
-import { Brain, Package, Users, Home, Target, Siren, Shield, ArrowRight } from "lucide-react";
+import { Brain, Package, Users, Home, Target, Siren, Shield, ArrowRight, Backpack, Archive, Wrench } from "lucide-react";
 
 const SolutionsPage = () => {
   const { isInitialized, logEvent } = useFirebase();
@@ -530,6 +530,117 @@ const SolutionsPage = () => {
                       <li>Smart Tagging: Mark items for rapid retrieval.</li>
                       <li>Expiry Alerts: Know when to replace meds/food.</li>
                       <li>Offline Access: Works even when the internet is down.</li>
+                    </ul>
+                  </div>
+                </InfoCard>
+              </div>
+            </div>
+
+            {/* Travel & Camping Solution */}
+            <div id="travel" className="mb-24">
+              <SectionHeader
+                title="The Adventure Kit"
+                subtitle="Travel & Camping Solution"
+                align="left"
+                className="mb-8"
+              />
+              <div className="grid md:grid-cols-2 gap-8">
+                <InfoCard
+                  icon={Backpack}
+                  title="The Forgotten Item"
+                  description="You're three hours into the wilderness when you realize you forgot something critical - and you can't remember if it's in the car, at home, or was never packed in the first place."
+                  variant="warning"
+                />
+
+                <InfoCard
+                  icon={Backpack}
+                  title="Pack Like You Know What You're Doing"
+                  description="Visual packing lists for every adventure. Know exactly what you have before you leave, not when you need it."
+                  variant="success"
+                  actionLink="/download"
+                  actionText="Pack Smart"
+                >
+                  <div className="mt-4">
+                    <h4 className="text-primary font-bold mb-2">The Solution:</h4>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      <li>Visual Inventory: See everything you own for this trip.</li>
+                      <li>Pre-Trip Snapshots: Photograph your gear before you go.</li>
+                      <li>Checklist Automation: Smart reminders for common items.</li>
+                      <li>Condition Tracking: Document gear state before it breaks.</li>
+                    </ul>
+                  </div>
+                </InfoCard>
+              </div>
+            </div>
+
+            {/* Estate Planning Solution */}
+            <div id="estate" className="mb-24">
+              <SectionHeader
+                title="The Legacy Map"
+                subtitle="Estate Planning Solution"
+                align="left"
+                className="mb-8"
+              />
+              <div className="grid md:grid-cols-2 gap-8">
+                <InfoCard
+                  icon={Archive}
+                  title="The Treasure Mystery"
+                  description="Your kids inherit boxes of mysterious heirlooms with no context. What's valuable? What's the story? What can you actually throw away? Lost knowledge = lost value."
+                  variant="warning"
+                />
+
+                <InfoCard
+                  icon={Archive}
+                  title="Stories That Last Forever"
+                  description="Document not just what you own, but why it matters. Create a living legacy your kids will actually appreciate."
+                  variant="success"
+                  actionLink="/download"
+                  actionText="Preserve History"
+                >
+                  <div className="mt-4">
+                    <h4 className="text-primary font-bold mb-2">The Solution:</h4>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      <li>Photo With Purpose: Capture items with their stories.</li>
+                      <li>Context & Value: Document why something matters.</li>
+                      <li>Shareable Legacy: Share your inventory with heirs.</li>
+                      <li>Location Mapping: Know where everything actually is.</li>
+                    </ul>
+                  </div>
+                </InfoCard>
+              </div>
+            </div>
+
+            {/* Hobbyist Solution */}
+            <div id="hobbies" className="mb-24">
+              <SectionHeader
+                title="The Smart Workshop"
+                subtitle="Hobbyist & Maker Solution"
+                align="left"
+                className="mb-8"
+              />
+              <div className="grid md:grid-cols-2 gap-8">
+                <InfoCard
+                  icon={Wrench}
+                  title="The Lost Supply"
+                  description="Spending 15 minutes searching for that one specific part, bolt, or material. You know you have it somewhere, but where? This is stealing 10+ hours a month from your hobby."
+                  variant="warning"
+                />
+
+                <InfoCard
+                  icon={Wrench}
+                  title="Find Instantly, Create Always"
+                  description="Your workshop, woodshop, craft space, or garage organized without systems. Snap photos and know where everything is in seconds."
+                  variant="success"
+                  actionLink="/download"
+                  actionText="Organize Workshop"
+                >
+                  <div className="mt-4">
+                    <h4 className="text-primary font-bold mb-2">The Solution:</h4>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      <li>Bulk Organization: Snap your entire stash at once.</li>
+                      <li>Smart Search: Find that one 10mm socket instantly.</li>
+                      <li>Project Tracking: See what's available for your next build.</li>
+                      <li>Quantity Awareness: Know when to restock supplies.</li>
                     </ul>
                   </div>
                 </InfoCard>
