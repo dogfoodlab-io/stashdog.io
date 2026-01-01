@@ -71,7 +71,7 @@ const Hero = () => {
               </Link>
             </div>
 
-            {(() => {
+            {/* {(() => {
               const problem = `We own too much to remember where it all is. Spreadsheets and notes are a chore to maintain and difficult to maintain with other family/friends.`
               const solution = `StashDog offloads the mental overhead. A visual, searchable, and shareable database for everything you own.`
 
@@ -98,7 +98,7 @@ const Hero = () => {
                   </div>
                 </div>
               )
-            })()}
+            })()} */}
           </div>
 
           {/* Right Image/Visual */}

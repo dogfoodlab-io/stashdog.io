@@ -145,9 +145,9 @@ const PricingPage = () => {
                   </div>
                 </div>
 
-                <button className="pricing-cta cta-button outline" style={{ width: '100%', marginTop: '2rem' }}>
+                <a href="/waitlist" className="pricing-cta cta-button outline" style={{ width: '100%', marginTop: '2rem' }}>
                   Get Started Free
-                </button>
+                </a>
               </div>
 
               {/* Plus Tier */}
@@ -212,9 +212,9 @@ const PricingPage = () => {
                   </div>
                 </div>
 
-                <button className="pricing-cta cta-button" style={{ width: '100%', marginTop: '2rem' }}>
+                <a href="/waitlist" className="pricing-cta cta-button" style={{ width: '100%', marginTop: '2rem' }}>
                   Upgrade to Plus
-                </button>
+                </a>
               </div>
 
             </div>
