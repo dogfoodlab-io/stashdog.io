@@ -37,5 +37,5 @@ logs
 
 # Gatsby
 .cache/
-public/
+/public/
 

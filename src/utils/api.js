@@ -11,11 +11,21 @@ const getBaseUrl = () => {
     : 'https://api.stashdog.io'
 }
 
+const getBackendUrl = () => {
+  if (process.env.GATSBY_BACKEND_URL) {
+    return process.env.GATSBY_BACKEND_URL
+  }
+  return typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://api.stashdog.io'
+}
+
 const API_BASE_URL = getBaseUrl()
-const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
+const BACKEND_URL = getBackendUrl()
+const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
 /**
- * Generic API request handler
+ * Generic API request handler for Supabase REST
  */
 async function apiRequest(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`
@@ -61,16 +71,6 @@ async function apiRequest(endpoint, options = {}) {
 
 /**
  * Submit a waitlist entry
- * @param {Object} waitlistEntry - The waitlist entry data
- * @param {string} waitlistEntry.email - Required email address
- * @param {string} [waitlistEntry.name] - Optional name
- * @param {string} [waitlistEntry.phone] - Optional phone number
- * @param {string} [waitlistEntry.country] - Optional country
- * @param {string} [waitlistEntry.source] - Optional source identifier
- * @param {number} [waitlistEntry.priority] - Optional priority number
- * @param {any} [waitlistEntry.form_data] - Optional form data
- * @param {any} [waitlistEntry.metadata] - Optional metadata
- * @returns {Promise<Object>} Response from the API
  */
 export async function submitWaitlistEntry(waitlistEntry) {
   return apiRequest('/waitlist', {
@@ -87,22 +87,38 @@ export async function healthCheck() {
 }
 
 /**
- * GraphQL request handler for blog posts
+ * GraphQL request handler targeting the backend server
  */
-async function graphqlRequest(query, variables = {}) {
-  return apiRequest('/graphql', {
+async function graphqlRequest(query, variables = {}, options = {}) {
+  const url = `${BACKEND_URL}/graphql`
+  const requestOptions = {
     method: 'POST',
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {})
+    },
     body: JSON.stringify({
       query,
       variables
     })
-  })
+  }
+
+  try {
+    const response = await fetch(url, requestOptions)
+    if (!response.ok) {
+      const errorData = await response.text()
+      throw new Error(`GraphQL request failed: ${response.status} ${response.statusText} - ${errorData}`)
+    }
+    return await response.json()
+  } catch (error) {
+    console.error('GraphQL request error:', error)
+    throw error
+  }
 }
 
 /**
  * Fetch all published blog posts
- * @param {Object} filter - Optional filter parameters
- * @returns {Promise<Object>} Response containing blog posts
  */
 export async function getBlogPosts(filter = {}) {
   const query = `
@@ -124,7 +140,6 @@ export async function getBlogPosts(filter = {}) {
 
   return graphqlRequest(query, {
     filter: {
-      // default to published unless explicitly overridden in dev-mode toggle
       published: typeof filter.published === 'boolean' ? filter.published : true,
       ...filter
     }
@@ -133,8 +148,6 @@ export async function getBlogPosts(filter = {}) {
 
 /**
  * Fetch a single blog post by slug
- * @param {string} slug - The blog post slug
- * @returns {Promise<Object>} Response containing the blog post
  */
 export async function getBlogPost(slug) {
   const query = `
@@ -159,5 +172,134 @@ export async function getBlogPost(slug) {
   return graphqlRequest(query, { slug })
 }
 
-// Export the generic API request function for custom use cases
-export { apiRequest } 
+/**
+ * Fetch a public item by share token using the backend GraphQL API
+ */
+export async function getPublicItem(shareToken) {
+  try {
+    // 1. Get the share info from the backend
+    const shareQuery = `
+      query GetShareInfo($token: String!) {
+        publicShareByToken(token: $token) {
+          resourceId
+          resourceType
+          status
+          expiresAt
+        }
+      }
+    `;
+
+    // The share lookup itself is usually public
+    const shareResponse = await graphqlRequest(shareQuery, { token: shareToken });
+
+    if (!shareResponse.data || !shareResponse.data.publicShareByToken) {
+      return { data: { getPublicItem: null } };
+    }
+
+    const share = shareResponse.data.publicShareByToken;
+
+    if (share.status !== 'ACTIVE') {
+      return { data: { getPublicItem: null } };
+    }
+
+    // 2. Get the item details
+    // We pass the shareToken as a Bearer token in the headers for authorization
+    const itemQuery = `
+      query GetItem($id: String!) {
+        getItem(id: $id) {
+          id
+          name
+          notes
+          tags
+          images {
+            id
+            path
+            versions {
+              thumbnail { path }
+              preview { path }
+              original { path }
+            }
+            createdAt
+            lastModified
+          }
+          containedItems {
+            id
+            name
+            notes
+            images {
+              id
+              path
+              versions {
+                thumbnail { path }
+              }
+            }
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    `;
+
+    const itemResponse = await graphqlRequest(itemQuery, { id: share.resourceId }, {
+      headers: {
+        'Authorization': `Bearer ${shareToken}`
+      }
+    });
+
+    if (!itemResponse.data || !itemResponse.data.getItem) {
+      if (itemResponse.errors) {
+        console.error('GraphQL errors in getItem:', itemResponse.errors);
+        return { errors: itemResponse.errors };
+      }
+      return { data: { getPublicItem: null } };
+    }
+
+    const item = itemResponse.data.getItem;
+
+    // Helper to format item images
+    const formatImages = (images) => {
+      if (!images) return [];
+      const supabaseUrl = (process.env.GATSBY_SUPABASE_URL || 'http://localhost:54321').replace(/\/$/, '');
+      return images.map(img => ({
+        id: img.id,
+        path: img.path,
+        urls: {
+          thumbnail: img.versions?.thumbnail?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.thumbnail.path}` : null,
+          preview: img.versions?.preview?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.preview.path}` : null,
+          full: img.versions?.original?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.original.path}` : null,
+        },
+        createdAt: img.createdAt,
+        lastModified: img.lastModified
+      }));
+    };
+
+    const formattedItem = {
+      id: item.id,
+      name: item.name,
+      description: item.notes,
+      tags: item.tags || [],
+      images: formatImages(item.images),
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt,
+      shareToken: shareToken,
+      containedItems: (item.containedItems || []).map(ci => ({
+        ...ci,
+        description: ci.notes,
+        images: formatImages(ci.images)
+      })),
+      relatedItems: []
+    };
+
+    return {
+      data: {
+        getPublicItem: formattedItem
+      }
+    };
+
+  } catch (error) {
+    console.error('Error in getPublicItem GraphQL refactor:', error);
+    throw error;
+  }
+}
+
+export { apiRequest }
