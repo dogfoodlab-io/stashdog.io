@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
-import { Link } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import WaitlistForm from "../components/WaitlistForm"
@@ -60,14 +59,9 @@ const WaitlistPage = () => {
         <Header />
 
         <main className="waitlist-page">
-          <section className="stashdog-hero" style={{ paddingBottom: '2rem' }}>
+          <section className="stashdog-hero waitlist-hero" style={{ paddingBottom: '2rem' }}>
             <div className="container">
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-                gap: '4rem',
-                alignItems: 'center'
-              }}>
+              <div className="waitlist-grid">
                 <div className="hero-content">
                   <div style={{
                     display: 'inline-flex',

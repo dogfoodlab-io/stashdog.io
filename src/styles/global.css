@@ -847,14 +847,46 @@ section {
   display: block;
 }
 
+/* Waitlist grid - desktop default */
+.waitlist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4rem;
+  align-items: center;
+}
+
 /* Responsive Pricing */
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  section {
+    padding: 3.5rem 0;
+  }
+
+  .stashdog-hero {
+    padding-top: calc(var(--header-height) + 1rem);
+    min-height: 60vh;
+  }
+
   .pricing-card {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  .pricing-card-price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 
   .price-amount {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    word-break: keep-all;
+  }
+
+  .price-period {
+    margin-top: 0.15rem;
   }
 
   .pricing-card-badge {
@@ -864,7 +896,176 @@ section {
     padding: 0.4rem 0.8rem;
   }
 
+  /* Make CTAs and download buttons full width on small screens */
+  .pricing-cta .cta-button,
+  .cta-buttons .cta-button,
+  .download-badge-link {
+    width: 100%;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
   .download-badge {
     height: 50px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Slightly reduce big hero image height to avoid crowding form area */
+  .stashdog-hero img {
+    max-height: 280px;
+    object-fit: contain;
+  }
+}
+
+/* Extra small devices: ensure comfortable spacing and stacking */
+@media (max-width: 420px) {
+  .pricing-card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .price-amount {
+    font-size: 1.9rem;
+  }
+
+  .pricing-card-title {
+    font-size: 1.25rem;
+  }
+
+  .pricing-card-features {
+    gap: 0.75rem;
+  }
+
+  .pricing-card-badge {
+    right: 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Waitlist page mobile fixes */
+  .waitlist-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    align-items: stretch !important;
+  }
+
+  .waitlist-hero {
+    padding-top: calc(var(--header-height) + 1rem) !important;
+  }
+
+  .hero-form {
+    padding: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .waitlist-form .form-group {
+    margin-bottom: 1rem !important;
+  }
+
+  .waitlist-form label {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .waitlist-form input,
+  .waitlist-form textarea {
+    width: 100% !important;
+    padding: 0.7rem 0.85rem !important;
+    font-size: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .waitlist-form textarea {
+    min-height: 100px !important;
+  }
+
+  .waitlist-submit {
+    width: 100% !important;
+    padding: 0.875rem !important;
+    font-size: 1rem !important;
+    margin-top: 0.75rem !important;
+    box-sizing: border-box !important;
+  }
+
+  h1.hero-title {
+    font-size: 2rem !important;
+  }
+
+  .hero-description {
+    font-size: 1rem !important;
+  }
+
+  .benefits-list {
+    gap: 0.75rem !important;
+  }
+
+  .benefits-list > div {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Extra small devices: ensure comfortable spacing and stacking */
+@media (max-width: 420px) {
+  .pricing-card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .price-amount {
+    font-size: 1.9rem;
+  }
+
+  .pricing-card-title {
+    font-size: 1.25rem;
+  }
+
+  .pricing-card-features {
+    gap: 0.75rem;
+  }
+
+  .pricing-card-badge {
+    right: 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Extra tight mobile form */
+  .hero-form {
+    margin-top: 1rem !important;
+  }
+
+  h1.hero-title {
+    font-size: 1.9rem !important;
+  }
+
+  .waitlist-form input,
+  .waitlist-form textarea {
+    padding: 0.65rem 0.75rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .waitlist-submit {
+    padding: 0.8rem 1rem !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.75rem !important;
+  }
+
+  /* Tighten benefit list on very small screens */
+  .benefits-list > div {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .benefits-list > div > div:first-child {
+    padding: 0.35rem !important;
   }
 }
