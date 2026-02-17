@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import {
   Camera, Sparkles, Smartphone, Target, FolderOpen, Library, Tag, Package,
   Lock, Eye, PencilLine, Users, FileText, Receipt, Shield, BookOpen,
@@ -38,8 +38,7 @@ const FeaturesPage = () => {
   }
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Features - StashDog: Stop Losing Your Shit</title>
@@ -389,7 +388,6 @@ const FeaturesPage = () => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

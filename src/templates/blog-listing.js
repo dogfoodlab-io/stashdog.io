@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import BlogCard from "../components/BlogCard"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
@@ -351,8 +351,7 @@ const BlogPage = ({ location, pageContext }) => {
   }, [filteredBlogPosts.length, hasActiveFilters, activeFilterPayload, isInitialized, allBlogPosts.length])
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Blog - StashDog</title>
@@ -590,7 +589,6 @@ const BlogPage = ({ location, pageContext }) => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

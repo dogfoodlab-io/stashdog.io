@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import UseCaseSelector from "../components/UseCaseSelector";
@@ -35,8 +35,7 @@ const IndexPage = () => {
   }, [isInitialized, logEvent, currentVariant]);
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>StashDog - Quit Living Like a Trash Gremlin</title>
@@ -181,7 +180,6 @@ const IndexPage = () => {
 
         {<ContentSwitcherControls showControls={showControls} />}
       </div>
-    </HelmetProvider>
   );
 };
 

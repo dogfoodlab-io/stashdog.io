@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import WaitlistForm from "../components/WaitlistForm"
@@ -24,8 +24,7 @@ const WaitlistPage = () => {
   }, [isInitialized, logEvent])
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Join the StashDog Waitlist - Early Access</title>
@@ -141,7 +140,6 @@ const WaitlistPage = () => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

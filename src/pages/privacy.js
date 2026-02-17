@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -20,14 +20,24 @@ const PrivacyPage = () => {
   }, [isInitialized, logEvent])
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Privacy Policy - StashDog</title>
-          <meta name="description" content="StashDog privacy policy and data protection information." />
+          <meta name="description" content="Read StashDog's privacy policy and data protection practices." />
           <link rel="canonical" href="https://stashdog.io/privacy/" />
           <meta name="robots" content="noindex, follow" />
+
+          <meta property="og:title" content="Privacy Policy - StashDog" />
+          <meta property="og:description" content="Read StashDog's privacy policy and data protection practices." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://stashdog.io/privacy/" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Privacy Policy - StashDog" />
+          <meta name="twitter:description" content="Read StashDog's privacy policy and data protection practices." />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
         </Helmet>
         
         <Header />
@@ -356,7 +366,6 @@ const PrivacyPage = () => {
         
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

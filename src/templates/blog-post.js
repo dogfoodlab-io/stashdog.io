@@ -1,6 +1,6 @@
 import React from 'react'
 import { marked } from 'marked'
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { ChevronLeft, Calendar, Tag } from "lucide-react"
@@ -55,8 +55,7 @@ const BlogPostTemplate = ({ pageContext }) => {
   }
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>{post.title} - StashDog Blog</title>
@@ -179,7 +178,6 @@ const BlogPostTemplate = ({ pageContext }) => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

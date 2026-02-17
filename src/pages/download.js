@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import AppStoreButton from "../components/AppStoreButton"
@@ -31,8 +31,7 @@ const DownloadPage = () => {
   }
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Download StashDog - Get Organized Now</title>
@@ -137,7 +136,6 @@ const DownloadPage = () => {
         </main>
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 export default DownloadPage

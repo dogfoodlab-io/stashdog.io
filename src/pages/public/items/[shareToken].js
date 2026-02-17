@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getPublicItem } from "../../../utils/api";
@@ -77,8 +77,7 @@ const PublicItemPage = ({ params }) => {
 
     if (loading) {
         return (
-            <HelmetProvider>
-                <div className="page-container">
+            <div className="page-container">
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="loading-container">
@@ -89,14 +88,12 @@ const PublicItemPage = ({ params }) => {
                     </div>
                     <Footer />
                 </div>
-            </HelmetProvider>
         );
     }
 
     if (error || !item) {
         return (
-            <HelmetProvider>
-                <div className="page-container">
+            <div className="page-container">
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="error-container">
@@ -109,7 +106,6 @@ const PublicItemPage = ({ params }) => {
                     </div>
                     <Footer />
                 </div>
-            </HelmetProvider>
         );
     }
 
@@ -117,8 +113,7 @@ const PublicItemPage = ({ params }) => {
     const currentImages = item.images || [];
 
     return (
-        <HelmetProvider>
-            <div className="page-container">
+        <div className="page-container">
                 <Helmet>
                     <title>{item.name} | Shared on StashDog</title>
                     <meta name="description" content={item.description || `View shared item: ${item.name}`} />
@@ -303,7 +298,6 @@ const PublicItemPage = ({ params }) => {
 
                 <Footer />
             </div>
-        </HelmetProvider>
     );
 };
 

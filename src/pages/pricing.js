@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import {
   Check, Sparkles, Image, Database, Zap, Mail, Download, Wifi
 } from "lucide-react"
@@ -33,8 +33,7 @@ const PricingPage = () => {
   }
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Pricing - StashDog: Simple, Powerful Organization</title>
@@ -121,7 +120,7 @@ const PricingPage = () => {
                   </div>
                   <div className="pricing-feature">
                     <Check className="feature-check" size={20} />
-                    <span><strong>2GB storage</strong> (200 photos max)</span>
+                    <span><strong>1GB storage</strong></span>
                   </div>
                   <div className="pricing-feature">
                     <Check className="feature-check" size={20} />
@@ -277,7 +276,6 @@ const PricingPage = () => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 

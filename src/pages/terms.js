@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -20,14 +20,24 @@ const TermsPage = () => {
   }, [isInitialized, logEvent])
 
   return (
-    <HelmetProvider>
-      <div className="page-container">
+    <div className="page-container">
         <Helmet>
           <html lang="en" />
           <title>Terms of Service - StashDog</title>
-          <meta name="description" content="StashDog terms of service and user agreement." />
+          <meta name="description" content="Read StashDog's terms of service and user agreement." />
           <link rel="canonical" href="https://stashdog.io/terms/" />
           <meta name="robots" content="noindex, follow" />
+
+          <meta property="og:title" content="Terms of Service - StashDog" />
+          <meta property="og:description" content="Read StashDog's terms of service and user agreement." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://stashdog.io/terms/" />
+          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Terms of Service - StashDog" />
+          <meta name="twitter:description" content="Read StashDog's terms of service and user agreement." />
+          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
         </Helmet>
 
         <Header />
@@ -58,7 +68,7 @@ const TermsPage = () => {
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>3.1 Subscription Plans</h3>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li><strong>Free Plan</strong>: Limited to 100 items, 50 AI Completions per month, and 100MB storage</li>
+                  <li><strong>Free Plan</strong>: Limited to 100 items, 10 AI Completions per month, and 1GB storage</li>
                   <li><strong>Stashdog+ Monthly</strong>: Unlimited items, unlimited AI completions, unlimited storage, and priority support for $4.99 per month</li>
                 </ul>
 
@@ -187,7 +197,6 @@ const TermsPage = () => {
 
         <Footer />
       </div>
-    </HelmetProvider>
   )
 }
 
