@@ -166,6 +166,7 @@ const BlogPage = ({ location, pageContext }) => {
   const [selectedTags, setSelectedTags] = useState(() => (preselectedTag ? [preselectedTag] : []))
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [appliedQuickFilter, setAppliedQuickFilter] = useState(null)
+  const [isMobileTopFiltersOpen, setIsMobileTopFiltersOpen] = useState(false)
 
   // Filter blog posts client-side using static data
   const filteredBlogPosts = useMemo(() => {
@@ -207,6 +208,7 @@ const BlogPage = ({ location, pageContext }) => {
   ), [activeFilterPayload])
 
   const filterSearchTerm = activeFilterPayload.searchQuery
+  const hasTopFilterInput = Boolean(searchQuery.trim() || appliedQuickFilter)
 
   const filterSummary = useMemo(() => {
     const parts = []
@@ -435,7 +437,20 @@ const BlogPage = ({ location, pageContext }) => {
               <aside className="blog-sidebar">
 
                 <section className="blog-filter-panel" aria-label="Filter blog posts">
-                  <div className="blog-filter-row">
+                  <button
+                    type="button"
+                    className="blog-mobile-controls-toggle"
+                    onClick={() => setIsMobileTopFiltersOpen((prev) => !prev)}
+                    aria-expanded={isMobileTopFiltersOpen || hasTopFilterInput}
+                    aria-controls="blog-top-filters"
+                  >
+                    {isMobileTopFiltersOpen || hasTopFilterInput ? "Hide search & quick paths" : "Show search & quick paths"}
+                  </button>
+
+                  <div
+                    id="blog-top-filters"
+                    className={`blog-filter-row${isMobileTopFiltersOpen || hasTopFilterInput ? ' is-open' : ''}`}
+                  >
                     <div className="blog-filter-search">
                       <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
                       <div className="blog-filter-search-input">
