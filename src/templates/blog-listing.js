@@ -163,7 +163,7 @@ const BlogPage = ({ location, pageContext }) => {
   const preselectedTag = urlParams.get('tag')
   const initialSearchQuery = urlParams.get('search') || ""
 
-  const [selectedTags, setSelectedTags] = useState(() => (preselectedTag ? [preselectedTag] : []))
+  const [selectedTags, setSelectedTags] = useState([])
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [appliedQuickFilter, setAppliedQuickFilter] = useState(null)
   const [isMobileTopFiltersOpen, setIsMobileTopFiltersOpen] = useState(false)
@@ -323,10 +323,15 @@ const BlogPage = ({ location, pageContext }) => {
   }, [appliedQuickFilter, isInitialized, logEvent])
 
   useEffect(() => {
-    if (preselectedTag && !selectedTags.includes(preselectedTag)) {
+    if (!preselectedTag) return
+
+    const tagExistsInPosts = allBlogPosts.some((post) => (post.tags || []).includes(preselectedTag))
+    if (!tagExistsInPosts) return
+
+    if (!selectedTags.includes(preselectedTag)) {
       setSelectedTags((prev) => (prev.length === 0 ? [preselectedTag] : prev))
     }
-  }, [preselectedTag, selectedTags])
+  }, [preselectedTag, selectedTags, allBlogPosts])
 
   useEffect(() => {
     if (isInitialized) {
