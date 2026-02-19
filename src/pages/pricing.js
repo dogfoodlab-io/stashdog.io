@@ -163,12 +163,8 @@ const PricingPage = () => {
                       <span className="price-amount">$4.99</span>
                       <span className="price-period">/month</span>
                     </div>
-                    <div style={{ marginTop: '0.5rem' }}>
-                      <span className="price-amount" style={{ fontSize: '1.8rem' }}>$49.99</span>
-                      <span className="price-period">/year</span>
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: '#fcd900', marginTop: '0.25rem' }}>
-                      Early Access Price (save 17% annually)
+                    <div style={{ fontSize: '1rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+                      or $49.99/year <span style={{ color: '#fcd900' }}>(save 17%)</span>
                     </div>
                   </div>
                   <p className="pricing-card-description">
@@ -219,7 +215,7 @@ const PricingPage = () => {
                   </div>
                 </div>
 
-                <a href="/waitlist" className="pricing-cta cta-button" style={{ width: '100%', marginTop: '2rem' }}>
+                <a href="https://app.stashdog.io/sign-up?redirect=%2Fupgrade" className="pricing-cta cta-button" style={{ width: '100%', marginTop: '2rem' }}>
                   Upgrade to Plus
                 </a>
               </div>
