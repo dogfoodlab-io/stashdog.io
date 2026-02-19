@@ -37,14 +37,14 @@ const PricingPage = () => {
         <Helmet>
           <html lang="en" />
           <title>Pricing - StashDog: Simple, Powerful Organization</title>
-          <meta name="description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items, unlimited AI features, and advanced organization tools for just $4.99/month." />
+          <meta name="description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items, unlimited AI features, and advanced organization tools for $4.99/month or $49.99/year." />
           <meta name="keywords" content="home inventory pricing, organization app cost, free inventory app, StashDog pricing, inventory management subscription" />
           <link rel="canonical" href="https://stashdog.io/pricing/" />
           <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
           <meta property="og:title" content="StashDog Pricing - Start Free" />
-          <meta property="og:description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items and AI-powered features for just $4.99/month." />
+          <meta property="og:description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items and AI-powered features for $4.99/month or $49.99/year." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/pricing" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
@@ -52,7 +52,7 @@ const PricingPage = () => {
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="StashDog Pricing - Start Free" />
-          <meta name="twitter:description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items and AI-powered features for just $4.99/month." />
+          <meta name="twitter:description" content="Start free with up to 100 items. Upgrade to StashDog Plus for unlimited items and AI-powered features for $4.99/month or $49.99/year." />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
           {/* Fonts */}
@@ -159,9 +159,17 @@ const PricingPage = () => {
                 <div className="pricing-card-header">
                   <h3 className="pricing-card-title">StashDog Plus</h3>
                   <div className="pricing-card-price">
-                    <span className="price-amount">$4.99</span>
-                    <span className="price-period">/month</span>
-                    <div style={{ fontSize: '0.8rem', color: '#fcd900', marginTop: '0.25rem' }}>Early Access Price (Reg. $9.99)</div>
+                    <div>
+                      <span className="price-amount">$4.99</span>
+                      <span className="price-period">/month</span>
+                    </div>
+                    <div style={{ marginTop: '0.5rem' }}>
+                      <span className="price-amount" style={{ fontSize: '1.8rem' }}>$49.99</span>
+                      <span className="price-period">/year</span>
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: '#fcd900', marginTop: '0.25rem' }}>
+                      Early Access Price (save 17% annually)
+                    </div>
                   </div>
                   <p className="pricing-card-description">
                     AI-powered inventory intelligence for power users
@@ -256,7 +264,7 @@ const PricingPage = () => {
             <div className="faq-item" style={{ marginBottom: '2rem' }}>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>What is the Early Access Pricing?</h3>
               <p style={{ color: 'var(--text-muted)' }}>
-                Our current pricing of $4.99/mo is a special offer exclusive to our first 10,000 users. Pricing will increase for future users, so join now to take advantage of this special rate.
+                Our current pricing of $4.99/mo or $49.99/year is a special offer exclusive to our first 10,000 users. Pricing will increase for future users, so join now to take advantage of this special rate.
               </p>
             </div>
           </div>

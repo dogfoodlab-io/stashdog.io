@@ -70,11 +70,12 @@ const TermsPage = () => {
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Free Plan</strong>: Limited to 100 items, 10 AI Completions per month, and 1GB storage</li>
                   <li><strong>Stashdog+ Monthly</strong>: Unlimited items, unlimited AI completions, unlimited storage, and priority support for $4.99 per month</li>
+                  <li><strong>Stashdog+ Annual</strong>: Unlimited items, unlimited AI completions, unlimited storage, and priority support for $49.99 per year</li>
                 </ul>
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>3.2 Payment Terms</h3>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li>Subscription fees are charged in advance on a monthly basis</li>
+                  <li>Subscription fees are charged in advance on a monthly or annual basis, depending on your selected plan</li>
                   <li>Payment will be charged to your chosen payment method through Stripe</li>
                   <li>Prices are in US Dollars and may be subject to applicable taxes</li>
                 </ul>
@@ -86,7 +87,7 @@ const TermsPage = () => {
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>3.4 Cancellation</h3>
                 <p>
-                  You may cancel your subscription at any time through your account settings. Cancellation will take effect at the end of your current billing period. No refunds will be provided for partial months.
+                  You may cancel your subscription at any time through your account settings. Cancellation will take effect at the end of your current billing period. No refunds will be provided for partial billing periods.
                 </p>
 
                 <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>4. User Accounts</h2>
