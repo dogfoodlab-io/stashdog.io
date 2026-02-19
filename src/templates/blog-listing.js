@@ -208,7 +208,7 @@ const BlogPage = ({ location, pageContext }) => {
   ), [activeFilterPayload])
 
   const filterSearchTerm = activeFilterPayload.searchQuery
-  const hasTopFilterInput = Boolean(searchQuery.trim() || appliedQuickFilter)
+  const hasFilterInput = Boolean(searchQuery.trim() || appliedQuickFilter || selectedTags.length > 0)
 
   const filterSummary = useMemo(() => {
     const parts = []
@@ -441,16 +441,20 @@ const BlogPage = ({ location, pageContext }) => {
                     type="button"
                     className="blog-mobile-controls-toggle"
                     onClick={() => setIsMobileTopFiltersOpen((prev) => !prev)}
-                    aria-expanded={isMobileTopFiltersOpen || hasTopFilterInput}
-                    aria-controls="blog-top-filters"
+                    aria-expanded={isMobileTopFiltersOpen || hasFilterInput}
+                    aria-controls="blog-all-filters"
                   >
-                    {isMobileTopFiltersOpen || hasTopFilterInput ? "Hide search & quick paths" : "Show search & quick paths"}
+                    {isMobileTopFiltersOpen || hasFilterInput ? "Hide filters" : "Show filters"}
                   </button>
 
                   <div
-                    id="blog-top-filters"
-                    className={`blog-filter-row${isMobileTopFiltersOpen || hasTopFilterInput ? ' is-open' : ''}`}
+                    id="blog-all-filters"
+                    className={`blog-mobile-filter-body${isMobileTopFiltersOpen || hasFilterInput ? ' is-open' : ''}`}
                   >
+                    <div
+                      id="blog-top-filters"
+                      className={`blog-filter-row${isMobileTopFiltersOpen || hasFilterInput ? ' is-open' : ''}`}
+                    >
                     <div className="blog-filter-search">
                       <label className="blog-filter-label" htmlFor="blog-search">Search the archive</label>
                       <div className="blog-filter-search-input">
@@ -567,7 +571,8 @@ const BlogPage = ({ location, pageContext }) => {
                       </section>
                     ))}
                   </div>
-                </section>
+                </div>
+              </section>
               </aside>
 
               <div className="blog-content">

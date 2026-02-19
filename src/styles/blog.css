@@ -42,6 +42,10 @@
   display: none;
 }
 
+.blog-mobile-filter-body {
+  display: block;
+}
+
 .blog-filter-row {
   display: flex;
   flex-direction: column;
@@ -68,15 +72,18 @@
     cursor: pointer;
   }
 
-  .blog-filter-row {
+  .blog-mobile-filter-body {
     display: none;
+  }
+
+  .blog-mobile-filter-body.is-open {
+    display: block;
+  }
+
+  .blog-filter-row {
     margin-bottom: 1.2rem;
     padding-bottom: 1.2rem;
     gap: 1.2rem;
-  }
-
-  .blog-filter-row.is-open {
-    display: flex;
   }
 }
 
