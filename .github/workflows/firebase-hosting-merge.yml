@@ -20,6 +20,7 @@ jobs:
           GATSBY_SITE_URL: ${{ secrets.GATSBY_SITE_URL }}
           GATSBY_SUPABASE_URL: ${{ secrets.GATSBY_SUPABASE_URL }}
           GATSBY_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

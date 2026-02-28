@@ -4,7 +4,8 @@ const SUPABASE_BASE_URL = process.env.GATSBY_SUPABASE_URL || 'https://gmchczeybu
 const SUPABASE_GRAPHQL_URL = SUPABASE_BASE_URL.includes('/graphql/v1')
   ? SUPABASE_BASE_URL
   : `${SUPABASE_BASE_URL}/graphql/v1`
-const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
+// Use service role key for build-time access (has full permissions), fall back to anon key
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
 
 /**
  * Fetch all published blog posts from Supabase REST API at build time
@@ -32,8 +33,8 @@ async function fetchBlogPosts() {
     const response = await fetch(`${restUrl}/blog_posts?${params.toString()}`, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'apikey': SUPABASE_KEY,
         'Accept-Profile': 'content',
       },
       signal: controller.signal
@@ -42,7 +43,8 @@ async function fetchBlogPosts() {
     clearTimeout(timeout)
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText}`)
+      const errorBody = await response.text()
+      throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText} - ${errorBody}`)
     }
 
     const rows = await response.json()
