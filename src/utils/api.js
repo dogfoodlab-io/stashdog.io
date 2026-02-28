@@ -126,7 +126,7 @@ export async function getSubscriptionPlans() {
     order: 'sort_order.asc.nullslast,price.asc.nullslast,created_at.asc'
   })
 
-  return apiRequest(`/subscription_plans?${query.toString()}`)
+  return apiRequest(`/subscription_plans_with_features?${query.toString()}`)
 }
 
 /**
