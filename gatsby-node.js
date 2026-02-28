@@ -7,35 +7,21 @@ const SUPABASE_GRAPHQL_URL = SUPABASE_BASE_URL.includes('/graphql/v1')
 const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
 
 /**
- * Fetch all published blog posts from Supabase GraphQL at build time
+ * Fetch all published blog posts from Supabase REST API at build time
  */
 async function fetchBlogPosts() {
   const fetch = (await import('node-fetch')).default
 
-  const query = `
-    query GetBlogPosts {
-      content {
-        blogPostsCollection(filter: {published: {eq: true}}, orderBy: [{createdAt: DescNullsLast}], first: 100) {
-          edges {
-            node {
-              id
-              title
-              content
-              excerpt
-              slug
-              authorId
-              published
-              featuredImageUrl
-              tags
-              metaDescription
-              createdAt
-              updatedAt
-            }
-          }
-        }
-      }
-    }
-  `
+  const restUrl = SUPABASE_BASE_URL.includes('/rest/v1')
+    ? SUPABASE_BASE_URL
+    : `${SUPABASE_BASE_URL}/rest/v1`
+
+  const params = new URLSearchParams({
+    select: 'id,title,content,excerpt,slug,author_id,published,featured_image_url,tags,meta_description,created_at,updated_at',
+    published: 'eq.true',
+    order: 'created_at.desc',
+    limit: '100'
+  })
 
   try {
     const controller = new AbortController()
@@ -43,16 +29,13 @@ async function fetchBlogPosts() {
       controller.abort()
     }, 30000)
 
-    const response = await fetch(SUPABASE_GRAPHQL_URL, {
-      method: 'POST',
+    const response = await fetch(`${restUrl}/blog_posts?${params.toString()}`, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         'apikey': SUPABASE_ANON_KEY,
+        'Accept-Profile': 'content',
       },
-      body: JSON.stringify({
-        query
-      }),
       signal: controller.signal
     })
 
@@ -62,15 +45,25 @@ async function fetchBlogPosts() {
       throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText}`)
     }
 
-    const result = await response.json()
+    const rows = await response.json()
     
-    if (result.errors) {
-      console.error('GraphQL errors:', result.errors)
-      return []
-    }
+    // Transform snake_case to camelCase
+    const mapBlogRow = (row) => ({
+      id: row.id,
+      title: row.title,
+      content: row.content,
+      excerpt: row.excerpt,
+      slug: row.slug,
+      authorId: row.author_id,
+      published: row.published,
+      featuredImageUrl: row.featured_image_url,
+      tags: row.tags || [],
+      metaDescription: row.meta_description,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    })
     
-    const edges = result.data?.content?.blogPostsCollection?.edges || []
-    return edges.map((edge) => edge.node)
+    return Array.isArray(rows) ? rows.map(mapBlogRow) : []
   } catch (error) {
     console.error('Error fetching blog posts for static generation:', error)
     return []

@@ -168,34 +168,49 @@ async function graphqlRequest(query, variables = {}, options = {}) {
  * Fetch all published blog posts
  */
 export async function getBlogPosts(filter = {}) {
-  const query = `
-    query GetBlogPosts {
-      content {
-        blogPostsCollection(filter: {published: {eq: true}}, orderBy: [{createdAt: DescNullsLast}], first: 100) {
-          edges {
-            node {
-              id
-              title
-              excerpt
-              slug
-              authorId
-              published
-              featuredImageUrl
-              tags
-              createdAt
-              updatedAt
-            }
-          }
-        }
+  const params = new URLSearchParams({
+    select: 'id,title,excerpt,slug,author_id,published,featured_image_url,tags,created_at,updated_at',
+    published: 'eq.true',
+    order: 'created_at.desc',
+  })
+
+  if (typeof filter.limit === 'number') {
+    params.set('limit', String(filter.limit))
+  } else {
+    params.set('limit', '100')
+  }
+
+  if (typeof filter.offset === 'number') {
+    params.set('offset', String(filter.offset))
+  }
+
+  try {
+    const rows = await apiRequest(`/blog_posts?${params.toString()}`, { schema: 'content' })
+    const mapRow = (row) => ({
+      id: row.id,
+      title: row.title,
+      excerpt: row.excerpt,
+      slug: row.slug,
+      authorId: row.author_id,
+      published: row.published,
+      featuredImageUrl: row.featured_image_url,
+      tags: row.tags || [],
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    })
+    
+    const blogPosts = Array.isArray(rows) ? rows.map(mapRow) : []
+    return {
+      data: {
+        blogPosts
       }
     }
-  `
-
-  const result = await graphqlRequest(query)
-  const edges = result.data?.content?.blogPostsCollection?.edges || []
-  return {
-    data: {
-      blogPosts: edges.map((edge) => edge.node)
+  } catch (error) {
+    console.error('Error fetching blog posts:', error)
+    return {
+      data: {
+        blogPosts: []
+      }
     }
   }
 }
@@ -204,37 +219,42 @@ export async function getBlogPosts(filter = {}) {
  * Fetch a single blog post by slug
  */
 export async function getBlogPost(slug) {
-  const query = `
-    query GetBlogPost($slug: String!) {
-      content {
-        blogPostsCollection(filter: {slug: {eq: $slug}}, first: 1) {
-          edges {
-            node {
-              id
-              title
-              content
-              excerpt
-              slug
-              authorId
-              published
-              featuredImageUrl
-              tags
-              metaDescription
-              createdAt
-              updatedAt
-            }
-          }
-        }
+  const params = new URLSearchParams({
+    select: 'id,title,content,excerpt,slug,author_id,published,featured_image_url,tags,meta_description,created_at,updated_at',
+    slug: `eq.${slug}`,
+    limit: '1',
+  })
+
+  try {
+    const rows = await apiRequest(`/blog_posts?${params.toString()}`, { schema: 'content' })
+    const row = Array.isArray(rows) && rows.length > 0 ? rows[0] : null
+    
+    const mapRow = (row) => ({
+      id: row.id,
+      title: row.title,
+      content: row.content,
+      excerpt: row.excerpt,
+      slug: row.slug,
+      authorId: row.author_id,
+      published: row.published,
+      featuredImageUrl: row.featured_image_url,
+      tags: row.tags || [],
+      metaDescription: row.meta_description,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    })
+    
+    return {
+      data: {
+        blogPost: row ? mapRow(row) : null
       }
     }
-  `
-
-  const result = await graphqlRequest(query, { slug })
-  const edges = result.data?.content?.blogPostsCollection?.edges || []
-  const node = edges.length > 0 ? edges[0].node : null
-  return {
-    data: {
-      blogPost: node
+  } catch (error) {
+    console.error('Error fetching blog post:', error)
+    return {
+      data: {
+        blogPost: null
+      }
     }
   }
 }
