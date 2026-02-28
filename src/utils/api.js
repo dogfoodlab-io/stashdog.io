@@ -87,6 +87,19 @@ export async function healthCheck() {
 }
 
 /**
+ * Fetch active subscription plans for the pricing page
+ */
+export async function getSubscriptionPlans() {
+  const query = new URLSearchParams({
+    select: 'id,name,description,tier,price,currency,interval,interval_count,features,usage_limits,stripe_price_id,active,sort_order',
+    active: 'eq.true',
+    order: 'sort_order.asc.nullslast,price.asc.nullslast,created_at.asc'
+  })
+
+  return apiRequest(`/subscription_plans?${query.toString()}`)
+}
+
+/**
  * GraphQL request handler targeting the backend server
  */
 async function graphqlRequest(query, variables = {}, options = {}) {
