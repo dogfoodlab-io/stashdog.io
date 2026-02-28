@@ -9,6 +9,24 @@ module.exports = {
     siteUrl: "https://stashdog.io",
     author: "Dogfood Lab LLC",
   },
+  developMiddleware: app => {
+    const { createProxyMiddleware } = require('http-proxy-middleware')
+
+    console.log('[PROXY] Storage proxy enabled: /storage -> http://localhost:54321')
+
+    app.use(
+      '/storage',
+      createProxyMiddleware({
+        target: 'http://127.0.0.1:54321',
+        changeOrigin: true,
+        secure: false,
+        logLevel: 'silent',
+        onError: (err, req, res) => {
+          console.error('[PROXY] Error:', err.message, 'for', req.url)
+        }
+      })
+    )
+  },
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",

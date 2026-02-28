@@ -6,8 +6,10 @@ const getBaseUrl = () => {
       ? process.env.GATSBY_SUPABASE_URL
       : `${process.env.GATSBY_SUPABASE_URL}/rest/v1`
   }
-  return typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'http://localhost:54321/rest/v1'
+  const isLocal = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  return isLocal
+    ? 'http://127.0.0.1:54321/rest/v1'
     : 'https://api.stashdog.io'
 }
 
@@ -15,8 +17,10 @@ const getBackendUrl = () => {
   if (process.env.GATSBY_BACKEND_URL) {
     return process.env.GATSBY_BACKEND_URL
   }
-  return typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'http://localhost:3000'
+  const isLocal = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  return isLocal
+    ? 'http://127.0.0.1:3000'
     : 'https://api.stashdog.io'
 }
 
@@ -24,27 +28,52 @@ const API_BASE_URL = getBaseUrl()
 const BACKEND_URL = getBackendUrl()
 const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
+// Get Supabase Functions URL
+const getSupabaseFunctionsUrl = () => {
+  if (process.env.GATSBY_SUPABASE_URL) {
+    const baseUrl = process.env.GATSBY_SUPABASE_URL.replace('/rest/v1', '');
+    return `${baseUrl}/functions/v1`;
+  }
+  const isLocal = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  return isLocal
+    ? 'http://127.0.0.1:54321/functions/v1'
+    : 'https://api.stashdog.io/functions/v1';
+}
+
+const SUPABASE_FUNCTIONS_URL = getSupabaseFunctionsUrl()
+
 /**
  * Generic API request handler for Supabase REST
+ * Pass { schema: 'content' } for non-public schema table access.
  */
 async function apiRequest(endpoint, options = {}) {
+  const { schema, ...requestConfig } = options
   const url = `${API_BASE_URL}${endpoint}`
+
+  const schemaHeaders = schema
+    ? {
+      'Accept-Profile': schema,
+      'Content-Profile': schema,
+    }
+    : {}
 
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
       'apikey': SUPABASE_ANON_KEY,
-      ...(options.headers || {})
+      ...schemaHeaders,
+      ...(requestConfig.headers || {})
     },
   }
 
   const requestOptions = {
     ...defaultOptions,
-    ...options,
+    ...requestConfig,
     headers: {
       ...defaultOptions.headers,
-      ...options.headers
+      ...(requestConfig.headers || {})
     }
   }
 
@@ -186,121 +215,123 @@ export async function getBlogPost(slug) {
 }
 
 /**
- * Fetch a public item by share token using the backend GraphQL API
+ * Get share data by token (public endpoint)
+ * Calls the /get-share-data Supabase Edge Function
+ */
+export async function getShareData(token) {
+  try {
+    const response = await fetch(`${SUPABASE_FUNCTIONS_URL}/get-share-data`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token })
+    });
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return { error: 'not_found', message: 'This content is not available' };
+      }
+      const errorData = await response.json();
+      return { error: errorData.error || 'unknown_error', message: errorData.message || 'An error occurred' };
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching share data:', error);
+    return { error: 'network_error', message: 'Failed to load content. Please check your connection.' };
+  }
+}
+
+/**
+ * Record a share view event for analytics
+ * Calls the /record-share-view Supabase Edge Function
+ */
+export async function recordShareView(token, platform = 'web') {
+  try {
+    const userAgent = typeof window !== 'undefined' ? window.navigator.userAgent : null;
+
+    await fetch(`${SUPABASE_FUNCTIONS_URL}/record-share-view`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token,
+        platform,
+        userAgent
+      })
+    });
+
+    // Fire and forget - don't wait for response
+  } catch (error) {
+    // Silently fail - analytics shouldn't block UI
+    console.debug('Failed to record share view:', error);
+  }
+}
+
+/**
+ * Fetch public item by share token
+ * Uses the new getShareData endpoint
  */
 export async function getPublicItem(shareToken) {
   try {
-    // 1. Get the share info from the backend
-    const shareQuery = `
-      query GetShareInfo($token: String!) {
-        publicShareByToken(token: $token) {
-          resourceId
-          resourceType
-          status
-          expiresAt
-        }
-      }
-    `;
+    const result = await getShareData(shareToken);
 
-    // The share lookup itself is usually public
-    const shareResponse = await graphqlRequest(shareQuery, { token: shareToken });
-
-    if (!shareResponse.data || !shareResponse.data.publicShareByToken) {
-      return { data: { getPublicItem: null } };
+    if (result.error) {
+      return { data: { getPublicItem: null }, error: result.message };
     }
 
-    const share = shareResponse.data.publicShareByToken;
+    const { share, resource } = result;
 
-    if (share.status !== 'ACTIVE') {
-      return { data: { getPublicItem: null } };
+    // Verify it's an item share
+    if (share.resourceType !== 'item') {
+      return { data: { getPublicItem: null }, error: 'Invalid resource type' };
     }
 
-    // 2. Get the item details
-    // We pass the shareToken as a Bearer token in the headers for authorization
-    const itemQuery = `
-      query GetItem($id: String!) {
-        getItem(id: $id) {
-          id
-          name
-          notes
-          tags
-          images {
-            id
-            path
-            versions {
-              thumbnail { path }
-              preview { path }
-              original { path }
-            }
-            createdAt
-            lastModified
-          }
-          containedItems {
-            id
-            name
-            notes
-            images {
-              id
-              path
-              versions {
-                thumbnail { path }
-              }
-            }
-          }
-          createdAt
-          updatedAt
-        }
+    const mapImages = (images) => (images || []).map(img => {
+      if (typeof img === 'string') {
+        return {
+          id: img,
+          path: img,
+          signedUrl: img,
+          versions: null
+        };
       }
-    `;
+      const versions = img.versions || {};
+      const signedUrl = img.signedUrl ||
+        versions.preview?.signedUrl ||
+        versions.original?.signedUrl ||
+        versions.thumbnail?.signedUrl ||
+        null;
 
-    const itemResponse = await graphqlRequest(itemQuery, { id: share.resourceId }, {
-      headers: {
-        'Authorization': `Bearer ${shareToken}`
-      }
+      return {
+        id: img.id || img.path || null,
+        path: img.path || null,
+        signedUrl: signedUrl,
+        versions: img.versions || null
+      };
     });
 
-    if (!itemResponse.data || !itemResponse.data.getItem) {
-      if (itemResponse.errors) {
-        console.error('GraphQL errors in getItem:', itemResponse.errors);
-        return { errors: itemResponse.errors };
-      }
-      return { data: { getPublicItem: null } };
-    }
-
-    const item = itemResponse.data.getItem;
-
-    // Helper to format item images
-    const formatImages = (images) => {
-      if (!images) return [];
-      const supabaseUrl = (process.env.GATSBY_SUPABASE_URL || 'http://localhost:54321').replace(/\/$/, '');
-      return images.map(img => ({
-        id: img.id,
-        path: img.path,
-        urls: {
-          thumbnail: img.versions?.thumbnail?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.thumbnail.path}` : null,
-          preview: img.versions?.preview?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.preview.path}` : null,
-          full: img.versions?.original?.path ? `${supabaseUrl}/storage/v1/object/public/items/${img.versions.original.path}` : null,
-        },
-        createdAt: img.createdAt,
-        lastModified: img.lastModified
-      }));
-    };
-
+    // Transform to expected format
     const formattedItem = {
-      id: item.id,
-      name: item.name,
-      description: item.notes,
-      tags: item.tags || [],
-      images: formatImages(item.images),
-      createdAt: item.createdAt,
-      updatedAt: item.updatedAt,
-      shareToken: shareToken,
-      containedItems: (item.containedItems || []).map(ci => ({
+      id: resource.id,
+      name: resource.name,
+      description: resource.description,
+      tags: resource.tags || [],
+      images: mapImages(resource.images),
+      customFields: resource.customFields || [],
+      containedItems: (resource.containedItems || []).map(ci => ({
         ...ci,
-        description: ci.notes,
-        images: formatImages(ci.images)
+        images: mapImages(ci.images)
       })),
-      relatedItems: []
+      relatedItems: (resource.relatedItems || []).map(ri => ({
+        ...ri,
+        images: mapImages(ri.images)
+      })),
+      createdAt: resource.createdAt || new Date().toISOString(),
+      updatedAt: resource.lastModified || resource.updatedAt || new Date().toISOString(),
+      shareToken: shareToken
     };
 
     return {
@@ -310,8 +341,47 @@ export async function getPublicItem(shareToken) {
     };
 
   } catch (error) {
-    console.error('Error in getPublicItem GraphQL refactor:', error);
-    throw error;
+    console.error('Error in getPublicItem:', error);
+    return { data: { getPublicItem: null }, error: 'Failed to load item' };
+  }
+}
+
+/**
+ * Fetch public collection by share token
+ */
+export async function getPublicCollection(shareToken) {
+  try {
+    const result = await getShareData(shareToken);
+
+    if (result.error) {
+      return { data: { getPublicCollection: null }, error: result.message };
+    }
+
+    const { share, resource } = result;
+
+    // Verify it's a collection share
+    if (share.resourceType !== 'collection') {
+      return { data: { getPublicCollection: null }, error: 'Invalid resource type' };
+    }
+
+    // Transform to expected format
+    const formattedCollection = {
+      id: resource.id,
+      name: resource.name,
+      description: resource.description,
+      itemCount: resource.itemCount || 0,
+      shareToken: shareToken
+    };
+
+    return {
+      data: {
+        getPublicCollection: formattedCollection
+      }
+    };
+
+  } catch (error) {
+    console.error('Error in getPublicCollection:', error);
+    return { data: { getPublicCollection: null }, error: 'Failed to load collection' };
   }
 }
 

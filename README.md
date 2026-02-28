@@ -165,6 +165,12 @@ Optimizations included:
 - No sensitive data in client code
 - Environment variables for configuration
 
+## 📚 Additional Docs
+
+- `docs/PUBLIC_SCHEMA_DECLUTTER_CLIENT_MIGRATION.md`
+- `docs/BLOG_DEPLOYMENT.md`
+- `docs/CONTENT_SWITCHING.md`
+
 ## 📞 Support
 
 For questions or issues:

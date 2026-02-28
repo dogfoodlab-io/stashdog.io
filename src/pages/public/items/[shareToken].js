@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { getPublicItem } from "../../../utils/api";
+import { getPublicItem, recordShareView } from "../../../utils/api";
 import {
     Box,
     MapPin,
@@ -15,7 +15,10 @@ import {
     Info,
     Copy,
     Check,
-    Share2
+    Share2,
+    DollarSign,
+    Hash,
+    ShieldCheck
 } from "lucide-react";
 import "../../../styles/global.css";
 import "../../../styles/public-share.css";
@@ -27,6 +30,40 @@ const PublicItemPage = ({ params }) => {
     const [error, setError] = useState(null);
     const [activeImage, setActiveImage] = useState(0);
     const [copied, setCopied] = useState(false);
+
+    // Helper function to normalize image URLs for local development
+    const normalizeImageUrl = (url) => {
+        if (!url) return url;
+
+        // In development, handle local storage URLs via proxy
+        const isDevelopment = typeof window !== 'undefined' &&
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        if (isDevelopment && typeof url === 'string') {
+            // Check if the URL is local (contains localhost, 127.0.0.1, or kong)
+            const isLocalUrl = url.includes('localhost') ||
+                url.includes('127.0.0.1') ||
+                url.includes('kong:8000') ||
+                url.includes('0.0.0.0') ||
+                !url.startsWith('http'); // Relative paths are local
+
+            if (isLocalUrl) {
+                // Extract the storage path from the URL
+                // Example: http://kong:8000/storage/v1/object/sign/... -> /storage/v1/object/sign/...
+                const storagePathMatch = url.match(/(\/storage\/v1\/.+)/);
+
+                if (storagePathMatch) {
+                    const normalized = `http://127.0.0.1:54321${storagePathMatch[1]}`;
+                    console.debug('[IMG] Normalized local URL:', { original: url, normalized });
+                    return normalized;
+                }
+            } else {
+                console.debug('[IMG] Keeping remote URL:', url);
+            }
+        }
+
+        return url;
+    };
 
     const copyToClipboard = () => {
         if (typeof window !== 'undefined') {
@@ -44,9 +81,12 @@ const PublicItemPage = ({ params }) => {
                 setLoading(true);
                 const response = await getPublicItem(shareToken);
                 if (response.data && response.data.getPublicItem) {
-                    setItem(response.data.getPublicItem);
-                } else if (response.errors) {
-                    setError(response.errors[0].message);
+                    const itemData = response.data.getPublicItem;
+                    setItem(itemData);
+                    // Record share view for analytics
+                    recordShareView(shareToken, 'web');
+                } else if (response.error) {
+                    setError(response.error);
                 } else {
                     setError("Item not found or share has expired.");
                 }
@@ -112,6 +152,10 @@ const PublicItemPage = ({ params }) => {
     const hasImages = item.images && item.images.length > 0;
     const currentImages = item.images || [];
 
+    // Debug mode - set to false in production
+    const debugMode = typeof window !== 'undefined' &&
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
     return (
         <div className="page-container">
                 <Helmet>
@@ -119,19 +163,49 @@ const PublicItemPage = ({ params }) => {
                     <meta name="description" content={item.description || `View shared item: ${item.name}`} />
                     <meta property="og:title" content={`${item.name} | Shared on StashDog`} />
                     <meta property="og:description" content={item.description || `View shared item: ${item.name}`} />
-                    {hasImages && <meta property="og:image" content={currentImages[0].urls.preview} />}
+                    {hasImages && <meta property="og:image" content={normalizeImageUrl(currentImages[0].signedUrl)} />}
                 </Helmet>
 
                 <Header />
 
                 <main className="container public-share-page" style={{ flexGrow: 1 }}>
+                    {debugMode && (
+                        <div style={{
+                            background: '#2a2a2a',
+                            padding: '1rem',
+                            marginBottom: '2rem',
+                            borderRadius: '8px',
+                            fontSize: '12px',
+                            fontFamily: 'monospace'
+                        }}>
+                            <h3 style={{ color: '#fcd900', marginBottom: '1rem' }}>Debug Info (localhost only)</h3>
+                            <div style={{ color: '#fff' }}>
+                                <strong>Has Images:</strong> {hasImages ? 'Yes' : 'No'}
+                                <br />
+                                <strong>Image Count:</strong> {currentImages.length}
+                                <br />
+                                {hasImages && (
+                                    <>
+                                        <strong>Current Image Object:</strong>
+                                        <pre style={{ background: '#1a1a1a', padding: '0.5rem', marginTop: '0.5rem', overflow: 'auto' }}>
+                                            {JSON.stringify(currentImages[activeImage], null, 2)}
+                                        </pre>
+                                        <strong>Normalized URL:</strong>
+                                        <div style={{ background: '#1a1a1a', padding: '0.5rem', marginTop: '0.5rem', wordBreak: 'break-all' }}>
+                                            {normalizeImageUrl(currentImages[activeImage].signedUrl)}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    )}
                     <div className="item-main-container">
                         {/* Left Column: Images */}
                         <div className="item-image-section">
                             <div className="main-image-wrapper">
                                 {hasImages ? (
                                     <img
-                                        src={currentImages[activeImage].urls.full || currentImages[activeImage].urls.preview}
+                                        src={normalizeImageUrl(currentImages[activeImage].signedUrl)}
                                         alt={item.name}
                                     />
                                 ) : (
@@ -156,7 +230,7 @@ const PublicItemPage = ({ params }) => {
                                             className={`thumbnail-item ${activeImage === idx ? 'active' : ''}`}
                                             onClick={() => setActiveImage(idx)}
                                         >
-                                            <img src={img.urls.thumbnail} alt={`${item.name} thumbnail ${idx + 1}`} />
+                                            <img src={normalizeImageUrl(img.signedUrl)} alt={`${item.name} thumbnail ${idx + 1}`} />
                                         </div>
                                     ))}
                                 </div>
@@ -177,19 +251,6 @@ const PublicItemPage = ({ params }) => {
                                     </span>
                                     <span className="meta-value">{formatDate(item.updatedAt)}</span>
                                 </div>
-                                {item.tags && item.tags.length > 0 && (
-                                    <div className="meta-row" style={{ borderBottom: 'none', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
-                                        <span className="meta-label">
-                                            <TagIcon size={14} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
-                                            Tags
-                                        </span>
-                                        <div className="item-tags" style={{ marginBottom: 0 }}>
-                                            {item.tags.map(tag => (
-                                                <span key={tag} className="item-tag">{tag}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </div>
 
@@ -203,6 +264,26 @@ const PublicItemPage = ({ params }) => {
                             <div className="item-description">
                                 {item.description || "No description provided for this item."}
                             </div>
+
+                            {/* Custom Fields Section */}
+                            {item.customFields && item.customFields.length > 0 && (
+                                <div className="custom-fields-grid">
+                                    {item.customFields.map((field, idx) => (
+                                        <div key={idx} className="custom-field-card">
+                                            <div className="custom-field-label">{field.name}</div>
+                                            <div className="custom-field-value">{field.value}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            {item.tags && item.tags.length > 0 && (
+                                <div className="item-tags">
+                                    {item.tags.map(tag => (
+                                        <span key={tag} className="item-tag">{tag}</span>
+                                    ))}
+                                </div>
+                            )}
 
                             <div className="info-card variant-highlight mb-8">
                                 <div className="info-card-header">
@@ -249,7 +330,7 @@ const PublicItemPage = ({ params }) => {
                                     <div key={containedItem.id} className="public-item-card">
                                         <div className="card-image">
                                             {containedItem.images && containedItem.images.length > 0 ? (
-                                                <img src={containedItem.images[0].urls.preview} alt={containedItem.name} />
+                                                <img src={normalizeImageUrl(containedItem.images[0].signedUrl)} alt={containedItem.name} />
                                             ) : (
                                                 <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#222' }}>
                                                     <Package size={40} color="#444" />
@@ -278,7 +359,7 @@ const PublicItemPage = ({ params }) => {
                                     <div key={relatedItem.id} className="public-item-card">
                                         <div className="card-image">
                                             {relatedItem.images && relatedItem.images.length > 0 ? (
-                                                <img src={relatedItem.images[0].urls.preview} alt={relatedItem.name} />
+                                                <img src={normalizeImageUrl(relatedItem.images[0].signedUrl)} alt={relatedItem.name} />
                                             ) : (
                                                 <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#222' }}>
                                                     <Package size={40} color="#444" />

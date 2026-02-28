@@ -100,6 +100,42 @@
     white-space: pre-wrap;
 }
 
+/* Custom Fields Grid */
+.custom-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.custom-field-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.custom-field-card:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(252, 217, 0, 0.15);
+}
+
+.custom-field-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.custom-field-value {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
 .item-tags {
     display: flex;
     flex-wrap: wrap;
@@ -285,4 +321,46 @@
     border-radius: 24px;
     border: 1px dashed var(--glass-border);
     color: var(--text-muted);
+}
+
+/* Collection Page Styles */
+.collection-header-section {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.collection-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #fff, #a3a3a3);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.collection-meta-inline {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(252, 217, 0, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(252, 217, 0, 0.2);
+}
+
+.collection-description {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    white-space: pre-wrap;
 }
