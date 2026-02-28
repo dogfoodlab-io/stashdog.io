@@ -169,28 +169,35 @@ async function graphqlRequest(query, variables = {}, options = {}) {
  */
 export async function getBlogPosts(filter = {}) {
   const query = `
-    query GetBlogPosts($filter: BlogPostsFilterInput) {
-      blogPosts(filter: $filter) {
-        id
-        title
-        excerpt
-        slug
-        authorId
-        published
-        featuredImageUrl
-        tags
-        createdAt
-        updatedAt
+    query GetBlogPosts {
+      content {
+        blogPostsCollection(filter: {published: {eq: true}}, orderBy: [{createdAt: DescNullsLast}], first: 100) {
+          edges {
+            node {
+              id
+              title
+              excerpt
+              slug
+              authorId
+              published
+              featuredImageUrl
+              tags
+              createdAt
+              updatedAt
+            }
+          }
+        }
       }
     }
   `
 
-  return graphqlRequest(query, {
-    filter: {
-      published: typeof filter.published === 'boolean' ? filter.published : true,
-      ...filter
+  const result = await graphqlRequest(query)
+  const edges = result.data?.content?.blogPostsCollection?.edges || []
+  return {
+    data: {
+      blogPosts: edges.map((edge) => edge.node)
     }
-  })
+  }
 }
 
 /**
@@ -199,24 +206,37 @@ export async function getBlogPosts(filter = {}) {
 export async function getBlogPost(slug) {
   const query = `
     query GetBlogPost($slug: String!) {
-      blogPost(slug: $slug) {
-        id
-        title
-        content
-        excerpt
-        slug
-        authorId
-        published
-        featuredImageUrl
-        tags
-        metaDescription
-        createdAt
-        updatedAt
+      content {
+        blogPostsCollection(filter: {slug: {eq: $slug}}, first: 1) {
+          edges {
+            node {
+              id
+              title
+              content
+              excerpt
+              slug
+              authorId
+              published
+              featuredImageUrl
+              tags
+              metaDescription
+              createdAt
+              updatedAt
+            }
+          }
+        }
       }
     }
   `
 
-  return graphqlRequest(query, { slug })
+  const result = await graphqlRequest(query, { slug })
+  const edges = result.data?.content?.blogPostsCollection?.edges || []
+  const node = edges.length > 0 ? edges[0].node : null
+  return {
+    data: {
+      blogPost: node
+    }
+  }
 }
 
 /**

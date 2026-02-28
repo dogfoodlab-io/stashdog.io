@@ -13,20 +13,26 @@ async function fetchBlogPosts() {
   const fetch = (await import('node-fetch')).default
 
   const query = `
-    query GetBlogPosts($filter: BlogPostsFilterInput) {
-      blogPosts(filter: $filter) {
-        id
-        title
-        content
-        excerpt
-        slug
-        authorId
-        published
-        featuredImageUrl
-        tags
-        metaDescription
-        createdAt
-        updatedAt
+    query GetBlogPosts {
+      content {
+        blogPostsCollection(filter: {published: {eq: true}}, orderBy: [{createdAt: DescNullsLast}], first: 100) {
+          edges {
+            node {
+              id
+              title
+              content
+              excerpt
+              slug
+              authorId
+              published
+              featuredImageUrl
+              tags
+              metaDescription
+              createdAt
+              updatedAt
+            }
+          }
+        }
       }
     }
   `
@@ -45,12 +51,7 @@ async function fetchBlogPosts() {
         'apikey': SUPABASE_ANON_KEY,
       },
       body: JSON.stringify({
-        query,
-        variables: {
-          filter: {
-            published: true
-          }
-        }
+        query
       }),
       signal: controller.signal
     })
@@ -68,7 +69,8 @@ async function fetchBlogPosts() {
       return []
     }
     
-    return result.data?.blogPosts || []
+    const edges = result.data?.content?.blogPostsCollection?.edges || []
+    return edges.map((edge) => edge.node)
   } catch (error) {
     console.error('Error fetching blog posts for static generation:', error)
     return []
