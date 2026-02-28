@@ -105,7 +105,8 @@ async function apiRequest(endpoint, options = {}) {
 export async function submitWaitlistEntry(waitlistEntry) {
   return apiRequest('/waitlist', {
     method: 'POST',
-    body: JSON.stringify(waitlistEntry)
+    body: JSON.stringify(waitlistEntry),
+    schema: 'ops'
   })
 }
 
