@@ -1,14 +1,17 @@
 const path = require('path')
 
-const API_BASE_URL = process.env.GATSBY_API_BASE_URL || 'https://api.stashdog.io'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
+const SUPABASE_BASE_URL = process.env.GATSBY_SUPABASE_URL || 'https://gmchczeyburroiyzefie.supabase.co'
+const SUPABASE_GRAPHQL_URL = SUPABASE_BASE_URL.includes('/graphql/v1')
+  ? SUPABASE_BASE_URL
+  : `${SUPABASE_BASE_URL}/graphql/v1`
+const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtY2hjemV5YnVycm9peXplZmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTM1NjIsImV4cCI6MjA1Mzg2OTU2Mn0.tW4Nx5qpnQh_VszEe9XP8XmTAGu-GHFhhw7e3kCeWFc'
 
 /**
- * Fetch all published blog posts from the API at build time
+ * Fetch all published blog posts from Supabase GraphQL at build time
  */
 async function fetchBlogPosts() {
-  // Import node-fetch dynamically since v3 is ESM-only
   const fetch = (await import('node-fetch')).default
+
   const query = `
     query GetBlogPosts($filter: BlogPostsFilterInput) {
       blogPosts(filter: $filter) {
@@ -29,18 +32,17 @@ async function fetchBlogPosts() {
   `
 
   try {
-    // Create an AbortController for timeout
     const controller = new AbortController()
     const timeout = setTimeout(() => {
       controller.abort()
-    }, 30000) // 30 second timeout
+    }, 30000)
 
-    const response = await fetch(`${API_BASE_URL}/graphql`, {
+    const response = await fetch(SUPABASE_GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Connection': 'close', // Force connection to close after request
+        'apikey': SUPABASE_ANON_KEY,
       },
       body: JSON.stringify({
         query,
@@ -60,6 +62,12 @@ async function fetchBlogPosts() {
     }
 
     const result = await response.json()
+    
+    if (result.errors) {
+      console.error('GraphQL errors:', result.errors)
+      return []
+    }
+    
     return result.data?.blogPosts || []
   } catch (error) {
     console.error('Error fetching blog posts for static generation:', error)

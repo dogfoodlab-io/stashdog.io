@@ -10,22 +10,23 @@ const getBaseUrl = () => {
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
   return isLocal
     ? 'http://127.0.0.1:54321/rest/v1'
-    : 'https://api.stashdog.io'
+    : 'https://gmchczeyburroiyzefie.supabase.co/rest/v1'
 }
 
-const getBackendUrl = () => {
-  if (process.env.GATSBY_BACKEND_URL) {
-    return process.env.GATSBY_BACKEND_URL
+const getSupabaseGraphQLUrl = () => {
+  if (process.env.GATSBY_SUPABASE_URL) {
+    const baseUrl = process.env.GATSBY_SUPABASE_URL.replace('/rest/v1', '');
+    return `${baseUrl}/graphql/v1`;
   }
   const isLocal = typeof window !== 'undefined' &&
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
   return isLocal
-    ? 'http://127.0.0.1:3000'
-    : 'https://api.stashdog.io'
+    ? 'http://127.0.0.1:54321/graphql/v1'
+    : 'https://gmchczeyburroiyzefie.supabase.co/graphql/v1'
 }
 
 const API_BASE_URL = getBaseUrl()
-const BACKEND_URL = getBackendUrl()
+const SUPABASE_GRAPHQL_URL = getSupabaseGraphQLUrl()
 const SUPABASE_ANON_KEY = process.env.GATSBY_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
 // Get Supabase Functions URL
@@ -38,7 +39,7 @@ const getSupabaseFunctionsUrl = () => {
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
   return isLocal
     ? 'http://127.0.0.1:54321/functions/v1'
-    : 'https://api.stashdog.io/functions/v1';
+    : 'https://gmchczeyburroiyzefie.supabase.co/functions/v1';
 }
 
 const SUPABASE_FUNCTIONS_URL = getSupabaseFunctionsUrl()
@@ -129,15 +130,17 @@ export async function getSubscriptionPlans() {
 }
 
 /**
- * GraphQL request handler targeting the backend server
+ * GraphQL request handler targeting Supabase GraphQL API
  */
 async function graphqlRequest(query, variables = {}, options = {}) {
-  const url = `${BACKEND_URL}/graphql`
+  const url = SUPABASE_GRAPHQL_URL
   const requestOptions = {
     method: 'POST',
     ...options,
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'apikey': SUPABASE_ANON_KEY,
       ...(options.headers || {})
     },
     body: JSON.stringify({
@@ -158,6 +161,8 @@ async function graphqlRequest(query, variables = {}, options = {}) {
     throw error
   }
 }
+
+
 
 /**
  * Fetch all published blog posts
