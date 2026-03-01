@@ -85,33 +85,34 @@ const DownloadPage = () => {
             </div>
           </section>
           <section className="download-options">
-            <div className="container">
-              <div className="download-buttons">
-                <h3>Stable Release</h3>
-                <p style={{ marginBottom: '1rem', color: 'var(--text-muted)' }}>Get the current version on the App Store</p>
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '3rem' }}>
+            <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <h3 style={{ marginBottom: '0.5rem' }}>Stable Release</h3>
+                <p style={{ marginBottom: '1.25rem', color: 'var(--text-muted)' }}>Get the current version on the App Store</p>
+                <div className="download-buttons" style={{ justifyContent: 'center' }}>
                   <AppStoreButton onClick={handleDownloadClick} />
                   <GooglePlayButton onClick={handleDownloadClick} />
                 </div>
+              </div>
 
-                <div style={{
-                  background: 'rgba(252, 217, 0, 0.1)',
-                  padding: '2rem',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(252, 217, 0, 0.2)'
+              <div style={{
+                background: 'rgba(252, 217, 0, 0.1)',
+                padding: '2rem',
+                borderRadius: '16px',
+                border: '1px solid rgba(252, 217, 0, 0.2)',
+                textAlign: 'left'
+              }}>
+                <h3 style={{ color: '#fcd900' }}>Want Early Access to Beta Features?</h3>
+                <p style={{ marginBottom: '1.5rem', marginTop: '0.5rem' }}>
+                  Optional: join the beta waitlist to preview upcoming features.
+                </p>
+                <a href="/waitlist" className="cta-button" style={{
+                  display: 'inline-block',
+                  textDecoration: 'none',
+                  padding: '0.75rem 2rem'
                 }}>
-                  <h3 style={{ color: '#fcd900' }}>Want Beta Features?</h3>
-                  <p style={{ marginBottom: '1.5rem', marginTop: '0.5rem' }}>
-                    Optional: join the beta waitlist to preview upcoming features.
-                  </p>
-                  <a href="/waitlist" className="cta-button" style={{
-                    display: 'inline-block',
-                    textDecoration: 'none',
-                    padding: '0.75rem 2rem'
-                  }}>
-                    Join Beta Waitlist
-                  </a>
-                </div>
+                  Join Beta Waitlist
+                </a>
               </div>
               {/* <div className="download-info">
                 <h2>Finally Get Your Shit Together</h2>
