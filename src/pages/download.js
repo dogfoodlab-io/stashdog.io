@@ -87,7 +87,7 @@ const DownloadPage = () => {
           <section className="download-options">
             <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <h3 style={{ marginBottom: '0.5rem' }}>Stable Release</h3>
+                <h3 style={{ marginBottom: '0.5rem' }}>Latest Release</h3>
                 <p style={{ marginBottom: '1.25rem', color: 'var(--text-muted)' }}>Get the current version on the App Store</p>
                 <div className="download-buttons" style={{ justifyContent: 'center' }}>
                   <AppStoreButton onClick={handleDownloadClick} />
