@@ -41,11 +41,11 @@ const IndexPage = () => {
           <title>StashDog - Quit Living Like a Trash Gremlin</title>
           <meta
             name="description"
-            content="StashDog is the smart home inventory management app that helps families organize, track, and find their belongings instantly. Never lose your stuff again with AI-powered organization for moving, storage, and daily life. Join the StashDog Early Access Program. Be the first to experience AI-powered home organization. Sign up now for exclusive early adopter benefits."
+            content="StashDog is the smart home inventory management app that helps families organize, track, and find their belongings instantly. Never lose your stuff again with AI-powered organization for moving, storage, and daily life. Free forever with no credit card required."
           />
           <meta
             name="keywords"
-            content="home inventory, organization, early access, beta test, AI organization"
+            content="home inventory, organization, free app, AI organization"
           />
           <link rel="canonical" href="https://stashdog.io/" />
           <meta name="robots" content="index, follow" />

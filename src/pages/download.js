@@ -100,16 +100,16 @@ const DownloadPage = () => {
                   borderRadius: '16px',
                   border: '1px solid rgba(252, 217, 0, 0.2)'
                 }}>
-                  <h3 style={{ color: '#fcd900' }}>Want the Newest Features?</h3>
+                  <h3 style={{ color: '#fcd900' }}>Want Beta Features?</h3>
                   <p style={{ marginBottom: '1.5rem', marginTop: '0.5rem' }}>
-                    Join the Early Access Program to try out cutting-edge AI features before anyone else.
+                    Optional: join the beta waitlist to preview upcoming features.
                   </p>
                   <a href="/waitlist" className="cta-button" style={{
                     display: 'inline-block',
                     textDecoration: 'none',
                     padding: '0.75rem 2rem'
                   }}>
-                    Join Early Access
+                    Join Beta Waitlist
                   </a>
                 </div>
               </div>

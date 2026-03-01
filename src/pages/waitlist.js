@@ -16,7 +16,7 @@ const WaitlistPage = () => {
   useEffect(() => {
     if (isInitialized) {
       logEvent('page_view', {
-        page_title: 'StashDog Waitlist',
+        page_title: 'StashDog Download',
         page_location: typeof window !== 'undefined' ? window.location.href : '',
         page_path: typeof window !== 'undefined' ? window.location.pathname : '/waitlist'
       })
@@ -27,23 +27,23 @@ const WaitlistPage = () => {
     <div className="page-container">
         <Helmet>
           <html lang="en" />
-          <title>Join the StashDog Waitlist - Early Access</title>
-          <meta name="description" content="Join StashDog's waitlist for early access to the smart home inventory app. Get free premium features, special pricing, and priority support as a beta tester. Sign up now for exclusive benefits." />
-          <meta name="keywords" content="StashDog waitlist, early access, home organization, inventory management, sign up" />
+          <title>Download StashDog</title>
+          <meta name="description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
+          <meta name="keywords" content="StashDog download, iOS app, Android app, home organization, inventory management" />
           <link rel="canonical" href="https://stashdog.io/waitlist/" />
           <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
-          <meta property="og:title" content="Join the StashDog Waitlist - Early Access" />
-          <meta property="og:description" content="Be among the first to get your shit together with StashDog. Join our waitlist for early access." />
+          <meta property="og:title" content="Download StashDog" />
+          <meta property="og:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/waitlist" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Join the StashDog Waitlist - Early Access" />
-          <meta name="twitter:description" content="Be among the first to get your shit together with StashDog." />
+          <meta name="twitter:title" content="Download StashDog" />
+          <meta name="twitter:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
           {/* Favicon */}
@@ -73,16 +73,15 @@ const WaitlistPage = () => {
                     border: '1px solid rgba(252, 217, 0, 0.2)'
                   }}>
                     <span style={{ color: '#fcd900', fontWeight: '600', fontSize: '0.9rem' }}>
-                      Limited Spots Available
+                      Free Forever • No Credit Card Required
                     </span>
                   </div>
 
                   <h1 className="hero-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem', lineHeight: '1.1' }}>
-                    Join the Pack
+                    Download StashDog
                   </h1>
                   <p className="hero-description">
-                    Be among the first to get your hands on StashDog's newest features.
-                    No more living like a trash gremlin—early access awaits!
+                    Stop living like a trash gremlin. Get organized now on iOS and Android.
                   </p>
 
                   <div className="benefits-list" style={{ marginTop: '2rem' }}>
@@ -90,13 +89,13 @@ const WaitlistPage = () => {
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>
                         <Rocket size={20} />
                       </div>
-                      <div><strong>Early Access</strong> to newest features</div>
+                      <div><strong>Instant Download</strong> on iOS and Android</div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>
                         <Banknote size={20} />
                       </div>
-                      <div>Discounted pricing and extended trials</div>
+                      <div>Free forever with no credit card required</div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>
@@ -107,32 +106,34 @@ const WaitlistPage = () => {
                   </div>
                 </div>
 
-                <div className="hero-form" style={{
-                  background: 'var(--bg-card)',
-                  padding: '2rem',
-                  borderRadius: '24px',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
-                }}>
-                  <WaitlistForm />
-                </div>
-              </div>
-            </div>
-          </section>
+                <div>
+                  <div style={{
+                    background: 'var(--bg-card)',
+                    padding: '2rem',
+                    borderRadius: '24px',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                    textAlign: 'center'
+                  }}>
+                    <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Get it now</h3>
+                    <p style={{ marginBottom: '1.25rem', color: 'var(--text-muted)' }}>Available now on the App Store and Google Play</p>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                      <AppStoreButton onClick={() => logEvent('download_click', { platform: 'ios', page: 'waitlist' })} />
+                      <GooglePlayButton onClick={() => logEvent('download_click', { platform: 'android', page: 'waitlist' })} />
+                    </div>
+                  </div>
 
-          <section className="stable-release" style={{
-            background: '#111',
-            padding: '4rem 0',
-            borderTop: '1px solid rgba(255,255,255,0.05)'
-          }}>
-            <div className="container" style={{ textAlign: 'center' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Just want to get organized now?</h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
-                You can still download the stable version of StashDog today and start tracking your items immediately.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                <AppStoreButton onClick={() => logEvent('download_click', { platform: 'ios', page: 'waitlist' })} />
-                <GooglePlayButton onClick={() => logEvent('download_click', { platform: 'android', page: 'waitlist' })} />
+                  <div className="hero-form" style={{
+                    background: 'var(--bg-card)',
+                    padding: '2rem',
+                    borderRadius: '24px',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                    marginTop: '1.5rem'
+                  }}>
+                    <WaitlistForm />
+                  </div>
+                </div>
               </div>
             </div>
           </section>

@@ -51,7 +51,7 @@ const formatInterval = (interval, intervalCount = 1) => {
 }
 
 const getCheckoutUrl = (plan) => {
-  if ((plan.price || 0) <= 0) return '/waitlist'
+  if ((plan.price || 0) <= 0) return '/download'
 
   const redirect = encodeURIComponent(`/upgrade?price_id=${plan.stripe_price_id}`)
   return `https://app.stashdog.io/sign-up?redirect=${redirect}`

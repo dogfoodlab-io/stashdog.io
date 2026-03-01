@@ -41,7 +41,7 @@ const Hero = () => {
             }}>
               <Star size={16} fill="#fcd900" color="#fcd900" />
               <span style={{ color: '#fcd900', fontWeight: '600', fontSize: '0.9rem' }}>
-                Early Access Now Available
+                Free Forever • No Credit Card Required
               </span>
             </div>
 
@@ -55,7 +55,7 @@ const Hero = () => {
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link
-                to="/waitlist"
+                to="/download"
                 className="cta-button"
                 onClick={() => handleCTAClick('primary', 'Get Started', 'hero_main')}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}

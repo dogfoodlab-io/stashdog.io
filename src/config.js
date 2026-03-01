@@ -6,7 +6,7 @@ export const contentVariants = {
       title: "Quit Living Like a Trash Gremlin",
       description: "StashDog turns your home into a searchable database. Track any item you own so you can find it in seconds.",
       cta: {
-        buttonText: "Join Early Access",
+        buttonText: "Get It Now",
       }
     },
     discover: {
