@@ -8,8 +8,12 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/public/items/**",
+        "destination": "/public/items/[shareToken].html"
+      },
+      {
+        "source": "/public/collections/**",
+        "destination": "/public/collections/[shareToken].html"
       }
     ],
     "headers": [

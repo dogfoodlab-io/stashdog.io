@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
+  trailingSlash: 'always',
   siteMetadata: {
     title: "StashDog - Smart Home Inventory Management",
     description: "Never lose track of your stuff again. StashDog helps you organize, find, and manage everything you own with AI-powered inventory management.",
