@@ -42,7 +42,7 @@ const FAQ = () => {
     {
       question: "How much does it cost?",
       answer:
-        "StashDog is free to use with up to 100 items. Upgrade to StashDog Plus for unlimited items, photos, and premium features. No contracts, cancel anytime."
+        "StashDog has a free tier and paid plans with tiered usage limits. Paid plans increase your item, photo, and AI allowances based on the plan you choose. No contracts, cancel anytime."
     },
     {
       question: "Can I share items with my family?",

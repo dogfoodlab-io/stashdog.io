@@ -68,9 +68,9 @@ const TermsPage = () => {
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>3.1 Subscription Plans</h3>
                 <ul style={{ marginLeft: '2rem' }}>
-                  <li><strong>Free Plan</strong>: Limited to 100 items, 10 AI Completions per month, and 1GB storage</li>
-                  <li><strong>Stashdog+ Monthly</strong>: Unlimited items, unlimited AI completions, unlimited storage, and priority support for $4.99 per month</li>
-                  <li><strong>Stashdog+ Annual</strong>: Unlimited items, unlimited AI completions, unlimited storage, and priority support for $49.99 per year</li>
+                  <li><strong>Free Plan</strong>: Includes base usage limits for items, AI completions, and storage</li>
+                  <li><strong>Paid Plans</strong>: Include tiered usage limits with higher allowances based on the selected plan</li>
+                  <li><strong>Current Limits and Pricing</strong>: Available on our pricing page and in-app subscription settings</li>
                 </ul>
 
                 <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>3.2 Payment Terms</h3>
