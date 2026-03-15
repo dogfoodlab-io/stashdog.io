@@ -261,7 +261,8 @@ section {
 /* Hero Section Base */
 .stashdog-hero {
   padding-top: calc(var(--header-height) + 2rem);
-  min-height: 90vh;
+  /* Let the hero size to its content instead of forcing a large viewport height */
+  min-height: auto;
   display: flex;
   align-items: center;
 }
@@ -307,6 +308,18 @@ section {
   from {
     opacity: 0;
     transform: translateY(20px);
+
+/* Ensure the download page hero spacing applies on all viewports.
+   Previous rule lived inside a mobile-only media query, so it didn't
+   take effect on desktop. */
+@media (max-width: 768px) {
+  .download-page .stashdog-hero {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+  }
+}
   }
 
   to {
@@ -868,6 +881,21 @@ section {
   .stashdog-hero {
     padding-top: calc(var(--header-height) + 1rem);
     min-height: 60vh;
+  }
+
+  /* Tighten spacing specifically for the download page hero and options
+     so the content flows without large gaps. Keeps global section spacing
+     intact for other pages. */
+  .download-page .stashdog-hero {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .download-page .download-options {
+    padding-top: 0;
+    padding-bottom: 2rem;
   }
 
   .pricing-card {
