@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { PartyPopper } from "lucide-react"
 import { submitWaitlistEntry } from "../utils/api"
 
@@ -11,6 +11,24 @@ const WaitlistForm = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', null
+  const hasTrackedConversionRef = useRef(false)
+
+  useEffect(() => {
+    if (submitStatus !== 'success') {
+      hasTrackedConversionRef.current = false
+      return
+    }
+
+    if (hasTrackedConversionRef.current || typeof window === 'undefined' || typeof window.gtag !== 'function') {
+      return
+    }
+
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-17868363896/HKToCOGo35scEPiwpshC'
+    })
+
+    hasTrackedConversionRef.current = true
+  }, [submitStatus])
 
   const handleChange = (e) => {
     const { name, value } = e.target

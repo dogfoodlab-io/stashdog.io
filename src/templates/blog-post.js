@@ -8,12 +8,6 @@ import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 import "../styles/blog.css"
 
-// Lazy import DOMPurify to avoid SSR issues
-let DOMPurify
-if (typeof window !== 'undefined') {
-  DOMPurify = require('isomorphic-dompurify')
-}
-
 const BlogPostTemplate = ({ pageContext }) => {
   const { post } = pageContext
   const { isInitialized, logEvent } = useFirebase()
@@ -42,13 +36,7 @@ const BlogPostTemplate = ({ pageContext }) => {
 
   if (looksLikeMarkdown) {
     try {
-      const raw = marked.parse(contentHtml)
-      // Only sanitize in the browser to avoid SSR issues with jsdom
-      if (DOMPurify) {
-        contentHtml = DOMPurify.sanitize(raw)
-      } else {
-        contentHtml = raw
-      }
+      contentHtml = marked.parse(contentHtml)
     } catch (e) {
       console.warn('Markdown parse failed, falling back to raw content', e)
     }

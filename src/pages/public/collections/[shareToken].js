@@ -67,6 +67,9 @@ const PublicCollectionPage = ({ params }) => {
         return (
             <HelmetProvider>
                 <div className="page-container">
+                    <Helmet>
+                        <title>Loading Shared Collection | StashDog</title>
+                    </Helmet>
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="loading-container">
@@ -85,6 +88,9 @@ const PublicCollectionPage = ({ params }) => {
         return (
             <HelmetProvider>
                 <div className="page-container">
+                    <Helmet>
+                        <title>Shared Collection Unavailable | StashDog</title>
+                    </Helmet>
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="error-container">

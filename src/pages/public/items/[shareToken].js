@@ -118,6 +118,9 @@ const PublicItemPage = ({ params }) => {
     if (loading) {
         return (
             <div className="page-container">
+                    <Helmet>
+                        <title>Loading Shared Item | StashDog</title>
+                    </Helmet>
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="loading-container">
@@ -134,6 +137,9 @@ const PublicItemPage = ({ params }) => {
     if (error || !item) {
         return (
             <div className="page-container">
+                    <Helmet>
+                        <title>Shared Item Unavailable | StashDog</title>
+                    </Helmet>
                     <Header />
                     <div className="container" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div className="error-container">
