@@ -6,6 +6,7 @@ import UseCaseSelector from "../components/UseCaseSelector";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
+import HomepageCTA from "../components/HomepageCTA";
 import Footer from "../components/Footer";
 import ContentSwitcherControls from "../components/ContentSwitcherControls";
 import { useFirebase } from "../hooks/useFirebase";
@@ -38,14 +39,14 @@ const IndexPage = () => {
     <div className="page-container">
         <Helmet>
           <html lang="en" />
-          <title>StashDog - Quit Living Like a Trash Gremlin</title>
+          <title>StashDog — Home Inventory App | Track & Find Everything You Own</title>
           <meta
             name="description"
-            content="StashDog is the smart home inventory management app that helps families organize, track, and find their belongings instantly. Never lose your stuff again with AI-powered organization for moving, storage, and daily life. Free forever with no credit card required."
+            content="StashDog is the free home inventory app that helps you catalog what you own, save where it lives, and find it instantly. Perfect for moving, storage, collections, and everyday household chaos."
           />
           <meta
             name="keywords"
-            content="home inventory, organization, free app, AI organization"
+            content="home inventory app, household inventory, organize storage, moving inventory, find your stuff, family organization"
           />
           <link rel="canonical" href="https://stashdog.io/" />
           <meta name="robots" content="index, follow" />
@@ -53,11 +54,11 @@ const IndexPage = () => {
           {/* Open Graph */}
           <meta
             property="og:title"
-            content="StashDog - Quit Living Like a Trash Gremlin"
+            content="StashDog — Home Inventory App | Track & Find Everything You Own"
           />
           <meta
             property="og:description"
-            content="Stop living like a disaster. StashDog helps you organize your crap and find your shit when you need it."
+            content="Catalog what you own, save where it lives, and find it instantly with StashDog's searchable home inventory app."
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io" />
@@ -67,11 +68,11 @@ const IndexPage = () => {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="StashDog - Quit Living Like a Trash Gremlin"
+            content="StashDog — Home Inventory App | Track & Find Everything You Own"
           />
           <meta
             name="twitter:description"
-            content="Stop living like a disaster. Finally get your shit together with StashDog."
+            content="Track what you own, organize where it lives, and find it fast with StashDog."
           />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
@@ -117,6 +118,12 @@ const IndexPage = () => {
               url: "https://stashdog.io",
               applicationCategory: "ProductivityApplication",
               operatingSystem: "iOS, Android",
+              featureList: [
+                "Catalog household items with photos",
+                "Save exact storage locations",
+                "Search your home inventory instantly",
+                "Share collections with family or roommates"
+              ],
               offers: {
                 "@type": "Offer",
                 price: "0",
@@ -176,6 +183,7 @@ const IndexPage = () => {
         <Features />
         <Testimonials />
         <FAQ />
+        <HomepageCTA />
         <Footer />
 
         {<ContentSwitcherControls showControls={showControls} />}

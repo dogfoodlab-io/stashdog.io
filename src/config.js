@@ -4,31 +4,31 @@ export const contentVariants = {
   default: {
     welcome: {
       title: "Quit Living Like a Trash Gremlin",
-      description: "StashDog turns your home into a searchable database. Track any item you own so you can find it in seconds.",
+      description: "Catalog what you own, save where it lives, and find it instantly when you need it. Perfect for moving, shared homes, collections, gear, and everyday household chaos.",
       cta: {
-        buttonText: "Get It Now",
+        buttonText: "Download Free",
       }
     },
     discover: {
-      title: "Get Your Shit Together, Finally",
+      title: "Stop Guessing. Start Finding.",
       // hashtag: "#GetYourShitTogether",
       features: {
         inventory_management: {
-          title: "Effortless as Hell Inventory Management",
-          description: "Imagine not digging through piles of junk like a goddamn raccoon. With StashDog, you can track your shit in a few taps and finally feel like you're winning at life."
+          title: "Add items in minutes, not weekends",
+          description: "Snap photos, save notes, and build a searchable inventory without wrestling with spreadsheets or a giant labeling project."
         },
         location_tracking: {
-          title: "Find your Crap In A Snap",
-          description: "Never lose your shit again. Assign precise storage locations to everything, and let Stashdog do the remembering. Your future self will thank you. "
+          title: "Save exact locations so search actually works",
+          description: "Track which bin, shelf, closet, room, or tote something lives in so you can go straight to it instead of tearing the house apart."
         },
         family_sharing: {
-          title: "Keep Your Crew in the Loop",
-          description: "Easily share your stash with friends, family members, roommates etc. Collaborate and keep track of your stuff together. You don't have to be a human search engine anymore. The next time anybody finds something lying around they know where it needs to go. "
+          title: "Share the household memory",
+          description: "Give family members, roommates, guests, or helpers one place to see what exists, where it belongs, and who can access it."
         }
       }
     },
     testimonials: {
-      title: "Proof That Even Trainwrecks Can Change",
+      title: "Proof That StashDog Saves Time",
       reviews: [
         {
           author: "Sarah J.",

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { ArrowRight, Star, Search, Camera, Brain, Wand, WandSparkles, Wand2, Sparkle } from "lucide-react"
+import { ArrowRight, Star, Search, Camera, MapPinned, CheckCircle2 } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import { useContentSwitcher } from "../hooks/useContentSwitcher"
 
@@ -57,7 +57,7 @@ const Hero = () => {
               <Link
                 to="/download"
                 className="cta-button"
-                onClick={() => handleCTAClick('primary', 'Get Started', 'hero_main')}
+                onClick={() => handleCTAClick('primary', content.welcome.cta.buttonText, 'hero_main')}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
               >
                 {content.welcome.cta.buttonText} <ArrowRight size={18} />
@@ -71,34 +71,82 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* {(() => {
-              const problem = `We own too much to remember where it all is. Spreadsheets and notes are a chore to maintain and difficult to maintain with other family/friends.`
-              const solution = `StashDog offloads the mental overhead. A visual, searchable, and shareable database for everything you own.`
-
-              return (
-                <div style={{ marginTop: '2.5rem', display: 'flex', gap: '2rem', opacity: 0.9, alignItems: 'flex-start' }}>
-                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.04)', padding: '0.6rem', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Brain size={20} color="#fcd900" />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '1rem', fontWeight: '700', color: 'white' }}>Problem</div>
-                      <div style={{ fontSize: '0.9rem', color: '#cfcfcf', maxWidth: '320px' }}>{problem}</div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.04)', padding: '0.6rem', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <WandSparkles size={20} color="#fcd900" />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '1rem', fontWeight: '700', color: 'white' }}>Solution</div>
-                      <div style={{ fontSize: '0.9rem', color: '#cfcfcf', maxWidth: '320px' }}>{solution}</div>
-                    </div>
-                  </div>
+            <div style={{
+              display: 'flex',
+              gap: '0.75rem',
+              flexWrap: 'wrap',
+              marginTop: '1rem',
+              marginBottom: '2rem'
+            }}>
+              {[
+                'Start free with up to 100 items',
+                'iPhone + Android',
+                'Share with family and roommates'
+              ].map((item) => (
+                <div
+                  key={item}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    padding: '0.55rem 0.85rem',
+                    borderRadius: '999px',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    color: 'var(--text-muted)',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  <CheckCircle2 size={16} color="#fcd900" />
+                  <span>{item}</span>
                 </div>
-              )
-            })()} */}
+              ))}
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '1rem',
+              width: '100%',
+              maxWidth: '640px'
+            }}>
+              {[
+                {
+                  title: 'Snap photos',
+                  description: 'Add items as you go instead of building a spreadsheet from scratch.',
+                  icon: <Camera size={18} color="#fcd900" />
+                },
+                {
+                  title: 'Save locations',
+                  description: 'Track the exact room, bin, shelf, or box so retrieval is easy later.',
+                  icon: <MapPinned size={18} color="#fcd900" />
+                },
+                {
+                  title: 'Search instantly',
+                  description: 'Find what you own fast and stop buying duplicates or tearing the house apart.',
+                  icon: <Search size={18} color="#fcd900" />
+                }
+              ].map((step) => (
+                <div
+                  key={step.title}
+                  className="glass-panel"
+                  style={{
+                    padding: '1rem',
+                    borderRadius: '20px',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.05)'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.65rem', fontWeight: '700', color: 'white' }}>
+                    {step.icon}
+                    <span>{step.title}</span>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Right Image/Visual */}
