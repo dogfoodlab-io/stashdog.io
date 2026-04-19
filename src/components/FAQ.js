@@ -37,7 +37,7 @@ const FAQ = () => {
     {
       question: "How much does it cost?",
       answer:
-        "StashDog is free for up to 100 items. Paid plans unlock more items, more photos, and premium features, and you can upgrade only if the app becomes useful enough to justify it."
+        "StashDog has a free tier and paid plans with tiered usage limits. Paid plans increase your item, photo, and AI allowances based on the plan you choose. No contracts, cancel anytime."
     },
     {
       question: "Can I share it with family or roommates?",

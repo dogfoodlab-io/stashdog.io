@@ -78,13 +78,12 @@ const DownloadPage = () => {
                   }}
                 />
               </div>
-              <br /><br />
-              <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
+              <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 1.5rem auto' }}>
                 Stop living like a trash gremlin. Get organized now!
               </p>
             </div>
           </section>
-          <section className="download-options">
+          <section className="download-options" style={{ paddingTop: 0 }}>
             <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <h3 style={{ marginBottom: '0.5rem' }}>Latest Release</h3>
