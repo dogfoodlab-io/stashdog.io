@@ -32,7 +32,7 @@ const FAQ = () => {
     {
       question: "Why not just use notes or a spreadsheet?",
       answer:
-        "You can, but most people stop maintaining those systems because they're tedious and hard to share. StashDog is built specifically for item-plus-location tracking, which makes it much easier to keep useful over time."
+        "You can, but most people stop maintaining those systems because they're tedious, don't accurately model real-life relationships between items, and are hard to share. StashDog is built specifically for item-plus-location tracking, which makes it much easier to keep useful over time."
     },
     {
       question: "How much does it cost?",
