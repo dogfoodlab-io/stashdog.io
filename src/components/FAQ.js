@@ -3,7 +3,7 @@ import { useFirebase } from "../hooks/useFirebase"
 
 const FAQ = () => {
   const { logEvent } = useFirebase()
-  const [openFAQ, setOpenFAQ] = useState(null)
+  const [openFAQ, setOpenFAQ] = useState(0)
 
   const handleFAQClick = (questionIndex) => {
     logEvent('faq_interaction', {
@@ -17,92 +17,52 @@ const FAQ = () => {
     {
       question: "What is StashDog?",
       answer:
-        "StashDog is your digital inventory assistant that helps you keep track of all your stuff. Take photos, add notes, assign locations, and finally know what you have and where it is. No more digging through boxes or buying duplicates of things you already own."
+        "StashDog is a home inventory app that helps you catalog what you own, save where it lives, and find it fast later. Instead of relying on memory, random notes, or spreadsheets, you can search your stuff like a database."
     },
     {
-      question: "Who should use StashDog?",
+      question: "Who is it for?",
       answer:
-        "Anyone who has stuff! Whether you're living in a mess, moving, sharing a space with roommates, managing a household with kids, running an Airbnb, or just want to get organized, StashDog works for people who are ready to transform their chaos into something manageable."
+        "StashDog is best for people who keep things in closets, bins, garages, basements, storage units, shared spaces, or moving boxes and want an easier way to find them later. It's especially useful for families, movers, collectors, roommates, hosts, and anyone managing a lot of household gear."
     },
     {
       question: "How does it work?",
       answer:
-        "Simple: snap a photo, add some details, and assign a location. Add tags and categories to help organize everything, or ask StashDog to do it for you. Search for items by name, location, or tags. Share collections with partners, family members, roommates, guests, or cleaning staff so everyone knows where things are."
+        "Add an item with a photo, give it a name or details, and save where it lives. You can organize by room, bin, shelf, tag, or collection, then search by item, location, or keyword when you need something back."
     },
     {
-      question: "Do I really need an app to organize my stuff?",
+      question: "Why not just use notes or a spreadsheet?",
       answer:
-        "Look, you've probably tried notes, lists, spreadsheets, or just 'remembering better.' How's that working out? StashDog turns your phone into a searchable catalog of everything you own. Instead of physically digging through storage, you search digitally and go straight to what you need."
-    },
-    {
-      question: "What makes StashDog different from other organization apps?",
-      answer:
-        "We actually understand that life is messy. StashDog doesn't judge your chaos – it just helps you manage it. Plus, you can share your stuff with family or roommates, guests, or staff, so everyone can find what they need without playing 20 questions."
+        "You can, but most people stop maintaining those systems because they're tedious and hard to share. StashDog is built specifically for item-plus-location tracking, which makes it much easier to keep useful over time."
     },
     {
       question: "How much does it cost?",
       answer:
-        "StashDog is free to use with up to 100 items. Upgrade to StashDog Plus for unlimited items, photos, and premium features. No contracts, cancel anytime."
+        "StashDog is free for up to 100 items. Paid plans unlock more items, more photos, and premium features, and you can upgrade only if the app becomes useful enough to justify it."
     },
     {
-      question: "Can I share items with my family?",
+      question: "Can I share it with family or roommates?",
       answer:
-        "Absolutely! Create collections and share them with family members, roommates, Airbnb guests, cleaning staff, or anyone else who needs access. Set different permission levels – some people can just view, others can edit."
-    },
-    {
-      question: "How does StashDog help with Airbnb properties?",
-      answer:
-        "Game changer for hosts! Create digital guides showing guests where everything is - from extra towels to the coffee maker manual. Share property collections with your cleaning crew so they know exactly what should be where. No more 'Where's the hair dryer?' messages at midnight."
-    },
-    {
-      question: "Can rental property managers use this?",
-      answer:
-        "Absolutely. Track furniture, appliances, and amenities across multiple properties. Share access with tenants, maintenance staff, or property managers. When something breaks or goes missing, you have photos and documentation ready to go."
-    },
-    {
-      question: "What if I'm not tech-savvy?",
-      answer:
-        "If you can take a photo with your phone, you can use StashDog. The interface is designed to be simple and intuitive. Most people are adding their first items within minutes of signing up."
+        "Yes. You can share collections with family members, roommates, guests, or helpers so everyone can see what exists and where it belongs without asking the same questions over and over."
     },
     {
       question: "Will this actually help me get organized?",
       answer:
-        "Here's the thing: StashDog doesn't magically clean your space. But it does solve the 'where the hell did I put that?' problem. When you know exactly where your stuff is, you spend less time searching and more time actually using what you own."
+        "StashDog won't clean your house for you, but it does remove the biggest frustration: not knowing what you have or where it is. When retrieval gets easier, staying organized becomes much more practical."
     },
     {
-      question: "What about my privacy?",
+      question: "Is it useful for moving?",
       answer:
-        "Your stuff is your stuff. We use secure cloud storage with AES-256 encryption at rest and TLS in transit to keep your data safe, and you control who sees what. We don't sell your information or spam you with ads about organizing products."
+        "Yes. It's one of the strongest use cases. Track what goes into each box, tag items by room or priority, and search digitally instead of opening every container when you need one specific thing."
     },
     {
-      question: "Can I use it for my business?",
+      question: "What about privacy?",
       answer:
-        "Many small business owners use StashDog to track inventory, tools, or supplies. Property managers love it for tracking assets across units. If you're selling online, crafting, or running any kind of business from home, StashDog can help you stay on top of what you have."
+        "Your inventory belongs to you. StashDog uses secure storage and lets you control who can see shared collections. We don't sell your information or turn your household inventory into ad fodder."
     },
     {
-      question: "What if I have thousands of items?",
+      question: "What happens if I cancel?",
       answer:
-        "Start small – maybe with one room or category. You don't need to catalog everything at once. Most people find that once they start, they naturally want to add more because it's actually useful."
-    },
-    {
-      question: "Does it work offline?",
-      answer:
-        "StashDog syncs when you have internet, but you can still browse your items and add new ones offline. Everything syncs up once you're connected again."
-    },
-    {
-      question: "What happens to my stuff if I cancel?",
-      answer:
-        "If you cancel your subscription, you keep access to your basic account with up to 100 items. If you have more than 100 items, you can still browse them in read-only mode, but will not be able to add any more things. You can export your data anytime. We're not holding your inventory hostage."
-    },
-    {
-      question: "I'm moving soon – how can StashDog help?",
-      answer:
-        "This is where StashDog really shines. Create collections for each room, tag items by priority or fragility, and share moving lists with helpers. When you're unpacking, you'll know exactly what's in each box and where it should go."
-    },
-    {
-      question: "How do cleaning services use StashDog?",
-      answer:
-        "Smart cleaning crews use StashDog to know exactly what should be in each room and where it belongs. No more guessing where the remote goes or whether that expensive vase was already broken. Everything's documented with photos."
+        "If you cancel a paid plan, you keep access to the free tier. If you have more than the free limit, your extra items remain visible in read-only mode until you upgrade again or reduce the count."
     }
   ]
 
