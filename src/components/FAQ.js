@@ -42,7 +42,7 @@ const FAQ = () => {
     {
       question: "Can I share it with family or roommates?",
       answer:
-        "Yes. You can share collections with family members, roommates, guests, or helpers so everyone can see what exists and where it belongs without asking the same questions over and over."
+        "Yes. You can share items and collections with family members, roommates, guests, or helpers so everyone can see what exists and where it belongs without asking the same questions over and over."
     },
     {
       question: "Will this actually help me get organized?",
