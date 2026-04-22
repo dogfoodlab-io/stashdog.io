@@ -73,8 +73,8 @@ const Testimonials = () => {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 style={{ marginBottom: '1.5rem' }}>{content.testimonials.title}</h2>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>
-            Join thousands of people who stopped living like trash gremlins.
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '720px', margin: '0 auto' }}>
+            Real examples of how people use StashDog to catalog faster, find things without digging, and reduce household chaos.
           </p>
         </div>
 

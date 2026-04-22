@@ -29,15 +29,18 @@ const Features = () => {
   const features = [
     {
       key: 'inventory_management',
-      data: content.discover.features.inventory_management
+      data: content.discover.features.inventory_management,
+      link: '/features'
     },
     {
       key: 'location_tracking',
-      data: content.discover.features.location_tracking
+      data: content.discover.features.location_tracking,
+      link: '/features'
     },
     {
       key: 'family_sharing',
-      data: content.discover.features.family_sharing
+      data: content.discover.features.family_sharing,
+      link: '/features'
     }
   ]
 
@@ -57,8 +60,8 @@ const Features = () => {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <h2 style={{ marginBottom: '1.5rem' }}>{content.discover.title}</h2>
-          <p style={{ maxWidth: '600px', margin: '0 auto' }}>
-            Everything you need to go from "Where is that thing?" to "Oh, it's right there."
+          <p style={{ maxWidth: '720px', margin: '0 auto', color: 'var(--text-muted)' }}>
+            StashDog helps you catalog what you own, remember exactly where it lives, and give everyone in the household a faster way to find things.
           </p>
         </div>
 
@@ -68,14 +71,13 @@ const Features = () => {
           gap: '2.5rem',
           marginBottom: '4rem'
         }}>
-          {features.map(({ key, data }) => (
-            <div
+          {features.map(({ key, data, link }) => (
+            <Link
               key={key}
+              to={link}
               className="feature-card group"
               onClick={() => handleFeatureClick(key)}
-              role="button"
-              tabIndex={0}
-              style={{ cursor: 'pointer', position: 'relative' }}
+              style={{ cursor: 'pointer', position: 'relative', textDecoration: 'none', color: 'inherit' }}
             >
               <div className="feature-icon">
                 {getIcon(key)}
@@ -92,9 +94,9 @@ const Features = () => {
                 fontWeight: '600',
                 fontSize: '0.9rem'
               }}>
-                Learn more <ArrowRight size={16} />
+                See all features <ArrowRight size={16} />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

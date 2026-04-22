@@ -6,6 +6,7 @@ import UseCaseSelector from "../components/UseCaseSelector";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
+import HomepageCTA from "../components/HomepageCTA";
 import Footer from "../components/Footer";
 import ContentSwitcherControls from "../components/ContentSwitcherControls";
 import { useFirebase } from "../hooks/useFirebase";
@@ -57,7 +58,7 @@ const IndexPage = () => {
           />
           <meta
             property="og:description"
-            content="Stop living like a disaster. StashDog helps you organize your crap and find your shit when you need it. Free home inventory app for moving, insurance, and daily life."
+            content="Catalog what you own, save where it lives, and find it instantly with StashDog's searchable home inventory app."
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io" />
@@ -73,7 +74,7 @@ const IndexPage = () => {
           />
           <meta
             name="twitter:description"
-            content="Stop living like a disaster. Finally get your shit together with StashDog — the free home inventory app."
+            content="Track what you own, organize where it lives, and find it fast with StashDog."
           />
           <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
 
@@ -221,6 +222,7 @@ const IndexPage = () => {
         <Features />
         <Testimonials />
         <FAQ />
+        <HomepageCTA />
         <Footer />
 
         {<ContentSwitcherControls showControls={showControls} />}

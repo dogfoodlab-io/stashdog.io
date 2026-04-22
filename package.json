@@ -40,5 +40,8 @@
     "home"
   ],
   "author": "Dogfood Lab LLC",
-  "license": "MIT"
+  "license": "MIT",
+  "optionalDependencies": {
+    "@parcel/watcher": "^2.5.6"
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { Package, Target, Users, Home, Brain, ArrowRight, Backpack, Archive, Wrench } from 'lucide-react';
+import { Package, Target, Users, Home, ArrowRight, Backpack, Archive } from 'lucide-react';
 
 const UseCaseSelector = () => {
   const useCases = [
@@ -8,7 +8,7 @@ const UseCaseSelector = () => {
       id: 'moving',
       title: 'Moving House',
       icon: <Package size={32} />,
-      description: 'Pack without planning. Find without unpacking.',
+      description: 'Track what goes into every box so unpacking is faster and less chaotic.',
       link: '/solutions#moving',
       color: '#e8491d'
     },
@@ -16,7 +16,7 @@ const UseCaseSelector = () => {
       id: 'family',
       title: 'Family Chaos',
       icon: <Users size={32} />,
-      description: 'Coordinate the household without the arguments.',
+      description: 'Give the whole household one place to find and return things.',
       link: '/solutions#family',
       color: '#667eea'
     },
@@ -24,7 +24,7 @@ const UseCaseSelector = () => {
       id: 'collectors',
       title: 'Collectors',
       icon: <Target size={32} />,
-      description: 'Track value and inventory without spreadsheets.',
+      description: 'Catalog collections, values, and storage locations without spreadsheets.',
       link: '/solutions#collectors',
       color: '#764ba2'
     },
@@ -32,23 +32,15 @@ const UseCaseSelector = () => {
       id: 'roommates',
       title: 'Shared Living',
       icon: <Home size={32} />,
-      description: 'Stop fighting about whose stuff is whose.',
+      description: 'Make shared storage less confusing and stop asking who moved what.',
       link: '/solutions#roommates',
       color: '#43e97b'
-    },
-    {
-      id: 'general',
-      title: 'Just Overwhelmed',
-      icon: <Brain size={32} />,
-      description: 'For when your brain just can\'t deal with the mess.',
-      link: '/solutions#general',
-      color: '#fcd900'
     },
     {
       id: 'travel',
       title: 'Travel & Camping',
       icon: <Backpack size={32} />,
-      description: 'Pack once, find anything, adventure without worry.',
+      description: 'Know where your gear lives before the trip and after you get home.',
       link: '/solutions#travel',
       color: '#f97316'
     },
@@ -56,17 +48,9 @@ const UseCaseSelector = () => {
       id: 'estate',
       title: 'Estate Planning',
       icon: <Archive size={32} />,
-      description: 'Document treasures and stories for future generations.',
+      description: 'Document important items, locations, and context before it becomes urgent.',
       link: '/solutions#estate',
       color: '#8b5cf6'
-    },
-    {
-      id: 'hobbies',
-      title: 'Hobbyists',
-      icon: <Wrench size={32} />,
-      description: 'Find that one thing instantly in your workshop.',
-      link: '/solutions#hobbies',
-      color: '#06b6d4'
     }
   ];
 
@@ -75,10 +59,11 @@ const UseCaseSelector = () => {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 style={{ marginBottom: '1rem' }}>
-            What's Your Mess?
+            Start with your use case
           </h2>
-          <p style={{ maxWidth: '600px', margin: '0 auto' }}>
-            StashDog adapts to your specific brand of chaos. Choose your fighter.
+          <p style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--text-muted)' }}>
+            The fastest way to see if StashDog fits is to start with the situation you actually care about most.
+            These are the most common ways people use it.
           </p>
         </div>
 
