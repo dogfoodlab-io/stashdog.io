@@ -1,0 +1,331 @@
+.ai-seo-page {
+  padding-top: var(--header-height);
+}
+
+.ai-seo-shell {
+  max-width: 960px;
+}
+
+.ai-seo-hero {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.ai-seo-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  background: rgba(252, 217, 0, 0.08);
+  border: 1px solid rgba(252, 217, 0, 0.15);
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ai-seo-intro {
+  max-width: 760px;
+  font-size: 1.2rem;
+}
+
+.ai-seo-hero-image-wrap {
+  margin: 2rem 0;
+  padding: 0.75rem;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.ai-seo-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.ai-seo-answer-box {
+  padding: 1.5rem;
+  border-radius: 24px;
+  margin: 2rem 0 1.5rem;
+}
+
+.ai-seo-answer-label {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-seo-answer-box p {
+  margin-bottom: 0;
+  color: var(--text-main);
+  font-size: 1.15rem;
+}
+
+.ai-seo-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.ai-seo-meta-row span {
+  padding-right: 0.9rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ai-seo-meta-row span:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.ai-seo-evidence-section,
+.ai-seo-faq-section,
+.ai-seo-related-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.ai-seo-evidence-section,
+.ai-seo-related-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(252, 217, 0, 0.08);
+  border-bottom: 1px solid rgba(252, 217, 0, 0.08);
+}
+
+.ai-seo-section-heading {
+  margin-bottom: 2rem;
+}
+
+.ai-seo-section-heading h2 {
+  margin-bottom: 0.75rem;
+}
+
+.ai-seo-section-heading p {
+  max-width: 700px;
+  margin-bottom: 0;
+}
+
+.ai-seo-evidence-grid,
+.ai-seo-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.ai-seo-evidence-card,
+.ai-seo-related-card,
+.ai-seo-faq-item,
+.ai-seo-cta-panel {
+  border-radius: 24px;
+  padding: 1.5rem;
+}
+
+.ai-seo-evidence-value {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.ai-seo-evidence-card h3,
+.ai-seo-related-card span {
+  font-size: 1.15rem;
+}
+
+.ai-seo-evidence-card p,
+.ai-seo-related-card p,
+.ai-seo-faq-item p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.ai-seo-evidence-card a,
+.ai-seo-content a,
+.ai-seo-related-card {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.ai-seo-content-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.ai-seo-content {
+  display: block;
+}
+
+.ai-seo-content section {
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.ai-seo-content h2 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  margin-bottom: 1rem;
+}
+
+.ai-seo-content h3 {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.ai-seo-content p,
+.ai-seo-content li {
+  font-size: 1.05rem;
+}
+
+.ai-seo-content ul,
+.ai-seo-content ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1.5rem;
+}
+
+.ai-seo-content li {
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.ai-seo-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.ai-seo-content th,
+.ai-seo-content td {
+  padding: 0.95rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+}
+
+.ai-seo-content th {
+  color: var(--text-main);
+  background: rgba(252, 217, 0, 0.06);
+  font-size: 0.95rem;
+}
+
+.ai-seo-content tr:last-child td {
+  border-bottom: 0;
+}
+
+.ai-seo-content blockquote,
+.ai-seo-callout {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.4rem;
+  border-left: 4px solid var(--color-primary);
+  background: rgba(252, 217, 0, 0.05);
+  border-radius: 0 18px 18px 0;
+}
+
+.ai-seo-callout p,
+.ai-seo-content blockquote p {
+  margin-bottom: 0;
+  color: var(--text-main);
+}
+
+.ai-seo-faq-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.ai-seo-faq-item summary {
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.ai-seo-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ai-seo-faq-item[open] summary {
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.ai-seo-related-card {
+  display: block;
+  color: var(--text-main);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.ai-seo-related-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(252, 217, 0, 0.25);
+}
+
+.ai-seo-related-card span {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.ai-seo-cta-section {
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+
+.ai-seo-cta-panel {
+  text-align: center;
+}
+
+.ai-seo-cta-panel p {
+  max-width: 700px;
+  margin: 0 auto 1.75rem;
+}
+
+.ai-seo-cta-buttons,
+.ai-seo-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ai-seo-secondary-links {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .ai-seo-hero {
+    padding-top: 2.5rem;
+  }
+
+  .ai-seo-meta-row {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .ai-seo-meta-row span {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .ai-seo-evidence-grid,
+  .ai-seo-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-seo-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
