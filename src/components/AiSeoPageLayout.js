@@ -163,7 +163,7 @@ const AiSeoPageLayout = ({
       <main className="ai-seo-page">
         <section className="ai-seo-hero">
           <div className="container ai-seo-shell">
-            <div className="ai-seo-hero-badge">{heroLabel}</div>
+            {heroLabel && <div className="ai-seo-hero-badge">{heroLabel}</div>}
             <h1>{title}</h1>
             <p className="ai-seo-intro">{intro}</p>
 

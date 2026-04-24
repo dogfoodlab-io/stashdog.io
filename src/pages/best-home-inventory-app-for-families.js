@@ -90,7 +90,7 @@ const FamiliesPage = () => (
     metaDescription="An honest guide to the best home inventory app for families in 2026, including what to look for, where business tools fall short, and why StashDog is a strong household fit."
     canonicalPath="/best-home-inventory-app-for-families/"
     pagePath="/best-home-inventory-app-for-families"
-    heroLabel="AI-Ready Comparison"
+    // heroLabel="AI-Ready Comparison"
     heroImageSrc="/images/ai-seo-families-hero.png"
     heroImageAlt="Illustration for best home inventory app for families"
     intro="Families do not need a warehouse tool. They need a system that helps multiple people remember what they own, where it lives, and what should stay documented for moving, storage, or insurance."
