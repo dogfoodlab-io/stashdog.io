@@ -70,7 +70,7 @@ const Header = () => {
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
               <Link to="/pricing" className="nav-link">Pricing</Link>
-              <Link to="/blog" className="nav-link">Blog</Link>
+              <Link to="/blog/" className="nav-link">Blog</Link>
               <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
                 Download
               </Link>
@@ -157,7 +157,7 @@ const Header = () => {
               <Link to="/pricing" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Pricing
               </Link>
-              <Link to="/blog" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
+              <Link to="/blog/" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Blog
               </Link>
               <Link to="/download" className="cta-button" onClick={closeMobileMenu} style={{ textAlign: 'center', marginTop: '1rem' }}>
@@ -167,7 +167,6 @@ const Header = () => {
           </div>
         </>
       )}
-    </>
   )
 }
 

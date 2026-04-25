@@ -24,6 +24,8 @@ const BlogCard = ({ post }) => {
     })
   }
 
+  const blogPostPath = `/blog/${post.slug}/`
+
   return (
     <article className="blog-card">
       {post.featuredImageUrl && (
@@ -33,7 +35,7 @@ const BlogCard = ({ post }) => {
       )}
       <div className="blog-card-content">
         <h3 className="blog-card-title">
-          <Link to={`/blog/${post.slug}`} onClick={handlePostClick}>
+          <Link to={blogPostPath} onClick={handlePostClick}>
             {post.title}
           </Link>
         </h3>
@@ -54,7 +56,7 @@ const BlogCard = ({ post }) => {
             </div>
           )}
         </div>
-        <Link to={`/blog/${post.slug}`} className="blog-card-link" onClick={handlePostClick}>
+        <Link to={blogPostPath} className="blog-card-link" onClick={handlePostClick}>
           Read More
         </Link>
       </div>

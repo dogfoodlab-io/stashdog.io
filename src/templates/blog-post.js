@@ -42,6 +42,8 @@ const BlogPostTemplate = ({ pageContext }) => {
     }
   }
 
+  const blogPostUrl = `https://stashdog.io/blog/${post.slug}/`
+
   return (
     <div className="page-container">
         <Helmet>
@@ -55,7 +57,7 @@ const BlogPostTemplate = ({ pageContext }) => {
             name="keywords"
             content={post.tags ? post.tags.join(', ') : 'stashdog blog, home organization'}
           />
-          <link rel="canonical" href={`https://stashdog.io/blog/${post.slug}`} />
+          <link rel="canonical" href={blogPostUrl} />
           <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
@@ -65,7 +67,7 @@ const BlogPostTemplate = ({ pageContext }) => {
             content={post.metaDescription || post.excerpt || `Read ${post.title} on the StashDog blog.`}
           />
           <meta property="og:type" content="article" />
-          <meta property="og:url" content={`https://stashdog.io/blog/${post.slug}`} />
+          <meta property="og:url" content={blogPostUrl} />
           <meta property="og:image" content={post.featuredImageUrl || "https://stashdog.io/lab1.png"} />
 
           {/* Twitter Card */}
@@ -99,7 +101,7 @@ const BlogPostTemplate = ({ pageContext }) => {
               },
               "datePublished": post.createdAt,
               "dateModified": post.updatedAt,
-              "url": `https://stashdog.io/blog/${post.slug}`
+              "url": blogPostUrl
             })}
           </script>
         </Helmet>
@@ -110,7 +112,7 @@ const BlogPostTemplate = ({ pageContext }) => {
           <div className="container">
             <article className="blog-post">
               <header className="blog-post-header">
-                <a href="/blog" className="back-to-blog">
+                <a href="/blog/" className="back-to-blog">
                   <ChevronLeft size={16} /> Back to Blog
                 </a>
                 <h1 className="blog-post-title">{post.title}</h1>

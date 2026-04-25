@@ -370,7 +370,7 @@ const BlogPage = ({ location, pageContext }) => {
             name="keywords"
             content="stashdog blog, home organization tips, inventory management, decluttering, organization hacks"
           />
-          <link rel="canonical" href="https://stashdog.io/blog" />
+          <link rel="canonical" href="https://stashdog.io/blog/" />
           <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
@@ -380,7 +380,7 @@ const BlogPage = ({ location, pageContext }) => {
             content="Read the latest news, tips, and insights from StashDog about home organization and inventory management."
           />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://stashdog.io/blog" />
+          <meta property="og:url" content="https://stashdog.io/blog/" />
           <meta property="og:image" content="https://stashdog.io/lab1.png" />
 
           {/* Twitter Card */}
