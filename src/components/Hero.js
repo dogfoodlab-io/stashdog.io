@@ -21,7 +21,7 @@ const Hero = () => {
   return (
     <section className="stashdog-hero">
       <div className="container">
-        <div style={{
+        <div className="hero-layout" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '4rem',
@@ -29,7 +29,7 @@ const Hero = () => {
         }}>
           {/* Left Content */}
           <div className="hero-content animate-fade-in">
-            <div style={{
+            <div className="hero-badge" style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
@@ -45,15 +45,15 @@ const Hero = () => {
               </span>
             </div>
 
-            <h1 style={{ marginBottom: '1.5rem', lineHeight: '1.1' }}>
+            <h1 className="hero-title" style={{ marginBottom: '1.5rem', lineHeight: '1.1' }}>
               {content.welcome.title}
             </h1>
 
-            <p style={{ fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '540px' }}>
+            <p className="hero-description" style={{ fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '540px' }}>
               {content.welcome.description}
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <div className="hero-actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link
                 to="/download"
                 className="cta-button"
@@ -71,7 +71,7 @@ const Hero = () => {
               </Link>
             </div>
 
-            <div style={{
+            <div className="hero-trust-list" style={{
               display: 'flex',
               gap: '0.75rem',
               flexWrap: 'wrap',
@@ -85,6 +85,7 @@ const Hero = () => {
               ].map((item) => (
                 <div
                   key={item}
+                  className="hero-trust-pill"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -103,7 +104,7 @@ const Hero = () => {
               ))}
             </div>
 
-            <div style={{
+            <div className="hero-step-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
               gap: '1rem',
@@ -129,7 +130,7 @@ const Hero = () => {
               ].map((step) => (
                 <div
                   key={step.title}
-                  className="glass-panel"
+                  className="glass-panel hero-step-card"
                   style={{
                     padding: '1rem',
                     borderRadius: '20px',
@@ -153,7 +154,7 @@ const Hero = () => {
           <div className="hero-visual animate-fade-in" style={{ animationDelay: '0.2s', position: 'relative', height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
             {/* Back Phone - Items List (Nano Banana) */}
-            <div className="glass-panel" style={{
+            <div className="glass-panel hero-visual-back" style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
@@ -180,7 +181,7 @@ const Hero = () => {
             </div>
 
             {/* Front Phone - Item Details (iPhone 16 Plus) */}
-            <div className="glass-panel" style={{
+            <div className="glass-panel hero-visual-front" style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
@@ -206,7 +207,7 @@ const Hero = () => {
             </div>
 
             {/* Floating Badge - Generic Value Prop */}
-            <div className="glass-panel" style={{
+            <div className="glass-panel hero-visual-badge" style={{
               position: 'absolute',
               bottom: '100px',
               right: '0',
@@ -249,17 +250,88 @@ const Hero = () => {
           100% { transform: translateY(0px); }
         }
         @media (max-width: 968px) {
-          .container > div {
+          .hero-layout {
             grid-template-columns: 1fr !important;
             text-align: center;
+            gap: 3rem !important;
           }
           .hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
           }
+          .hero-actions,
+          .hero-trust-list {
+            justify-content: center;
+          }
+          .hero-step-grid {
+            width: 100%;
+            max-width: 100% !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
           .hero-visual {
             margin-top: 2rem;
+            width: min(100%, 440px);
+            height: 480px !important;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+        @media (max-width: 720px) {
+          .hero-layout {
+            gap: 2.5rem !important;
+          }
+          .hero-badge {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            padding: 0.75rem 1rem !important;
+          }
+          .hero-title {
+            font-size: clamp(2.8rem, 12vw, 4rem);
+          }
+          .hero-description {
+            font-size: 1.05rem !important;
+            line-height: 1.7;
+            margin-bottom: 2rem !important;
+          }
+          .hero-actions {
+            width: 100%;
+            flex-direction: column;
+          }
+          .hero-actions .cta-button {
+            width: 100%;
+          }
+          .hero-trust-list {
+            width: 100%;
+            flex-direction: column;
+          }
+          .hero-trust-pill {
+            width: 100%;
+            justify-content: flex-start;
+          }
+          .hero-step-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-visual {
+            width: 100%;
+            max-width: 340px;
+            height: 360px !important;
+          }
+          .hero-visual-back {
+            width: 54% !important;
+            transform: translate(-68%, -56%) rotate(-6deg) !important;
+          }
+          .hero-visual-front {
+            width: 58% !important;
+            transform: translate(-30%, -42%) rotate(0deg) !important;
+          }
+          .hero-visual-badge {
+            left: 50%;
+            right: auto !important;
+            bottom: 0 !important;
+            transform: translateX(-50%);
+            width: min(100%, 280px);
           }
         }
       `}</style>

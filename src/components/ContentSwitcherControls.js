@@ -29,12 +29,14 @@ const ContentSwitcherControls = ({ showControls = false }) => {
       padding: '10px',
       borderRadius: '5px',
       fontSize: '12px',
-      fontFamily: 'monospace'
+      fontFamily: 'monospace',
+      maxWidth: 'min(320px, calc(100vw - 20px))',
+      width: 'fit-content'
     }}>
       <div style={{ marginBottom: '5px' }}>
         <strong>Content Variant:</strong> {currentVariant}
       </div>
-      <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
         {availableVariants.map(variant => (
           <button
             key={variant}
