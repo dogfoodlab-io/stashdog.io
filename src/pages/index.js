@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import MovingBoxesSection from "../components/MovingBoxesSection";
 import UseCaseSelector from "../components/UseCaseSelector";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
@@ -218,6 +219,7 @@ const IndexPage = () => {
 
         <Header />
         <Hero />
+        <MovingBoxesSection />
         <UseCaseSelector />
         <Features />
         <Testimonials />
