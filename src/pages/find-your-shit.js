@@ -112,7 +112,7 @@ const FindYourShitPage = () => {
         />
         <meta property="og:title" content="Find Your Shit — StashDog" />
         <meta property="og:description" content="The app that knows where your stuff is. Free for iPhone." />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/find-your-shit-hero.png" />
       </Helmet>
 
       {/* ── Minimal Header ── */}
@@ -176,7 +176,7 @@ const FindYourShitPage = () => {
             marginBottom: "1.5rem",
           }}
         >
-          Free iPhone App
+          Free Mobile App
         </div>
 
         <h1
@@ -240,8 +240,8 @@ const FindYourShitPage = () => {
       {/* ── Hero Image ── */}
       <div style={{ maxWidth: "900px", margin: "0 auto 5rem", padding: "0 2rem" }}>
         <img
-          src="/lab1.png"
-          alt="StashDog app showing organized home inventory"
+          src="/images/find-your-shit-hero.png"
+          alt="Illustration of StashDog helping you instantly find stored household items"
           style={{
             width: "100%",
             borderRadius: "24px",
