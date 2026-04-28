@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import { Search, Camera, MapPin, Star, Check } from "lucide-react"
@@ -58,7 +58,7 @@ const features = [
   {
     icon: Search,
     title: "Natural language search that actually works.",
-    desc: "Type "blue jacket" or "camping stove" and find it instantly — even if you labeled it something different.",
+    desc: 'Type "blue jacket" or "camping stove" and find it instantly, even if you labeled it something different.',
   },
   {
     icon: MapPin,
