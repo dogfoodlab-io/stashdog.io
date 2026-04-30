@@ -3,7 +3,7 @@
     "public": "public",
     "redirects": [
       {
-        "source": "/blog/:slug",
+        "regex": "/blog/(?P<slug>[^/]+)$",
         "destination": "/blog/:slug/",
         "type": 301
       }
