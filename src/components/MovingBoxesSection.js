@@ -93,7 +93,7 @@ const MovingBoxesSection = () => {
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
               <Link
-                to="/download"
+                to="/searchable-moving-boxes"
                 className="cta-button"
                 onClick={handleCtaClick}
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
