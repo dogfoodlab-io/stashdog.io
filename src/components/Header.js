@@ -69,6 +69,7 @@ const Header = () => {
             <div className="nav-links desktop-nav">
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
+              <Link to="/partners/" className="nav-link">Partners</Link>
               <Link to="/pricing" className="nav-link">Pricing</Link>
               <Link to="/blog/" className="nav-link">Blog</Link>
               <Link to="/download" className="cta-button" style={{ textDecoration: 'none' }}>
@@ -153,6 +154,9 @@ const Header = () => {
               </Link>
               <Link to="/solutions" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Solutions
+              </Link>
+              <Link to="/partners/" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
+                Partners
               </Link>
               <Link to="/pricing" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Pricing
