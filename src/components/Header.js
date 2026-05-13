@@ -69,6 +69,7 @@ const Header = () => {
             <div className="nav-links desktop-nav">
               <Link to="/features" className="nav-link">Features</Link>
               <Link to="/solutions" className="nav-link">Solutions</Link>
+              <Link to="/for/" className="nav-link">Use Cases</Link>
               <Link to="/partners/" className="nav-link">Partners</Link>
               <Link to="/pricing" className="nav-link">Pricing</Link>
               <Link to="/blog/" className="nav-link">Blog</Link>
@@ -154,6 +155,9 @@ const Header = () => {
               </Link>
               <Link to="/solutions" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Solutions
+              </Link>
+              <Link to="/for/" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
+                Use Cases
               </Link>
               <Link to="/partners/" className="mobile-nav-link" onClick={closeMobileMenu} style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>
                 Partners

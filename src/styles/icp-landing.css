@@ -1,0 +1,227 @@
+
+.icp-page {
+  color: #ffffff;
+  background: #050505;
+}
+
+.icp-hero {
+  padding: 7rem 0 5rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(252, 217, 0, 0.18), transparent 34%),
+    radial-gradient(circle at 85% 10%, rgba(102, 126, 234, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(12, 12, 12, 1), rgba(5, 5, 5, 1));
+}
+
+.icp-hero-grid,
+.icp-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.icp-eyebrow {
+  color: #fcd900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+}
+
+.icp-hero h1 {
+  font-size: clamp(2.7rem, 7vw, 5.7rem);
+  line-height: 0.95;
+  margin: 0 0 1.5rem;
+  max-width: 940px;
+}
+
+.icp-subheadline {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.65;
+  color: #e7e7e7;
+  max-width: 780px;
+  margin-bottom: 2rem;
+}
+
+.icp-cta-row,
+.icp-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.icp-answer-card {
+  padding: 2rem;
+  border-radius: 24px;
+}
+
+.icp-answer-card span {
+  color: #fcd900;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+.icp-answer-card p,
+.icp-answer-card li {
+  color: #e0e0e0;
+  line-height: 1.65;
+}
+
+.icp-section {
+  padding: 5rem 0;
+}
+
+.icp-section-alt {
+  background: linear-gradient(135deg, rgba(252, 217, 0, 0.05), rgba(102, 126, 234, 0.06));
+  border-top: 1px solid rgba(252, 217, 0, 0.1);
+  border-bottom: 1px solid rgba(252, 217, 0, 0.1);
+}
+
+.icp-section h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+.icp-section p {
+  color: #d8d8d8;
+  line-height: 1.7;
+}
+
+.icp-card-list,
+.icp-benefit-grid,
+.icp-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.icp-benefit-grid,
+.icp-related-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.icp-mini-card,
+.icp-benefit-card,
+.icp-related-card,
+.icp-faq-item,
+.icp-steps {
+  padding: 1.35rem;
+  border-radius: 18px;
+}
+
+.icp-benefit-card h3,
+.icp-related-card h3 {
+  color: #fcd900;
+  margin-top: 0;
+}
+
+.icp-steps {
+  counter-reset: step-counter;
+  margin: 0;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.icp-steps li {
+  margin: 0 0 1rem 1rem;
+  padding-left: 0.5rem;
+}
+
+.icp-section-heading {
+  max-width: 850px;
+  margin-bottom: 2rem;
+}
+
+.icp-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.icp-chip {
+  border: 1px solid rgba(252, 217, 0, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+
+.icp-faq-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.icp-faq-item summary {
+  cursor: pointer;
+  color: #fcd900;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.icp-related-card {
+  color: inherit;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.icp-related-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(252, 217, 0, 0.45);
+}
+
+.icp-related-card span {
+  color: #fcd900;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.icp-final-cta {
+  padding: 5rem 0 6rem;
+  background: radial-gradient(circle at 50% 0%, rgba(252, 217, 0, 0.16), transparent 34%);
+}
+
+.icp-final-panel {
+  border-radius: 28px;
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.icp-final-panel h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  margin: 0 0 1rem;
+}
+
+.icp-final-panel p {
+  color: #e0e0e0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+}
+
+.icp-final-panel .icp-cta-row,
+.icp-final-panel .icp-hero-links {
+  justify-content: center;
+}
+
+@media (max-width: 860px) {
+  .icp-hero-grid,
+  .icp-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .icp-hero {
+    padding-top: 5rem;
+  }
+}
