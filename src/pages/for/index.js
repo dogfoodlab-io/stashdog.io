@@ -82,11 +82,11 @@ const ForIndexPage = () => {
             <div className="icp-final-panel glass-panel">
               <h2>Not sure which workflow fits?</h2>
               <p>
-                Download StashDog to start labeling boxes, bins, tools, supplies, and valuables — or bark at us at mail@stashdog.io and tell us what you are trying to track.
+                Download StashDog to start labeling boxes, bins, tools, supplies, and valuables — or contact us at mail@stashdog.io and tell us what you are trying to track.
               </p>
               <div className="icp-hero-links">
                 <Link to="/download/" className="cta-button">Download StashDog</Link>
-                <a href="mailto:mail@stashdog.io" className="cta-button outline">Bark at mail@stashdog.io</a>
+                <a href="mailto:mail@stashdog.io" className="cta-button outline">Contact us at mail@stashdog.io</a>
               </div>
             </div>
           </div>

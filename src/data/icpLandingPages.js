@@ -64,7 +64,7 @@ export const icpPages = {
     ],
     related: ["contractors", "storage-units", "collectors"],
     ctaHeadline: "Ready to turn stored inventory into cash?",
-    ctaCopy: "Download StashDog, label your first bin, and list five forgotten items today. Want a reseller workflow template? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog, label your first bin, and list five forgotten items today. Want a reseller workflow template? Contact us at mail@stashdog.io."
   },
   contractors: {
     slug: "contractors",
@@ -130,7 +130,7 @@ export const icpPages = {
     ],
     related: ["event-businesses", "landlords", "workshops"],
     ctaHeadline: "Inventory your first van, shelf, or job box today.",
-    ctaCopy: "Download StashDog and start with the parts you rebuy most often. Need a contractor setup guide? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and start with the parts you rebuy most often. Need a contractor setup guide? Contact us at mail@stashdog.io."
   },
   landlords: {
     slug: "landlords",
@@ -196,7 +196,7 @@ export const icpPages = {
     ],
     related: ["home-insurance", "contractors", "event-businesses"],
     ctaHeadline: "Build a property inventory before the next turnover.",
-    ctaCopy: "Download StashDog and start with appliances, keys, paint, and maintenance supplies. Want a rental-property template? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and start with appliances, keys, paint, and maintenance supplies. Want a rental-property template? Contact us at mail@stashdog.io."
   },
   "home-insurance": {
     slug: "home-insurance",
@@ -262,7 +262,7 @@ export const icpPages = {
     ],
     related: ["collectors", "landlords", "moving-boxes"],
     ctaHeadline: "Document the stuff you would not want to remember from scratch.",
-    ctaCopy: "Download StashDog and inventory one room this weekend. Questions about insurance inventory workflows? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and inventory one room this weekend. Questions about insurance inventory workflows? Contact us at mail@stashdog.io."
   },
   "event-businesses": {
     slug: "event-businesses",
@@ -328,7 +328,7 @@ export const icpPages = {
     ],
     related: ["contractors", "storage-units", "landlords"],
     ctaHeadline: "Make your next event packout less terrifying.",
-    ctaCopy: "Download StashDog and label your first case, shelf, or decor bin. Need an event inventory template? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and label your first case, shelf, or decor bin. Need an event inventory template? Contact us at mail@stashdog.io."
   },
   collectors: {
     slug: "collectors",
@@ -394,7 +394,7 @@ export const icpPages = {
     ],
     related: ["home-insurance", "resellers", "workshops"],
     ctaHeadline: "Protect the collection you spent years building.",
-    ctaCopy: "Download StashDog and start with the items you would hate to replace. Need help shaping a collector workflow? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and start with the items you would hate to replace. Need help shaping a collector workflow? Contact us at mail@stashdog.io."
   },
   workshops: {
     slug: "workshops",
@@ -460,7 +460,7 @@ export const icpPages = {
     ],
     related: ["contractors", "collectors", "resellers"],
     ctaHeadline: "Make your workshop searchable this weekend.",
-    ctaCopy: "Download StashDog and start with the drawer or bin that causes the most duplicate buys. Need a maker inventory template? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and start with the drawer or bin that causes the most duplicate buys. Need a maker inventory template? Contact us at mail@stashdog.io."
   },
   "community-organizations": {
     slug: "community-organizations",
@@ -526,7 +526,7 @@ export const icpPages = {
     ],
     related: ["event-businesses", "home-insurance", "storage-units"],
     ctaHeadline: "Make the shared closet visible before the next event.",
-    ctaCopy: "Download StashDog or bark at us at mail@stashdog.io if your school, church, nonprofit, or volunteer group wants help setting up a shared inventory."
+    ctaCopy: "Download StashDog or contact us at mail@stashdog.io if your school, church, nonprofit, or volunteer group wants help setting up a shared inventory."
   },
   "storage-units": {
     slug: "storage-units",
@@ -592,7 +592,7 @@ export const icpPages = {
     ],
     related: ["resellers", "moving-boxes", "home-insurance"],
     ctaHeadline: "Find out what is hiding in storage.",
-    ctaCopy: "Download StashDog and label your first five boxes or bins. Want a storage-unit setup flow? Bark at us at mail@stashdog.io."
+    ctaCopy: "Download StashDog and label your first five boxes or bins. Want a storage-unit setup flow? Contact us at mail@stashdog.io."
   },
   "moving-boxes": {
     slug: "moving-boxes",

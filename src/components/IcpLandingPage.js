@@ -157,7 +157,7 @@ const IcpLandingPage = ({ page }) => {
               </div>
               <div className="icp-hero-links">
                 <Link to="/download/" className="cta-button">Download StashDog</Link>
-                <a href={mailto} className="cta-button outline">Bark at us</a>
+                <a href={mailto} className="cta-button outline">Contact us</a>
               </div>
             </div>
 
@@ -286,7 +286,7 @@ const IcpLandingPage = ({ page }) => {
               </div>
               <div className="icp-hero-links">
                 <Link to="/download/" className="cta-button">Download StashDog</Link>
-                <a href={mailto} className="cta-button outline">Bark at mail@stashdog.io</a>
+                <a href={mailto} className="cta-button outline">Contact us at mail@stashdog.io</a>
               </div>
             </div>
           </div>
