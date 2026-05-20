@@ -35,6 +35,7 @@ const MovingBoxesSection = () => {
 
   return (
     <section
+      className="moving-boxes-section"
       style={{
         padding: "5rem 0",
         background: "linear-gradient(135deg, rgba(252, 217, 0, 0.08), rgba(255,255,255,0.02))",
@@ -44,7 +45,7 @@ const MovingBoxesSection = () => {
     >
       <div className="container">
         <div
-          className="glass-panel"
+          className="glass-panel moving-boxes-panel"
           style={{
             display: "grid",
             gridTemplateColumns: "minmax(0, 1fr) minmax(280px, 420px)",
@@ -55,8 +56,9 @@ const MovingBoxesSection = () => {
             border: "1px solid rgba(252, 217, 0, 0.18)"
           }}
         >
-          <div>
+          <div className="moving-boxes-copy">
             <div
+              className="moving-boxes-kicker"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -79,6 +81,7 @@ const MovingBoxesSection = () => {
             </h2>
 
             <p
+              className="moving-boxes-description"
               style={{
                 marginBottom: "1.5rem",
                 maxWidth: "680px",
@@ -91,7 +94,7 @@ const MovingBoxesSection = () => {
               StashDog lets you make every moving box searchable before you seal it.
             </p>
 
-            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
+            <div className="moving-boxes-actions" style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
               <Link
                 to="/searchable-moving-boxes"
                 className="cta-button"
@@ -107,6 +110,7 @@ const MovingBoxesSection = () => {
           </div>
 
           <div
+            className="moving-boxes-steps"
             style={{
               display: "grid",
               gap: "1rem"

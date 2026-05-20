@@ -330,7 +330,8 @@ const Hero = () => {
             left: 50%;
             right: auto !important;
             bottom: 0 !important;
-            transform: translateX(-50%);
+            animation: none !important;
+            transform: translateX(-50%) !important;
             width: min(100%, 280px);
           }
         }

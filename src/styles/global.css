@@ -308,18 +308,6 @@ section {
   from {
     opacity: 0;
     transform: translateY(20px);
-
-/* Ensure the download page hero spacing applies on all viewports.
-   Previous rule lived inside a mobile-only media query, so it didn't
-   take effect on desktop. */
-@media (max-width: 768px) {
-  .download-page .stashdog-hero {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    min-height: auto;
-    align-items: flex-start;
-  }
-}
   }
 
   to {
@@ -330,6 +318,14 @@ section {
 
 .animate-fade-in {
   animation: fadeIn 0.6s ease forwards;
+}
+
+/* Ensure the download page hero spacing applies on all viewports. */
+.download-page .stashdog-hero {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  min-height: auto;
+  align-items: flex-start;
 }
 
 /* InfoCard Component */
@@ -871,7 +867,7 @@ section {
 /* Responsive Pricing */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 1.125rem;
   }
 
   section {
@@ -880,7 +876,47 @@ section {
 
   .stashdog-hero {
     padding-top: calc(var(--header-height) + 1rem);
-    min-height: 60vh;
+    min-height: auto;
+  }
+
+  .moving-boxes-section {
+    padding: 3rem 0 !important;
+  }
+
+  .moving-boxes-panel {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 1.35rem !important;
+    border-radius: 24px !important;
+  }
+
+  .moving-boxes-copy {
+    text-align: left;
+  }
+
+  .moving-boxes-kicker {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .moving-boxes-description {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .moving-boxes-actions {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .moving-boxes-actions .cta-button {
+    width: 100%;
+  }
+
+  .moving-boxes-steps {
+    gap: 0.75rem !important;
   }
 
   /* Tighten spacing specifically for the download page hero and options
@@ -940,12 +976,6 @@ section {
     height: 50px;
     max-width: 320px;
     margin: 0 auto;
-  }
-
-  /* Slightly reduce big hero image height to avoid crowding form area */
-  .stashdog-hero img {
-    max-height: 280px;
-    object-fit: contain;
   }
 }
 
@@ -1097,7 +1127,6 @@ section {
     padding: 0.35rem !important;
   }
 }
-
 /* Partner landing pages */
 .partner-page main {
   overflow: hidden;
