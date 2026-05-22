@@ -3,8 +3,8 @@
 export const contentVariants = {
   default: {
     welcome: {
-      title: "Quit Living Like a Trash Gremlin",
-      description: "Catalog what you own, save where it lives, and find it instantly when you need it. Perfect for moving, shared homes, collections, gear, and everyday household chaos.",
+      title: "The Home Inventory App for People Who Hate Inventory",
+      description: "StashDog turns your home into a searchable database: snap photos, save where everything lives, and find your stuff instantly when moving, sharing a home, documenting insurance, or dealing with everyday household chaos.",
       cta: {
         buttonText: "Download Free",
       }

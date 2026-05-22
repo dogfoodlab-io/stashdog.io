@@ -41,7 +41,7 @@ const Hero = () => {
             }}>
               <Star size={16} fill="#fcd900" color="#fcd900" />
               <span style={{ color: '#fcd900', fontWeight: '600', fontSize: '0.9rem' }}>
-                Free Forever • No Credit Card Required
+                Free Home Inventory App • No Credit Card Required
               </span>
             </div>
 
@@ -168,7 +168,7 @@ const Hero = () => {
             }}>
               <img
                 src="/nano-banana.jpg"
-                alt="StashDog Items List"
+                alt="StashDog home inventory app items list"
                 style={{
                   width: '100%',
                   height: 'auto',
@@ -195,7 +195,7 @@ const Hero = () => {
             }}>
               <img
                 src="/app-screenshot-1.png"
-                alt="StashDog Item Details"
+                alt="StashDog home inventory app item details"
                 style={{
                   width: '100%',
                   height: 'auto',
@@ -235,7 +235,7 @@ const Hero = () => {
                 <ArrowRight color="black" size={20} />
               </div>
               <div>
-                <div style={{ fontWeight: '700', color: 'white', fontSize: '0.95rem' }}>Organize Everything</div>
+                <div style={{ fontWeight: '700', color: 'white', fontSize: '0.95rem' }}>Home Inventory, Fast</div>
                 <div style={{ fontSize: '0.8rem', color: '#aaa' }}>From collections to chaos</div>
               </div>
             </div>

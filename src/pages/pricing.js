@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react"
+import { Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Check, Sparkles } from "lucide-react"
 import Header from "../components/Header"
@@ -49,6 +50,76 @@ const formatInterval = (interval, intervalCount = 1) => {
   const unit = normalized === 'year' ? 'year' : 'month'
   return intervalCount > 1 ? `${intervalCount} ${unit}s` : unit
 }
+
+const pricingFaq = [
+  {
+    question: "Does StashDog have a free plan?",
+    answer:
+      "Yes. StashDog offers a free plan for getting started with personal inventory before upgrading to a paid plan.",
+  },
+  {
+    question: "When should I upgrade from Free to Plus?",
+    answer:
+      "Upgrade when your inventory grows beyond a starter setup, when natural language search becomes important, or when export and higher item limits save more time than the monthly plan costs.",
+  },
+  {
+    question: "Is StashDog priced for households or businesses?",
+    answer:
+      "StashDog is household-first, but it also supports practical small-business workflows like resellers, contractors, event gear, landlords, and workshops.",
+  },
+]
+
+const pricingSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "StashDog",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "iOS, Android, Web",
+    url: "https://stashdog.io/pricing/",
+    description:
+      "StashDog is a home inventory app with free and paid plans for tracking items, photos, locations, documents, and shared inventory context.",
+    offers: FALLBACK_PLANS.map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      price: String((plan.price || 0) / 100),
+      priceCurrency: String(plan.currency || "usd").toUpperCase(),
+      availability: "https://schema.org/InStock",
+      url: "https://stashdog.io/pricing/",
+      description: plan.description,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pricingFaq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://stashdog.io/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Pricing",
+        item: "https://stashdog.io/pricing/",
+      },
+    ],
+  },
+]
 
 const getCheckoutUrl = (plan) => {
   if ((plan.price || 0) <= 0) return '/download'
@@ -118,9 +189,16 @@ const PricingPage = () => {
     <div className="page-container">
       <Helmet>
         <html lang="en" />
-        <title>Pricing - StashDog: Simple, Powerful Organization</title>
-        <meta name="description" content="Choose the StashDog plan that fits your inventory needs." />
+        <title>StashDog Pricing | Free and Plus Home Inventory Plans</title>
+        <meta name="description" content="Compare StashDog pricing for free and paid home inventory plans. See item limits, AI actions, search, export, and when each plan makes sense." />
         <link rel="canonical" href="https://stashdog.io/pricing/" />
+        <link rel="alternate" type="text/markdown" href="https://stashdog.io/pricing.md" title="StashDog machine-readable pricing" />
+        <link rel="alternate" type="text/plain" href="https://stashdog.io/llms.txt" title="StashDog AI context" />
+        {pricingSchema.map((entry, index) => (
+          <script key={index} type="application/ld+json">
+            {JSON.stringify(entry)}
+          </script>
+        ))}
       </Helmet>
 
       <Header />
@@ -129,7 +207,7 @@ const PricingPage = () => {
         <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
           <h1 className="hero-title">Simple Pricing, Powerful Features</h1>
           <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
-            Pricing updates automatically from our live subscription catalog.
+            Start with a free home inventory, then upgrade when your item count, search needs, or export workflow outgrows the starter plan.
           </p>
           <div style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '24px', overflow: 'hidden' }}>
             <img src="/images/hero-pricing.png" alt="Pricing comparison illustration" style={{ width: '100%', height: 'auto', display: 'block' }} />
@@ -191,6 +269,70 @@ const PricingPage = () => {
               Loading pricing plans...
             </p>
           )}
+        </div>
+      </section>
+
+      <section className="products" style={{ paddingTop: 0 }}>
+        <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+          <h2>Which StashDog Plan Fits?</h2>
+          <div style={{ overflowX: 'auto', marginTop: '1.5rem' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '720px' }}>
+              <thead>
+                <tr>
+                  <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Need</th>
+                  <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Free</th>
+                  <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Plus</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Getting started', 'Good for a first room, closet, bin set, or starter insurance inventory.', 'Good when StashDog becomes the regular place you search before buying.'],
+                  ['Item volume', 'Best for a focused inventory of high-value or easy-to-lose items.', 'Better for whole-home, collection, reseller, workshop, or storage-unit coverage.'],
+                  ['Search and retrieval', 'Useful when names, photos, notes, and locations are enough.', 'Better when natural language search saves time across a larger inventory.'],
+                  ['Exports', 'Good for daily lookup inside the app.', 'Better when CSV export matters for insurance, resale, tax, or operations workflows.'],
+                ].map(([need, free, plus]) => (
+                  <tr key={need}>
+                    <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', fontWeight: 700 }}>{need}</td>
+                    <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{free}</td>
+                    <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{plus}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="products" style={{ paddingTop: 0 }}>
+        <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+          <h2>Pricing by Workflow</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+            {[
+              ['/for/home-insurance/', 'Insurance inventory', 'Start free for critical items, then upgrade if you document the whole home.'],
+              ['/for/resellers/', 'Reseller inventory', 'Plus is usually the better fit once listings, bins, and sourcing piles grow.'],
+              ['/for/workshops/', 'Workshop inventory', 'Use Plus when parts, tools, and project leftovers need deeper search.'],
+              ['/for/storage-units/', 'Storage unit inventory', 'Free can cover a small unit; Plus fits multi-bin or multi-unit storage.'],
+            ].map(([to, title, body]) => (
+              <Link key={to} to={to} className="glass-panel" style={{ display: 'block', padding: '1.25rem', textDecoration: 'none' }}>
+                <h3>{title}</h3>
+                <p style={{ color: 'var(--text-muted)' }}>{body}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="products" style={{ paddingTop: 0 }}>
+        <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2>Pricing FAQ</h2>
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            {pricingFaq.map((item) => (
+              <details key={item.question} className="glass-panel" style={{ padding: '1.25rem' }}>
+                <summary style={{ cursor: 'pointer', fontWeight: 700 }}>{item.question}</summary>
+                <p style={{ color: 'var(--text-muted)', marginTop: '0.75rem' }}>{item.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -16,6 +16,22 @@ const formatDate = (dateString) =>
     day: "numeric",
   })
 
+const getCurrentUtmAttribution = () => {
+  if (typeof window === "undefined") {
+    return {}
+  }
+
+  const searchParams = new URLSearchParams(window.location.search)
+  return ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+    .reduce((attribution, key) => {
+      const value = searchParams.get(key)
+      if (value) {
+        attribution[key] = value
+      }
+      return attribution
+    }, {})
+}
+
 const AiSeoPageLayout = ({
   title,
   metaTitle,
@@ -34,6 +50,7 @@ const AiSeoPageLayout = ({
   relatedLinks = [],
   itemList = [],
   howToSteps = [],
+  analyticsContext = null,
   children,
 }) => {
   const { isInitialized, logEvent } = useFirebase()
@@ -49,7 +66,16 @@ const AiSeoPageLayout = ({
       page_location: typeof window !== "undefined" ? window.location.href : "",
       page_path: pagePath,
     })
-  }, [isInitialized, logEvent, pagePath, title])
+
+    if (analyticsContext?.wedge_key) {
+      logEvent("landing_page_viewed", {
+        ...analyticsContext,
+        ...getCurrentUtmAttribution(),
+        landing_path: pagePath,
+        page_title: title,
+      })
+    }
+  }, [analyticsContext, isInitialized, logEvent, pagePath, title])
 
   const canonicalUrl = `https://stashdog.io${canonicalPath}`
 
@@ -128,6 +154,30 @@ const AiSeoPageLayout = ({
       page: pagePath,
       source: "ai_seo_page",
     })
+
+    if (analyticsContext?.wedge_key) {
+      logEvent("cta_clicked", {
+        ...analyticsContext,
+        ...getCurrentUtmAttribution(),
+        landing_path: pagePath,
+        cta_type: "download",
+        cta_target: platform,
+        source: "ai_seo_page",
+      })
+    }
+  }
+
+  const handlePricingClick = () => {
+    if (analyticsContext?.wedge_key) {
+      logEvent("cta_clicked", {
+        ...analyticsContext,
+        ...getCurrentUtmAttribution(),
+        landing_path: pagePath,
+        cta_type: "pricing",
+        cta_target: "/pricing",
+        source: "ai_seo_page",
+      })
+    }
   }
 
   return (
@@ -272,7 +322,7 @@ const AiSeoPageLayout = ({
               </div>
 
               <div className="ai-seo-secondary-links">
-                <Link to="/pricing" className="cta-button outline">
+                <Link to="/pricing" className="cta-button outline" onClick={handlePricingClick}>
                   See Pricing
                 </Link>
                 <Link to="/features" className="cta-button outline">

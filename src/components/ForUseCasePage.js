@@ -17,9 +17,40 @@ const baseRelatedLinks = [
     label: "Download StashDog",
     description: "Start capturing the items you already know you need to track.",
   },
+  {
+    to: "/pricing",
+    label: "Compare Pricing",
+    description: "Check whether the free plan or a paid plan fits the size of the inventory.",
+  },
 ]
 
+const wedgeAnalyticsBySlug = {
+  resellers: {
+    wedge_key: "resellers",
+    experiment_variant: "resellers",
+    utm_campaign: "wedge_resellers_search_smoke",
+  },
+  contractors: {
+    wedge_key: "contractors",
+    experiment_variant: "contractors",
+    utm_campaign: "wedge_contractors_search_smoke",
+  },
+  landlords: {
+    wedge_key: "landlords",
+    experiment_variant: "landlords",
+    utm_campaign: "wedge_landlords_search_smoke",
+  },
+}
+
 const ForUseCasePage = ({ page }) => {
+  const useCaseLabel = page.slug.replace(/-/g, " ")
+  const firstTrackItems = [
+    "High-value items that would be expensive to replace.",
+    "Items stored away from daily view in bins, closets, garages, or storage units.",
+    "Documents, receipts, warranties, serial numbers, or manuals tied to physical items.",
+    "Shared items that other people ask about or need to find without you.",
+  ]
+
   const relatedLinks = [
     {
       to: "/for/",
@@ -31,7 +62,7 @@ const ForUseCasePage = ({ page }) => {
 
   const faq = [
     {
-      question: `Can StashDog work for ${page.slug.replace(/-/g, " ")}?`,
+      question: `Can StashDog work for ${useCaseLabel}?`,
       answer: page.directAnswer,
     },
     {
@@ -43,6 +74,16 @@ const ForUseCasePage = ({ page }) => {
       question: "Can I use photos and locations together?",
       answer:
         "Yes. StashDog is designed around item photos, notes, tags, containers, and locations so retrieval does not depend on memory.",
+    },
+    {
+      question: "How is this different from a spreadsheet?",
+      answer:
+        "A spreadsheet can track rows, but StashDog keeps photos, locations, containers, documents, sharing, and search together in the same item record.",
+    },
+    {
+      question: "What should I capture first?",
+      answer:
+        "Start with the items that are expensive, hard to replace, shared with other people, stored out of sight, or repeatedly rebought because they are hard to find.",
     },
   ]
 
@@ -62,6 +103,8 @@ const ForUseCasePage = ({ page }) => {
       updatedAt={updatedAt}
       faq={faq}
       relatedLinks={relatedLinks}
+      itemList={firstTrackItems}
+      analyticsContext={wedgeAnalyticsBySlug[page.slug]}
     >
       {page.sections.map((section) => (
         <section key={section.heading}>
@@ -78,6 +121,49 @@ const ForUseCasePage = ({ page }) => {
           )}
         </section>
       ))}
+
+      <section>
+        <h2>What to Track First</h2>
+        <p>
+          The fastest StashDog setup is not a perfect inventory. It is a useful inventory that starts
+          with the items most likely to cost time, money, or stress when they go missing.
+        </p>
+        <ul>
+          {firstTrackItems.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Choosing a Tool for {useCaseLabel}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Works When</th>
+              <th>Breaks When</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Memory</td>
+              <td>Only one person owns the items and the inventory is tiny.</td>
+              <td>Items move, helpers need access, or replacement cost matters.</td>
+            </tr>
+            <tr>
+              <td>Spreadsheet</td>
+              <td>You mostly need a simple list and can keep it updated manually.</td>
+              <td>Photos, documents, containers, and shared retrieval become the real work.</td>
+            </tr>
+            <tr>
+              <td>StashDog</td>
+              <td>You need searchable photos, locations, tags, containers, documents, and sharing in one place.</td>
+              <td>You need heavy enterprise purchasing, barcode warehouse operations, or accounting-native inventory.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
       <section>
         <h2>How StashDog Helps</h2>
@@ -99,6 +185,14 @@ const ForUseCasePage = ({ page }) => {
             <p>Let the right people find shared items without turning one person into the inventory desk.</p>
           </div>
         </div>
+      </section>
+
+      <section>
+        <h2>Where to Go Next</h2>
+        <p>
+          If this use case sounds close, compare the full <Link to="/features">StashDog feature set</Link>,
+          check <Link to="/pricing">current pricing</Link>, or start with the <Link to="/download">download page</Link>.
+        </p>
       </section>
 
       <section>

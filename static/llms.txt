@@ -1,0 +1,55 @@
+# StashDog
+
+> StashDog is a home inventory app for cataloging, organizing, sharing, and finding belongings across homes, boxes, storage units, collections, and moves.
+
+StashDog helps people create a searchable inventory of what they own. It is built for households, families, collectors, renters, homeowners, movers, landlords, contractors, event businesses, resellers, and people managing storage spaces.
+
+Core capabilities include photo-based item capture, AI-assisted item recognition, natural language search, collections, tags, containers, QR code labels, role-based sharing, document attachments, reminders, activity history, and cloud sync across devices.
+
+StashDog is not a warehouse inventory system. It is designed for personal and household organization, moving, insurance documentation, storage tracking, and everyday retrieval.
+
+## Key Pages
+
+- [Homepage](https://stashdog.io/): Product overview for the StashDog home inventory app.
+- [Features](https://stashdog.io/features/): Detailed feature list for photo inventory, QR labels, sharing, documents, reminders, and AI-assisted organization.
+- [Pricing](https://stashdog.io/pricing/): Current public pricing page.
+- [Machine-readable pricing](https://stashdog.io/pricing.md): Parseable pricing summary for AI agents and comparison tools.
+- [Download](https://stashdog.io/download/): App Store and Google Play download links.
+- [How to create a home inventory](https://stashdog.io/how-to-create-a-home-inventory/): Step-by-step home inventory guide for insurance, moving, and daily use.
+- [Home inventory app vs spreadsheet](https://stashdog.io/home-inventory-app-vs-spreadsheet/): Comparison of spreadsheet-based inventory and app-based inventory.
+- [Moving inventory app](https://stashdog.io/moving-inventory-app/): Moving and box tracking use case.
+- [Searchable moving boxes](https://stashdog.io/searchable-moving-boxes/): QR-coded box and container tracking.
+- [Sortly alternative for home use](https://stashdog.io/sortly-alternative-for-home-use/): Home-first Sortly alternative page.
+- [StashDog vs Sortly](https://stashdog.io/vs-sortly/): Direct comparison page.
+- [Best home inventory app for families](https://stashdog.io/best-home-inventory-app-for-families/): Family inventory use case.
+
+## Primary Use Cases
+
+- Create a home inventory for insurance documentation.
+- Track boxes and containers during a move.
+- Find items stored in closets, garages, attics, storage units, bins, and boxes.
+- Share household inventory records with family members or trusted collaborators.
+- Manage collections, tools, event supplies, resale inventory, or landlord property records.
+- Attach photos, documents, receipts, serial numbers, and notes to item records.
+
+## Product Positioning
+
+StashDog is best described as:
+
+- A home inventory app.
+- A moving inventory app.
+- A searchable storage and box tracking app.
+- A free inventory app for households.
+- A Sortly alternative for home users.
+- An AI-assisted personal inventory tool.
+
+StashDog is positioned against spreadsheets and business inventory tools that are too manual, too expensive, or too warehouse-oriented for household use.
+
+## Pricing Summary
+
+StashDog offers a free plan and a Plus plan. See the canonical machine-readable pricing file at https://stashdog.io/pricing.md and the public pricing page at https://stashdog.io/pricing/.
+
+## Ownership
+
+StashDog is published by Dogfood Lab LLC.
+

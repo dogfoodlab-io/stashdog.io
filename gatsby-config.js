@@ -37,6 +37,11 @@ module.exports = {
           "/public/collections/*",
           "/public/items/*",
         ],
+        resolvePages: ({ allSitePage }) => [
+          ...allSitePage.nodes,
+          { path: "/llms.txt" },
+          { path: "/pricing.md" },
+        ],
       },
     },
     {

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -6,6 +7,74 @@ import AppStoreButton from "../components/AppStoreButton"
 import GooglePlayButton from "../components/GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
+
+const faq = [
+  {
+    question: "Is StashDog available for iPhone and Android?",
+    answer:
+      "Yes. StashDog is available on the App Store and Google Play, so households can start a shared inventory from either iPhone or Android.",
+  },
+  {
+    question: "Can I start with the free plan?",
+    answer:
+      "Yes. The free plan is built for getting started with a lightweight home inventory before you decide whether a paid plan makes sense.",
+  },
+  {
+    question: "What should I inventory first after downloading StashDog?",
+    answer:
+      "Start with the places where forgotten items cost the most time or money: storage bins, tools, valuables, documents, seasonal items, and anything you rebuy because you cannot find it.",
+  },
+]
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "StashDog",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "iOS, Android",
+    url: "https://stashdog.io/download/",
+    image: "https://stashdog.io/images/download-hero.png",
+    description:
+      "StashDog is a home inventory app for documenting items, storage locations, photos, notes, and shared household context.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://stashdog.io/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Download",
+        item: "https://stashdog.io/download/",
+      },
+    ],
+  },
+]
 
 const DownloadPage = () => {
   const { isInitialized, logEvent } = useFirebase()
@@ -56,6 +125,11 @@ const DownloadPage = () => {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gabarito:wght@400..900&display=swap" rel="stylesheet" />
+          {schema.map((entry, index) => (
+            <script key={index} type="application/ld+json">
+              {JSON.stringify(entry)}
+            </script>
+          ))}
         </Helmet>
         <Header />
         <main className="download-page">
@@ -113,24 +187,67 @@ const DownloadPage = () => {
                   Join Beta Waitlist
                 </a>
               </div>
-              {/* <div className="download-info">
-                <h2>Finally Get Your Shit Together</h2>
-                <p>StashDog helps you organize your crap and find your stuff when you need it. No more living like a disaster!</p>
-                <div className="download-features">
-                  <div className="feature-item">
-                    <h3>Find Your Stuff Instantly</h3>
-                    <p>Stop digging through piles of junk like a raccoon</p>
+            </div>
+          </section>
+
+          <section className="products">
+            <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+              <h2>What You Can Do After Downloading StashDog</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '760px' }}>
+                StashDog is built for a practical first session: capture a few high-value items, give them locations,
+                and make the record useful before you attempt a whole-house inventory.
+              </p>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '1rem',
+                marginTop: '2rem'
+              }}>
+                {[
+                  ['Photograph the item', 'Use the camera first so each record has visual proof and fast recognition.'],
+                  ['Add where it lives', 'Attach the room, bin, shelf, storage unit, vehicle, or property where it can be found.'],
+                  ['Tag the reason', 'Mark insurance, moving, reseller, tool, document, seasonal, or collection context.'],
+                  ['Share what matters', 'Give family, roommates, or helpers access to the items they actually need.'],
+                ].map(([title, body]) => (
+                  <div key={title} className="glass-panel" style={{ padding: '1.25rem' }}>
+                    <h3>{title}</h3>
+                    <p style={{ color: 'var(--text-muted)' }}>{body}</p>
                   </div>
-                  <div className="feature-item">
-                    <h3>Track Everything</h3>
-                    <p>Know exactly where you put that thing you need</p>
-                  </div>
-                  <div className="feature-item">
-                    <h3>Organize Your Space</h3>
-                    <p>Turn your chaos into something that makes sense</p>
-                  </div>
-                </div>
-              </div> */}
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="products" style={{ paddingTop: 0 }}>
+            <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+              <h2>Common Starting Points</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                {[
+                  ['/how-to-create-a-home-inventory', 'Create a Home Inventory', 'A room-by-room setup guide for insurance, moving, and everyday retrieval.'],
+                  ['/searchable-moving-boxes', 'Searchable Moving Boxes', 'Document boxes before, during, and after a move.'],
+                  ['/for/home-insurance/', 'Insurance Inventory', 'Capture proof before you need a claim-ready record.'],
+                  ['/features', 'Explore Features', 'Compare photos, locations, sharing, AI assistance, and cloud sync.'],
+                ].map(([to, title, body]) => (
+                  <Link key={to} to={to} className="glass-panel" style={{ display: 'block', padding: '1.25rem', textDecoration: 'none' }}>
+                    <h3>{title}</h3>
+                    <p style={{ color: 'var(--text-muted)' }}>{body}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="products" style={{ paddingTop: 0 }}>
+            <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+              <h2>Download FAQ</h2>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                {faq.map((item) => (
+                  <details key={item.question} className="glass-panel" style={{ padding: '1.25rem' }}>
+                    <summary style={{ cursor: 'pointer', fontWeight: 700 }}>{item.question}</summary>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '0.75rem' }}>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
             </div>
           </section>
         </main>

@@ -3,6 +3,31 @@
     "public": "public",
     "redirects": [
       {
+        "source": "/sitemap.xml",
+        "destination": "/sitemap-index.xml",
+        "type": 301
+      },
+      {
+        "source": "/downloads",
+        "destination": "/download/",
+        "type": 301
+      },
+      {
+        "source": "/downloads/",
+        "destination": "/download/",
+        "type": 301
+      },
+      {
+        "regex": "/blog/(?P<slug>best-home-inventory-app-for-families|home-inventory-app-vs-spreadsheet|how-to-create-a-home-inventory|moving-inventory-app|searchable-moving-boxes|sortly-alternative-for-home-use|vs-sortly)/?$",
+        "destination": "/:slug/",
+        "type": 301
+      },
+      {
+        "regex": "/(?P<page>best-home-inventory-app-for-families|download|features|find-your-shit|home-inventory-app-vs-spreadsheet|how-to-create-a-home-inventory|moving-inventory-app|pricing|privacy|searchable-moving-boxes|solutions|sortly-alternative-for-home-use|terms|vs-sortly|waitlist|blog|for|for/collectors|for/community-organizations|for/contractors|for/event-businesses|for/home-insurance|for/landlords|for/resellers|for/storage-units|for/workshops|partners|partners/insurance-agents|partners/movers|partners/professional-organizers|partners/realtors|partners/storage-facilities)$",
+        "destination": "/:page/",
+        "type": 301
+      },
+      {
         "regex": "/blog/(?P<slug>[^/]+)$",
         "destination": "/blog/:slug/",
         "type": 301

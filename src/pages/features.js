@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import {
   Camera, Sparkles, Smartphone, Target, FolderOpen, Library, Tag, Package,
@@ -14,6 +15,86 @@ import InfoCard from "../components/InfoCard"
 import SectionHeader from "../components/SectionHeader"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
+
+const featureFaq = [
+  {
+    question: "What makes StashDog different from a spreadsheet?",
+    answer:
+      "StashDog keeps photos, locations, containers, tags, documents, and shared access together, so retrieval does not depend on maintaining a manual spreadsheet.",
+  },
+  {
+    question: "Can StashDog track boxes, bins, and storage containers?",
+    answer:
+      "Yes. StashDog supports containers and nested locations so you can document what is inside boxes, shelves, storage units, vehicles, rooms, and other real-world storage spots.",
+  },
+  {
+    question: "Does StashDog support shared household inventory?",
+    answer:
+      "Yes. StashDog includes sharing, groups, roles, and activity history so family members, roommates, or collaborators can find and manage shared items.",
+  },
+]
+
+const featureSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "StashDog",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "iOS, Android, Web",
+    url: "https://stashdog.io/features/",
+    image: "https://stashdog.io/images/features-hero.png",
+    description:
+      "StashDog features include photo-based inventory, containers, tags, QR labels, sharing, document attachments, reminders, activity history, AI assistance, and cloud sync.",
+    featureList: [
+      "Photo-based inventory",
+      "Containers and locations",
+      "Collections and tags",
+      "QR code labels",
+      "Role-based sharing",
+      "Document attachments",
+      "Item reminders",
+      "Activity history",
+      "AI-assisted descriptions",
+      "Cloud sync",
+    ],
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      url: "https://stashdog.io/pricing/",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: featureFaq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://stashdog.io/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Features",
+        item: "https://stashdog.io/features/",
+      },
+    ],
+  },
+]
 
 const FeaturesPage = () => {
   const { isInitialized, logEvent } = useFirebase()
@@ -64,6 +145,11 @@ const FeaturesPage = () => {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gabarito:wght@400..900&display=swap" rel="stylesheet" />
+          {featureSchema.map((entry, index) => (
+            <script key={index} type="application/ld+json">
+              {JSON.stringify(entry)}
+            </script>
+          ))}
         </Helmet>
 
         <Header />
@@ -371,6 +457,75 @@ const FeaturesPage = () => {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        <section className="products" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+            <h2>Feature Fit by Use Case</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '760px' }}>
+              The same inventory primitives show up differently depending on the job: documenting proof,
+              finding stored items, managing shared gear, or preventing duplicate purchases.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+              {[
+                ['/for/home-insurance/', 'Insurance documentation', 'Photos, receipts, serial numbers, documents, and location history support a stronger claim record.'],
+                ['/for/contractors/', 'Tools and parts', 'Containers, tags, QR labels, and shared access help crews find what already exists before buying again.'],
+                ['/for/resellers/', 'Reseller inventory', 'Photos, status tags, bins, and export support sourcing piles, active listings, and sold-item pulls.'],
+                ['/for/storage-units/', 'Storage units', 'Container records and searchable locations make offsite storage useful without opening every box.'],
+              ].map(([to, title, body]) => (
+                <Link key={to} to={to} className="glass-panel" style={{ display: 'block', padding: '1.25rem', textDecoration: 'none' }}>
+                  <h3>{title}</h3>
+                  <p style={{ color: 'var(--text-muted)' }}>{body}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="products" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: '980px', margin: '0 auto' }}>
+            <h2>Feature Checklist</h2>
+            <div style={{ overflowX: 'auto', marginTop: '1.5rem' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '720px' }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Feature</th>
+                    <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>What it helps with</th>
+                    <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Useful for</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Photos', 'Fast visual proof and recognition.', 'Insurance, collections, resale, moving.'],
+                    ['Containers', 'Mapping bins, boxes, shelves, rooms, and storage units.', 'Storage, workshops, garages, event gear.'],
+                    ['Sharing', 'Letting the right people search or edit without one person acting as the memory keeper.', 'Families, roommates, contractors, community groups.'],
+                    ['Documents', 'Keeping receipts, warranties, manuals, and proof next to the item record.', 'Claims, returns, maintenance, resale.'],
+                    ['AI assistance', 'Reducing manual description work from item photos and existing details.', 'Large inventories and fast capture sessions.'],
+                  ].map(([feature, helps, useful]) => (
+                    <tr key={feature}>
+                      <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', fontWeight: 700 }}>{feature}</td>
+                      <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{helps}</td>
+                      <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{useful}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section className="products" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2>Features FAQ</h2>
+            <div style={{ display: 'grid', gap: '1rem' }}>
+              {featureFaq.map((item) => (
+                <details key={item.question} className="glass-panel" style={{ padding: '1.25rem' }}>
+                  <summary style={{ cursor: 'pointer', fontWeight: 700 }}>{item.question}</summary>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.75rem' }}>{item.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 

@@ -30,6 +30,19 @@ const BlogPostTemplate = ({ pageContext }) => {
     })
   }
 
+  const handleTagClick = (tag) => {
+    if (isInitialized) {
+      logEvent("blog_post_tag_click", {
+        tag_name: tag,
+        post_id: post.id,
+        post_slug: post.slug,
+        content_type: "blog"
+      })
+    }
+
+    window.location.href = `/blog/?tag=${encodeURIComponent(tag)}`
+  }
+
   // Process content: convert Markdown to HTML if needed
   let contentHtml = post.content || ''
   const looksLikeMarkdown = /(^#{1,6}\s)|(^[-*+]\s)|(```)/m.test(contentHtml)
@@ -156,9 +169,14 @@ const BlogPostTemplate = ({ pageContext }) => {
                     <span style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tagged under</span>
                   </div>
                   {post.tags.map((tag, index) => (
-                    <a key={index} href={`/blog?tag=${encodeURIComponent(tag)}`} className="blog-post-tag">
+                    <button
+                      key={index}
+                      type="button"
+                      className="blog-post-tag"
+                      onClick={() => handleTagClick(tag)}
+                    >
                       {tag}
-                    </a>
+                    </button>
                   ))}
                 </div>
               )}
