@@ -1,0 +1,43 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#0F172A"/>
+  <text x="80" y="86" fill="#F8FAFC" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="800">Traditional Organization vs Search-First Storage</text>
+  <text x="80" y="126" fill="#94A3B8" font-size="22" font-family="Arial, Helvetica, sans-serif">One system demands perfect decisions upfront. The other optimizes for retrieval first.</text>
+
+  <rect x="80" y="170" width="480" height="570" rx="28" fill="#111827" stroke="#374151"/>
+  <rect x="640" y="170" width="480" height="570" rx="28" fill="#101A2E" stroke="#3B82F6"/>
+
+  <text x="120" y="230" fill="#FCA5A5" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="800">Traditional organization</text>
+  <text x="680" y="230" fill="#FCD900" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="800">Search-First Storage</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">
+    <circle cx="128" cy="300" r="8" fill="#EF4444"/>
+    <text x="152" y="308" fill="#E5E7EB">Decide the perfect home for every item</text>
+    <circle cx="128" cy="370" r="8" fill="#EF4444"/>
+    <text x="152" y="378" fill="#E5E7EB">Clear space before you can store anything</text>
+    <circle cx="128" cy="440" r="8" fill="#EF4444"/>
+    <text x="152" y="448" fill="#E5E7EB">Remember the system in your head later</text>
+    <circle cx="128" cy="510" r="8" fill="#EF4444"/>
+    <text x="152" y="518" fill="#E5E7EB">Get the reward only after all that work</text>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">
+    <circle cx="688" cy="300" r="8" fill="#22C55E"/>
+    <text x="712" y="308" fill="#E5E7EB">Put related-enough stuff in a box now</text>
+    <circle cx="688" cy="370" r="8" fill="#22C55E"/>
+    <text x="712" y="378" fill="#E5E7EB">Add a QR label and a simple box ID</text>
+    <circle cx="688" cy="440" r="8" fill="#22C55E"/>
+    <text x="712" y="448" fill="#E5E7EB">Log contents once in StashDog</text>
+    <circle cx="688" cy="510" r="8" fill="#22C55E"/>
+    <text x="712" y="518" fill="#E5E7EB">Search later instead of guessing later</text>
+  </g>
+
+  <rect x="120" y="584" width="400" height="108" rx="18" fill="#190F10" stroke="#7F1D1D"/>
+  <text x="148" y="626" fill="#FCA5A5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="800">Result</text>
+  <text x="148" y="662" fill="#F3F4F6" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Pretty system, high abandonment rate</text>
+
+  <rect x="680" y="584" width="400" height="108" rx="18" fill="#102416" stroke="#166534"/>
+  <text x="708" y="626" fill="#86EFAC" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="800">Result</text>
+  <text x="708" y="662" fill="#F3F4F6" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Fast containment, reliable retrieval</text>
+
+  <line x1="600" y1="214" x2="600" y2="694" stroke="#334155" stroke-width="2" stroke-dasharray="8 10"/>
+</svg>

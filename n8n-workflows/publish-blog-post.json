@@ -1,0 +1,317 @@
+{
+  "name": "📝 Publish Blog Post (Wolf Pack Pipeline)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "publish-blog-post",
+        "authentication": "basicAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [0, 300],
+      "id": "webhook-trigger",
+      "name": "Blog Post Webhook",
+      "webhookId": "publish-blog-post"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize and validate input\nconst input = $input.first().json;\n\nconst title = input.title;\nconst content = input.content;\nconst slug = input.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');\nconst excerpt = input.excerpt || content.substring(0, 200).replace(/[#*\\n]/g, ' ').trim() + '...';\nconst tags = input.tags || ['stashdog'];\nconst metaDescription = input.meta_description || excerpt.substring(0, 155);\nconst authorId = input.author_id || '1dd2a897-03ac-4a5f-b374-d8894d4394d2';\nconst generateImage = input.generate_image !== false; // default true\nconst imageStyle = input.image_style || 'default'; // 'default' uses StashDog brand SVG\n\nif (!title || !content) {\n  throw new Error('Missing required fields: title and content are required');\n}\n\nreturn [{\n  json: {\n    title,\n    content,\n    slug,\n    excerpt,\n    tags: Array.isArray(tags) ? tags : tags.split(',').map(t => t.trim()),\n    metaDescription,\n    authorId,\n    generateImage,\n    imageStyle\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "id": "normalize-input",
+      "name": "Normalize Input"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "check-generate-image",
+              "leftValue": "={{ $json.generateImage }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [500, 300],
+      "id": "check-image-needed",
+      "name": "Generate Image?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"google/gemini-2.5-flash-preview\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a graphic designer for StashDog, a home inventory app. Generate ONLY raw SVG code (no markdown fences, no explanation) for a blog hero image. Brand: dark background (#0a0a0a), yellow accent (#fcd900), white text. Dimensions: viewBox='0 0 1200 675' width='1200' height='675'. Include the blog title as large text on the left side, a subtle tag line reading 'STASHDOG' and 'stashdog.io/blog' at the bottom left, and abstract visual elements on the right side representing the blog topic (use inventory cards, grid patterns, icons). Use modern, clean design with glass-morphism effects. The SVG must be self-contained with no external dependencies.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Create an SVG hero image for this blog post: {{ $json.title }}\"\n    }\n  ],\n  \"max_tokens\": 8000,\n  \"temperature\": 0.7\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [750, 200],
+      "id": "generate-hero-svg",
+      "name": "Generate Hero SVG (LLM)",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract SVG from LLM response\nconst response = $input.first().json;\nconst llmContent = response.choices?.[0]?.message?.content || '';\n\n// Extract SVG — strip markdown fences if present\nlet svg = llmContent;\nif (svg.includes('<svg')) {\n  svg = svg.substring(svg.indexOf('<svg'));\n  const endIdx = svg.lastIndexOf('</svg>');\n  if (endIdx !== -1) {\n    svg = svg.substring(0, endIdx + 6);\n  }\n}\n\n// Get the normalized data from earlier in the chain\nconst blogData = $('Normalize Input').first().json;\nconst fileName = `blog-${blogData.slug}-hero.svg`;\n\nreturn [{\n  json: {\n    ...blogData,\n    svgContent: svg,\n    fileName\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 200],
+      "id": "extract-svg",
+      "name": "Extract SVG"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://gmchczeyburroiyzefie.supabase.co/storage/v1/object/blog-assets/{{ $json.fileName }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "image/svg+xml" },
+            { "name": "x-upsert", "value": "true" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "body": "={{ $json.svgContent }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1250, 200],
+      "id": "upload-to-supabase-storage",
+      "name": "Upload SVG to Supabase Storage",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SUPABASE_SERVICE_CREDENTIAL_ID",
+          "name": "Supabase Service Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the public image URL and prepare for DB insert\nconst data = $input.first().json;\nconst imageUrl = `https://gmchczeyburroiyzefie.supabase.co/storage/v1/object/public/blog-assets/${data.fileName}`;\n\nreturn [{\n  json: {\n    ...data,\n    featuredImageUrl: imageUrl\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1500, 200],
+      "id": "build-image-url",
+      "name": "Build Image URL"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Skip image gen — just pass through with no image\nconst blogData = $('Normalize Input').first().json;\n\nreturn [{\n  json: {\n    ...blogData,\n    featuredImageUrl: null,\n    fileName: null\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1500, 450],
+      "id": "skip-image",
+      "name": "Skip Image Gen"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1750, 300],
+      "id": "merge-paths",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gmchczeyburroiyzefie.supabase.co/rest/v1/blog_posts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Accept-Profile", "value": "content" },
+            { "name": "Content-Profile", "value": "content" },
+            { "name": "Prefer", "value": "return=representation" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": {{ JSON.stringify($json.title) }},\n  \"content\": {{ JSON.stringify($json.content) }},\n  \"slug\": {{ JSON.stringify($json.slug) }},\n  \"excerpt\": {{ JSON.stringify($json.excerpt) }},\n  \"author_id\": {{ JSON.stringify($json.authorId) }},\n  \"published\": true,\n  \"featured_image_url\": {{ JSON.stringify($json.featuredImageUrl) }},\n  \"tags\": {{ JSON.stringify($json.tags) }},\n  \"meta_description\": {{ JSON.stringify($json.metaDescription) }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2000, 300],
+      "id": "insert-blog-post",
+      "name": "Insert into content.blog_posts",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SUPABASE_SERVICE_CREDENTIAL_ID",
+          "name": "Supabase Service Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Update marketing_content pipeline status if matching title exists\nconst blogPost = $input.first().json;\nconst blogData = $('Normalize Input').first().json;\n\nconst postId = Array.isArray(blogPost) ? blogPost[0]?.id : blogPost?.id;\nconst slug = blogData.slug;\n\nreturn [{\n  json: {\n    postId,\n    slug,\n    title: blogData.title,\n    url: `https://stashdog.io/blog/${slug}/`\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2250, 300],
+      "id": "prepare-response",
+      "name": "Prepare Response"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://gmchczeyburroiyzefie.supabase.co/rest/v1/marketing_content?title=eq.{{ encodeURIComponent($json.title) }}&channel=eq.blog",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"status\": \"published\", \"published_at\": \"{{ new Date().toISOString() }}\", \"updated_at\": \"{{ new Date().toISOString() }}\" }",
+        "options": { "batching": { "batch": { "batchSize": 1 } } }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2500, 200],
+      "id": "update-marketing-content",
+      "name": "Update marketing_content → published",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SUPABASE_SERVICE_CREDENTIAL_ID",
+          "name": "Supabase Service Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gmchczeyburroiyzefie.supabase.co/rest/v1/marketing_activities",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agent\": \"n8n\",\n  \"action\": \"content_published\",\n  \"description\": \"Published blog post via n8n pipeline: {{ $('Prepare Response').first().json.title }} → {{ $('Prepare Response').first().json.url }}\",\n  \"channel\": \"blog\",\n  \"metadata\": { \"slug\": \"{{ $('Prepare Response').first().json.slug }}\", \"pipeline\": \"publish-blog-post\" }\n}",
+        "options": { "batching": { "batch": { "batchSize": 1 } } }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2500, 400],
+      "id": "log-activity",
+      "name": "Log to marketing_activities",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SUPABASE_SERVICE_CREDENTIAL_ID",
+          "name": "Supabase Service Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"post\": {\n    \"id\": \"{{ $('Prepare Response').first().json.postId }}\",\n    \"title\": \"{{ $('Prepare Response').first().json.title }}\",\n    \"slug\": \"{{ $('Prepare Response').first().json.slug }}\",\n    \"url\": \"{{ $('Prepare Response').first().json.url }}\",\n    \"status\": \"published\"\n  },\n  \"message\": \"Blog post published. Gatsby rebuild needed to deploy to stashdog.io.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2750, 300],
+      "id": "respond",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "content": "## 📝 Publish Blog Post Pipeline\n\n**Webhook:** POST `/webhook/publish-blog-post`\n\n**Input JSON:**\n```json\n{\n  \"title\": \"Required — blog post title\",\n  \"content\": \"Required — full markdown content\",\n  \"slug\": \"Optional — auto-generated from title\",\n  \"excerpt\": \"Optional — auto-generated from content\",\n  \"tags\": [\"array\", \"of\", \"tags\"],\n  \"meta_description\": \"Optional — max 155 chars\",\n  \"author_id\": \"Optional — defaults to Raz\",\n  \"generate_image\": true,\n  \"image_style\": \"default\"\n}\n```\n\n**Pipeline:**\n1. Validate & normalize input\n2. Generate branded SVG hero image (LLM via OpenRouter)\n3. Upload SVG to Supabase Storage (blog-assets bucket)\n4. Insert into `content.blog_posts` (published=true)\n5. Update `marketing_content` status → published\n6. Log to `marketing_activities`\n7. Respond with post URL\n\n**Credentials needed:**\n- `OpenRouter API` — httpHeaderAuth with `Authorization: Bearer <key>`\n- `Supabase Service Key` — httpHeaderAuth with `apikey: <service_role_key>` AND `Authorization: Bearer <service_role_key>`\n\n**Note:** After publishing, a Gatsby rebuild is needed to deploy. Consider adding a Firebase deploy webhook trigger.",
+        "height": 680,
+        "width": 500,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-400, 100],
+      "id": "docs-note",
+      "name": "Documentation"
+    }
+  ],
+  "connections": {
+    "Blog Post Webhook": {
+      "main": [[{ "node": "Normalize Input", "type": "main", "index": 0 }]]
+    },
+    "Normalize Input": {
+      "main": [[{ "node": "Generate Image?", "type": "main", "index": 0 }]]
+    },
+    "Generate Image?": {
+      "main": [
+        [{ "node": "Generate Hero SVG (LLM)", "type": "main", "index": 0 }],
+        [{ "node": "Skip Image Gen", "type": "main", "index": 0 }]
+      ]
+    },
+    "Generate Hero SVG (LLM)": {
+      "main": [[{ "node": "Extract SVG", "type": "main", "index": 0 }]]
+    },
+    "Extract SVG": {
+      "main": [[{ "node": "Upload SVG to Supabase Storage", "type": "main", "index": 0 }]]
+    },
+    "Upload SVG to Supabase Storage": {
+      "main": [[{ "node": "Build Image URL", "type": "main", "index": 0 }]]
+    },
+    "Build Image URL": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 0 }]]
+    },
+    "Skip Image Gen": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 1 }]]
+    },
+    "Merge": {
+      "main": [[{ "node": "Insert into content.blog_posts", "type": "main", "index": 0 }]]
+    },
+    "Insert into content.blog_posts": {
+      "main": [[{ "node": "Prepare Response", "type": "main", "index": 0 }]]
+    },
+    "Prepare Response": {
+      "main": [[
+        { "node": "Update marketing_content → published", "type": "main", "index": 0 },
+        { "node": "Log to marketing_activities", "type": "main", "index": 0 },
+        { "node": "Respond to Webhook", "type": "main", "index": 0 }
+      ]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  }
+}
