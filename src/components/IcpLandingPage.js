@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import Header from "./Header"
 import Footer from "./Footer"
+import CommercialLeadForm from "./CommercialLeadForm"
 import AppStoreButton from "./AppStoreButton"
 import GooglePlayButton from "./GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
@@ -13,10 +14,20 @@ import "../styles/icp-landing.css"
 
 const siteUrl = "https://stashdog.io"
 const mailto = "mailto:mail@stashdog.io"
+const commercialLeadSlugs = new Set([
+  "resellers",
+  "contractors",
+  "landlords",
+  "event-businesses",
+  "community-organizations",
+  "workshops",
+  "storage-units",
+])
 
 const IcpLandingPage = ({ page }) => {
   const { isInitialized, logEvent } = useFirebase()
   const canonicalUrl = `${siteUrl}${page.pagePath}`
+  const isCommercialLeadPage = commercialLeadSlugs.has(page.slug)
   const relatedPages = (page.related || [])
     .map((slug) => icpPages[slug])
     .filter(Boolean)
@@ -39,6 +50,17 @@ const IcpLandingPage = ({ page }) => {
       page: page.pagePath,
       source: "icp_landing_page",
       audience: page.slug,
+    })
+  }
+
+  const handleCommercialCtaClick = (ctaLocation) => {
+    if (!isInitialized) return
+
+    logEvent("partner_pilot_cta_click", {
+      cta_location: ctaLocation,
+      lead_type: "business_use_case",
+      source_path: page.pagePath,
+      partner_type: page.audience,
     })
   }
 
@@ -113,6 +135,22 @@ const IcpLandingPage = ({ page }) => {
     })
   }
 
+  if (isCommercialLeadPage) {
+    schema.push({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "StashDog",
+      url: siteUrl,
+      logo: `${siteUrl}/round-logo-goggles.png`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Commercial inquiries",
+        email: "partners@stashdog.io",
+        url: canonicalUrl,
+      },
+    })
+  }
+
   return (
     <div className="page-container">
       <Helmet>
@@ -157,7 +195,11 @@ const IcpLandingPage = ({ page }) => {
               </div>
               <div className="icp-hero-links">
                 <Link to="/download/" className="cta-button">Download StashDog</Link>
-                <a href={mailto} className="cta-button outline">Contact us</a>
+                {isCommercialLeadPage ? (
+                  <a href="#commercial-lead" className="cta-button outline" onClick={() => handleCommercialCtaClick("hero")}>Talk to us</a>
+                ) : (
+                  <a href={mailto} className="cta-button outline">Contact us</a>
+                )}
               </div>
             </div>
 
@@ -206,6 +248,30 @@ const IcpLandingPage = ({ page }) => {
             </div>
           </div>
         </section>
+
+        {isCommercialLeadPage && (
+          <section className="icp-section icp-commercial-lead-section" id="commercial-lead">
+            <div className="container icp-two-column">
+              <div>
+                <p className="icp-eyebrow">Commercial inquiry</p>
+                <h2>Need this for a team, property, storage workflow, or customer program?</h2>
+                <p>
+                  Tell us what you are trying to track and how many people or locations are involved. We will follow up with a practical setup path.
+                </p>
+              </div>
+              <CommercialLeadForm
+                leadType="business_use_case"
+                sourcePage={page.slug}
+                sourcePath={page.pagePath}
+                partnerType={page.audience}
+                formLocation="commercial_use_case_page"
+                title={`Commercial setup for ${page.primaryKeyword}`}
+                description="Use this for team workflows, multi-location inventory, partner kits, or business inventory pilots."
+                submitLabel="Send commercial inquiry"
+              />
+            </div>
+          </section>
+        )}
 
         <section className="icp-section">
           <div className="container icp-two-column">
@@ -286,7 +352,11 @@ const IcpLandingPage = ({ page }) => {
               </div>
               <div className="icp-hero-links">
                 <Link to="/download/" className="cta-button">Download StashDog</Link>
-                <a href={mailto} className="cta-button outline">Contact us at mail@stashdog.io</a>
+                {isCommercialLeadPage ? (
+                  <a href="#commercial-lead" className="cta-button outline" onClick={() => handleCommercialCtaClick("final")}>Talk to us</a>
+                ) : (
+                  <a href={mailto} className="cta-button outline">Contact us at mail@stashdog.io</a>
+                )}
               </div>
             </div>
           </div>

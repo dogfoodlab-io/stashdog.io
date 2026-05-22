@@ -81,7 +81,7 @@ const WaitlistPage = () => {
                     Download StashDog
                   </h1>
                   <p className="hero-description">
-                    Stop living like a trash gremlin. Get organized now on iOS and Android.
+                    Get organized now on iOS and Android.
                   </p>
 
                   <div className="benefits-list" style={{ marginTop: '2rem' }}>
@@ -99,9 +99,9 @@ const WaitlistPage = () => {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>
-                        <Trophy size={20} />
+                    <Trophy size={20} />
                       </div>
-                      <div><strong>VIP Support</strong> & direct access to the team</div>
+                      <div><strong>Setup Support</strong> & direct access to the team</div>
                     </div>
                   </div>
                 </div>
@@ -131,6 +131,7 @@ const WaitlistPage = () => {
                     boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
                     marginTop: '1.5rem'
                   }}>
+                    <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Tell us what you are organizing</h3>
                     <WaitlistForm />
                   </div>
                 </div>

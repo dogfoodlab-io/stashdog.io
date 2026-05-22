@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import AiSeoPageLayout from "./AiSeoPageLayout"
+import CommercialLeadForm from "./CommercialLeadForm"
 import { forUseCases } from "../data/forUseCases"
 
 const author = { name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }
@@ -42,8 +43,19 @@ const wedgeAnalyticsBySlug = {
   },
 }
 
+const commercialLeadSlugs = new Set([
+  "resellers",
+  "contractors",
+  "landlords",
+  "event-businesses",
+  "community-organizations",
+  "workshops",
+  "storage-units",
+])
+
 const ForUseCasePage = ({ page }) => {
   const useCaseLabel = page.slug.replace(/-/g, " ")
+  const isCommercialLeadPage = commercialLeadSlugs.has(page.slug)
   const firstTrackItems = [
     "High-value items that would be expensive to replace.",
     "Items stored away from daily view in bins, closets, garages, or storage units.",
@@ -186,6 +198,25 @@ const ForUseCasePage = ({ page }) => {
           </div>
         </div>
       </section>
+
+      {isCommercialLeadPage && (
+        <section id="commercial-lead">
+          <h2>Need StashDog for a Team or Commercial Workflow?</h2>
+          <p>
+            Tell us what you need to track, how many people or locations are involved, and whether this is for internal operations or a customer-facing program.
+          </p>
+          <CommercialLeadForm
+            leadType="business_use_case"
+            sourcePage={page.slug}
+            sourcePath={`/for/${page.slug}/`}
+            partnerType={useCaseLabel}
+            formLocation="for_use_case_page"
+            title={`Commercial setup for ${useCaseLabel}`}
+            description="Use this for team inventory, multi-location workflows, partner kits, or business pilots."
+            submitLabel="Send commercial inquiry"
+          />
+        </section>
+      )}
 
       <section>
         <h2>Where to Go Next</h2>

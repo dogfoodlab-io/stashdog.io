@@ -35,10 +35,26 @@ Last updated: 2026-05-22
   - Expanded personal inventory capacity
 - Signup: https://app.stashdog.io/sign-up?redirect=%2Fupgrade%3Fprice_id%3Dprice_stashdog_plus_monthly
 
+## Pro / Team
+
+- Price: Inquiry pricing
+- Currency: USD
+- Billing interval: Custom / inquiry
+- Best for: Teams, small businesses, commercial partners, shared inventory workflows, and partner pilots
+- Limits:
+  - Based on team size, locations, customer program, and setup requirements
+- Features:
+  - Team and shared inventory workflows
+  - QR labels for boxes, bins, tools, gear, storage units, or customer kits
+  - Commercial onboarding guidance
+  - Partner pilot and co-branded program support
+  - Practical setup help for resellers, contractors, landlords, event businesses, community organizations, workshops, storage facilities, movers, organizers, realtors, and insurance agents
+- Inquiry: https://stashdog.io/pricing/#pro-team-inquiry
+
 ## Notes for AI Agents
 
 - StashDog pricing may update from the live subscription catalog on the public pricing page.
 - Use https://stashdog.io/pricing/ as the canonical human-readable pricing source.
 - Use this file as the machine-readable pricing summary.
 - Prices are listed in USD before any applicable taxes or app store billing adjustments.
-
+- Pro / Team does not have a public fixed price yet; route commercial inquiries to https://stashdog.io/pricing/#pro-team-inquiry.

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import { ArrowRight, CheckCircle2, Handshake, PackageCheck, QrCode, Search, Sparkles } from "lucide-react"
 import Header from "./Header"
 import Footer from "./Footer"
+import CommercialLeadForm from "./CommercialLeadForm"
 import { useFirebase } from "../hooks/useFirebase"
 import "../styles/global.css"
 
@@ -32,20 +33,43 @@ const PartnerLandingPage = ({ page }) => {
       experiment: page.experiment,
       partner_type: page.partnerType,
     })
+
+    logEvent("partner_pilot_cta_click", {
+      cta_text: ctaText,
+      cta_location: ctaLocation,
+      source_path: page.path,
+      partner_type: page.partnerType,
+      lead_type: "partner_pilot",
+    })
   }
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: page.faq.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: page.faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "StashDog",
+      url: "https://stashdog.io/",
+      logo: "https://stashdog.io/round-logo-goggles.png",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Partnerships",
+        email: "partners@stashdog.io",
+        url: canonicalUrl,
       },
-    })),
-  }
+    },
+  ]
 
   return (
     <div className="page-container partner-page">
@@ -62,7 +86,11 @@ const PartnerLandingPage = ({ page }) => {
         <meta property="og:image" content="https://stashdog.io/lab1.png" />
         <meta property="og:site_name" content="StashDog" />
         <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        {schema.map((entry, index) => (
+          <script key={index} type="application/ld+json">
+            {JSON.stringify(entry)}
+          </script>
+        ))}
       </Helmet>
 
       <Header />
@@ -78,7 +106,7 @@ const PartnerLandingPage = ({ page }) => {
               <h1>{page.title}</h1>
               <p className="partner-subtitle">{page.subtitle}</p>
               <div className="partner-cta-row">
-                <a className="cta-button" href="#partner-kit" onClick={() => handleCtaClick("hero")}> 
+                <a className="cta-button" href="#commercial-lead" onClick={() => handleCtaClick("hero")}>
                   {page.primaryCta} <ArrowRight size={18} />
                 </a>
                 <a className="cta-button outline" href="#workflow" onClick={() => handleCtaClick("hero_secondary", page.secondaryCta)}>
@@ -173,10 +201,32 @@ const PartnerLandingPage = ({ page }) => {
                   <li key={item}><CheckCircle2 size={18} /> {item}</li>
                 ))}
               </ul>
-              <a className="cta-button" href="mailto:partners@stashdog.io?subject=StashDog%20partner%20pilot" onClick={() => handleCtaClick("partner_kit_email", "Email about partner pilot")}> 
+              <a className="cta-button" href="#commercial-lead" onClick={() => handleCtaClick("partner_kit_form", "Ask about a pilot")}>
                 Ask about a pilot <ArrowRight size={18} />
               </a>
             </div>
+          </div>
+        </section>
+
+        <section className="partner-section partner-lead-section" id="commercial-lead">
+          <div className="container partner-lead-grid">
+            <div>
+              <span className="partner-section-kicker">Start the conversation</span>
+              <h2>Tell us what a useful pilot would look like.</h2>
+              <p>
+                Share the partner type, customer workflow, and rough scale. We will follow up with the simplest way to test it without adding operational weight.
+              </p>
+            </div>
+            <CommercialLeadForm
+              leadType="partner_pilot"
+              sourcePage={page.slug}
+              sourcePath={page.path}
+              partnerType={page.partnerType}
+              formLocation="partner_page_lead_section"
+              title={`Partner pilot for ${page.partnerType.toLowerCase()}`}
+              description="Use this for co-branded kits, customer handoff workflows, referral pilots, or commercial inventory programs."
+              submitLabel="Start a partner inquiry"
+            />
           </div>
         </section>
 
@@ -212,12 +262,14 @@ const PartnerLandingPage = ({ page }) => {
         </section>
 
         <section className="partner-final-cta">
-          <div className="container partner-final-card glass-panel">
-            <h2>Want to test this with 3-5 customers?</h2>
-            <p>Start with one co-branded landing page, one customer handoff guide, and one referral-friendly pilot offer.</p>
-            <div className="partner-cta-row center">
-              <a className="cta-button" href="mailto:partners@stashdog.io?subject=StashDog%20partner%20pilot" onClick={() => handleCtaClick("final_email", "Start a partner pilot")}>Start a partner pilot</a>
-              <Link className="cta-button outline" to="/searchable-moving-boxes" onClick={() => handleCtaClick("final_example", "View customer landing page")}>View customer page</Link>
+          <div className="container partner-final-grid">
+            <div className="partner-final-card glass-panel">
+              <h2>Want to test this with 3-5 customers?</h2>
+              <p>Start with one co-branded landing page, one customer handoff guide, and one referral-friendly pilot offer.</p>
+              <div className="partner-cta-row center">
+                <a className="cta-button" href="#commercial-lead" onClick={() => handleCtaClick("final_form", "Start a partner pilot")}>Start a partner pilot</a>
+                <Link className="cta-button outline" to="/searchable-moving-boxes" onClick={() => handleCtaClick("final_example", "View customer landing page")}>View customer page</Link>
+              </div>
             </div>
           </div>
         </section>

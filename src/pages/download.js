@@ -153,7 +153,7 @@ const DownloadPage = () => {
                 />
               </div>
               <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 1.5rem auto' }}>
-                Stop living like a trash gremlin. Get organized now!
+                Get organized now on iOS and Android.
               </p>
             </div>
           </section>
@@ -175,16 +175,16 @@ const DownloadPage = () => {
                 border: '1px solid rgba(252, 217, 0, 0.2)',
                 textAlign: 'left'
               }}>
-                <h3 style={{ color: '#fcd900' }}>Want Early Access to Beta Features?</h3>
+                <h3 style={{ color: '#fcd900' }}>Want Product Updates or Setup Help?</h3>
                 <p style={{ marginBottom: '1.5rem', marginTop: '0.5rem' }}>
-                  Optional: join the beta waitlist to preview upcoming features.
+                  Optional: tell us what you are organizing and we will send relevant updates or guidance.
                 </p>
                 <a href="/waitlist" className="cta-button" style={{
                   display: 'inline-block',
                   textDecoration: 'none',
                   padding: '0.75rem 2rem'
                 }}>
-                  Join Beta Waitlist
+                  Share Your Use Case
                 </a>
               </div>
             </div>

@@ -6,13 +6,51 @@ import { activeStashdogStrings } from "../config"
 
 const Footer = () => {
   const { logEvent } = useFirebase()
+  const footerSections = [
+    {
+      title: "Product",
+      links: [
+        { to: "/features/", label: "Features" },
+        { to: "/solutions/", label: "Solutions" },
+        { to: "/pricing/", label: "Pricing" },
+        { to: "/download/", label: "Download" },
+      ],
+    },
+    {
+      title: "Use Cases",
+      links: [
+        { to: "/for/", label: "All Use Cases" },
+        { to: "/for/resellers/", label: "Resellers" },
+        { to: "/for/contractors/", label: "Contractors" },
+        { to: "/for/storage-units/", label: "Storage Units" },
+      ],
+    },
+    {
+      title: "Partners",
+      links: [
+        { to: "/partners/", label: "Partner Program" },
+        { to: "/partners/movers/", label: "Movers" },
+        { to: "/partners/storage-facilities/", label: "Storage Facilities" },
+        { to: "/partners/professional-organizers/", label: "Organizers" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { href: "mailto:partners@stashdog.io", label: "Commercial Inquiries" },
+        { to: "/blog/", label: "Blog" },
+        { to: "/privacy/", label: "Privacy Policy" },
+        { to: "/terms/", label: "Terms of Service" },
+      ],
+    },
+  ]
 
   const handleContactClick = () => {
     logEvent('contact_click', { page: 'homepage' })
   }
 
-  const handlePrivacyClick = () => {
-    logEvent('navigation', { destination: 'privacy', source: 'footer' })
+  const handleFooterLinkClick = (destination) => {
+    logEvent('navigation', { destination, source: 'footer' })
   }
 
   return (
@@ -23,51 +61,37 @@ const Footer = () => {
       marginTop: 'auto'
     }}>
       <div className="container">
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-          gap: '1.5rem'
-        }}>
-          <img
-            src="/round-logo-goggles.png"
-            alt="StashDog Logo"
-            style={{ width: '60px', height: '60px', borderRadius: '50%', border: '2px solid var(--color-primary)' }}
-          />
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <img
+              src="/round-logo-goggles.png"
+              alt="StashDog Logo"
+              style={{ width: '60px', height: '60px', borderRadius: '50%', border: '2px solid var(--color-primary)' }}
+            />
 
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', maxWidth: '600px' }}>
-            {activeStashdogStrings.thank_you}
-          </p>
-
-          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a
-              href="mailto:mail@dogfoodlab.io"
-              onClick={handleContactClick}
-              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
-              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
-            >
-              mail@dogfoodlab.io
-            </a>
-            <Link
-              to="/privacy"
-              onClick={handlePrivacyClick}
-              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
-              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms"
-              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseOver={(e) => e.target.style.color = 'var(--color-primary)'}
-              onMouseOut={(e) => e.target.style.color = 'var(--text-muted)'}
-            >
-              Terms of Service
-            </Link>
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', maxWidth: '420px' }}>
+              {activeStashdogStrings.thank_you}
+            </p>
           </div>
+
+          <nav className="footer-link-columns" aria-label="Footer navigation">
+            {footerSections.map((section) => (
+              <div className="footer-link-column" key={section.title}>
+                <h2>{section.title}</h2>
+                {section.links.map((link) => (
+                  link.to ? (
+                    <Link key={link.to} to={link.to} onClick={() => handleFooterLinkClick(link.to)}>
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a key={link.href} href={link.href} onClick={handleContactClick}>
+                      {link.label}
+                    </a>
+                  )
+                ))}
+              </div>
+            ))}
+          </nav>
 
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '1rem' }}>
             <a

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import { ArrowRight, Handshake, PackageSearch } from "lucide-react"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import CommercialLeadForm from "../../components/CommercialLeadForm"
 import { useFirebase } from "../../hooks/useFirebase"
 import { partnerPages } from "../../data/partnerLandingPages"
 import "../../styles/global.css"
@@ -32,6 +33,43 @@ const PartnersIndexPage = () => {
     })
   }
 
+  const handlePilotClick = (location) => {
+    logEvent("partner_pilot_cta_click", {
+      cta_location: location,
+      source_path: "/partners/",
+      partner_type: "Partner directory",
+      lead_type: "partner_pilot",
+    })
+  }
+
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Partner with StashDog",
+      description: "Partner programs for moving, storage, organizing, real estate, and insurance businesses.",
+      url: "https://stashdog.io/partners/",
+      hasPart: partnerPages.map((partner) => ({
+        "@type": "WebPage",
+        name: partner.title,
+        url: `https://stashdog.io${partner.path}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "StashDog",
+      url: "https://stashdog.io/",
+      logo: "https://stashdog.io/round-logo-goggles.png",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Partnerships",
+        email: "partners@stashdog.io",
+        url: "https://stashdog.io/partners/",
+      },
+    },
+  ]
+
   return (
     <div className="page-container partner-page">
       <Helmet>
@@ -52,6 +90,11 @@ const PartnersIndexPage = () => {
         <meta property="og:url" content="https://stashdog.io/partners/" />
         <meta property="og:image" content="https://stashdog.io/lab1.png" />
         <meta name="twitter:card" content="summary_large_image" />
+        {schema.map((entry, index) => (
+          <script key={index} type="application/ld+json">
+            {JSON.stringify(entry)}
+          </script>
+        ))}
       </Helmet>
 
       <Header />
@@ -71,10 +114,32 @@ const PartnersIndexPage = () => {
               <a className="cta-button" href="#partner-options">
                 Browse partner pages <ArrowRight size={18} />
               </a>
-              <a className="cta-button outline" href="mailto:partners@stashdog.io?subject=StashDog%20partner%20pilot">
+              <a className="cta-button outline" href="#commercial-lead" onClick={() => handlePilotClick("hero")}>
                 Start a pilot
               </a>
             </div>
+          </div>
+        </section>
+
+        <section className="partner-section partner-lead-section" id="commercial-lead">
+          <div className="container partner-lead-grid">
+            <div>
+              <span className="partner-section-kicker">Partner inquiry</span>
+              <h2>Tell us which customer workflow you want to test.</h2>
+              <p>
+                Use this for co-branded kits, referral pilots, customer handoff workflows, or commercial inventory programs.
+              </p>
+            </div>
+            <CommercialLeadForm
+              leadType="partner_pilot"
+              sourcePage="partners_index"
+              sourcePath="/partners/"
+              partnerType="Partner directory"
+              formLocation="partners_index_hero"
+              title="Start a partner pilot"
+              description="Share your business type and the customer workflow you want to improve."
+              submitLabel="Send partner inquiry"
+            />
           </div>
         </section>
 
@@ -105,12 +170,14 @@ const PartnersIndexPage = () => {
         </section>
 
         <section className="partner-final-cta">
-          <div className="container partner-final-card glass-panel">
-            <h2>Not sure which partner path fits?</h2>
-            <p>Start with the strongest wedge: a small co-branded pilot for 3-5 customers who are already moving, storing, organizing, or documenting belongings.</p>
-            <div className="partner-cta-row center">
-              <a className="cta-button" href="mailto:partners@stashdog.io?subject=StashDog%20partner%20pilot">Ask about a pilot</a>
-              <Link className="cta-button outline" to="/searchable-moving-boxes/">View customer-facing example</Link>
+          <div className="container partner-final-grid">
+            <div className="partner-final-card glass-panel">
+              <h2>Not sure which partner path fits?</h2>
+              <p>Start with the strongest wedge: a small co-branded pilot for 3-5 customers who are already moving, storing, organizing, or documenting belongings.</p>
+              <div className="partner-cta-row center">
+                <a className="cta-button" href="#commercial-lead" onClick={() => handlePilotClick("final")}>Ask about a pilot</a>
+                <Link className="cta-button outline" to="/searchable-moving-boxes/">View customer-facing example</Link>
+              </div>
             </div>
           </div>
         </section>

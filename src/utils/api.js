@@ -111,6 +111,17 @@ export async function submitWaitlistEntry(waitlistEntry) {
 }
 
 /**
+ * Submit a commercial or partner lead.
+ */
+export async function submitCommercialLead(commercialLead) {
+  return apiRequest('/commercial_leads', {
+    method: 'POST',
+    body: JSON.stringify(commercialLead),
+    schema: 'ops'
+  })
+}
+
+/**
  * Health check endpoint
  */
 export async function healthCheck() {

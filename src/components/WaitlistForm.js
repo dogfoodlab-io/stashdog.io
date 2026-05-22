@@ -93,8 +93,8 @@ const WaitlistForm = () => {
       <div className="waitlist-form-container">
         <div className="waitlist-success" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <PartyPopper size={48} color="var(--color-primary)" style={{ marginBottom: '1.5rem' }} />
-          <h3>You're on the list!</h3>
-          <p>Thanks for joining the StashDog Early Access Program. We'll be in touch soon with your exclusive access details.</p>
+          <h3>Thanks for reaching out.</h3>
+          <p>We have your details and will send relevant StashDog updates or setup guidance when it fits your use case.</p>
           <button
             className="cta-button"
             onClick={() => setSubmitStatus(null)}
@@ -191,7 +191,7 @@ const WaitlistForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="useCase">How will you use StashDog?</label>
+          <label htmlFor="useCase">How are you using StashDog?</label>
           <textarea
             id="useCase"
             name="useCase"
@@ -215,7 +215,7 @@ const WaitlistForm = () => {
           className="cta-button waitlist-submit"
           disabled={isSubmitting || !formData.email}
         >
-          {isSubmitting ? 'Joining...' : 'Join Early Access'}
+          {isSubmitting ? 'Sending...' : 'Send details'}
         </button>
       </form>
     </div>

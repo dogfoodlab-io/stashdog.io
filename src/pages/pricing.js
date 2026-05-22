@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import { Check, Sparkles } from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import CommercialLeadForm from "../components/CommercialLeadForm"
 import AppStoreButton from "../components/AppStoreButton"
 import GooglePlayButton from "../components/GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
@@ -37,6 +38,26 @@ const FALLBACK_PLANS = [
   }
 ]
 
+const COMMERCIAL_PLAN = {
+  id: 'pro-team',
+  name: 'Pro / Team',
+  description: 'For teams, small businesses, partner pilots, and shared commercial inventory workflows',
+  price: null,
+  currency: 'usd',
+  interval: null,
+  features: [
+    'Inquiry pricing',
+    'Team and shared inventory workflows',
+    'QR labels for boxes, bins, tools, gear, or customer kits',
+    'Commercial onboarding guidance',
+    'Partner pilot and co-branded program support'
+  ],
+  active: true,
+  sort_order: 99,
+  tier: 'TEAM',
+  is_inquiry: true
+}
+
 const money = (cents, currency = 'usd') =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -65,7 +86,12 @@ const pricingFaq = [
   {
     question: "Is StashDog priced for households or businesses?",
     answer:
-      "StashDog is household-first, but it also supports practical small-business workflows like resellers, contractors, event gear, landlords, and workshops.",
+      "StashDog has Free and Plus plans for individual use. Teams, small businesses, and commercial partners can inquire about the Pro / Team plan for shared workflows, onboarding, and pilot support.",
+  },
+  {
+    question: "How much does Pro / Team cost?",
+    answer:
+      "Pro / Team pricing is inquiry-only for now because commercial workflows vary by team size, number of locations, setup needs, and partner model.",
   },
 ]
 
@@ -79,15 +105,22 @@ const pricingSchema = [
     url: "https://stashdog.io/pricing/",
     description:
       "StashDog is a home inventory app with free and paid plans for tracking items, photos, locations, documents, and shared inventory context.",
-    offers: FALLBACK_PLANS.map((plan) => ({
-      "@type": "Offer",
-      name: plan.name,
-      price: String((plan.price || 0) / 100),
-      priceCurrency: String(plan.currency || "usd").toUpperCase(),
-      availability: "https://schema.org/InStock",
-      url: "https://stashdog.io/pricing/",
-      description: plan.description,
-    })),
+    offers: [...FALLBACK_PLANS, COMMERCIAL_PLAN].map((plan) => {
+      const offer = {
+        "@type": "Offer",
+        name: plan.name,
+        availability: "https://schema.org/InStock",
+        url: plan.is_inquiry ? "https://stashdog.io/pricing/#pro-team-inquiry" : "https://stashdog.io/pricing/",
+        description: plan.description,
+      }
+
+      if (!plan.is_inquiry) {
+        offer.price = String((plan.price || 0) / 100)
+        offer.priceCurrency = String(plan.currency || "usd").toUpperCase()
+      }
+
+      return offer
+    }),
   },
   {
     "@context": "https://schema.org",
@@ -122,6 +155,7 @@ const pricingSchema = [
 ]
 
 const getCheckoutUrl = (plan) => {
+  if (plan.is_inquiry) return '#pro-team-inquiry'
   if ((plan.price || 0) <= 0) return '/download'
 
   const redirect = encodeURIComponent(`/upgrade?price_id=${plan.stripe_price_id}`)
@@ -161,9 +195,19 @@ const PricingPage = () => {
   }, [])
 
   const normalizedPlans = useMemo(
-    () => plans
+    () => {
+      const activePlans = plans
       .filter(plan => plan?.active !== false)
-      .sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999) || (a.price ?? 0) - (b.price ?? 0)),
+      .sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999) || (a.price ?? 0) - (b.price ?? 0))
+
+      const hasCommercialPlan = activePlans.some((plan) => {
+        const tier = String(plan.tier || '').toUpperCase()
+        const name = String(plan.name || '').toLowerCase()
+        return plan.id === COMMERCIAL_PLAN.id || tier === 'TEAM' || tier === 'BUSINESS' || name.includes('team')
+      })
+
+      return hasCommercialPlan ? activePlans : [...activePlans, COMMERCIAL_PLAN]
+    },
     [plans]
   )
 
@@ -182,6 +226,16 @@ const PricingPage = () => {
         stripe_price_id: plan.stripe_price_id || '',
         checkout_url: checkoutUrl
       })
+
+      if (plan.is_inquiry) {
+        logEvent('pro_team_pricing_click', {
+          page: 'pricing',
+          lead_type: 'pro_team_inquiry',
+          source_path: '/pricing/',
+          plan_interest: 'Pro / Team',
+          form_location: 'pricing_card',
+        })
+      }
     }
   }
 
@@ -189,8 +243,8 @@ const PricingPage = () => {
     <div className="page-container">
       <Helmet>
         <html lang="en" />
-        <title>StashDog Pricing | Free and Plus Home Inventory Plans</title>
-        <meta name="description" content="Compare StashDog pricing for free and paid home inventory plans. See item limits, AI actions, search, export, and when each plan makes sense." />
+        <title>StashDog Pricing | Free, Plus, and Pro / Team Plans</title>
+        <meta name="description" content="Compare StashDog pricing for Free, Plus, and inquiry-only Pro / Team inventory plans for households, small businesses, teams, and commercial partners." />
         <link rel="canonical" href="https://stashdog.io/pricing/" />
         <link rel="alternate" type="text/markdown" href="https://stashdog.io/pricing.md" title="StashDog machine-readable pricing" />
         <link rel="alternate" type="text/plain" href="https://stashdog.io/llms.txt" title="StashDog AI context" />
@@ -207,7 +261,7 @@ const PricingPage = () => {
         <div className="container" style={{ textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
           <h1 className="hero-title">Simple Pricing, Powerful Features</h1>
           <p className="hero-description" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 3rem auto' }}>
-            Start with a free home inventory, then upgrade when your item count, search needs, or export workflow outgrows the starter plan.
+            Start with a free inventory, upgrade for personal search and export, or ask about Pro / Team for shared commercial workflows and partner pilots.
           </p>
           <div style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '24px', overflow: 'hidden' }}>
             <img src="/images/hero-pricing.png" alt="Pricing comparison illustration" style={{ width: '100%', height: 'auto', display: 'block' }} />
@@ -217,10 +271,11 @@ const PricingPage = () => {
 
       <section className="products">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1180px', margin: '0 auto' }}>
             {normalizedPlans.map((plan) => {
               const checkoutUrl = getCheckoutUrl(plan)
               const isFeatured = (plan.tier || '').toUpperCase() === 'PERSONAL'
+              const isInquiry = Boolean(plan.is_inquiry)
 
               return (
                 <div key={plan.id} className={`pricing-card ${isFeatured ? 'pricing-card-featured' : ''}`}>
@@ -234,8 +289,14 @@ const PricingPage = () => {
                   <div className="pricing-card-header">
                     <h3 className="pricing-card-title">{plan.name}</h3>
                     <div className="pricing-card-price">
-                      <span className="price-amount">{money(plan.price, plan.currency)}</span>
-                      <span className="price-period">/{formatInterval(plan.interval, plan.interval_count || 1)}</span>
+                      {isInquiry ? (
+                        <span className="price-amount">Inquiry pricing</span>
+                      ) : (
+                        <>
+                          <span className="price-amount">{money(plan.price, plan.currency)}</span>
+                          <span className="price-period">/{formatInterval(plan.interval, plan.interval_count || 1)}</span>
+                        </>
+                      )}
                     </div>
                     {plan.description && <p className="pricing-card-description">{plan.description}</p>}
                   </div>
@@ -257,7 +318,7 @@ const PricingPage = () => {
                     style={{ width: '100%', marginTop: '2rem' }}
                     onClick={() => handlePlanClick(plan, checkoutUrl)}
                   >
-                    {(plan.price || 0) <= 0 ? 'Get Started Free' : `Choose ${plan.name}`}
+                    {isInquiry ? 'Ask about Pro / Team' : (plan.price || 0) <= 0 ? 'Get Started Free' : `Choose ${plan.name}`}
                   </a>
                 </div>
               )
@@ -282,19 +343,21 @@ const PricingPage = () => {
                   <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Need</th>
                   <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Free</th>
                   <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Plus</th>
+                  <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.16)' }}>Pro / Team</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ['Getting started', 'Good for a first room, closet, bin set, or starter insurance inventory.', 'Good when StashDog becomes the regular place you search before buying.'],
-                  ['Item volume', 'Best for a focused inventory of high-value or easy-to-lose items.', 'Better for whole-home, collection, reseller, workshop, or storage-unit coverage.'],
-                  ['Search and retrieval', 'Useful when names, photos, notes, and locations are enough.', 'Better when natural language search saves time across a larger inventory.'],
-                  ['Exports', 'Good for daily lookup inside the app.', 'Better when CSV export matters for insurance, resale, tax, or operations workflows.'],
-                ].map(([need, free, plus]) => (
+                  ['Getting started', 'Good for a first room, closet, bin set, or starter insurance inventory.', 'Good when StashDog becomes the regular place you search before buying.', 'Good when a business, team, or partner needs setup support.'],
+                  ['Item volume', 'Best for a focused inventory of high-value or easy-to-lose items.', 'Better for whole-home, collection, reseller, workshop, or storage-unit coverage.', 'Best for multiple users, locations, customers, or commercial kits.'],
+                  ['Search and retrieval', 'Useful when names, photos, notes, and locations are enough.', 'Better when natural language search saves time across a larger inventory.', 'Designed for shared retrieval workflows where more than one person needs answers.'],
+                  ['Exports and operations', 'Good for daily lookup inside the app.', 'Better when CSV export matters for insurance, resale, tax, or operations workflows.', 'Adds commercial onboarding, QR workflow guidance, and partner pilot support.'],
+                ].map(([need, free, plus, pro]) => (
                   <tr key={need}>
                     <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', fontWeight: 700 }}>{need}</td>
                     <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{free}</td>
                     <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{plus}</td>
+                    <td style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)' }}>{pro}</td>
                   </tr>
                 ))}
               </tbody>
@@ -319,6 +382,28 @@ const PricingPage = () => {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="products" id="pro-team-inquiry" style={{ paddingTop: 0 }}>
+        <div className="container partner-lead-grid" style={{ maxWidth: '1120px', margin: '0 auto' }}>
+          <div>
+            <span className="partner-section-kicker">Pro / Team</span>
+            <h2>Ask about commercial inventory workflows.</h2>
+            <p>
+              Use Pro / Team for shared inventory, multi-location storage, QR-labeled boxes or tools, partner kits, and customer-facing pilots.
+            </p>
+          </div>
+          <CommercialLeadForm
+            leadType="pro_team_inquiry"
+            sourcePage="pricing"
+            sourcePath="/pricing/"
+            planInterest="Pro / Team"
+            formLocation="pricing_pro_team_inquiry"
+            title="Pro / Team inquiry"
+            description="Tell us about your team, locations, or partner workflow and we will follow up with the right setup path."
+            submitLabel="Send Pro / Team inquiry"
+          />
         </div>
       </section>
 

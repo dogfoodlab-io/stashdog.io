@@ -228,6 +228,160 @@ section {
   box-shadow: none;
 }
 
+.cta-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Commercial lead capture */
+.commercial-lead-form {
+  border-radius: 18px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+
+.commercial-lead-form.compact {
+  padding: 1.5rem;
+}
+
+.commercial-lead-heading h3 {
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  margin: 0 0 0.5rem;
+}
+
+.commercial-lead-heading p {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.commercial-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.commercial-lead-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.commercial-lead-form label span {
+  color: var(--color-primary);
+}
+
+.commercial-lead-form input,
+.commercial-lead-form select,
+.commercial-lead-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+  color: #ffffff;
+  font: inherit;
+  padding: 0.85rem 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.commercial-lead-form select {
+  color-scheme: dark;
+}
+
+.commercial-lead-form input:focus,
+.commercial-lead-form select:focus,
+.commercial-lead-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(252, 217, 0, 0.1);
+}
+
+.commercial-lead-form input::placeholder,
+.commercial-lead-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.commercial-submit {
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.commercial-form-error {
+  color: #ff8a8a;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.commercial-lead-success {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+}
+
+.commercial-lead-success svg {
+  color: var(--color-primary);
+}
+
+.commercial-lead-success h3 {
+  margin: 0;
+}
+
+.commercial-lead-success p {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+/* Footer */
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.1fr) minmax(0, 2fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.footer-brand {
+  display: grid;
+  gap: 1rem;
+}
+
+.footer-link-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.footer-link-column {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.footer-link-column h2 {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.25rem;
+}
+
+.footer-link-column a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link-column a:hover {
+  color: var(--color-primary);
+}
+
 /* Mobile Menu */
 .mobile-menu-button {
   display: none;
@@ -255,6 +409,15 @@ section {
 
   .mobile-menu-button {
     display: block;
+  }
+
+  .commercial-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid,
+  .footer-link-columns {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1267,7 +1430,8 @@ section {
 }
 
 .partner-two-column,
-.partner-kit-grid {
+.partner-kit-grid,
+.partner-lead-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
   gap: 3rem;
@@ -1380,6 +1544,21 @@ section {
   padding: clamp(2rem, 5vw, 4rem);
 }
 
+.partner-lead-section {
+  background: linear-gradient(135deg, rgba(252, 217, 0, 0.06), rgba(255, 255, 255, 0.02));
+  border-top: 1px solid rgba(252, 217, 0, 0.1);
+  border-bottom: 1px solid rgba(252, 217, 0, 0.1);
+}
+
+.partner-lead-grid h2 {
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.partner-final-grid {
+  max-width: 980px;
+}
+
 .partner-index-shell {
   max-width: 980px;
   text-align: center;
@@ -1467,6 +1646,7 @@ section {
   .partner-hero-grid,
   .partner-two-column,
   .partner-kit-grid,
+  .partner-lead-grid,
   .partner-steps-grid,
   .partner-benefits-grid {
     grid-template-columns: 1fr;
