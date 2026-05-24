@@ -32,12 +32,12 @@ const TermsPage = () => {
           <meta property="og:description" content="Read StashDog's terms of service and user agreement." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/terms/" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Terms of Service - StashDog" />
           <meta name="twitter:description" content="Read StashDog's terms of service and user agreement." />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         </Helmet>
 
         <Header />

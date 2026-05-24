@@ -62,7 +62,7 @@ const SolutionsPage = () => {
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/solutions" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -71,7 +71,7 @@ const SolutionsPage = () => {
             name="twitter:description"
             content="Turn physical chaos into digital clarity with proven organizational solutions."
           />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Structured Data */}
           <script type="application/ld+json">

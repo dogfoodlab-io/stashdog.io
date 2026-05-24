@@ -381,7 +381,7 @@ const BlogPage = ({ location, pageContext }) => {
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/blog/" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -390,7 +390,7 @@ const BlogPage = ({ location, pageContext }) => {
             name="twitter:description"
             content="Read the latest news, tips, and insights from StashDog about home organization and inventory management."
           />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -399,7 +399,7 @@ const BlogPage = ({ location, pageContext }) => {
             name="twitter:description"
             content="Read the latest news, tips, and insights from StashDog about home organization and inventory management."
           />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         </Helmet>
 
         <Header />

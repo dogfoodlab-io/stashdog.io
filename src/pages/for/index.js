@@ -42,7 +42,7 @@ const ForIndexPage = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stashdog.io/for/" />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

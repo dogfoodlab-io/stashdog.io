@@ -110,7 +110,7 @@ const SearchableMovingBoxesPage = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stashdog.io/searchable-moving-boxes/" />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
           {JSON.stringify({

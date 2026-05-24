@@ -54,7 +54,7 @@ const AiSeoPageLayout = ({
   children,
 }) => {
   const { isInitialized, logEvent } = useFirebase()
-  const heroImageUrl = heroImageSrc ? `https://stashdog.io${heroImageSrc}` : "https://stashdog.io/lab1.png"
+  const heroImageUrl = heroImageSrc ? `https://stashdog.io${heroImageSrc}` : "https://stashdog.io/images/social/stashdog-og-v2.png"
 
   useEffect(() => {
     if (!isInitialized) {

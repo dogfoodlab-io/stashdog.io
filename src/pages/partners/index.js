@@ -88,7 +88,7 @@ const PartnersIndexPage = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stashdog.io/partners/" />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         <meta name="twitter:card" content="summary_large_image" />
         {schema.map((entry, index) => (
           <script key={index} type="application/ld+json">

@@ -156,14 +156,14 @@ const VsSortlyPage = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stashdog.io/vs-sortly" />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         <meta property="og:site_name" content="StashDog" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="StashDog vs Sortly — The Better Home Inventory App (And It's Free)" />
         <meta name="twitter:description" content="Sortly charges $29/month. StashDog is free forever. Here's the full comparison." />
-        <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+        <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

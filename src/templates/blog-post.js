@@ -81,7 +81,7 @@ const BlogPostTemplate = ({ pageContext }) => {
           />
           <meta property="og:type" content="article" />
           <meta property="og:url" content={blogPostUrl} />
-          <meta property="og:image" content={post.featuredImageUrl || "https://stashdog.io/lab1.png"} />
+          <meta property="og:image" content={post.featuredImageUrl || "https://stashdog.io/images/social/stashdog-og-v2.png"} />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -90,7 +90,7 @@ const BlogPostTemplate = ({ pageContext }) => {
             name="twitter:description"
             content={post.metaDescription || post.excerpt || `Read ${post.title} on the StashDog blog.`}
           />
-          <meta name="twitter:image" content={post.featuredImageUrl || "https://stashdog.io/lab1.png"} />
+          <meta name="twitter:image" content={post.featuredImageUrl || "https://stashdog.io/images/social/stashdog-og-v2.png"} />
 
           {/* Article Structured Data */}
           <script type="application/ld+json">

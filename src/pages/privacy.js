@@ -32,12 +32,12 @@ const PrivacyPage = () => {
           <meta property="og:description" content="Read StashDog's privacy policy and data protection practices." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/privacy/" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Privacy Policy - StashDog" />
           <meta name="twitter:description" content="Read StashDog's privacy policy and data protection practices." />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         </Helmet>
         
         <Header />

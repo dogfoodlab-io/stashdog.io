@@ -165,13 +165,13 @@ const IcpLandingPage = ({ page }) => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={`${siteUrl}/lab1.png`} />
+        <meta property="og:image" content={`${siteUrl}/images/social/stashdog-og-v2.png`} />
         <meta property="og:site_name" content="StashDog" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.metaTitle} />
         <meta name="twitter:description" content={page.metaDescription} />
-        <meta name="twitter:image" content={`${siteUrl}/lab1.png`} />
+        <meta name="twitter:image" content={`${siteUrl}/images/social/stashdog-og-v2.png`} />
 
         {schema.map((entry, index) => (
           <script key={index} type="application/ld+json">

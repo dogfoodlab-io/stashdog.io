@@ -83,7 +83,7 @@ const PartnerLandingPage = ({ page }) => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://stashdog.io/lab1.png" />
+        <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
         <meta property="og:site_name" content="StashDog" />
         <meta name="twitter:card" content="summary_large_image" />
         {schema.map((entry, index) => (

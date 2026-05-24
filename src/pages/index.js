@@ -63,7 +63,7 @@ const IndexPage = () => {
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
           <meta property="og:site_name" content="StashDog" />
 
           {/* Twitter Card */}
@@ -77,7 +77,7 @@ const IndexPage = () => {
             name="twitter:description"
             content="Track what you own, organize where it lives, and find it fast with StashDog."
           />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Favicon */}
           <link

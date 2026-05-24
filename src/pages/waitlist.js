@@ -38,13 +38,13 @@ const WaitlistPage = () => {
           <meta property="og:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/waitlist" />
-          <meta property="og:image" content="https://stashdog.io/lab1.png" />
+          <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Download StashDog" />
           <meta name="twitter:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
-          <meta name="twitter:image" content="https://stashdog.io/lab1.png" />
+          <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Favicon */}
           <link rel="icon" type="image/png" sizes="32x32" href="/round-logo-goggles.png" />
