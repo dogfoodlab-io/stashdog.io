@@ -38,6 +38,7 @@ const Footer = () => {
       title: "Company",
       links: [
         { href: "mailto:partners@stashdog.io", label: "Commercial Inquiries" },
+        { to: "/support/", label: "Support" },
         { to: "/blog/", label: "Blog" },
         { to: "/privacy/", label: "Privacy Policy" },
         { to: "/terms/", label: "Terms of Service" },

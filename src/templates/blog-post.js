@@ -5,12 +5,18 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { ChevronLeft, Calendar, Tag } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
+import blogRelatedLinks from "../data/blogRelatedLinks"
+import blogSeoConsolidation from "../data/blogSeoConsolidation.json"
 import "../styles/global.css"
 import "../styles/blog.css"
+
+const noindexBlogSlugs = new Set(blogSeoConsolidation.noindexBlogSlugs)
+const canonicalBlogSlugOverrides = blogSeoConsolidation.canonicalBlogSlugOverrides
 
 const BlogPostTemplate = ({ pageContext }) => {
   const { post } = pageContext
   const { isInitialized, logEvent } = useFirebase()
+  const relatedLinkBlock = blogRelatedLinks[post.slug]
 
   React.useEffect(() => {
     if (isInitialized && post) {
@@ -55,7 +61,9 @@ const BlogPostTemplate = ({ pageContext }) => {
     }
   }
 
-  const blogPostUrl = `https://stashdog.io/blog/${post.slug}/`
+  const canonicalSlug = canonicalBlogSlugOverrides[post.slug] || post.slug
+  const blogPostUrl = `https://stashdog.io/blog/${canonicalSlug}/`
+  const robotsContent = noindexBlogSlugs.has(post.slug) ? "noindex, follow" : "index, follow"
 
   return (
     <div className="page-container">
@@ -71,7 +79,7 @@ const BlogPostTemplate = ({ pageContext }) => {
             content={post.tags ? post.tags.join(', ') : 'stashdog blog, home organization'}
           />
           <link rel="canonical" href={blogPostUrl} />
-          <meta name="robots" content="index, follow" />
+          <meta name="robots" content={robotsContent} />
 
           {/* Open Graph */}
           <meta property="og:title" content={`${post.title} - StashDog Blog`} />
@@ -160,6 +168,20 @@ const BlogPostTemplate = ({ pageContext }) => {
                 className="blog-post-content"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
+
+              {relatedLinkBlock && (
+                <aside className="blog-related-links" aria-labelledby="blog-related-links-title">
+                  <h2 id="blog-related-links-title">{relatedLinkBlock.title}</h2>
+                  <div className="blog-related-links-grid">
+                    {relatedLinkBlock.links.map((link) => (
+                      <a key={link.href} className="blog-related-link" href={link.href}>
+                        <span className="blog-related-link-label">{link.label}</span>
+                        <span className="blog-related-link-description">{link.description}</span>
+                      </a>
+                    ))}
+                  </div>
+                </aside>
+              )}
 
               {/* Tags at the bottom */}
               {post.tags && post.tags.length > 0 && (

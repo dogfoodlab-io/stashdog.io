@@ -1,0 +1,20 @@
+{
+  "noindexBlogSlugs": [
+    "decluttering-with-computer-science-algorithms-big-o-efficiency",
+    "overcoming-hoarding-psychological-strategies-reclaim-space",
+    "spring-cleaning-guide-low-stress-systematic-approach",
+    "stop-living-in-a-filing-cabinet-paper-clutter-guide",
+    "the-50k-executor-blunder-asset-documentation-mistakes"
+  ],
+  "canonicalBlogSlugOverrides": {
+    "stop-living-in-a-filing-cabinet-paper-clutter-guide": "mastering-document-attachments-in-stashdog",
+    "the-50k-executor-blunder-asset-documentation-mistakes": "estate-planning-home-inventory-stashdog-guide"
+  },
+  "noindexBlogPaths": [
+    "/blog/decluttering-with-computer-science-algorithms-big-o-efficiency/",
+    "/blog/overcoming-hoarding-psychological-strategies-reclaim-space/",
+    "/blog/spring-cleaning-guide-low-stress-systematic-approach/",
+    "/blog/stop-living-in-a-filing-cabinet-paper-clutter-guide/",
+    "/blog/the-50k-executor-blunder-asset-documentation-mistakes/"
+  ]
+}

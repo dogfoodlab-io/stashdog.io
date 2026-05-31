@@ -62,6 +62,11 @@ const faq = [
 
 const relatedLinks = [
   {
+    to: "/blog/home-inventory-for-insurance/",
+    label: "Home Inventory for Insurance",
+    description: "Turn the basic inventory into claim-ready proof with photos, receipts, and useful item details.",
+  },
+  {
     to: "/moving-inventory-app",
     label: "Moving Inventory App",
     description: "Use the same inventory workflow for boxes, bins, and unpacking.",

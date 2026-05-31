@@ -2,6 +2,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
 
+const { noindexBlogPaths } = require("./src/data/blogSeoConsolidation.json")
+
 module.exports = {
   trailingSlash: 'always',
   siteMetadata: {
@@ -36,6 +38,7 @@ module.exports = {
         excludes: [
           "/public/collections/*",
           "/public/items/*",
+          ...noindexBlogPaths,
         ],
         resolvePages: ({ allSitePage }) => [
           ...allSitePage.nodes,
