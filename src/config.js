@@ -3,7 +3,7 @@
 export const contentVariants = {
   default: {
     welcome: {
-      title: "The Home Inventory App for People Who Hate Inventory",
+      title: "Give Your Stuff A Search Bar",
       description: "StashDog turns your home into a searchable database: snap photos, save where everything lives, and find your stuff instantly when moving, sharing a home, documenting insurance, or dealing with everyday household chaos.",
       cta: {
         buttonText: "Download Free",
