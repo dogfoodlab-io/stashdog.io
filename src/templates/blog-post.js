@@ -3,10 +3,12 @@ import { marked } from 'marked'
 import { Helmet } from "react-helmet"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import CampaignCta from "../components/CampaignCta"
 import { ChevronLeft, Calendar, Tag } from "lucide-react"
 import { useFirebase } from "../hooks/useFirebase"
 import blogRelatedLinks from "../data/blogRelatedLinks"
 import blogSeoConsolidation from "../data/blogSeoConsolidation.json"
+import { getMovingBoxesAppStoreUrl, isMovingBoxesCampaignBlogPost, movingBoxesCampaign } from "../data/campaigns"
 import "../styles/global.css"
 import "../styles/blog.css"
 
@@ -17,6 +19,7 @@ const BlogPostTemplate = ({ pageContext }) => {
   const { post } = pageContext
   const { isInitialized, logEvent } = useFirebase()
   const relatedLinkBlock = blogRelatedLinks[post.slug]
+  const showMovingBoxesCampaignCta = isMovingBoxesCampaignBlogPost(post.slug)
 
   React.useEffect(() => {
     if (isInitialized && post) {
@@ -47,6 +50,18 @@ const BlogPostTemplate = ({ pageContext }) => {
     }
 
     window.location.href = `/blog/?tag=${encodeURIComponent(tag)}`
+  }
+
+  const handleMovingBoxesCampaignClick = (platform) => {
+    if (isInitialized) {
+      logEvent("download_click", {
+        platform,
+        page: "blog_post",
+        post_slug: post.slug,
+        source: "moving_boxes_campaign_blog_cta",
+        experiment: movingBoxesCampaign.id,
+      })
+    }
   }
 
   // Process content: convert Markdown to HTML if needed
@@ -168,6 +183,19 @@ const BlogPostTemplate = ({ pageContext }) => {
                 className="blog-post-content"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
+
+              {showMovingBoxesCampaignCta && (
+                <CampaignCta
+                  eyebrow="Moving boxes experiment"
+                  title="Make your next five boxes searchable."
+                  body="Use the moving-boxes App Store campaign to start with QR labels, box photos, and search-first storage instead of another pile of mystery containers."
+                  appStoreHref={getMovingBoxesAppStoreUrl(`blog_${post.slug}`)}
+                  secondaryHref={movingBoxesCampaign.landingPath}
+                  secondaryLabel="See the box workflow"
+                  onAppStoreClick={handleMovingBoxesCampaignClick}
+                  className="blog-campaign-cta"
+                />
+              )}
 
               {relatedLinkBlock && (
                 <aside className="blog-related-links" aria-labelledby="blog-related-links-title">

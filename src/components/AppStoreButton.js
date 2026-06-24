@@ -1,6 +1,43 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { getAppStoreUrlForOrigin } from "../data/campaigns"
 
-const AppStoreButton = ({ onClick, className = "", style = {} }) => {
+const getBrowserPathname = () => {
+  if (typeof window === "undefined") return undefined
+  return `${window.location.pathname}${window.location.search}`
+}
+
+const getBrowserReferrer = () => {
+  if (typeof document === "undefined") return undefined
+  return document.referrer
+}
+
+const AppStoreButton = ({
+  onClick,
+  className = "",
+  style = {},
+  href,
+  originPath,
+  utmContent = "app_store_badge",
+}) => {
+  const [resolvedHref, setResolvedHref] = useState(() =>
+    href || getAppStoreUrlForOrigin({ pathname: originPath, utmContent })
+  )
+
+  useEffect(() => {
+    if (href) {
+      setResolvedHref(href)
+      return
+    }
+
+    setResolvedHref(
+      getAppStoreUrlForOrigin({
+        pathname: originPath || getBrowserPathname(),
+        referrer: getBrowserReferrer(),
+        utmContent,
+      })
+    )
+  }, [href, originPath, utmContent])
+
   const handleClick = (e) => {
     if (onClick) {
       onClick('ios')
@@ -9,7 +46,7 @@ const AppStoreButton = ({ onClick, className = "", style = {} }) => {
 
   return (
     <a 
-      href="https://apps.apple.com/us/app/stashdog/id6743368759" 
+      href={resolvedHref}
       className={`download-badge-link ${className}`}
       target="_blank" 
       rel="noopener noreferrer"

@@ -190,7 +190,11 @@ const IcpLandingPage = ({ page }) => {
               <h1>{page.hero}</h1>
               <p className="icp-subheadline">{page.subheadline}</p>
               <div className="icp-cta-row">
-                <AppStoreButton onClick={handleDownloadClick} />
+                <AppStoreButton
+                  originPath={page.pagePath}
+                  utmContent={`${page.slug}_hero_app_store_badge`}
+                  onClick={handleDownloadClick}
+                />
                 <GooglePlayButton onClick={handleDownloadClick} />
               </div>
               <div className="icp-hero-links">
@@ -347,7 +351,11 @@ const IcpLandingPage = ({ page }) => {
               <h2>{page.ctaHeadline}</h2>
               <p>{page.ctaCopy}</p>
               <div className="icp-cta-row">
-                <AppStoreButton onClick={handleDownloadClick} />
+                <AppStoreButton
+                  originPath={page.pagePath}
+                  utmContent={`${page.slug}_final_app_store_badge`}
+                  onClick={handleDownloadClick}
+                />
                 <GooglePlayButton onClick={handleDownloadClick} />
               </div>
               <div className="icp-hero-links">

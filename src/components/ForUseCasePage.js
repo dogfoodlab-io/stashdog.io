@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import AiSeoPageLayout from "./AiSeoPageLayout"
 import CommercialLeadForm from "./CommercialLeadForm"
+import { getIcpAppStoreUrl, getIcpCampaign } from "../data/campaigns"
 import { forUseCases } from "../data/forUseCases"
 
 const author = { name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }
@@ -55,6 +56,7 @@ const commercialLeadSlugs = new Set([
 
 const ForUseCasePage = ({ page }) => {
   const useCaseLabel = page.slug.replace(/-/g, " ")
+  const campaign = getIcpCampaign(page.slug)
   const isCommercialLeadPage = commercialLeadSlugs.has(page.slug)
   const firstTrackItems = [
     "High-value items that would be expensive to replace.",
@@ -99,6 +101,21 @@ const ForUseCasePage = ({ page }) => {
     },
   ]
 
+  const analyticsContext = campaign
+    ? {
+        wedge_key: page.slug,
+        experiment_variant: page.slug,
+        campaign_id: campaign.campaignId,
+        meta_campaign_name: campaign.metaCampaignName,
+        utm_campaign: campaign.utm.utm_campaign,
+      }
+    : wedgeAnalyticsBySlug[page.slug]
+
+  const howToSteps = (page.setupSteps || []).map((step, index) => ({
+    name: `Step ${index + 1}`,
+    text: step,
+  }))
+
   return (
     <AiSeoPageLayout
       title={page.title}
@@ -116,7 +133,9 @@ const ForUseCasePage = ({ page }) => {
       faq={faq}
       relatedLinks={relatedLinks}
       itemList={firstTrackItems}
-      analyticsContext={wedgeAnalyticsBySlug[page.slug]}
+      howToSteps={howToSteps}
+      analyticsContext={analyticsContext}
+      appStoreHref={campaign ? getIcpAppStoreUrl(page.slug, `${page.slug}_landing_app_store_badge`) : null}
     >
       {page.sections.map((section) => (
         <section key={section.heading}>
@@ -133,6 +152,32 @@ const ForUseCasePage = ({ page }) => {
           )}
         </section>
       ))}
+
+      {page.roiBullets?.length > 0 && (
+        <section>
+          <h2>Where the Money Leaks</h2>
+          <p>
+            This page is built around the moments where poor visibility turns into real cost: duplicate purchases,
+            lost assets, delayed retrieval, and records that are missing when they matter.
+          </p>
+          <ul>
+            {page.roiBullets.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {page.setupSteps?.length > 0 && (
+        <section>
+          <h2>Setup Workflow</h2>
+          <ol>
+            {page.setupSteps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </section>
+      )}
 
       <section>
         <h2>What to Track First</h2>

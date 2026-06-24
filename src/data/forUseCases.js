@@ -12,6 +12,18 @@ export const forUseCases = [
       "Reselling gets messy when bought, photographed, listed, stored, sold, and shipped all happen in different places. StashDog gives each item a searchable record so you can find the jacket, camera, shoe box, or shipping supply before it eats another afternoon.",
     directAnswer:
       "StashDog helps resellers turn unlisted piles, active listings, and stored inventory into a searchable system using photos, locations, labels, and tags.",
+    roiBullets: [
+      "Unlisted inventory sits in bins instead of becoming cash.",
+      "Sold items take too long to pull when storage locations are vague.",
+      "Accessories, cost basis, SKU notes, and marketplace links get separated from the item.",
+      "More inventory gets sourced before existing stock is visible."
+    ],
+    setupSteps: [
+      "Create locations for bins, shelves, closets, garage zones, or storage units.",
+      "Add item photos as inventory comes in, even before every detail is perfect.",
+      "Tag items as unlisted, listed, sold, needs research, or ready to ship.",
+      "Search or scan the bin when an order comes in so fulfillment does not become a treasure hunt."
+    ],
     sections: [
       {
         heading: "Built for the Real Reseller Workflow",
@@ -44,6 +56,18 @@ export const forUseCases = [
       "Contractors lose money when useful parts disappear into vans, shelves, job boxes, and garages. StashDog makes the stuff you already own searchable before another run to the supply house.",
     directAnswer:
       "StashDog gives contractors a searchable record of tools, parts, supplies, and storage locations so teams can find what exists before buying duplicates.",
+    roiBullets: [
+      "Supply runs happen because parts are hidden in vans, job boxes, shelves, or garages.",
+      "Expensive tools disappear without a recent location or proof-of-ownership record.",
+      "Consumables and fittings get buried until the team buys them again.",
+      "Insurance, theft, warranty, and damage documentation is harder after the fact."
+    ],
+    setupSteps: [
+      "Create locations for vans, job boxes, shop shelves, storage zones, and active jobs.",
+      "Photograph tools, parts, fixtures, fasteners, chemicals, and safety gear.",
+      "Use practical tags for trade, job, size, supplier, or reorder priority.",
+      "Search StashDog before a supplier run or before sending a crew to buy more."
+    ],
     sections: [
       {
         heading: "Track the Stuff That Actually Moves",
@@ -76,6 +100,18 @@ export const forUseCases = [
       "Rental properties create scattered ownership: appliances in one unit, spare fixtures in a garage, paint in a closet, keys in a drawer, and documents somewhere else. StashDog keeps the record searchable.",
     directAnswer:
       "StashDog helps landlords and property managers document property assets, maintenance supplies, appliance details, keys, and storage locations across rentals.",
+    roiBullets: [
+      "Appliances, fixtures, keys, paint, and spare parts are split across properties and storage.",
+      "Turnovers slow down when vendors cannot find model numbers, warranties, or supplies.",
+      "Maintenance items get rebought because nobody knows which property already has them.",
+      "Insurance, tax, depreciation, and sale records are harder to assemble later."
+    ],
+    setupSteps: [
+      "Create locations for each rental property and major storage area.",
+      "Add appliances, furnishings, keys, fixtures, paint, tools, and spare parts with photos.",
+      "Attach warranty, model, condition, vendor, and receipt notes where useful.",
+      "Update records during turnovers, inspections, repairs, purchases, and property handoffs."
+    ],
     sections: [
       {
         heading: "A Property Record Beyond Photos",
@@ -140,6 +176,18 @@ export const forUseCases = [
       "Events punish missing details. The cable is in a case, the case is in storage, the linen is at the venue, and nobody knows which box has the adapters. StashDog keeps reusable gear searchable.",
     directAnswer:
       "StashDog helps event businesses track gear, decor, AV equipment, props, linens, cases, and packout locations so teams can find and return what they need.",
+    roiBullets: [
+      "One missing cable, charger, case, linen, or prop can create expensive event-day panic.",
+      "Reusable gear moves between storage, vehicles, venues, clients, and staff.",
+      "Decor and supplies get rebought because stored inventory is not searchable.",
+      "Damage, missing pieces, and return status are hard to record after teardown."
+    ],
+    setupSteps: [
+      "Inventory core gear, decor, props, linens, AV equipment, cases, and reusable supplies.",
+      "Create locations for storage shelves, vehicles, venues, bins, and packout zones.",
+      "Use QR labels on cases, bins, racks, and shelves so staff can scan contents.",
+      "Check items before the event and update condition or missing-piece notes afterward."
+    ],
     sections: [
       {
         heading: "Pack, Scan, Return, Repeat",
@@ -172,6 +220,18 @@ export const forUseCases = [
       "Collections grow one purchase at a time until the record lives in memory, receipts, screenshots, shelves, and boxes. StashDog gives collectors one searchable place for the collection and the context around it.",
     directAnswer:
       "StashDog helps collectors catalog items with photos, notes, locations, documents, and tags for insurance, resale, estate planning, and duplicate prevention.",
+    roiBullets: [
+      "Receipts, authenticity records, condition notes, and purchase history get separated from the item.",
+      "Insurance and estate documentation is weak when the collection only lives in memory.",
+      "Duplicate purchases happen when variants, sizes, issues, or models are hard to verify.",
+      "Selling or lending items is riskier without a clear photo-backed record."
+    ],
+    setupSteps: [
+      "Start with the most valuable, hardest-to-replace, or easiest-to-forget part of the collection.",
+      "Add photos, condition notes, purchase details, storage location, and provenance context.",
+      "Use QR labels for boxes, display cases, binders, shelves, safes, and storage bins.",
+      "Refresh notes when you buy, sell, trade, insure, grade, lend, or move items."
+    ],
     sections: [
       {
         heading: "A Collection Is More Than a List",

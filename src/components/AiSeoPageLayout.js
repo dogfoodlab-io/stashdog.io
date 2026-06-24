@@ -6,6 +6,7 @@ import Footer from "./Footer"
 import AppStoreButton from "./AppStoreButton"
 import GooglePlayButton from "./GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
+import { trackMetaEvent, trackMetaStandardEvent } from "../utils/metaPixel"
 import "../styles/global.css"
 import "../styles/ai-seo.css"
 
@@ -51,12 +52,22 @@ const AiSeoPageLayout = ({
   itemList = [],
   howToSteps = [],
   analyticsContext = null,
+  appStoreHref = null,
   children,
 }) => {
   const { isInitialized, logEvent } = useFirebase()
   const heroImageUrl = heroImageSrc ? `https://stashdog.io${heroImageSrc}` : "https://stashdog.io/images/social/stashdog-og-v2.png"
 
   useEffect(() => {
+    if (analyticsContext?.wedge_key) {
+      trackMetaStandardEvent("ViewContent", {
+        content_name: title,
+        content_category: analyticsContext.wedge_key,
+        content_type: "landing_page",
+        landing_path: pagePath,
+      })
+    }
+
     if (!isInitialized) {
       return
     }
@@ -156,14 +167,20 @@ const AiSeoPageLayout = ({
     })
 
     if (analyticsContext?.wedge_key) {
-      logEvent("cta_clicked", {
+      const eventPayload = {
         ...analyticsContext,
         ...getCurrentUtmAttribution(),
         landing_path: pagePath,
         cta_type: "download",
         cta_target: platform,
         source: "ai_seo_page",
+      }
+
+      logEvent("cta_clicked", {
+        ...eventPayload,
       })
+
+      trackMetaEvent("DownloadClick", eventPayload)
     }
   }
 
@@ -317,7 +334,7 @@ const AiSeoPageLayout = ({
               </p>
 
               <div className="ai-seo-cta-buttons">
-                <AppStoreButton onClick={handleDownloadClick} />
+                <AppStoreButton href={appStoreHref || undefined} onClick={handleDownloadClick} />
                 <GooglePlayButton onClick={handleDownloadClick} />
               </div>
 

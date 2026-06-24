@@ -7,10 +7,12 @@ import Footer from "../components/Footer"
 import AppStoreButton from "../components/AppStoreButton"
 import GooglePlayButton from "../components/GooglePlayButton"
 import { useFirebase } from "../hooks/useFirebase"
+import { getMovingBoxesAppStoreUrl, movingBoxesCampaign } from "../data/campaigns"
 import "../styles/global.css"
 
 const experiment = "which_box_is_it_in"
 const page = "searchable_moving_boxes"
+const appStoreCampaignUrl = getMovingBoxesAppStoreUrl("searchable_moving_boxes_landing")
 
 const steps = [
   {
@@ -80,6 +82,7 @@ const SearchableMovingBoxesPage = () => {
       cta_location: ctaLocation,
       page,
       experiment,
+      campaign: movingBoxesCampaign.id,
     })
   }
 
@@ -267,7 +270,7 @@ const SearchableMovingBoxesPage = () => {
                 Download StashDog and make the boxes you are packing today searchable when you need them later.
               </p>
               <div className="smb-store-buttons">
-                <AppStoreButton onClick={handleDownloadClick} />
+                <AppStoreButton href={appStoreCampaignUrl} onClick={handleDownloadClick} />
                 <GooglePlayButton onClick={handleDownloadClick} />
               </div>
             </div>
