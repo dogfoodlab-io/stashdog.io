@@ -382,6 +382,127 @@ section {
   color: var(--color-primary);
 }
 
+.footer-cookie-button {
+  justify-self: center;
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  margin-top: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-cookie-button:hover {
+  color: var(--color-primary);
+}
+
+.cookie-consent-banner {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2000;
+  width: min(640px, calc(100vw - 2.5rem));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem;
+  background: rgba(18, 18, 18, 0.97);
+  border: 1px solid rgba(252, 217, 0, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+}
+
+.cookie-consent-banner h2,
+.cookie-preferences-panel h2,
+.cookie-preference-row h3 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.cookie-consent-banner h2,
+.cookie-preferences-panel h2 {
+  color: var(--text-main);
+  font-size: 1.15rem;
+}
+
+.cookie-consent-banner p,
+.cookie-preferences-panel p {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cookie-consent-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.cookie-consent-actions .cta-button {
+  white-space: nowrap;
+}
+
+.cookie-preferences-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.68);
+}
+
+.cookie-preferences-panel {
+  position: relative;
+  width: min(620px, 100%);
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #121212;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.cookie-preference-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--glass-border);
+}
+
+.cookie-preference-row h3 {
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.cookie-preference-row span {
+  color: var(--color-primary);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.cookie-preferences-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.35rem;
+}
+
+.cookie-preferences-close:hover {
+  color: var(--color-primary);
+}
+
 /* Mobile Menu */
 .mobile-menu-button {
   display: none;
@@ -417,6 +538,26 @@ section {
 
   .footer-grid,
   .footer-link-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .cookie-consent-banner {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .cookie-consent-actions {
+    justify-content: stretch;
+  }
+
+  .cookie-consent-actions .cta-button {
+    flex: 1;
+  }
+
+  .cookie-preference-row {
     grid-template-columns: 1fr;
   }
 }
@@ -1017,6 +1158,52 @@ section {
   height: 60px;
   width: auto;
   display: block;
+}
+
+/* Campaign CTA */
+.campaign-cta {
+  margin: 3rem 0;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 24px;
+  border: 1px solid rgba(252, 217, 0, 0.18);
+}
+
+.campaign-cta-eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.85rem;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.campaign-cta h2 {
+  margin: 0;
+}
+
+.campaign-cta p {
+  max-width: 720px;
+  margin: 0.8rem 0 1.35rem;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.campaign-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.campaign-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-primary);
+  font-weight: 800;
+  text-decoration: none;
 }
 
 /* Waitlist grid - desktop default */

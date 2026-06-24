@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import { Search, Camera, MapPin, Star, Check } from "lucide-react"
 import AppStoreButton from "../components/AppStoreButton"
+import { hasTrackingConsent } from "../utils/trackingConsent"
 import "../styles/global.css"
 
 const GOOGLE_ADS_CONVERSION_ID = "AW-17868363896/HKToCOGo35scEPiwpshC"
@@ -74,7 +75,8 @@ const FindYourShitPage = () => {
     if (
       hasFiredConversionRef.current ||
       typeof window === "undefined" ||
-      typeof window.gtag !== "function"
+      typeof window.gtag !== "function" ||
+      !hasTrackingConsent()
     ) {
       return
     }
@@ -84,7 +86,7 @@ const FindYourShitPage = () => {
 
   const handleDownloadClick = () => {
     fireConversion()
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    if (typeof window !== "undefined" && typeof window.gtag === "function" && hasTrackingConsent()) {
       window.gtag("event", "download_click", {
         page: "find-your-shit",
         platform: "ios",

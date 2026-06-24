@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { useFirebase } from "../hooks/useFirebase"
+import { openCookiePreferences } from "../utils/trackingConsent"
 import "../styles/global.css"
 
 const PrivacyPage = () => {
@@ -241,19 +242,63 @@ const PrivacyPage = () => {
                   <li>Modify subscription plans and features</li>
                 </ul>
 
-                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>7. Regional Privacy Rights</h2>
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>7. Cookies and Similar Technologies</h2>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.1 California Privacy Rights (CCPA/CPRA)</h3>
+                <p>
+                  Our website uses strictly necessary first-party storage to remember basic site preferences,
+                  including your cookie consent choice and optional content variant preferences. This storage is
+                  separate from non-essential analytics and advertising technologies. Where your country requires
+                  opt-in consent, we ask before loading non-essential tracking. In other regions, these tools may
+                  run by default, and you can opt out at any time.
+                </p>
+
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.1 Analytics Cookies and Identifiers</h3>
+                <p>
+                  Depending on your region and preferences, we may load Google Analytics to understand visits,
+                  page views, device and browser information, referral sources, and interactions with the website.
+                  We do not load or configure Google Analytics before opt-in consent in countries where that consent
+                  is required.
+                </p>
+
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.2 Advertising and Conversion Tracking</h3>
+                <p>
+                  Depending on your region and preferences, we may load Google Ads conversion tracking and Meta Pixel
+                  to measure advertising performance, including download button clicks, waitlist submissions, page
+                  views, and campaign attribution. Rejecting or opting out of non-essential tracking prevents these
+                  tags and conversion events from being initialized by the website on future page loads.
+                </p>
+
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.3 Local Storage</h3>
+                <p>
+                  We use local storage for first-party site behavior such as saving your cookie consent choice under
+                  <code>stashdog_tracking_consent</code> and, where applicable, remembering a selected content variant
+                  under <code>stashdog_content_variant</code>. These preferences help the site work consistently and
+                  are not used by themselves for cross-site advertising.
+                </p>
+
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.4 Changing or Withdrawing Consent</h3>
+                <p>
+                  You can change or withdraw your website tracking consent at any time from the Cookie Preferences
+                  link in the footer or by using the button below. After withdrawal or opt-out, future analytics and
+                  advertising events are blocked unless you allow tracking again.
+                </p>
+                <button type="button" className="cta-button outline" onClick={openCookiePreferences}>
+                  Cookie Preferences
+                </button>
+
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>8. Regional Privacy Rights</h2>
+
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>8.1 California Privacy Rights (CCPA/CPRA)</h3>
                 <p>California residents have additional rights:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Right to know</strong>: What personal information we collect and how it's used</li>
                   <li><strong>Right to delete</strong>: Request deletion of personal information</li>
-                  <li><strong>Right to opt-out</strong>: We don't sell data, but you can opt-out of targeted advertising</li>
+                  <li><strong>Right to opt-out</strong>: We don't sell data, but you can reject or withdraw non-essential tracking to opt out of targeted advertising and conversion tracking on this website</li>
                   <li><strong>Right to non-discrimination</strong>: Equal service regardless of privacy choices</li>
                   <li><strong>Right to correct</strong>: Request correction of inaccurate personal information</li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>7.2 European Privacy Rights (GDPR)</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>8.2 European Privacy Rights (GDPR)</h3>
                 <p>EU residents have rights under GDPR:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Right of access</strong>: Obtain confirmation and details about data processing</li>
@@ -264,9 +309,9 @@ const PrivacyPage = () => {
                   <li><strong>Right to restrict processing</strong>: Limit how we process your data</li>
                 </ul>
 
-                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>8. AI and Machine Learning</h2>
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>9. AI and Machine Learning</h2>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>8.1 AI Features</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>9.1 AI Features</h3>
                 <p>StashDog uses AI technology to:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li>Automatically categorize and tag items</li>
@@ -275,7 +320,7 @@ const PrivacyPage = () => {
                   <li>Improve user experience through personalization</li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>8.2 AI Data Usage</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>9.2 AI Data Usage</h3>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li>AI features use your item data to provide personalized recommendations</li>
                   <li>Processing may occur on our servers or through third-party AI services</li>
@@ -283,9 +328,9 @@ const PrivacyPage = () => {
                   <li>You can opt out of AI features while retaining core app functionality</li>
                 </ul>
 
-                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>9. Updates to This Privacy Policy</h2>
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>10. Updates to This Privacy Policy</h2>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>9.1 Policy Changes</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.1 Policy Changes</h3>
                 <p>We may update this Privacy Policy to reflect:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li>Changes in our data practices</li>
@@ -294,7 +339,7 @@ const PrivacyPage = () => {
                   <li>Industry best practices</li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>9.2 Notification of Changes</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.2 Notification of Changes</h3>
                 <p>We will notify you of significant changes through:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li>Email notification to your registered address</li>
@@ -303,32 +348,32 @@ const PrivacyPage = () => {
                   <li>Prominent notice on our website</li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>9.3 Continued Use</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.3 Continued Use</h3>
                 <p>Continued use of StashDog after policy updates constitutes acceptance of the new terms.</p>
 
-                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>10. Contact Information</h2>
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>11. Contact Information</h2>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.1 Privacy Inquiries</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>11.1 Privacy Inquiries</h3>
                 <p>For privacy-related questions or concerns:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Email</strong>: <a href="mailto:privacy@dogfoodlab.io" style={{ color: '#fcd900' }}>privacy@dogfoodlab.io</a></li>
                   <li><strong>Subject line</strong>: Include "Privacy Inquiry" for faster response</li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.2 Data Protection Officer</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>11.2 Data Protection Officer</h3>
                 <p>For GDPR-related requests:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Email</strong>: <a href="mailto:dpo@dogfoodlab.io" style={{ color: '#fcd900' }}>dpo@dogfoodlab.io</a></li>
                 </ul>
 
-                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>10.3 General Support</h3>
+                <h3 style={{ color: '#fcd900', marginTop: '1.5rem', fontSize: '1.3rem' }}>11.3 General Support</h3>
                 <p>For general app support:</p>
                 <ul style={{ marginLeft: '2rem' }}>
                   <li><strong>Email</strong>: <a href="mailto:support@dogfoodlab.io" style={{ color: '#fcd900' }}>support@dogfoodlab.io</a></li>
                   <li><strong>Website</strong>: <a href="https://stashdog.io" style={{ color: '#fcd900' }}>https://stashdog.io</a></li>
                 </ul>
 
-                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>11. Consent and Agreement</h2>
+                <h2 style={{ color: '#fcd900', marginTop: '2rem' }}>12. Consent and Agreement</h2>
 
                 <p>By creating an account and using StashDog, you:</p>
                 <ul style={{ marginLeft: '2rem' }}>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { hasTrackingConsent } from '../utils/trackingConsent'
 
 export const useFirebase = () => {
   const [isInitialized, setIsInitialized] = useState(false)
@@ -11,6 +12,10 @@ export const useFirebase = () => {
 
   const logEvent = useCallback((eventName, parameters = {}) => {
     if (typeof window === 'undefined') {
+      return
+    }
+
+    if (!hasTrackingConsent()) {
       return
     }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { PartyPopper } from "lucide-react"
 import { submitWaitlistEntry } from "../utils/api"
+import { hasTrackingConsent } from "../utils/trackingConsent"
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,12 @@ const WaitlistForm = () => {
       return
     }
 
-    if (hasTrackedConversionRef.current || typeof window === 'undefined' || typeof window.gtag !== 'function') {
+    if (
+      hasTrackedConversionRef.current ||
+      typeof window === 'undefined' ||
+      typeof window.gtag !== 'function' ||
+      !hasTrackingConsent()
+    ) {
       return
     }
 

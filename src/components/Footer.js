@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { useFirebase } from "../hooks/useFirebase"
 import { Instagram, Twitter, Video } from "lucide-react"
 import { activeStashdogStrings } from "../config"
+import { openCookiePreferences } from "../utils/trackingConsent"
 
 const Footer = () => {
   const { logEvent } = useFirebase()
@@ -133,6 +134,9 @@ const Footer = () => {
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '2rem' }}>
             &copy; {new Date().getFullYear()} Dogfood Lab LLC. All rights reserved.
           </p>
+          <button type="button" className="footer-cookie-button" onClick={openCookiePreferences}>
+            Cookie Preferences
+          </button>
         </div>
       </div>
     </footer>
