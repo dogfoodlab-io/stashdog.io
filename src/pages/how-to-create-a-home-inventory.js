@@ -62,9 +62,14 @@ const faq = [
 
 const relatedLinks = [
   {
-    to: "/blog/home-inventory-for-insurance/",
+    to: "/home-inventory-for-insurance",
     label: "Home Inventory for Insurance",
     description: "Turn the basic inventory into claim-ready proof with photos, receipts, and useful item details.",
+  },
+  {
+    to: "/home-inventory-checklist",
+    label: "Home Inventory Checklist",
+    description: "Use a room-by-room checklist when you want the fastest practical starting point.",
   },
   {
     to: "/moving-inventory-app",
@@ -124,7 +129,7 @@ const HomeInventoryGuidePage = () => (
     intro="A home inventory sounds boring right up until you need it. Then it becomes the fastest way to prove what you own, find what you packed, or stop buying duplicates of things already sitting in storage."
     directAnswer="To create a home inventory, document your belongings room by room, attach photos and useful details, record where each item lives, and store the record somewhere accessible outside your own memory. An app usually works better than a spreadsheet because photos, locations, receipts, and updates stay tied to the item."
     author={{ name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }}
-    updatedAt="2026-04-22"
+    updatedAt="2026-07-08"
     evidence={evidence}
     faq={faq}
     relatedLinks={relatedLinks}

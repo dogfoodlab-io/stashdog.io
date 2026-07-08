@@ -62,6 +62,16 @@ const faq = [
 
 const relatedLinks = [
   {
+    to: "/best-free-home-inventory-app",
+    label: "Best Free Home Inventory App",
+    description: "Start with the free-plan view before choosing a family inventory system.",
+  },
+  {
+    to: "/home-inventory-app-alternatives",
+    label: "Home Inventory App Alternatives",
+    description: "Compare StashDog with spreadsheets, notes apps, and business inventory tools.",
+  },
+  {
     to: "/sortly-alternative-for-home-use",
     label: "Sortly Alternative for Home Use",
     description: "See the direct home-user comparison instead of the general category roundup.",
@@ -96,7 +106,7 @@ const FamiliesPage = () => (
     intro="Families do not need a warehouse tool. They need a system that helps multiple people remember what they own, where it lives, and what should stay documented for moving, storage, or insurance."
     directAnswer="For most households, the best home inventory app for families is one that supports shared access, clear location tracking, and low-friction setup. StashDog stands out because it is built around home use, retrieval, and shared household context, while business-first tools like Sortly are better suited to commercial inventory workflows."
     author={{ name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }}
-    updatedAt="2026-04-22"
+    updatedAt="2026-07-08"
     evidence={evidence}
     faq={faq}
     relatedLinks={relatedLinks}

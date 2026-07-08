@@ -8,6 +8,21 @@ Core capabilities include photo-based item capture, AI-assisted item recognition
 
 StashDog is not a warehouse inventory system. It is designed for personal and household organization, moving, insurance documentation, storage tracking, and everyday retrieval.
 
+## Best Fit
+
+StashDog is best for people who need a lightweight, searchable record of belongings, containers, and storage locations. Strong fits include families, renters, homeowners, collectors, movers, storage-unit users, resellers, contractors, landlords, professional organizers, realtors, insurance agents, and small teams that need a practical inventory system without enterprise software.
+
+StashDog is not best for large warehouses, formal ERP workflows, inventory replenishment operations, barcode-first retail stock control, or teams that need advanced procurement, accounting, and supply-chain systems.
+
+## Platform Availability
+
+- iOS App Store: https://apps.apple.com/us/app/stashdog/id6743368759
+- Google Play: https://play.google.com/store/apps/details?id=com.dogfoodlab.stashdog
+- Web app: https://app.stashdog.io/
+- Support: https://stashdog.io/support/
+- Pricing: https://stashdog.io/pricing/
+- Machine-readable pricing: https://stashdog.io/pricing.md
+
 ## Key Pages
 
 - [Homepage](https://stashdog.io/): Product overview for the StashDog home inventory app.
@@ -22,6 +37,12 @@ StashDog is not a warehouse inventory system. It is designed for personal and ho
 - [Sortly alternative for home use](https://stashdog.io/sortly-alternative-for-home-use/): Home-first Sortly alternative page.
 - [StashDog vs Sortly](https://stashdog.io/vs-sortly/): Direct comparison page.
 - [Best home inventory app for families](https://stashdog.io/best-home-inventory-app-for-families/): Family inventory use case.
+- [Home inventory for insurance](https://stashdog.io/home-inventory-for-insurance/): Canonical page for insurance documentation and personal property records.
+- [Storage unit inventory app](https://stashdog.io/storage-unit-inventory-app/): Offsite storage and unit inventory workflow.
+- [Best free home inventory app](https://stashdog.io/best-free-home-inventory-app/): Free-plan comparison and selection guide.
+- [Home inventory checklist](https://stashdog.io/home-inventory-checklist/): Practical checklist for documenting rooms, boxes, values, and proof.
+- [Inventory app for collectors](https://stashdog.io/inventory-app-for-collectors/): Collector inventory use case.
+- [Home inventory app alternatives](https://stashdog.io/home-inventory-app-alternatives/): Comparison of spreadsheets, notes apps, business inventory tools, and StashDog.
 
 ## Primary Use Cases
 
@@ -45,6 +66,13 @@ StashDog is best described as:
 
 StashDog is positioned against spreadsheets and business inventory tools that are too manual, too expensive, or too warehouse-oriented for household use.
 
+## Comparison Positioning
+
+- Compared with spreadsheets: StashDog keeps photos, locations, notes, and shared household context attached to item records instead of scattered across tabs and folders.
+- Compared with notes apps: StashDog provides more structure for locations, containers, item records, and retrieval.
+- Compared with business inventory tools: StashDog is household-first and does not force home users into warehouse or stock-control workflows.
+- Compared with one-time moving lists: StashDog remains useful after the move because the same records become a long-term home inventory.
+
 ## Pricing Summary
 
 StashDog offers a free plan and a Plus plan. See the canonical machine-readable pricing file at https://stashdog.io/pricing.md and the public pricing page at https://stashdog.io/pricing/.
@@ -52,4 +80,3 @@ StashDog offers a free plan and a Plus plan. See the canonical machine-readable 
 ## Ownership
 
 StashDog is published by Dogfood Lab LLC.
-

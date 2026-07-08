@@ -23,7 +23,7 @@
         "type": 301
       },
       {
-        "regex": "/(?P<page>best-home-inventory-app-for-families|download|features|find-your-shit|home-inventory-app-vs-spreadsheet|how-to-create-a-home-inventory|moving-inventory-app|pricing|privacy|searchable-moving-boxes|solutions|sortly-alternative-for-home-use|terms|vs-sortly|waitlist|blog|for|for/collectors|for/community-organizations|for/contractors|for/event-businesses|for/home-insurance|for/landlords|for/resellers|for/storage-units|for/workshops|partners|partners/insurance-agents|partners/movers|partners/professional-organizers|partners/realtors|partners/storage-facilities)$",
+        "regex": "/(?P<page>best-free-home-inventory-app|best-home-inventory-app-for-families|download|features|find-your-shit|home-inventory-app-alternatives|home-inventory-app-vs-spreadsheet|home-inventory-checklist|home-inventory-for-insurance|how-to-create-a-home-inventory|inventory-app-for-collectors|moving-inventory-app|pricing|privacy|searchable-moving-boxes|solutions|sortly-alternative-for-home-use|storage-unit-inventory-app|terms|vs-sortly|waitlist|blog|for|for/collectors|for/community-organizations|for/contractors|for/event-businesses|for/home-insurance|for/landlords|for/resellers|for/storage-units|for/workshops|partners|partners/insurance-agents|partners/movers|partners/professional-organizers|partners/realtors|partners/storage-facilities)$",
         "destination": "/:page/",
         "type": 301
       },

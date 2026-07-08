@@ -162,7 +162,7 @@ These five posts target the highest-opportunity keyword clusters identified in t
    - **Google Sheets / DIY** — Include this as a real option (be honest: it works if you're disciplined)
 4. **Comparison table** — Price, free tier, AI, QR codes, family sharing, platform. Clean and scannable.
 5. **Our recommendation** — StashDog for home users. Sortly if you're running a business. DIY spreadsheet if you have discipline and no money.
-6. **CTA** — "Try StashDog free — no limits, no credit card."
+6. **CTA** — "Try StashDog free — start your home inventory today."
 
 **Tone notes:** The credibility of this post depends on being genuinely fair. Don't trash competitors unfairly. Be honest about StashDog's gaps (no web app yet, newer platform). Readers will trust the recommendation more if you're clearly not just shilling.
 

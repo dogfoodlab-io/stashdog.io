@@ -10,12 +10,18 @@ import { trackMetaEvent, trackMetaStandardEvent } from "../utils/metaPixel"
 import "../styles/global.css"
 import "../styles/ai-seo.css"
 
-const formatDate = (dateString) =>
-  new Date(dateString).toLocaleDateString("en-US", {
+const formatDate = (dateString) => {
+  const [year, month, day] = String(dateString).split("-").map(Number)
+  const date = year && month && day
+    ? new Date(year, month - 1, day)
+    : new Date(dateString)
+
+  return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   })
+}
 
 const getCurrentUtmAttribution = () => {
   if (typeof window === "undefined") {
@@ -89,6 +95,24 @@ const AiSeoPageLayout = ({
   }, [analyticsContext, isInitialized, logEvent, pagePath, title])
 
   const canonicalUrl = `https://stashdog.io${canonicalPath}`
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://stashdog.io/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: title,
+        item: canonicalUrl,
+      },
+    ],
+  }
 
   const schema = [
     {
@@ -114,6 +138,7 @@ const AiSeoPageLayout = ({
       mainEntityOfPage: canonicalUrl,
       url: canonicalUrl,
     },
+    breadcrumbSchema,
   ]
 
   if (faq.length > 0) {
@@ -204,6 +229,8 @@ const AiSeoPageLayout = ({
         <title>{metaTitle || title}</title>
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" type="text/plain" href="https://stashdog.io/llms.txt" title="StashDog AI context" />
+        <link rel="alternate" type="text/markdown" href="https://stashdog.io/pricing.md" title="StashDog machine-readable pricing" />
         <meta name="robots" content="index,follow" />
 
         <meta property="og:title" content={metaTitle || title} />

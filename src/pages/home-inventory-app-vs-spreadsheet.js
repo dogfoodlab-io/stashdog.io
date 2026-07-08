@@ -67,6 +67,16 @@ const relatedLinks = [
     description: "Start with the setup process if you are still deciding what fields to track.",
   },
   {
+    to: "/home-inventory-app-alternatives",
+    label: "Home Inventory App Alternatives",
+    description: "Compare spreadsheets, notes apps, photo folders, business tools, and StashDog.",
+  },
+  {
+    to: "/best-free-home-inventory-app",
+    label: "Best Free Home Inventory App",
+    description: "See when a free app beats a free spreadsheet.",
+  },
+  {
     to: "/moving-inventory-app",
     label: "Moving Inventory App",
     description: "See how the same decision changes under moving-day pressure.",
@@ -96,7 +106,7 @@ const SpreadsheetComparisonPage = () => (
     intro="The real default competitor for a home inventory app is not another app. It is a spreadsheet you promise yourself you will keep updated."
     directAnswer="A spreadsheet is fine for a very small, low-change inventory. A home inventory app works better once you need photos, location tracking, household collaboration, or reliable upkeep. For most active households, an app wins because it is easier to maintain and easier to trust when you actually need the record."
     author={{ name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }}
-    updatedAt="2026-04-22"
+    updatedAt="2026-07-08"
     evidence={evidence}
     faq={faq}
     relatedLinks={relatedLinks}

@@ -62,6 +62,11 @@ const faq = [
 
 const relatedLinks = [
   {
+    to: "/storage-unit-inventory-app",
+    label: "Storage Unit Inventory App",
+    description: "Use the same box and container workflow when belongings move offsite.",
+  },
+  {
     to: "/how-to-create-a-home-inventory",
     label: "How to Create a Home Inventory",
     description: "Use the same process for your regular household record, not just moving week.",
@@ -96,7 +101,7 @@ const MovingInventoryAppPage = () => (
     intro="A moving inventory app is not just for labeling boxes. The real payoff is being able to search for one item, know which box it landed in, and stop opening seven containers to find the coffee maker."
     directAnswer="The best moving inventory app is one that tracks boxes, links those boxes to searchable contents, and stays useful after move day. StashDog is a strong fit because it supports item photos, box labeling, location tracking, and retrieval after the truck is gone, not just during packing."
     author={{ name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }}
-    updatedAt="2026-04-22"
+    updatedAt="2026-07-08"
     evidence={evidence}
     faq={faq}
     relatedLinks={relatedLinks}

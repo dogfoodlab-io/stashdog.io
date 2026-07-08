@@ -108,7 +108,7 @@ const IndexPage = () => {
               url: "https://stashdog.io",
               logo: "https://stashdog.io/round-logo-goggles.png",
               sameAs: [
-                "https://apps.apple.com/app/stashdog/id6743378048",
+                "https://apps.apple.com/us/app/stashdog/id6743368759",
                 "https://play.google.com/store/apps/details?id=com.dogfoodlab.stashdog"
               ],
             })}
@@ -125,7 +125,7 @@ const IndexPage = () => {
               applicationCategory: "LifestyleApplication",
               operatingSystem: "iOS, Android",
               downloadUrl: [
-                "https://apps.apple.com/app/stashdog/id6743378048",
+                "https://apps.apple.com/us/app/stashdog/id6743368759",
                 "https://play.google.com/store/apps/details?id=com.dogfoodlab.stashdog"
               ],
               featureList: [
@@ -168,8 +168,8 @@ const IndexPage = () => {
                   "@type": "Question",
                   name: "Is StashDog free?",
                   acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Yes — StashDog is free forever with no credit card required. You get full access to photo inventory, AI-powered search, QR code scanning, and family sharing at no cost.",
+                  "@type": "Answer",
+                    text: "Yes. StashDog has a free plan for getting started with personal inventory, plus paid options for larger inventories and expanded workflows.",
                   },
                 },
                 {

@@ -62,6 +62,11 @@ const faq = [
 
 const relatedLinks = [
   {
+    to: "/home-inventory-app-alternatives",
+    label: "Home Inventory App Alternatives",
+    description: "Compare Sortly against spreadsheets, notes apps, and home-first inventory tools.",
+  },
+  {
     to: "/best-home-inventory-app-for-families",
     label: "Best Home Inventory App for Families",
     description: "See the broader category recommendation instead of just a one-to-one comparison.",
@@ -96,7 +101,7 @@ const SortlyAlternativePage = () => (
     intro="Sortly is a legitimate inventory platform, but home users often discover that a business-first product is not the same thing as a household-first product."
     directAnswer="If you want a Sortly alternative for home use, StashDog is the better default choice for most families and households. Sortly is designed around business inventory workflows, while StashDog is built for finding, documenting, and sharing household belongings without forcing home users into a commercial inventory mindset."
     author={{ name: "StashDog Editorial Team", role: "Dogfood Lab LLC" }}
-    updatedAt="2026-04-22"
+    updatedAt="2026-07-08"
     evidence={evidence}
     faq={faq}
     relatedLinks={relatedLinks}

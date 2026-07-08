@@ -36,7 +36,12 @@ module.exports = {
       resolve: "gatsby-plugin-sitemap",
       options: {
         excludes: [
+          "/find-your-shit/",
+          "/privacy/",
+          "/terms/",
+          "/public/collections/",
           "/public/collections/*",
+          "/public/items/",
           "/public/items/*",
           ...noindexBlogPaths,
         ],

@@ -28,14 +28,14 @@ const WaitlistPage = () => {
         <Helmet>
           <html lang="en" />
           <title>Download StashDog</title>
-          <meta name="description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
+          <meta name="description" content="Download StashDog for iOS and Android. Start with the free plan and build a searchable home inventory." />
           <meta name="keywords" content="StashDog download, iOS app, Android app, home organization, inventory management" />
           <link rel="canonical" href="https://stashdog.io/waitlist/" />
           <meta name="robots" content="index, follow" />
 
           {/* Open Graph */}
           <meta property="og:title" content="Download StashDog" />
-          <meta property="og:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
+          <meta property="og:description" content="Download StashDog for iOS and Android. Start with the free plan and build a searchable home inventory." />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://stashdog.io/waitlist" />
           <meta property="og:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
@@ -43,7 +43,7 @@ const WaitlistPage = () => {
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Download StashDog" />
-          <meta name="twitter:description" content="Download StashDog for iOS and Android. Free forever, no credit card required." />
+          <meta name="twitter:description" content="Download StashDog for iOS and Android. Start with the free plan and build a searchable home inventory." />
           <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
           {/* Favicon */}
@@ -73,7 +73,7 @@ const WaitlistPage = () => {
                     border: '1px solid rgba(252, 217, 0, 0.2)'
                   }}>
                     <span style={{ color: '#fcd900', fontWeight: '600', fontSize: '0.9rem' }}>
-                      Free Forever • No Credit Card Required
+                      Free Plan Available
                     </span>
                   </div>
 
@@ -95,7 +95,7 @@ const WaitlistPage = () => {
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>
                         <Banknote size={20} />
                       </div>
-                      <div>Free forever with no credit card required</div>
+                      <div>Start with the free plan</div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '50%', color: '#fcd900', display: 'flex' }}>

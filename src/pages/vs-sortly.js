@@ -43,15 +43,15 @@ const VsSortlyPage = () => {
       winner: "stashdog",
     },
     {
-      feature: "Unlimited items",
-      stashdog: true,
-      sortly: false,
+      feature: "Starter item limit",
+      stashdog: "100 items on Free",
+      sortly: "100 items on Free",
       winner: "stashdog",
     },
     {
       feature: "Starting price",
-      stashdog: "$0 forever",
-      sortly: "$29/month",
+      stashdog: "$0/month Free plan",
+      sortly: "Business-oriented paid tiers",
       winner: "stashdog",
     },
     {
@@ -136,10 +136,10 @@ const VsSortlyPage = () => {
     <div className="page-container">
       <Helmet>
         <html lang="en" />
-        <title>StashDog vs Sortly — The Better Home Inventory App (And It's Free)</title>
+              <title>StashDog vs Sortly — Home Inventory App Comparison</title>
         <meta
           name="description"
-          content="Comparing StashDog vs Sortly for home inventory? StashDog is free forever, built for homes (not warehouses), and uses AI to catalog your stuff in seconds. Sortly starts at $29/month. The choice is easy."
+          content="Comparing StashDog vs Sortly for home inventory? StashDog is built for household inventory, moving, storage, and insurance documentation, while Sortly is positioned around business inventory workflows."
         />
         <meta
           name="keywords"
@@ -149,10 +149,10 @@ const VsSortlyPage = () => {
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="StashDog vs Sortly — The Better Home Inventory App (And It's Free)" />
+        <meta property="og:title" content="StashDog vs Sortly — Home Inventory App Comparison" />
         <meta
           property="og:description"
-          content="Sortly charges $29/month. StashDog is free forever. Here's the full comparison."
+          content="Compare StashDog and Sortly for home inventory, moving boxes, storage, and household documentation."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stashdog.io/vs-sortly" />
@@ -161,8 +161,8 @@ const VsSortlyPage = () => {
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="StashDog vs Sortly — The Better Home Inventory App (And It's Free)" />
-        <meta name="twitter:description" content="Sortly charges $29/month. StashDog is free forever. Here's the full comparison." />
+        <meta name="twitter:title" content="StashDog vs Sortly — Home Inventory App Comparison" />
+        <meta name="twitter:description" content="Compare StashDog and Sortly for home inventory, moving boxes, storage, and household documentation." />
         <meta name="twitter:image" content="https://stashdog.io/images/social/stashdog-og-v2.png" />
 
         {/* Fonts */}
@@ -184,7 +184,7 @@ const VsSortlyPage = () => {
                 name: "Is StashDog better than Sortly for home use?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. Sortly is designed for small businesses managing physical inventory — it's priced at $29–$59/month and optimized for warehouses and stockrooms. StashDog is purpose-built for homes and families, completely free, and uses AI photo recognition to catalog your belongings in seconds. For home inventory, StashDog is the better choice.",
+                  text: "For most home users, yes. Sortly is designed around business inventory workflows, while StashDog is built for homes, families, moving boxes, storage, and personal property records. Sortly may still be better for commercial stock or operations-heavy inventory.",
                 },
               },
               {
@@ -192,7 +192,7 @@ const VsSortlyPage = () => {
                 name: "How much does Sortly cost vs StashDog?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Sortly's paid plans start at $29/month (billed annually). Their free plan is limited to 100 items. StashDog is free forever with no item limits and no credit card required.",
+                  text: "Sortly's published pricing changes over time, but its free plan is limited and its paid plans are business-oriented. StashDog has a free plan for getting started and a Plus plan for larger personal inventories.",
                 },
               },
               {
@@ -208,7 +208,7 @@ const VsSortlyPage = () => {
                 name: "What's the best free Sortly alternative?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "StashDog is the best free Sortly alternative for home users. It's completely free, supports unlimited items, has AI-powered photo recognition, and is designed specifically for homes and families — not businesses.",
+                  text: "StashDog is a strong free Sortly alternative for home users because it starts with household organization, photo-based records, storage locations, and retrieval instead of business inventory administration.",
                 },
               },
             ],
@@ -252,7 +252,7 @@ const VsSortlyPage = () => {
                 color: "var(--text-muted)",
               }}
             >
-              Sortly wants{" "}
+              Sortly is built for{" "}
               <span
                 style={{
                   background: "rgba(239, 68, 68, 0.1)",
@@ -263,13 +263,13 @@ const VsSortlyPage = () => {
                   fontWeight: 700,
                 }}
               >
-                $29/month
+                business inventory
               </span>{" "}
-              to organize your home. StashDog is{" "}
-              <span style={{ color: "#fcd900", fontWeight: 700 }}>free forever.</span>
+              workflows. StashDog is{" "}
+              <span style={{ color: "#fcd900", fontWeight: 700 }}>home-first.</span>
             </p>
             <p style={{ fontSize: "1.1rem", maxWidth: "560px", margin: "0 auto 3rem", color: "var(--text-muted)" }}>
-              And not "free with a 100-item cap" free. Actually, properly, no-credit-card-required free.
+              Start free, then upgrade when a larger personal inventory, natural language search, or export becomes worth it.
             </p>
 
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
@@ -474,8 +474,8 @@ const VsSortlyPage = () => {
               {[
                 {
                   icon: <DollarSign size={28} color="#fcd900" />,
-                  title: "It's Free. Actually Free.",
-                  body: "No 100-item limit. No 14-day trial. No \"starter plan\" that expires. StashDog is free forever with every feature included.",
+                  title: "Free to Start",
+                  body: "StashDog has a $0 Free plan for getting started with personal inventory, plus paid options when your item count or workflow grows.",
                 },
                 {
                   icon: <Brain size={28} color="#fcd900" />,
@@ -494,8 +494,8 @@ const VsSortlyPage = () => {
                 },
                 {
                   icon: <Users size={28} color="#fcd900" />,
-                  title: "Family Sharing, Free",
-                  body: "Sortly charges extra for team access. StashDog gives your whole family access out of the box — share collections, assign locations, and stop arguing about who has the scissors.",
+                  title: "Household Context",
+                  body: "StashDog is organized around home retrieval, shared context, locations, and collections instead of business user-license administration.",
                 },
                 {
                   icon: <Shield size={28} color="#fcd900" />,
