@@ -96,6 +96,16 @@ const featureSchema = [
   },
 ]
 
+const FeatureVisual = ({ src, alt, eyebrow, title }) => (
+  <figure className="feature-visual">
+    <img src={src} alt={alt} loading="lazy" />
+    <figcaption>
+      <span>{eyebrow}</span>
+      <strong>{title}</strong>
+    </figcaption>
+  </figure>
+)
+
 const FeaturesPage = () => {
   const { isInitialized, logEvent } = useFirebase()
 
@@ -222,6 +232,12 @@ const FeaturesPage = () => {
                   variant="highlight"
                 />
               </div>
+              <FeatureVisual
+                src="/images/features/organization-hierarchy.png"
+                alt="StashDog's nested storage view showing a studio closet, camera bin, and the items inside."
+                eyebrow="Everything has a place"
+                title="Navigate your actual storage hierarchy."
+              />
             </div>
 
             {/* Flexible Organization Systems */}
@@ -326,6 +342,12 @@ const FeaturesPage = () => {
                 description="Create groups for family, roommates, or teams. Share specific collections with different groups. Everyone can add, edit, and organize shared items. See who has what and where it is."
                 variant="success"
               />
+              <FeatureVisual
+                src="/images/features/shared-inventory.png"
+                alt="StashDog shared inventory screen listing camera equipment and the people who can access it."
+                eyebrow="Shared without the chaos"
+                title="See what is shared and who has access at a glance."
+              />
             </div>
 
             {/* Document Attachments */}
@@ -374,6 +396,12 @@ const FeaturesPage = () => {
                 <InfoCard icon={Calendar} title="Renewals" variant="default" />
                 <InfoCard icon={RefreshCw} title="Seasonal" variant="default" />
               </div>
+              <FeatureVisual
+                src="/images/features/item-reminder.png"
+                alt="StashDog reminder form for an annual insurance renewal on a camera."
+                eyebrow="Stay ahead of it"
+                title="Turn an item record into a maintenance or renewal reminder."
+              />
             </div>
 
             {/* Activity History */}
@@ -407,6 +435,12 @@ const FeaturesPage = () => {
                   variant="highlight"
                 />
               </div>
+              <FeatureVisual
+                src="/images/features/activity-history.png"
+                alt="StashDog activity timeline showing item updates, tags, and sharing activity."
+                eyebrow="A record, not a guessing game"
+                title="Know what changed, who changed it, and when."
+              />
             </div>
 
             {/* AI-Assisted Features */}
