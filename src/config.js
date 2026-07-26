@@ -3,8 +3,8 @@
 export const contentVariants = {
   default: {
     welcome: {
-      title: "Stop Keeping Your Whole House in Your Head",
-      description: "StashDog keeps track of what you own, where it lives, and the records that go with it—so your household can stay organized without relying on memory.",
+      title: "Give Your Stuff A Search Bar",
+      description: "StashDog turns your home into a searchable database: snap photos, save where everything lives, and find your stuff instantly when moving, sharing a home, documenting insurance, or dealing with everyday household chaos.",
       cta: {
         buttonText: "Download Free",
       }

@@ -40,11 +40,11 @@ const ProductPreview = () => {
             30-second product tour
           </div>
           <h2 id="product-preview-title">
-            Your house has a <span>search bar now.</span>
+            This is what <span>organized looks like.</span>
           </h2>
           <p>
-            See how StashDog turns garages, workshops, storage units, and collections
-            into one inventory you can actually search.
+            Watch StashDog handle the details—from exact locations and paperwork
+            to reminders, sharing, and reports.
           </p>
         </div>
 
