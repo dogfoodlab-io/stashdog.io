@@ -30,6 +30,7 @@ const Footer = () => {
       title: "Partners",
       links: [
         { to: "/partners/", label: "Partner Program" },
+        { to: "/partners/contractors/", label: "Contractors & Restoration" },
         { to: "/partners/movers/", label: "Movers" },
         { to: "/partners/storage-facilities/", label: "Storage Facilities" },
         { to: "/partners/professional-organizers/", label: "Organizers" },

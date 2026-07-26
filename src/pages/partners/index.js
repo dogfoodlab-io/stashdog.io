@@ -47,7 +47,7 @@ const PartnersIndexPage = () => {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: "Partner with StashDog",
-      description: "Partner programs for moving, storage, organizing, real estate, and insurance businesses.",
+      description: "Partner programs for contractors, restoration companies, movers, storage, organizing, real estate, and insurance businesses.",
       url: "https://stashdog.io/partners/",
       hasPart: partnerPages.map((partner) => ({
         "@type": "WebPage",
@@ -77,7 +77,7 @@ const PartnersIndexPage = () => {
         <title>Partner with StashDog | Moving, Storage, Organization, and Home Inventory</title>
         <meta
           name="description"
-          content="Partner with StashDog to offer smart QR inventory kits for movers, storage facilities, professional organizers, realtors, and insurance agents."
+          content="Partner with StashDog to offer smart QR inventory workflows for contractors, restoration companies, movers, storage facilities, organizers, realtors, and insurance agents."
         />
         <link rel="canonical" href="https://stashdog.io/partners/" />
         <meta name="robots" content="index,follow" />
@@ -108,7 +108,7 @@ const PartnersIndexPage = () => {
             </div>
             <h1>Partner with StashDog when customers need to find what they own.</h1>
             <p className="partner-subtitle">
-              Moving companies, storage facilities, organizers, realtors, and insurance agents can offer QR-labeled inventory kits that make boxes, bins, and belongings searchable.
+              Contractors, restoration teams, movers, storage facilities, organizers, realtors, and insurance agents can offer QR-labeled inventory workflows that make boxes, bins, and belongings searchable.
             </p>
             <div className="partner-cta-row center">
               <a className="cta-button" href="#partner-options">
@@ -173,7 +173,7 @@ const PartnersIndexPage = () => {
           <div className="container partner-final-grid">
             <div className="partner-final-card glass-panel">
               <h2>Not sure which partner path fits?</h2>
-              <p>Start with the strongest wedge: a small co-branded pilot for 3-5 customers who are already moving, storing, organizing, or documenting belongings.</p>
+              <p>Start with a small pilot for customers who are already moving, storing, organizing, documenting, or temporarily relocating belongings.</p>
               <div className="partner-cta-row center">
                 <a className="cta-button" href="#commercial-lead" onClick={() => handlePilotClick("final")}>Ask about a pilot</a>
                 <Link className="cta-button outline" to="/searchable-moving-boxes/">View customer-facing example</Link>

@@ -1677,6 +1677,87 @@ section {
   margin-top: 0.2rem;
 }
 
+.partner-audience-section {
+  background:
+    linear-gradient(180deg, transparent, rgba(252, 217, 0, 0.035) 50%, transparent),
+    repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255, 255, 255, 0.018) 80px);
+}
+
+.partner-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.partner-audience-card {
+  border-radius: 28px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.partner-audience-card::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -90px;
+  bottom: -100px;
+  border: 1px solid rgba(252, 217, 0, 0.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgba(252, 217, 0, 0.025);
+  pointer-events: none;
+}
+
+.partner-audience-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.partner-audience-icon {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: var(--color-primary);
+  color: #000;
+}
+
+.partner-audience-card h3 {
+  max-width: 520px;
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+}
+
+.partner-audience-card ul {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.partner-audience-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+}
+
+.partner-audience-card li svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
 .partner-kit-card ul {
   list-style: none;
   display: grid;
@@ -1762,7 +1843,7 @@ section {
 
 .partner-directory-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -1835,7 +1916,8 @@ section {
   .partner-kit-grid,
   .partner-lead-grid,
   .partner-steps-grid,
-  .partner-benefits-grid {
+  .partner-benefits-grid,
+  .partner-audience-grid {
     grid-template-columns: 1fr;
   }
 

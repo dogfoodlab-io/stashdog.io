@@ -1,4 +1,117 @@
 export const partnerLandingPages = {
+  contractors: {
+    slug: "contractors",
+    path: "/partners/contractors/",
+    experiment: "partner_contractors",
+    partnerType: "Contractors, restoration, and remodeling companies",
+    eyebrow: "Belongings tracking for home projects",
+    title: "A clear handoff for everything that leaves the home.",
+    subtitle:
+      "StashDog helps restoration, renovation, and remodeling teams create a searchable record of customer belongings as they are packed, moved, stored, and returned.",
+    primaryCta: "Plan a jobsite pilot",
+    secondaryCta: "See the workflow",
+    metaTitle: "StashDog for Restoration, Renovation & Remodeling Contractors",
+    metaDescription:
+      "Help crews and customers track belongings moved during restoration, renovation, and remodeling projects with photos, QR labels, notes, and searchable locations.",
+    heroCard: {
+      label: "Crew or customer searches",
+      query: "grandmother’s vase",
+      result: "Tote R-12 — Off-site storage",
+      detail: "Packed from living room · photo and handling note attached",
+    },
+    trustPoints: [
+      "Built for pack-out and pack-back",
+      "Photos, notes, and locations",
+      "Start with one project",
+    ],
+    opportunityTitle: "Moving belongings is part of the job. Confusion should not be.",
+    pain:
+      "When a home has to be cleared for mitigation, demolition, or construction, belongings can pass through several hands and locations. Spreadsheets, masking tape, and camera rolls make it hard to answer a simple question: where is this item now?",
+    offer:
+      "StashDog gives teams a lightweight way to label containers, record what came from each room, note where it went, and create a cleaner handoff when belongings return to the customer.",
+    audienceBenefits: [
+      {
+        label: "For your company",
+        title: "Run a calmer, more professional contents workflow.",
+        benefits: [
+          "Give crews one searchable record instead of scattered photos and handwritten lists",
+          "Answer customer questions faster with container, room, and location details",
+          "Create clearer pack-out and pack-back handoffs between crews, storage, and the homeowner",
+          "Differentiate your service with a modern, customer-visible organization process",
+        ],
+      },
+      {
+        label: "For your customers",
+        title: "Stay oriented while the home is already disrupted.",
+        benefits: [
+          "See a more organized record of what was moved and where it is being kept",
+          "Find priority belongings without opening every box or calling the project team",
+          "Recognize containers and items from photos when belongings come back",
+          "Feel more confident that personal property is being handled with care",
+        ],
+      },
+    ],
+    benefits: [
+      "Reduce time spent hunting through boxes, jobsite photos, and text threads",
+      "Make pack-back easier by tying belongings to rooms and labeled containers",
+      "Build trust with a process customers can understand during a stressful project",
+    ],
+    workflowIntro:
+      "Use the same simple record from the first room cleared through the final container returned.",
+    workflow: [
+      "Label each box, tote, or grouped item and record the room it came from.",
+      "Add quick photos, plain-English contents, handling notes, and the current storage location.",
+      "Search or scan during the job, then use the record to guide pack-back and customer handoff.",
+    ],
+    kitTitle: "Start with one real pack-out.",
+    kitCopy:
+      "Pilot the workflow on a contained project, learn where it saves time, and shape a repeatable process for estimators, crews, project managers, and customers.",
+    kitIncludes: [
+      "Contractor setup and crew quick-start guide",
+      "Printable QR label starter sheet",
+      "Room, container, and storage naming template",
+      "Customer handoff language and pilot support",
+    ],
+    useCases: [
+      "Water and fire restoration",
+      "Contents pack-out and pack-back",
+      "Whole-home renovation",
+      "Kitchen and bath remodeling",
+      "Flooring and painting projects",
+      "Temporary off-site storage",
+    ],
+    testimonial: "Every item has a room, a container, and a next destination.",
+    faq: [
+      {
+        question: "Is StashDog restoration or claims management software?",
+        answer:
+          "No. StashDog is a lightweight belongings inventory tool for photos, notes, QR-labeled containers, and locations. It can support a contents workflow, but it does not replace estimating, claims, or restoration management systems.",
+      },
+      {
+        question: "Does every item need its own record?",
+        answer:
+          "No. Crews can work at the level that fits the job: one record for a sealed container, individual records for fragile or high-priority items, and room-level photos for broader context.",
+      },
+      {
+        question: "Can customers use the inventory too?",
+        answer:
+          "The pilot can be designed around a customer handoff so the homeowner receives an understandable record of labeled containers, photos, contents, and storage locations.",
+      },
+      {
+        question: "Will this slow down a pack-out crew?",
+        answer:
+          "The goal is a fast capture habit, not detailed data entry. Start with a label, a photo, the source room, and the destination. Add more detail only where the job or customer needs it.",
+      },
+    ],
+    finalCta: {
+      title: "Try it on the next project where belongings have to move.",
+      copy:
+        "Choose one pack-out, align on a simple labeling convention, and see whether a searchable record improves the crew and customer handoff.",
+      primaryLabel: "Plan a jobsite pilot",
+      secondaryLabel: "Explore StashDog features",
+      secondaryPath: "/features/",
+    },
+  },
   movers: {
     slug: "movers",
     path: "/partners/movers/",

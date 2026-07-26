@@ -1,7 +1,17 @@
 import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import { Helmet } from "react-helmet"
-import { ArrowRight, CheckCircle2, Handshake, PackageCheck, QrCode, Search, Sparkles } from "lucide-react"
+import {
+  ArrowRight,
+  CheckCircle2,
+  Handshake,
+  HardHat,
+  House,
+  PackageCheck,
+  QrCode,
+  Search,
+  Sparkles,
+} from "lucide-react"
 import Header from "./Header"
 import Footer from "./Footer"
 import CommercialLeadForm from "./CommercialLeadForm"
@@ -114,9 +124,9 @@ const PartnerLandingPage = ({ page }) => {
                 </a>
               </div>
               <div className="partner-trust-row" aria-label="Partnership benefits">
-                <span><CheckCircle2 size={16} /> Free pilot available</span>
-                <span><CheckCircle2 size={16} /> Co-branded page</span>
-                <span><CheckCircle2 size={16} /> Referral-friendly</span>
+                {(page.trustPoints || ["Free pilot available", "Co-branded page", "Referral-friendly"]).map((point) => (
+                  <span key={point}><CheckCircle2 size={16} /> {point}</span>
+                ))}
               </div>
             </div>
 
@@ -148,7 +158,7 @@ const PartnerLandingPage = ({ page }) => {
           <div className="container partner-two-column">
             <div>
               <span className="partner-section-kicker">The partner opportunity</span>
-              <h2>Your customers already feel this pain.</h2>
+              <h2>{page.opportunityTitle || "Your customers already feel this pain."}</h2>
             </div>
             <div className="glass-panel partner-copy-card">
               <p>{page.pain}</p>
@@ -157,12 +167,44 @@ const PartnerLandingPage = ({ page }) => {
           </div>
         </section>
 
+        {page.audienceBenefits && (
+          <section className="partner-section partner-audience-section">
+            <div className="container">
+              <div className="partner-section-heading">
+                <span className="partner-section-kicker">One system, two wins</span>
+                <h2>Better for the project team. Better for the homeowner.</h2>
+                <p>Clear belongings records reduce operational friction while giving customers more confidence in what happens to their property.</p>
+              </div>
+              <div className="partner-audience-grid">
+                {page.audienceBenefits.map((audience, index) => {
+                  const AudienceIcon = index === 0 ? HardHat : House
+
+                  return (
+                    <article className="glass-panel partner-audience-card" key={audience.label}>
+                      <div className="partner-audience-card-header">
+                        <span className="partner-audience-icon"><AudienceIcon size={24} /></span>
+                        <span>{audience.label}</span>
+                      </div>
+                      <h3>{audience.title}</h3>
+                      <ul>
+                        {audience.benefits.map((benefit) => (
+                          <li key={benefit}><CheckCircle2 size={18} /> <span>{benefit}</span></li>
+                        ))}
+                      </ul>
+                    </article>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="partner-section" id="workflow">
           <div className="container">
             <div className="partner-section-heading">
               <span className="partner-section-kicker">Simple workflow</span>
               <h2>How the collaboration works</h2>
-              <p>Start lightweight: test the offer with a handful of customers, then turn the best-performing version into a formal partner package.</p>
+              <p>{page.workflowIntro || "Start lightweight: test the offer with a handful of customers, then turn the best-performing version into a formal partner package."}</p>
             </div>
             <div className="partner-steps-grid">
               {page.workflow.map((step, index) => (
@@ -190,8 +232,8 @@ const PartnerLandingPage = ({ page }) => {
           <div className="container partner-kit-grid">
             <div>
               <span className="partner-section-kicker">Partner kit</span>
-              <h2>Everything needed for a small pilot.</h2>
-              <p>Use this as a practical co-marketing asset, customer perk, or paid add-on — without forcing your team into a heavy software rollout.</p>
+              <h2>{page.kitTitle || "Everything needed for a small pilot."}</h2>
+              <p>{page.kitCopy || "Use this as a practical co-marketing asset, customer perk, or paid add-on — without forcing your team into a heavy software rollout."}</p>
               <blockquote>{page.testimonial}</blockquote>
             </div>
             <div className="glass-panel partner-kit-card">
@@ -264,11 +306,23 @@ const PartnerLandingPage = ({ page }) => {
         <section className="partner-final-cta">
           <div className="container partner-final-grid">
             <div className="partner-final-card glass-panel">
-              <h2>Want to test this with 3-5 customers?</h2>
-              <p>Start with one co-branded landing page, one customer handoff guide, and one referral-friendly pilot offer.</p>
+              <h2>{page.finalCta?.title || "Want to test this with 3-5 customers?"}</h2>
+              <p>{page.finalCta?.copy || "Start with one co-branded landing page, one customer handoff guide, and one referral-friendly pilot offer."}</p>
               <div className="partner-cta-row center">
-                <a className="cta-button" href="#commercial-lead" onClick={() => handleCtaClick("final_form", "Start a partner pilot")}>Start a partner pilot</a>
-                <Link className="cta-button outline" to="/searchable-moving-boxes" onClick={() => handleCtaClick("final_example", "View customer landing page")}>View customer page</Link>
+                <a
+                  className="cta-button"
+                  href="#commercial-lead"
+                  onClick={() => handleCtaClick("final_form", page.finalCta?.primaryLabel || "Start a partner pilot")}
+                >
+                  {page.finalCta?.primaryLabel || "Start a partner pilot"}
+                </a>
+                <Link
+                  className="cta-button outline"
+                  to={page.finalCta?.secondaryPath || "/searchable-moving-boxes"}
+                  onClick={() => handleCtaClick("final_example", page.finalCta?.secondaryLabel || "View customer landing page")}
+                >
+                  {page.finalCta?.secondaryLabel || "View customer page"}
+                </Link>
               </div>
             </div>
           </div>
