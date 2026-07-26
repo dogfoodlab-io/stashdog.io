@@ -120,26 +120,6 @@ const Testimonials = () => {
               transform: 'scale(1.1)',
               transition: 'all 0.3s ease'
             }}>
-              <div style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: '3px solid var(--color-primary)',
-                margin: '0 auto 1.5rem',
-                boxShadow: '0 8px 16px rgba(0,0,0,0.2)'
-              }}>
-                <img 
-                  src={TESTIMONIALS_DATA[currentIndex].image} 
-                  alt={TESTIMONIALS_DATA[currentIndex].name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                />
-              </div>
-              
               <div style={{ display: 'flex', justifyContent: 'center', gap: '0.25rem', marginBottom: '1rem' }}>
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={20} fill="#fcd900" color="#fcd900" />

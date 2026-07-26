@@ -435,18 +435,7 @@ const FindYourShitPage = () => {
               >
                 "{t.text}"
               </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: "50%",
-                    border: "2px solid var(--color-primary)",
-                    objectFit: "cover",
-                  }}
-                />
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{t.name}</div>
                   <div style={{ fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 600 }}>
